@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd"
+	default-autowire="byName" default-lazy-init="true">
+
+	<context:property-placeholder location="classpath:betaa/dboe.properties" ignore-unresolvable="true" />
+ 	<context:property-placeholder location="classpath:betaa/db.properties" ignore-unresolvable="true" />
+ 
+	<bean id="otherEnvironDBProperty" abstract="true"
+		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="maxActive" value="20" />
+		<property name="initialSize" value="5" />
+		<property name="maxWait" value="30000" />
+		<property name="maxIdle" value="20" />
+		<property name="minIdle" value="5" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="30" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="true" />
+		<property name="testOnReturn" value="false" />
+		<property name="validationQuery" value="select 1 from dual" />
+		<property name="numTestsPerEvictionRun" value="20" />
+		<property name="minEvictableIdleTimeMillis" value="1800000" />
+	</bean>
+
+	<!-- 配置数据源uat -->
+	<bean id="uatDataSource" parent="otherEnvironDBProperty">
+		<property name="driverClassName" value="${database_uat.driverClassName}" />
+		<property name="url" value="${database_uat.url}" />
+		<property name="username" value="${database_uat.username}" />
+		<property name="password" value="${database_uat.password}" />
+	</bean>
+	
+	<!-- 配置数据源-开发 -->
+	<bean id="devDataSource" parent="otherEnvironDBProperty">
+		<property name="driverClassName" value="${database.driverClassName}" />
+		<property name="url" value="${database.url}" />
+		<property name="username" value="${database.username}" />
+		<property name="password" value="${database.password}" />
+	</bean>
+
+	<!-- 动态配置数据源 -->
+	<bean id="oeDataSource" class="com.rkylin.settle.datasource.DynamicDataSource">
+		<property name="targetDataSources">
+			<map key-type="java.lang.String">
+				<entry value-ref="uatDataSource" key="uat"></entry>
+				<entry value-ref="devDataSource" key="dev"></entry>
+			</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="uatDataSource"></property>      
+	</bean>
+
+
+	<!-- 整合mybatis -->
+	<bean id="sqlSessionFactory_oe" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="oeDataSource" />
+		<property name="configLocation" value="classpath:mybatisConfig.xml" />
+	</bean>
+	
+	<bean class="com.rkylin.settle.common.OtherEnvironBaseDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory_oe"></property>
+		<property name="batchSqlSessionFactory" ref="sqlSessionFactory_oe" />
+	</bean>
+
+	
+
+<!-- 	配置事务管理 -->
+	<bean id="txManager_oe"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource">
+			<ref local="oeDataSource" />
+		</property>
+	</bean>
+
+	<bean id="jdbcTemplate_oe" class="org.springframework.jdbc.core.JdbcTemplate"
+		p:dataSource-ref="oeDataSource" />
+
+	<bean id="txTemplate_oe"
+		class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager" ref="txManager_oe" />
+	</bean>
+
+		<tx:annotation-driven transaction-manager="txManager_oe" proxy-target-class="true"/>
+	
+	<tx:advice id="txAdviceOE" transaction-manager="txManager_oe">
+		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED" rollback-for="Exception.class"/>
+			<tx:method name="update*" propagation="REQUIRED" rollback-for="Exception.class"/>
+			<tx:method name="insert*" propagation="REQUIRED" rollback-for="Exception.class"/>
+			<tx:method name="alert*" propagation="REQUIRED" rollback-for="Exception.class"/>
+			<tx:method name="confirm*" propagation="REQUIRED" rollback-for="Exception.class"/>
+			<tx:method name="cancel*" propagation="REQUIRED" rollback-for="Exception.class"/>
+		</tx:attributes>
+ 	</tx:advice>
+ 	
+ 	 <aop:config>    
+      <aop:pointcut id="point-cut-oe"  expression= "execution(* com.rkylin.settle.service.*.*(..))" />
+      <aop:advisor advice-ref="txAdviceOE"  pointcut-ref= "point-cut-oe" />
+    </aop:config>
+ 	<aop:aspectj-autoproxy expose-proxy="true"/>
+</beans>

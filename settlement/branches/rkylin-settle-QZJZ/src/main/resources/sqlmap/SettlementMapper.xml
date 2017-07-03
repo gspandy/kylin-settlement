@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SettlementMapper">
+  
+  <select id="selectbatchno" parameterType="SettleBatchManage" resultType="SettleBatchManage">
+
+   (select
+    BATCH_ID as batchId,
+    BATCH_TYPE as batchType,
+    BATCH_SUB_NO as batchSubNo,
+    ROOT_INST_CD as rootInstCd,
+    BATCH_CONS as batchCons,
+    BATCH_NUM as batchNum,
+    BATCH_NUM_LEN as batchNumLen,
+    REMARK as remark,
+    ACCOUNT_DATE as accountDate,
+    OBLIGATE1 as obligate1,
+    OBLIGATE2 as obligate2,
+    CREATED_TIME as createdTime,
+    UPDATED_TIME as updatedTime
+   from SETTLE_BATCH_MANAGE
+   where BATCH_TYPE = #{batchType}
+   <if test="rootInstCd != null">
+     and ROOT_INST_CD = #{rootInstCd}
+   </if>
+     and ACCOUNT_DATE is null)
+     union
+    (select
+    BATCH_ID as batchId,
+    BATCH_TYPE as batchType,
+    BATCH_SUB_NO as batchSubNo,
+    ROOT_INST_CD as rootInstCd,
+    BATCH_CONS as batchCons,
+    BATCH_NUM as batchNum,
+    BATCH_NUM_LEN as batchNumLen,
+    REMARK as remark,
+    ACCOUNT_DATE as accountDate,
+    OBLIGATE1 as obligate1,
+    OBLIGATE2 as obligate2,
+    CREATED_TIME as createdTime,
+    UPDATED_TIME as updatedTime
+   from SETTLE_BATCH_MANAGE
+   where BATCH_TYPE = #{batchType}
+   <if test="rootInstCd != null">
+     and ROOT_INST_CD = #{rootInstCd}
+   </if>
+   <if test="accountDate != null">
+     and ACCOUNT_DATE = #{accountDate}
+   </if>
+	)
+  </select>
+  
+  <!-- 批量插入 汇总信息(kernel_entry 和 detail_info 对应关系) -->
+  <insert id="batInsKerDetRel" parameterType="java.util.List">
+    insert into SETTLE_KERNEL_DETAIL_RELATION
+    (TRANS_KERNEL_ID, TRANS_DETAIL_ID, COLLECT_TYPE, ACCOUNT_DATE)    
+    values
+    <foreach collection="list" item="item"  open="" separator="," close="">  	
+     <foreach collection="item.detailIdArr" item="detailId"  open="" separator="," close="">
+     (#{item.transId, jdbcType=DECIMAL}, #{detailId, jdbcType=DECIMAL}, #{item.collectType, jdbcType=DECIMAL}, #{item.accountDate, jdbcType=TIMESTAMP})
+     </foreach>   
+    </foreach>
+  </insert>
+</mapper>

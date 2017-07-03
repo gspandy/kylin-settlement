@@ -1,0 +1,23 @@
+import com.rongcapital.mtaegis.service.MultCollectionResultReturnApi;
+import com.rongcapital.mtaegis.service.MultWithholdAndWithdrowResultReturnApi;
+import com.rongcapital.mtaegis.service.TransOrderInfoApi;
+import com.rongcapital.mtaegis.service.WriteOffApi;
+import com.rongcapital.mtaegis.service.BalanceQueryApi;
+import com.rongcapital.mtaegis.service.MultTransactionCommonServiceApi;
+import com.rongcapital.mtaegis.service.TransactionCommonApi;
+import com.rongcapital.mtaegis.service.RefundApi;
+import com.rongcapital.mtaegis.service.CorporatAccountInfoApi;
+import com.rongcapital.mtaegis.response.AccountInfoRes;
+import com.rongcapital.mtaegis.service.AccountInfoExtApi;
+
+PROD_00_RS_0044	查询账户余额dealProductId
+PROD_00_RS_0020	账户侧默认的退票的deal_product_code
+PROD_00_RS_0032	分润交易产品号
+PROD_00_RS_0043	挂账后支付产品号
+PROD_00_RS_0021	冲正or抹账产品号
+PROD_00_RS_0019	消费后退款产品号
+MPROD_00_RS_001	代付通知
+MPROD_00_RS_002	代收通知
+PROD_00_RS_0066	调单边账
+
+PROD_00_RS_0064	1分钱代付卡信息 

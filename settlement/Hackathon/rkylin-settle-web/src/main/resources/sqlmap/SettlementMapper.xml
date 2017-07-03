@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SettlementMapper">
+  
+  <select id="selectbatchno" parameterType="SettleBatchManage" resultType="SettleBatchManage">
+
+   (select
+    BATCH_ID as batchId,
+    BATCH_TYPE as batchType,
+    BATCH_SUB_NO as batchSubNo,
+    ROOT_INST_CD as rootInstCd,
+    BATCH_CONS as batchCons,
+    BATCH_NUM as batchNum,
+    BATCH_NUM_LEN as batchNumLen,
+    REMARK as remark,
+    ACCOUNT_DATE as accountDate,
+    OBLIGATE1 as obligate1,
+    OBLIGATE2 as obligate2,
+    CREATED_TIME as createdTime,
+    UPDATED_TIME as updatedTime
+   from SETTLE_BATCH_MANAGE
+   where BATCH_TYPE = #{batchType}
+   <if test="rootInstCd != null">
+     and ROOT_INST_CD = #{rootInstCd}
+   </if>
+     and ACCOUNT_DATE is null)
+     union
+    (select
+    BATCH_ID as batchId,
+    BATCH_TYPE as batchType,
+    BATCH_SUB_NO as batchSubNo,
+    ROOT_INST_CD as rootInstCd,
+    BATCH_CONS as batchCons,
+    BATCH_NUM as batchNum,
+    BATCH_NUM_LEN as batchNumLen,
+    REMARK as remark,
+    ACCOUNT_DATE as accountDate,
+    OBLIGATE1 as obligate1,
+    OBLIGATE2 as obligate2,
+    CREATED_TIME as createdTime,
+    UPDATED_TIME as updatedTime
+   from SETTLE_BATCH_MANAGE
+   where BATCH_TYPE = #{batchType}
+   <if test="rootInstCd != null">
+     and ROOT_INST_CD = #{rootInstCd}
+   </if>
+   <if test="accountDate != null">
+     and ACCOUNT_DATE = #{accountDate}
+   </if>
+	)
+  </select>
+</mapper>

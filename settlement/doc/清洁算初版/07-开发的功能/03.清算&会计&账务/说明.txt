@@ -1,0 +1,84 @@
+1.账户&会计记账开发
+	
+1	充值
+		settle
+			where
+				时点:对账后
+				ORDER_TYPE=0	账户
+				DATA_FROM=4	二期
+				FUNC_CD=4015	充值
+				STATUS_ID=21	平账
+				未汇总			关联 SETTLE_KERNEL_DETAIL_RELATION
+			group
+				ACCOUNT_DATE
+				kernel科目 ????
+2	实时代收
+		settle
+			where	
+				时点:对账后
+				ORDER_TYPE=1	多渠道
+				FUNC_CD=????	实时代收
+				STATUS_ID=21	平账
+				未汇总			关联 SETTLE_KERNEL_DETAIL_RELATION
+			group
+				ACCOUNT_DATE
+				kernel科目 ????
+3	代付
+		settle
+			where	
+				时点:代收付结果返回
+				ORDER_TYPE=0	账户
+				DATA_FROM=4	二期
+				FUNC_CD=4014	代付
+				DFLAG=6,60,61	通知成功
+				未汇总			关联 SETTLE_KERNEL_DETAIL_RELATION
+			group
+				ACCOUNT_DATE
+				kernel科目 ????
+4	提现
+		settle
+			where	
+				时点:代收付结果返回
+				ORDER_TYPE=0	账户
+				DATA_FROM=4	二期
+				FUNC_CD=4016	代付
+				READ_STATUS_ID=4	通知成功
+				未汇总			关联 SETTLE_KERNEL_DETAIL_RELATION
+			group
+				ACCOUNT_DATE
+				kernel科目 ????
+5	非还款代收
+			????
+6	还款代收
+		settle
+			where	
+				时点:对账后
+				ORDER_TYPE=1	多渠道
+				FUNC_CD=4013	实时代收
+				STATUS_ID=21	平账
+				未汇总			关联 SETTLE_KERNEL_DETAIL_RELATION
+			group
+				ACCOUNT_DATE
+				kernel科目 ????
+7	退票
+		通知账务的过程中 查原交易 把渠道和协议 回写到退票交易 并通知账务
+8	实时代付（对公账户测试/一分钱）
+		跟 代付 一起记账 FUNC_CODE不是4014 单独汇总
+9	实时代付
+		跟 代付 一起记账
+
+10	冻结/冻结返回授权码
+11	解冻/解冻利用授权码
+12	订单退款
+		settle
+			where
+				时点:对账后
+				ORDER_TYPE=0	账户
+				DATA_FROM=4	二期
+				FUNC_CD=4017	订单退款
+				STATUS_ID=21	平账
+				未汇总			关联 SETTLE_KERNEL_DETAIL_RELATION
+			group
+				ACCOUNT_DATE
+				kernel科目 ????
+13	标准红包流程

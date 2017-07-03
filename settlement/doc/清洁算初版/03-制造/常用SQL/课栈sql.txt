@@ -1,0 +1,12 @@
+-- 需要生成代收交易的用户
+SELECT * FROM `CREDIT_APPROVAL_INFO` where CREDIT_TYPE_ID = '102' and INTEREST_DATE is not null
+and STATUS_ID =1 and USER_ID not in ('1000119','1001883')
+ORDER BY USER_ID;
+
+
+-- 需要生成代收交易的用户（银行卡是工行的）
+SELECT * from CREDIT_APPROVAL_INFO cai
+JOIN ACCOUNT_INFO ai on (cai.USER_ID = ai.ACCOUNT_NAME and ai.BANK_HEAD = '102' AND ai.`STATUS` =1)
+where CREDIT_TYPE_ID = '102' and INTEREST_DATE is not null
+and STATUS_ID =1 and USER_ID not in ('1000119','1001883')
+ORDER BY cai.USER_ID;

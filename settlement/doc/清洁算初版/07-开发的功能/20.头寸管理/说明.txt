@@ -1,0 +1,21 @@
+头寸管理
+	1. 配置头寸信息(账户信息, 渠道信息)
+		在SETTLE_PROFIT_RULE表配置头寸信息
+	2. 获取头寸交易信息并生成头寸交易 
+		定时任务 doSettleInvoiceTrigger 10:30
+	3.发送头寸交易到账户系统生成4014交易
+		定时任务 doInvoiceSettleTrigger 10:35
+	4.头寸管理画面
+		http://localhost:8080/rkylin-settle/position/open_create
+
+备注
+	机构号:		M000029
+	交易码:		4014
+	用户ID:		14623543519844851
+	管理分组:	P000299
+	渠道号org_cd:	200222000008708
+
+	SETTLE_PROFIT_INVOICE
+		status_id = 0
+		cash_status_id = 1
+		settle_type = T-1

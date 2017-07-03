@@ -1,0 +1,59 @@
+易宝支付
+		下载对账文件
+			a.鉴权绑卡：日期+"_"+channelHome+"_"+orgCode+"_"+"AUTH"+".txt" 		不对账,只入库
+			b.支付：日期+"_"+channelHome+"_"+orgCode+"_"+"PAYMENT"+".txt"		4015,4013
+			c.提现：日期+"_"+channelHome+"_"+orgCode+"_"+"WITHDRAW"+".txt" 		4014
+			d.换卡：日期+"_"+channelHome+"_"+orgCode+"_"+"CHANGECARD"+".txt"		不对账,只入库
+			e.退款：日期+"_"+channelHome+"_"+orgCode+"_"+"REFUND"+".txt"		4017
+			f.分账：日期+"_"+channelHome+"_"+orgCode+"_"+"PAYDIVIDE"+".txt"		不对账,只入库
+		对账文件入库
+			func_code
+				a.鉴权绑卡：
+					311001
+				b.支付：
+					4015
+				c.提现：
+					4014
+				d.换卡：
+					311008
+				e.退款：
+					4017
+				f.分账：
+					311005
+			pay_channel_id
+				S03
+			read_type
+				a.鉴权绑卡：AUTH
+				b.支付：PAYMENT
+				c.提现：WITHDRAW
+				d.换卡：CHANGECARD
+				e.退款：REFUND
+				f.分账：PAYDIVIDE
+
+		读取多渠道对账交易(channelNo)
+			311001	短验绑卡
+			311002	短验充值	4015 主动
+			311003	直接充值	4013 代收
+			311004	首次充值	4015 鉴权->绑卡->充值
+			311005	充值分账
+			311006	补充鉴权
+			311007	退款		4017
+			311008	换卡
+			311009	提现		4016
+
+		对账
+			取detail多渠道交易
+				课栈用M000004
+			取account对账文件交易
+			对账规则
+
+		算手续费
+			未开发
+
+		注:放在同一个定时任务中, 多渠道系统每天早上5:15开始下载对账文件，预计5:20上传完毕。
+			清结算6:20AM 下载对账文件, 入库并对账
+		
+		字典表添加配置
+			PARAMETER_TYPE='1000000013'	PAY_CHANNEL_ID
+			PARAMETER_TYPE='1000000018'	FUNC_CODE
+			PARAMETER_TYPE='1000000019'	MERCHANT_CODE

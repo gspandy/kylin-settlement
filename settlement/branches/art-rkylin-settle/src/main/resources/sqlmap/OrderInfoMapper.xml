@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="OrderInfoMapper">
+	<resultMap id="BaseResultMap" type="OrderInfo">
+	  <result column="ORDER_ID" jdbcType="VARCHAR" property="orderId" />
+	  <result column="ORDER_TYPE_ID" jdbcType="VARCHAR" property="orderTypeId" />
+	  <result column="ORDER_DATE" jdbcType="DATE" property="orderDate" />
+	  <result column="ORDER_TIME" jdbcType="TIMESTAMP" property="orderTime" />
+	  <result column="PROVIDER_ID" jdbcType="VARCHAR" property="providerId" />
+	  <result column="PRODUCT_ID" jdbcType="VARCHAR" property="productId" />
+	  <result column="ROOT_INST_CD" jdbcType="VARCHAR" property="rootInstCd" />
+	  <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+	  <result column="USER_ORDER_ID" jdbcType="VARCHAR" property="userOrderId" />
+	  <result column="USER_RELATE_ID" jdbcType="VARCHAR" property="userRelateId" />
+	  <result column="AMOUNT" jdbcType="DECIMAL" property="amount" />
+	  <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+	  <result column="ORDER_CONTROL" jdbcType="VARCHAR" property="orderControl" />
+	  <result column="RESP_CODE" jdbcType="VARCHAR" property="respCode" />
+	  <result column="STATUS_ID" jdbcType="VARCHAR" property="statusId" />
+	  <result column="CHECK_CODE" jdbcType="TINYINT" property="checkCode" />
+	  <result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName" />
+	  <result column="GOODS_DETAIL" jdbcType="VARCHAR" property="goodsDetail" />
+	  <result column="GOODS_CNT" jdbcType="INTEGER" property="goodsCnt" />
+	  <result column="UNIT_PRICE" jdbcType="DECIMAL" property="unitPrice" />
+	  <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+	  <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <trim prefix="(" prefixOverrides="and" suffix=")">
+      <if test="orderId != null" >
+	      and ORDER_ID = #{orderId,jdbcType=VARCHAR}
+	    </if>
+      <if test="orderTypeId != null" >
+	      and ORDER_TYPE_ID = #{orderTypeId,jdbcType=VARCHAR}
+	    </if>
+      <if test="orderDate != null" >
+	      and ORDER_DATE = #{orderDate,jdbcType=DATE}
+	    </if>
+      <if test="orderTime != null" >
+	      and ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="providerId != null" >
+	      and PROVIDER_ID = #{providerId,jdbcType=VARCHAR}
+	    </if>
+      <if test="productId != null" >
+	      and PRODUCT_ID = #{productId,jdbcType=VARCHAR}
+	    </if>
+      <if test="rootInstCd != null" >
+	      and ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR}
+	    </if>
+      <if test="userId != null" >
+	      and USER_ID = #{userId,jdbcType=VARCHAR}
+	    </if>
+      <if test="userOrderId != null" >
+	      and USER_ORDER_ID = #{userOrderId,jdbcType=VARCHAR}
+	    </if>
+      <if test="userRelateId != null" >
+	      and USER_RELATE_ID = #{userRelateId,jdbcType=VARCHAR}
+	    </if>
+      <if test="amount != null" >
+	      and AMOUNT = #{amount,jdbcType=DECIMAL}
+	    </if>
+      <if test="remark != null" >
+	      and REMARK = #{remark,jdbcType=VARCHAR}
+	    </if>
+      <if test="orderControl != null" >
+	      and ORDER_CONTROL = #{orderControl,jdbcType=VARCHAR}
+	    </if>
+      <if test="respCode != null" >
+	      and RESP_CODE = #{respCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="statusId != null" >
+	      and STATUS_ID = #{statusId,jdbcType=VARCHAR}
+	    </if>
+      <if test="checkCode != null" >
+	      and CHECK_CODE = #{checkCode,jdbcType=TINYINT}
+	    </if>
+      <if test="goodsName != null" >
+	      and GOODS_NAME = #{goodsName,jdbcType=VARCHAR}
+	    </if>
+      <if test="goodsDetail != null" >
+	      and GOODS_DETAIL = #{goodsDetail,jdbcType=VARCHAR}
+	    </if>
+      <if test="goodsCnt != null" >
+	      and GOODS_CNT = #{goodsCnt,jdbcType=INTEGER}
+	    </if>
+      <if test="unitPrice != null" >
+	      and UNIT_PRICE = #{unitPrice,jdbcType=DECIMAL}
+	    </if>
+      <if test="createdTime != null" >
+	      and CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="updatedTime != null" >
+	      and UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+	    </if>
+	  </trim>
+    </where>
+  </sql>
+  <sql id="Example_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+      <if test="orderId != null">
+        ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTypeId != null">
+        ORDER_TYPE_ID = #{orderTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null">
+        ORDER_DATE = #{orderDate,jdbcType=DATE},
+      </if>
+      <if test="orderTime != null">
+        ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="providerId != null">
+        PROVIDER_ID = #{providerId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="rootInstCd != null">
+        ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userOrderId != null">
+        USER_ORDER_ID = #{userOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="userRelateId != null">
+        USER_RELATE_ID = #{userRelateId,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderControl != null">
+        ORDER_CONTROL = #{orderControl,jdbcType=VARCHAR},
+      </if>
+      <if test="respCode != null">
+        RESP_CODE = #{respCode,jdbcType=VARCHAR},
+      </if>
+      <if test="statusId != null">
+        STATUS_ID = #{statusId,jdbcType=VARCHAR},
+      </if>
+      <if test="checkCode != null">
+        CHECK_CODE = #{checkCode,jdbcType=TINYINT},
+      </if>
+      <if test="goodsName != null">
+        GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDetail != null">
+        GOODS_DETAIL = #{goodsDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCnt != null">
+        GOODS_CNT = #{goodsCnt,jdbcType=INTEGER},
+      </if>
+      <if test="unitPrice != null">
+        UNIT_PRICE = #{unitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      </trim>
+    </set>
+  </sql>
+  <sql id="Base_Column_List">
+    ORDER_ID,
+    ORDER_TYPE_ID,
+    ORDER_DATE,
+    ORDER_TIME,
+    PROVIDER_ID,
+    PRODUCT_ID,
+    ROOT_INST_CD,
+    USER_ID,
+    USER_ORDER_ID,
+    USER_RELATE_ID,
+    AMOUNT,
+    REMARK,
+    ORDER_CONTROL,
+    RESP_CODE,
+    STATUS_ID,
+    CHECK_CODE,
+    GOODS_NAME,
+    GOODS_DETAIL,
+    GOODS_CNT,
+    UNIT_PRICE,
+    CREATED_TIME,
+    UPDATED_TIME,
+  </sql>
+  <sql id="Base_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+        ORDER_ID = #{orderId,jdbcType=VARCHAR},
+        ORDER_TYPE_ID = #{orderTypeId,jdbcType=VARCHAR},
+        ORDER_DATE = #{orderDate,jdbcType=DATE},
+        ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+        PROVIDER_ID = #{providerId,jdbcType=VARCHAR},
+        PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+        ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR},
+        USER_ID = #{userId,jdbcType=VARCHAR},
+        USER_ORDER_ID = #{userOrderId,jdbcType=VARCHAR},
+        USER_RELATE_ID = #{userRelateId,jdbcType=VARCHAR},
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+        REMARK = #{remark,jdbcType=VARCHAR},
+        ORDER_CONTROL = #{orderControl,jdbcType=VARCHAR},
+        RESP_CODE = #{respCode,jdbcType=VARCHAR},
+        STATUS_ID = #{statusId,jdbcType=VARCHAR},
+        CHECK_CODE = #{checkCode,jdbcType=TINYINT},
+        GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+        GOODS_DETAIL = #{goodsDetail,jdbcType=VARCHAR},
+        GOODS_CNT = #{goodsCnt,jdbcType=INTEGER},
+        UNIT_PRICE = #{unitPrice,jdbcType=DECIMAL},
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </trim>
+    </set>
+  </sql>
+  <sql id="Selective_Column_List">
+    <if test="orderId != null">
+      ORDER_ID,
+    </if>
+    <if test="orderTypeId != null">
+      ORDER_TYPE_ID,
+    </if>
+    <if test="orderDate != null">
+      ORDER_DATE,
+    </if>
+    <if test="orderTime != null">
+      ORDER_TIME,
+    </if>
+    <if test="providerId != null">
+      PROVIDER_ID,
+    </if>
+    <if test="productId != null">
+      PRODUCT_ID,
+    </if>
+    <if test="rootInstCd != null">
+      ROOT_INST_CD,
+    </if>
+    <if test="userId != null">
+      USER_ID,
+    </if>
+    <if test="userOrderId != null">
+      USER_ORDER_ID,
+    </if>
+    <if test="userRelateId != null">
+      USER_RELATE_ID,
+    </if>
+    <if test="amount != null">
+      AMOUNT,
+    </if>
+    <if test="remark != null">
+      REMARK,
+    </if>
+    <if test="orderControl != null">
+      ORDER_CONTROL,
+    </if>
+    <if test="respCode != null">
+      RESP_CODE,
+    </if>
+    <if test="statusId != null">
+      STATUS_ID,
+    </if>
+    <if test="checkCode != null">
+      CHECK_CODE,
+    </if>
+    <if test="goodsName != null">
+      GOODS_NAME,
+    </if>
+    <if test="goodsDetail != null">
+      GOODS_DETAIL,
+    </if>
+    <if test="goodsCnt != null">
+      GOODS_CNT,
+    </if>
+    <if test="unitPrice != null">
+      UNIT_PRICE,
+    </if>
+    <if test="createdTime != null">
+      CREATED_TIME,
+    </if>
+    <if test="updatedTime != null">
+      UPDATED_TIME,
+    </if>
+  </sql>
+	<sql id="Base_Value_List">
+    #{orderId,jdbcType=VARCHAR},
+    #{orderTypeId,jdbcType=VARCHAR},
+    #{orderDate,jdbcType=DATE},
+    #{orderTime,jdbcType=TIMESTAMP},
+    #{providerId,jdbcType=VARCHAR},
+    #{productId,jdbcType=VARCHAR},
+    #{rootInstCd,jdbcType=VARCHAR},
+    #{userId,jdbcType=VARCHAR},
+    #{userOrderId,jdbcType=VARCHAR},
+    #{userRelateId,jdbcType=VARCHAR},
+    #{amount,jdbcType=DECIMAL},
+    #{remark,jdbcType=VARCHAR},
+    #{orderControl,jdbcType=VARCHAR},
+    #{respCode,jdbcType=VARCHAR},
+    #{statusId,jdbcType=VARCHAR},
+    #{checkCode,jdbcType=TINYINT},
+    #{goodsName,jdbcType=VARCHAR},
+    #{goodsDetail,jdbcType=VARCHAR},
+    #{goodsCnt,jdbcType=INTEGER},
+    #{unitPrice,jdbcType=DECIMAL},
+    #{createdTime,jdbcType=TIMESTAMP},
+    #{updatedTime,jdbcType=TIMESTAMP},
+	</sql>
+  <sql id="Selective_Value_List">
+    <if test="orderId != null">
+      #{orderId,jdbcType=VARCHAR},
+    </if>
+    <if test="orderTypeId != null">
+      #{orderTypeId,jdbcType=VARCHAR},
+    </if>
+    <if test="orderDate != null">
+      #{orderDate,jdbcType=DATE},
+    </if>
+    <if test="orderTime != null">
+      #{orderTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="providerId != null">
+      #{providerId,jdbcType=VARCHAR},
+    </if>
+    <if test="productId != null">
+      #{productId,jdbcType=VARCHAR},
+    </if>
+    <if test="rootInstCd != null">
+      #{rootInstCd,jdbcType=VARCHAR},
+    </if>
+    <if test="userId != null">
+      #{userId,jdbcType=VARCHAR},
+    </if>
+    <if test="userOrderId != null">
+      #{userOrderId,jdbcType=VARCHAR},
+    </if>
+    <if test="userRelateId != null">
+      #{userRelateId,jdbcType=VARCHAR},
+    </if>
+    <if test="amount != null">
+      #{amount,jdbcType=DECIMAL},
+    </if>
+    <if test="remark != null">
+      #{remark,jdbcType=VARCHAR},
+    </if>
+    <if test="orderControl != null">
+      #{orderControl,jdbcType=VARCHAR},
+    </if>
+    <if test="respCode != null">
+      #{respCode,jdbcType=VARCHAR},
+    </if>
+    <if test="statusId != null">
+      #{statusId,jdbcType=VARCHAR},
+    </if>
+    <if test="checkCode != null">
+      #{checkCode,jdbcType=TINYINT},
+    </if>
+    <if test="goodsName != null">
+      #{goodsName,jdbcType=VARCHAR},
+    </if>
+    <if test="goodsDetail != null">
+      #{goodsDetail,jdbcType=VARCHAR},
+    </if>
+    <if test="goodsCnt != null">
+      #{goodsCnt,jdbcType=INTEGER},
+    </if>
+    <if test="unitPrice != null">
+      #{unitPrice,jdbcType=DECIMAL},
+    </if>
+    <if test="createdTime != null">
+      #{createdTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="updatedTime != null">
+      #{updatedTime,jdbcType=TIMESTAMP},
+    </if>
+  </sql>
+  
+  <select id="selectByExample" parameterType="OrderInfoQuery" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from ORDER_INFO
+    <include refid="Example_Where_Clause" />
+    <!-- order by CREATE_DATE -->
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from ORDER_INFO
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ORDER_INFO
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="OrderInfoQuery">
+    delete from ORDER_INFO
+    <include refid="Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterType="OrderInfo">
+    insert into ORDER_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Base_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Base_Value_List"/>
+    </trim>
+  </insert>
+  <insert id="insertSelective" parameterType="OrderInfo">
+    insert into ORDER_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Value_List"/>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="OrderInfoQuery" resultType="java.lang.Integer">
+    select count(*) from ORDER_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="OrderInfo">
+    update ORDER_INFO
+    <include refid="Example_Set_Clause"/>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="OrderInfo">
+    update ORDER_INFO
+    <include refid="Base_Set_Clause"/>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+
+  <!-- 读取 '订单' 交易信息新增 -->
+  <select id="selectByUpdateTime" parameterType="map" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from ORDER_INFO 
+    <where>
+    	<trim prefix="(" prefixOverrides="and" suffix=")">
+    		and ORDER_TYPE_ID in 
+    		<foreach collection="typesArr" item="type"  open="(" separator="," close=")">  
+        		#{type} 
+    		</foreach>
+    		and STATUS_ID = 8
+    		and ROOT_INST_CD in 
+    		<foreach collection="rootsArr" item="root"  open="(" separator="," close=")">  
+        		#{root} 
+    		</foreach>
+   	 		<!-- 忽略 时分秒比较 创建时间 -->
+      		<if test="updatedTime != null" >
+	      		and DATE_FORMAT(UPDATED_TIME, '%Y-%m-%d') &gt;= DATE_FORMAT(#{updatedTime, jdbcType=TIMESTAMP}, '%Y-%m-%d')
+	      		and DATE_FORMAT(UPDATED_TIME, '%Y-%m-%d') &lt;= DATE_FORMAT(now(), '%Y-%m-%d') 
+    		</if>
+    	</trim>
+    </where>
+  </select>
+  
+</mapper>

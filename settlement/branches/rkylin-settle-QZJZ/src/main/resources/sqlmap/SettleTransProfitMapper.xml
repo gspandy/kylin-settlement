@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SettleTransProfitMapper">
+	<resultMap id="BaseResultMap" type="SettleTransProfit">
+	  <result column="TRANS_PROFIT_ID" jdbcType="INTEGER" property="transProfitId" />
+	  <result column="ORDER_NO" jdbcType="VARCHAR" property="orderNo" />
+	  <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+	  <result column="MERCHANT_CODE" jdbcType="VARCHAR" property="merchantCode" />
+	  <result column="ROOT_INST_CD" jdbcType="VARCHAR" property="rootInstCd" />
+	  <result column="PRODUCT_ID" jdbcType="VARCHAR" property="productId" />
+	  <result column="PROFIT_TYPE" jdbcType="TINYINT" property="profitType" />
+	  <result column="PROFIT_AMOUNT" jdbcType="DECIMAL" property="profitAmount" />
+	  <result column="IS_MUST" jdbcType="TINYINT" property="isMust" />
+	  <result column="SETTLE_OBJECT" jdbcType="VARCHAR" property="settleObject" />
+	  <result column="SETTLE_TYPE" jdbcType="VARCHAR" property="settleType" />
+	  <result column="SETTLE_MAIN" jdbcType="VARCHAR" property="settleMain" />
+	  <result column="API_TYPE" jdbcType="VARCHAR" property="apiType" />
+	  <result column="ROLE_CODE" jdbcType="VARCHAR" property="roleCode" />
+	  <result column="INTER_USER_ID" jdbcType="VARCHAR" property="interUserId" />
+	  <result column="INTER_ROLE_CODE" jdbcType="VARCHAR" property="interRoleCode" />
+	  <result column="INTO_PRODUCT_ID" jdbcType="VARCHAR" property="intoProductId" />
+	  <result column="REFER_USER_ID" jdbcType="VARCHAR" property="referUserId" />
+	  <result column="REFER_ROLE_CODE" jdbcType="VARCHAR" property="referRoleCode" />
+	  <result column="REFER_PRODUCT_ID" jdbcType="VARCHAR" property="referProductId" />
+	  <result column="REFER_USER_ID2" jdbcType="VARCHAR" property="referUserId2" />
+	  <result column="REFER_ROLE_CODE2" jdbcType="VARCHAR" property="referRoleCode2" />
+	  <result column="REFER_PRODUCT_ID2" jdbcType="VARCHAR" property="referProductId2" />
+	  <result column="USER_IP_ADDRESS" jdbcType="VARCHAR" property="userIpAddress" />
+	  <result column="OBLIGATE1" jdbcType="VARCHAR" property="obligate1" />
+	  <result column="OBLIGATE2" jdbcType="VARCHAR" property="obligate2" />
+	  <result column="STATUS_ID" jdbcType="TINYINT" property="statusId" />
+	  <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+	  <result column="ACCOUNT_DATE" jdbcType="TIMESTAMP" property="accountDate" />
+	  <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+	  <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <trim prefix="(" prefixOverrides="and" suffix=")">
+      <if test="transProfitId != null" >
+	      and TRANS_PROFIT_ID = #{transProfitId,jdbcType=INTEGER}
+	    </if>
+      <if test="orderNo != null" >
+	      and ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="userId != null" >
+	      and USER_ID = #{userId,jdbcType=VARCHAR}
+	    </if>
+      <if test="merchantCode != null" >
+	      and MERCHANT_CODE = #{merchantCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="rootInstCd != null" >
+	      and ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR}
+	    </if>
+      <if test="productId != null" >
+	      and PRODUCT_ID = #{productId,jdbcType=VARCHAR}
+	    </if>
+      <if test="profitType != null" >
+	      and PROFIT_TYPE = #{profitType,jdbcType=TINYINT}
+	    </if>
+      <if test="profitAmount != null" >
+	      and PROFIT_AMOUNT = #{profitAmount,jdbcType=DECIMAL}
+	    </if>
+      <if test="isMust != null" >
+	      and IS_MUST = #{isMust,jdbcType=TINYINT}
+	    </if>
+      <if test="settleObject != null" >
+	      and SETTLE_OBJECT = #{settleObject,jdbcType=VARCHAR}
+	    </if>
+      <if test="settleType != null" >
+	      and SETTLE_TYPE = #{settleType,jdbcType=VARCHAR}
+	    </if>
+      <if test="settleMain != null" >
+	      and SETTLE_MAIN = #{settleMain,jdbcType=VARCHAR}
+	    </if>
+      <if test="apiType != null" >
+	      and API_TYPE = #{apiType,jdbcType=VARCHAR}
+	    </if>
+      <if test="roleCode != null" >
+	      and ROLE_CODE = #{roleCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="interUserId != null" >
+	      and INTER_USER_ID = #{interUserId,jdbcType=VARCHAR}
+	    </if>
+      <if test="interRoleCode != null" >
+	      and INTER_ROLE_CODE = #{interRoleCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="intoProductId != null" >
+	      and INTO_PRODUCT_ID = #{intoProductId,jdbcType=VARCHAR}
+	    </if>
+      <if test="referUserId != null" >
+	      and REFER_USER_ID = #{referUserId,jdbcType=VARCHAR}
+	    </if>
+      <if test="referRoleCode != null" >
+	      and REFER_ROLE_CODE = #{referRoleCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="referProductId != null" >
+	      and REFER_PRODUCT_ID = #{referProductId,jdbcType=VARCHAR}
+	    </if>
+      <if test="referUserId2 != null" >
+	      and REFER_USER_ID2 = #{referUserId2,jdbcType=VARCHAR}
+	    </if>
+      <if test="referRoleCode2 != null" >
+	      and REFER_ROLE_CODE2 = #{referRoleCode2,jdbcType=VARCHAR}
+	    </if>
+      <if test="referProductId2 != null" >
+	      and REFER_PRODUCT_ID2 = #{referProductId2,jdbcType=VARCHAR}
+	    </if>
+      <if test="userIpAddress != null" >
+	      and USER_IP_ADDRESS = #{userIpAddress,jdbcType=VARCHAR}
+	    </if>
+      <if test="obligate1 != null" >
+	      and OBLIGATE1 = #{obligate1,jdbcType=VARCHAR}
+	    </if>
+      <if test="obligate2 != null" >
+	      and OBLIGATE2 = #{obligate2,jdbcType=VARCHAR}
+	    </if>
+      <if test="statusId != null" >
+	      and STATUS_ID = #{statusId,jdbcType=TINYINT}
+	    </if>
+      <if test="remark != null" >
+	      and REMARK = #{remark,jdbcType=VARCHAR}
+	    </if>
+      <if test="accountDate != null" >
+	      and ACCOUNT_DATE = #{accountDate,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="createdTime != null" >
+	      and CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="updatedTime != null" >
+	      and UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+	    </if>
+	  </trim>
+    </where>
+  </sql>
+  <sql id="Example_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+      <if test="transProfitId != null">
+        TRANS_PROFIT_ID = #{transProfitId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null">
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantCode != null">
+        MERCHANT_CODE = #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rootInstCd != null">
+        ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="profitType != null">
+        PROFIT_TYPE = #{profitType,jdbcType=TINYINT},
+      </if>
+      <if test="profitAmount != null">
+        PROFIT_AMOUNT = #{profitAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="isMust != null">
+        IS_MUST = #{isMust,jdbcType=TINYINT},
+      </if>
+      <if test="settleObject != null">
+        SETTLE_OBJECT = #{settleObject,jdbcType=VARCHAR},
+      </if>
+      <if test="settleType != null">
+        SETTLE_TYPE = #{settleType,jdbcType=VARCHAR},
+      </if>
+      <if test="settleMain != null">
+        SETTLE_MAIN = #{settleMain,jdbcType=VARCHAR},
+      </if>
+      <if test="apiType != null">
+        API_TYPE = #{apiType,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCode != null">
+        ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="interUserId != null">
+        INTER_USER_ID = #{interUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="interRoleCode != null">
+        INTER_ROLE_CODE = #{interRoleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="intoProductId != null">
+        INTO_PRODUCT_ID = #{intoProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="referUserId != null">
+        REFER_USER_ID = #{referUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="referRoleCode != null">
+        REFER_ROLE_CODE = #{referRoleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="referProductId != null">
+        REFER_PRODUCT_ID = #{referProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="referUserId2 != null">
+        REFER_USER_ID2 = #{referUserId2,jdbcType=VARCHAR},
+      </if>
+      <if test="referRoleCode2 != null">
+        REFER_ROLE_CODE2 = #{referRoleCode2,jdbcType=VARCHAR},
+      </if>
+      <if test="referProductId2 != null">
+        REFER_PRODUCT_ID2 = #{referProductId2,jdbcType=VARCHAR},
+      </if>
+      <if test="userIpAddress != null">
+        USER_IP_ADDRESS = #{userIpAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="obligate1 != null">
+        OBLIGATE1 = #{obligate1,jdbcType=VARCHAR},
+      </if>
+      <if test="obligate2 != null">
+        OBLIGATE2 = #{obligate2,jdbcType=VARCHAR},
+      </if>
+      <if test="statusId != null">
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="accountDate != null">
+        ACCOUNT_DATE = #{accountDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      </trim>
+    </set>
+  </sql>
+  <sql id="Base_Column_List">
+    TRANS_PROFIT_ID,
+    ORDER_NO,
+    USER_ID,
+    MERCHANT_CODE,
+    ROOT_INST_CD,
+    PRODUCT_ID,
+    PROFIT_TYPE,
+    PROFIT_AMOUNT,
+    IS_MUST,
+    SETTLE_OBJECT,
+    SETTLE_TYPE,
+    SETTLE_MAIN,
+    API_TYPE,
+    ROLE_CODE,
+    INTER_USER_ID,
+    INTER_ROLE_CODE,
+    INTO_PRODUCT_ID,
+    REFER_USER_ID,
+    REFER_ROLE_CODE,
+    REFER_PRODUCT_ID,
+    REFER_USER_ID2,
+    REFER_ROLE_CODE2,
+    REFER_PRODUCT_ID2,
+    USER_IP_ADDRESS,
+    OBLIGATE1,
+    OBLIGATE2,
+    STATUS_ID,
+    REMARK,
+    ACCOUNT_DATE,
+    CREATED_TIME,
+    UPDATED_TIME,
+  </sql>
+  <sql id="My_Column_List">
+    P.TRANS_PROFIT_ID,
+    P.ORDER_NO,
+    P.USER_ID,
+    P.MERCHANT_CODE,
+    P.ROOT_INST_CD,
+    P.PRODUCT_ID,
+    P.PROFIT_TYPE,
+    P.PROFIT_AMOUNT,
+    P.IS_MUST,
+    P.ROLE_CODE,
+    P.USER_IP_ADDRESS,
+    P.OBLIGATE1,
+    P.OBLIGATE2,
+    P.STATUS_ID,
+    P.REMARK,
+    P.ACCOUNT_DATE,
+    P.CREATED_TIME,
+    P.UPDATED_TIME,
+  </sql>
+  <sql id="Base_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+        TRANS_PROFIT_ID = #{transProfitId,jdbcType=INTEGER},
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+        USER_ID = #{userId,jdbcType=VARCHAR},
+        MERCHANT_CODE = #{merchantCode,jdbcType=VARCHAR},
+        ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR},
+        PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+        PROFIT_TYPE = #{profitType,jdbcType=TINYINT},
+        PROFIT_AMOUNT = #{profitAmount,jdbcType=DECIMAL},
+        IS_MUST = #{isMust,jdbcType=TINYINT},
+        SETTLE_OBJECT = #{settleObject,jdbcType=VARCHAR},
+        SETTLE_TYPE = #{settleType,jdbcType=VARCHAR},
+        SETTLE_MAIN = #{settleMain,jdbcType=VARCHAR},
+        API_TYPE = #{apiType,jdbcType=VARCHAR},
+        ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
+        INTER_USER_ID = #{interUserId,jdbcType=VARCHAR},
+        INTER_ROLE_CODE = #{interRoleCode,jdbcType=VARCHAR},
+        INTO_PRODUCT_ID = #{intoProductId,jdbcType=VARCHAR},
+        REFER_USER_ID = #{referUserId,jdbcType=VARCHAR},
+        REFER_ROLE_CODE = #{referRoleCode,jdbcType=VARCHAR},
+        REFER_PRODUCT_ID = #{referProductId,jdbcType=VARCHAR},
+        REFER_USER_ID2 = #{referUserId2,jdbcType=VARCHAR},
+        REFER_ROLE_CODE2 = #{referRoleCode2,jdbcType=VARCHAR},
+        REFER_PRODUCT_ID2 = #{referProductId2,jdbcType=VARCHAR},
+        USER_IP_ADDRESS = #{userIpAddress,jdbcType=VARCHAR},
+        OBLIGATE1 = #{obligate1,jdbcType=VARCHAR},
+        OBLIGATE2 = #{obligate2,jdbcType=VARCHAR},
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+        REMARK = #{remark,jdbcType=VARCHAR},
+        ACCOUNT_DATE = #{accountDate,jdbcType=TIMESTAMP},
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </trim>
+    </set>
+  </sql>
+  <sql id="Selective_Column_List">
+    <if test="transProfitId != null">
+      TRANS_PROFIT_ID,
+    </if>
+    <if test="orderNo != null">
+      ORDER_NO,
+    </if>
+    <if test="userId != null">
+      USER_ID,
+    </if>
+    <if test="merchantCode != null">
+      MERCHANT_CODE,
+    </if>
+    <if test="rootInstCd != null">
+      ROOT_INST_CD,
+    </if>
+    <if test="productId != null">
+      PRODUCT_ID,
+    </if>
+    <if test="profitType != null">
+      PROFIT_TYPE,
+    </if>
+    <if test="profitAmount != null">
+      PROFIT_AMOUNT,
+    </if>
+    <if test="isMust != null">
+      IS_MUST,
+    </if>
+    <if test="settleObject != null">
+      SETTLE_OBJECT,
+    </if>
+    <if test="settleType != null">
+      SETTLE_TYPE,
+    </if>
+    <if test="settleMain != null">
+      SETTLE_MAIN,
+    </if>
+    <if test="apiType != null">
+      API_TYPE,
+    </if>
+    <if test="roleCode != null">
+      ROLE_CODE,
+    </if>
+    <if test="interUserId != null">
+      INTER_USER_ID,
+    </if>
+    <if test="interRoleCode != null">
+      INTER_ROLE_CODE,
+    </if>
+    <if test="intoProductId != null">
+      INTO_PRODUCT_ID,
+    </if>
+    <if test="referUserId != null">
+      REFER_USER_ID,
+    </if>
+    <if test="referRoleCode != null">
+      REFER_ROLE_CODE,
+    </if>
+    <if test="referProductId != null">
+      REFER_PRODUCT_ID,
+    </if>
+    <if test="referUserId2 != null">
+      REFER_USER_ID2,
+    </if>
+    <if test="referRoleCode2 != null">
+      REFER_ROLE_CODE2,
+    </if>
+    <if test="referProductId2 != null">
+      REFER_PRODUCT_ID2,
+    </if>
+    <if test="userIpAddress != null">
+      USER_IP_ADDRESS,
+    </if>
+    <if test="obligate1 != null">
+      OBLIGATE1,
+    </if>
+    <if test="obligate2 != null">
+      OBLIGATE2,
+    </if>
+    <if test="statusId != null">
+      STATUS_ID,
+    </if>
+    <if test="remark != null">
+      REMARK,
+    </if>
+    <if test="accountDate != null">
+      ACCOUNT_DATE,
+    </if>
+    <if test="createdTime != null">
+      CREATED_TIME,
+    </if>
+    <if test="updatedTime != null">
+      UPDATED_TIME,
+    </if>
+  </sql>
+	<sql id="Base_Value_List">
+    #{transProfitId,jdbcType=INTEGER},
+    #{orderNo,jdbcType=VARCHAR},
+    #{userId,jdbcType=VARCHAR},
+    #{merchantCode,jdbcType=VARCHAR},
+    #{rootInstCd,jdbcType=VARCHAR},
+    #{productId,jdbcType=VARCHAR},
+    #{profitType,jdbcType=TINYINT},
+    #{profitAmount,jdbcType=DECIMAL},
+    #{isMust,jdbcType=TINYINT},
+    #{settleObject,jdbcType=VARCHAR},
+    #{settleType,jdbcType=VARCHAR},
+    #{settleMain,jdbcType=VARCHAR},
+    #{apiType,jdbcType=VARCHAR},
+    #{roleCode,jdbcType=VARCHAR},
+    #{interUserId,jdbcType=VARCHAR},
+    #{interRoleCode,jdbcType=VARCHAR},
+    #{intoProductId,jdbcType=VARCHAR},
+    #{referUserId,jdbcType=VARCHAR},
+    #{referRoleCode,jdbcType=VARCHAR},
+    #{referProductId,jdbcType=VARCHAR},
+    #{referUserId2,jdbcType=VARCHAR},
+    #{referRoleCode2,jdbcType=VARCHAR},
+    #{referProductId2,jdbcType=VARCHAR},
+    #{userIpAddress,jdbcType=VARCHAR},
+    #{obligate1,jdbcType=VARCHAR},
+    #{obligate2,jdbcType=VARCHAR},
+    #{statusId,jdbcType=TINYINT},
+    #{remark,jdbcType=VARCHAR},
+    #{accountDate,jdbcType=TIMESTAMP},
+    #{createdTime,jdbcType=TIMESTAMP},
+    #{updatedTime,jdbcType=TIMESTAMP},
+	</sql>
+  <sql id="Selective_Value_List">
+    <if test="transProfitId != null">
+      #{transProfitId,jdbcType=INTEGER},
+    </if>
+    <if test="orderNo != null">
+      #{orderNo,jdbcType=VARCHAR},
+    </if>
+    <if test="userId != null">
+      #{userId,jdbcType=VARCHAR},
+    </if>
+    <if test="merchantCode != null">
+      #{merchantCode,jdbcType=VARCHAR},
+    </if>
+    <if test="rootInstCd != null">
+      #{rootInstCd,jdbcType=VARCHAR},
+    </if>
+    <if test="productId != null">
+      #{productId,jdbcType=VARCHAR},
+    </if>
+    <if test="profitType != null">
+      #{profitType,jdbcType=TINYINT},
+    </if>
+    <if test="profitAmount != null">
+      #{profitAmount,jdbcType=DECIMAL},
+    </if>
+    <if test="isMust != null">
+      #{isMust,jdbcType=TINYINT},
+    </if>
+    <if test="settleObject != null">
+      #{settleObject,jdbcType=VARCHAR},
+    </if>
+    <if test="settleType != null">
+      #{settleType,jdbcType=VARCHAR},
+    </if>
+    <if test="settleMain != null">
+      #{settleMain,jdbcType=VARCHAR},
+    </if>
+    <if test="apiType != null">
+      #{apiType,jdbcType=VARCHAR},
+    </if>
+    <if test="roleCode != null">
+      #{roleCode,jdbcType=VARCHAR},
+    </if>
+    <if test="interUserId != null">
+      #{interUserId,jdbcType=VARCHAR},
+    </if>
+    <if test="interRoleCode != null">
+      #{interRoleCode,jdbcType=VARCHAR},
+    </if>
+    <if test="intoProductId != null">
+      #{intoProductId,jdbcType=VARCHAR},
+    </if>
+    <if test="referUserId != null">
+      #{referUserId,jdbcType=VARCHAR},
+    </if>
+    <if test="referRoleCode != null">
+      #{referRoleCode,jdbcType=VARCHAR},
+    </if>
+    <if test="referProductId != null">
+      #{referProductId,jdbcType=VARCHAR},
+    </if>
+    <if test="referUserId2 != null">
+      #{referUserId2,jdbcType=VARCHAR},
+    </if>
+    <if test="referRoleCode2 != null">
+      #{referRoleCode2,jdbcType=VARCHAR},
+    </if>
+    <if test="referProductId2 != null">
+      #{referProductId2,jdbcType=VARCHAR},
+    </if>
+    <if test="userIpAddress != null">
+      #{userIpAddress,jdbcType=VARCHAR},
+    </if>
+    <if test="obligate1 != null">
+      #{obligate1,jdbcType=VARCHAR},
+    </if>
+    <if test="obligate2 != null">
+      #{obligate2,jdbcType=VARCHAR},
+    </if>
+    <if test="statusId != null">
+      #{statusId,jdbcType=TINYINT},
+    </if>
+    <if test="remark != null">
+      #{remark,jdbcType=VARCHAR},
+    </if>
+    <if test="accountDate != null">
+      #{accountDate,jdbcType=TIMESTAMP},
+    </if>
+    <if test="createdTime != null">
+      #{createdTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="updatedTime != null">
+      #{updatedTime,jdbcType=TIMESTAMP},
+    </if>
+  </sql>
+  
+  <select id="selectByExample" parameterType="SettleTransProfitQuery" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_TRANS_PROFIT
+    <include refid="Example_Where_Clause" />
+    <!-- order by CREATE_DATE -->
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_TRANS_PROFIT
+    where TRANS_PROFIT_ID = #{transProfitId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from SETTLE_TRANS_PROFIT
+    where TRANS_PROFIT_ID = #{transProfitId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="SettleTransProfitQuery">
+    delete from SETTLE_TRANS_PROFIT
+    <include refid="Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterType="SettleTransProfit">
+    insert into SETTLE_TRANS_PROFIT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Base_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Base_Value_List"/>
+    </trim>
+  </insert>
+  <insert id="insertSelective" parameterType="SettleTransProfit">
+    insert into SETTLE_TRANS_PROFIT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Value_List"/>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="SettleTransProfitQuery" resultType="java.lang.Integer">
+    select count(*) from SETTLE_TRANS_PROFIT
+    <include refid="Example_Where_Clause" />
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="SettleTransProfit">
+    update SETTLE_TRANS_PROFIT
+    <include refid="Example_Set_Clause"/>
+    where TRANS_PROFIT_ID = #{transProfitId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="SettleTransProfit">
+    update SETTLE_TRANS_PROFIT
+    <include refid="Base_Set_Clause"/>
+    where TRANS_PROFIT_ID = #{transProfitId,jdbcType=BIGINT}
+  </update>
+  <!-- 分润结束,修改分润交易信息对结算态 -->
+  <update id="updateTransStatusId" parameterType="map">
+    update SETTLE_TRANS_PROFIT 
+    set 
+    <if test="orderNo != null">
+      MERCHANT_CODE = #{orderNo},
+    </if>
+    STATUS_ID = #{statusId}, 
+    REMARK = #{remark}  
+    where TRANS_PROFIT_ID in
+    <foreach collection="idList" item="id"  open="(" separator="," close=")">  
+        #{id}  
+    </foreach>  
+  </update>
+  <!-- // 分润结束,修改分润交易信息对结算态 -->
+  
+  <!-- 批量修改分润交易信息 -->
+  <update id="updateByIdList" parameterType="map">
+    update SETTLE_TRANS_PROFIT 
+    set 
+    STATUS_ID = #{statusId}, 
+    REMARK = #{remark} 
+    where TRANS_PROFIT_ID in
+    <foreach collection="idList" item="id"  open="(" separator="," close=")">  
+        #{id}  
+    </foreach>  
+  </update>
+  <!-- // 批量修改分润交易信息 -->
+  
+  <!-- 关联查询 trans_detail 查询待结算的分润结果 -->
+  <select id="selectTransProfitWithUnbalance" parameterType="map" resultMap="BaseResultMap">
+	SELECT
+		P.TRANS_PROFIT_ID,
+	    P.ORDER_NO,
+	    P.USER_ID,
+	    P.MERCHANT_CODE,
+	    P.ROOT_INST_CD,
+	    P.PRODUCT_ID,
+	    P.PROFIT_TYPE,
+	    P.PROFIT_AMOUNT,
+	    P.IS_MUST,
+	    P.OBLIGATE1,
+	    P.OBLIGATE2,
+	    P.STATUS_ID,
+	    P.REMARK,
+	    P.ACCOUNT_DATE,
+	    P.CREATED_TIME,
+	    P.UPDATED_TIME
+	FROM
+		SETTLE_TRANS_PROFIT P
+	JOIN SETTLE_TRANS_DETAIL D ON (P.ORDER_NO = D.ORDER_NO AND P.ROOT_INST_CD = D.MERCHANT_CODE)
+	WHERE
+		P.STATUS_ID = ${proStatusId} 
+	AND	
+		D.STATUS_ID IN 
+	<foreach collection="detailStatusIdList" item="statusId"  open="(" separator="," close=")">  
+        #{statusId}  
+    </foreach>  
+  </select>
+  <!-- // 关联查询 trans_detail 查询待结算的分润结果 -->
+  
+  <!-- 关联查询 trans_loan 查询待结算的分润结果 -->
+  <select id="selectloanProfitWithUnbalance" parameterType="map" resultMap="BaseResultMap">
+	SELECT
+	    P.TRANS_PROFIT_ID,
+	    P.ORDER_NO,
+	    P.USER_ID,
+	    P.MERCHANT_CODE,
+	    P.ROOT_INST_CD,
+	    P.PRODUCT_ID,
+	    P.PROFIT_TYPE,
+	    P.PROFIT_AMOUNT,
+	    P.IS_MUST,
+	    P.SETTLE_OBJECT,
+	    P.SETTLE_TYPE,
+	    P.SETTLE_MAIN,
+	    P.API_TYPE,
+	    P.ROLE_CODE,
+	    P.INTER_USER_ID,
+	    P.INTER_ROLE_CODE,
+	    P.INTO_PRODUCT_ID,
+	    P.REFER_USER_ID,
+	    P.REFER_ROLE_CODE,
+	    P.REFER_PRODUCT_ID,
+	    P.REFER_USER_ID2,
+	    P.REFER_ROLE_CODE2,
+	    P.REFER_PRODUCT_ID2,
+	    P.USER_IP_ADDRESS,
+	    P.OBLIGATE1,
+	    P.OBLIGATE2,
+	    P.STATUS_ID,
+	    P.REMARK,
+	    P.ACCOUNT_DATE,
+	    P.CREATED_TIME,
+	    P.UPDATED_TIME
+	FROM
+		SETTLE_TRANS_PROFIT P
+	JOIN SETTLE_LOAN_DETAIL D ON (P.ORDER_NO = D.LOAN_ID AND P.ROOT_INST_CD = D.ROOT_INST_CD)
+	WHERE
+		P.STATUS_ID = ${proStatusId} 
+	AND 
+		DATE_FORMAT(P.ACCOUNT_DATE, '%Y-%m-%d') &lt;= DATE_FORMAT(#{settleTime, jdbcType=TIMESTAMP}, '%Y-%m-%d')
+    <if test="settleObjectFlg == '0'">
+      AND 
+		(P.SETTLE_OBJECT IS NOT NULL OR P.SETTLE_OBJECT &lt;&gt; '')
+    </if>
+	AND	
+		D.STATUS_ID IN 
+	<foreach collection="detailStatusIdList" item="statusId"  open="(" separator="," close=")">  
+        #{statusId}  
+    </foreach>  
+  </select>
+  <!-- // 关联查询 trans_loan 查询待结算的分润结果 -->
+  
+  <!-- 通过交易信息表的ID 查询对应的分润规则  -->
+  <select id="selectTransProfitWithDetailId" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+		P.TRANS_PROFIT_ID,
+	    P.ORDER_NO,
+	    P.USER_ID,
+	    P.MERCHANT_CODE,
+	    P.ROOT_INST_CD,
+	    P.PRODUCT_ID,
+	    P.PROFIT_TYPE,
+	    P.PROFIT_AMOUNT,
+	    P.IS_MUST,
+	    P.OBLIGATE1,
+	    P.OBLIGATE2,
+	    P.STATUS_ID,
+	    P.REMARK,
+	    P.ACCOUNT_DATE,
+	    P.CREATED_TIME,
+	    P.UPDATED_TIME
+	FROM
+		SETTLE_TRANS_PROFIT P
+	JOIN 
+		SETTLE_TRANS_DETAIL D 
+	ON 
+		(
+				P.ORDER_NO = D.ORDER_NO 
+			AND 
+				P.ROOT_INST_CD = D.MERCHANT_CODE 
+			AND 
+				D.TRANS_DETAIL_ID IN 
+				<foreach collection="ids" item="id"  open="(" separator="," close=")">  
+			        #{id}  
+			    </foreach>
+			AND	
+				D.STATUS_ID IN 
+				<foreach collection="detailStatusIdList" item="statusId"  open="(" separator="," close=")">  
+			        #{statusId}  
+			    </foreach>
+		)
+	WHERE
+		P.STATUS_ID = ${proStatusId}    
+  </select>
+</mapper>

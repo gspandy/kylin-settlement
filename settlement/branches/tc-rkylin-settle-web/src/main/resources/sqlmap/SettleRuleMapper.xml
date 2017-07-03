@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SettleRuleMapper">
+	<resultMap id="BaseResultMap" type="SettleRule">
+	  <result column="RULE_ID" jdbcType="INTEGER" property="ruleId" />
+	  <result column="RULE_NAME" jdbcType="VARCHAR" property="ruleName" />
+	  <result column="RULE_TYPE" jdbcType="VARCHAR" property="ruleType" />
+	  <result column="READ_TYPE" jdbcType="VARCHAR" property="readType" />
+	  <result column="DET_KEY_CODE" jdbcType="VARCHAR" property="detKeyCode" />
+	  <result column="ACC_KEY_CODE" jdbcType="VARCHAR" property="accKeyCode" />
+	  <result column="SETTLE_KEY_NAME" jdbcType="VARCHAR" property="settleKeyName" />
+	  <result column="ROP_BATCH_NO" jdbcType="VARCHAR" property="ropBatchNo" />
+	  <result column="KEY_TYPE" jdbcType="TINYINT" property="keyType" />
+	  <result column="START_TIME" jdbcType="TIMESTAMP" property="startTime" />
+	  <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" />
+	  <result column="STATUS_ID" jdbcType="TINYINT" property="statusId" />
+	  <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+	  <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+	  <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <trim prefix="(" prefixOverrides="and" suffix=")">
+      <if test="ruleId != null" >
+	      and RULE_ID = #{ruleId,jdbcType=INTEGER}
+	    </if>
+      <if test="ruleName != null" >
+	      and RULE_NAME = #{ruleName,jdbcType=VARCHAR}
+	    </if>
+      <if test="ruleType != null" >
+	      and RULE_TYPE = #{ruleType,jdbcType=VARCHAR}
+	    </if>
+      <if test="readType != null" >
+	      and READ_TYPE = #{readType,jdbcType=VARCHAR}
+	    </if>
+      <if test="detKeyCode != null" >
+	      and DET_KEY_CODE = #{detKeyCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="accKeyCode != null" >
+	      and ACC_KEY_CODE = #{accKeyCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="settleKeyName != null" >
+	      and SETTLE_KEY_NAME = #{settleKeyName,jdbcType=VARCHAR}
+	    </if>
+      <if test="ropBatchNo != null" >
+	      and ROP_BATCH_NO = #{ropBatchNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="keyType != null" >
+	      and KEY_TYPE = #{keyType,jdbcType=TINYINT}
+	    </if>
+      <if test="startTime != null" >
+	      and START_TIME = #{startTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="endTime != null" >
+	      and END_TIME = #{endTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="statusId != null" >
+	      and STATUS_ID = #{statusId,jdbcType=TINYINT}
+	    </if>
+      <if test="remark != null" >
+	      and REMARK = #{remark,jdbcType=VARCHAR}
+	    </if>
+      <if test="createdTime != null" >
+	      and CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="updatedTime != null" >
+	      and UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+	    </if>
+	  <!-- 分页查询，画面获取使用 -->
+	  <if test="startTimeStr != null" >
+	      and START_TIME &gt;= #{startTimeStr,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="endTimeStr != null" >
+	      and END_TIME &lt;= #{endTimeStr,jdbcType=TIMESTAMP}
+	    </if>
+	  </trim>
+    </where>
+  </sql>
+  <sql id="Example_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+      <if test="ruleId != null">
+        RULE_ID = #{ruleId,jdbcType=INTEGER},
+      </if>
+      <if test="ruleName != null">
+        RULE_NAME = #{ruleName,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleType != null">
+        RULE_TYPE = #{ruleType,jdbcType=VARCHAR},
+      </if>
+      <if test="readType != null">
+        READ_TYPE = #{readType,jdbcType=VARCHAR},
+      </if>
+      <if test="detKeyCode != null">
+        DET_KEY_CODE = #{detKeyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="accKeyCode != null">
+        ACC_KEY_CODE = #{accKeyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="settleKeyName != null">
+        SETTLE_KEY_NAME = #{settleKeyName,jdbcType=VARCHAR},
+      </if>
+      <if test="ropBatchNo != null">
+        ROP_BATCH_NO = #{ropBatchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="keyType != null">
+        KEY_TYPE = #{keyType,jdbcType=TINYINT},
+      </if>
+      <if test="startTime != null">
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statusId != null">
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      </trim>
+    </set>
+  </sql>
+  <sql id="Base_Column_List">
+    RULE_ID,
+    RULE_NAME,
+    RULE_TYPE,
+    READ_TYPE,
+    DET_KEY_CODE,
+    ACC_KEY_CODE,
+    SETTLE_KEY_NAME,
+    ROP_BATCH_NO,
+    KEY_TYPE,
+    START_TIME,
+    END_TIME,
+    STATUS_ID,
+    REMARK,
+    CREATED_TIME,
+    UPDATED_TIME,
+  </sql>
+  <sql id="Base_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+        RULE_ID = #{ruleId,jdbcType=INTEGER},
+        RULE_NAME = #{ruleName,jdbcType=VARCHAR},
+        RULE_TYPE = #{ruleType,jdbcType=VARCHAR},
+        READ_TYPE = #{readType,jdbcType=VARCHAR},
+        DET_KEY_CODE = #{detKeyCode,jdbcType=VARCHAR},
+        ACC_KEY_CODE = #{accKeyCode,jdbcType=VARCHAR},
+        SETTLE_KEY_NAME = #{settleKeyName,jdbcType=VARCHAR},
+        ROP_BATCH_NO = #{ropBatchNo,jdbcType=VARCHAR},
+        KEY_TYPE = #{keyType,jdbcType=TINYINT},
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+        REMARK = #{remark,jdbcType=VARCHAR},
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </trim>
+    </set>
+  </sql>
+  <sql id="Selective_Column_List">
+    <if test="ruleId != null">
+      RULE_ID,
+    </if>
+    <if test="ruleName != null">
+      RULE_NAME,
+    </if>
+    <if test="ruleType != null">
+      RULE_TYPE,
+    </if>
+    <if test="readType != null">
+      READ_TYPE,
+    </if>
+    <if test="detKeyCode != null">
+      DET_KEY_CODE,
+    </if>
+    <if test="accKeyCode != null">
+      ACC_KEY_CODE,
+    </if>
+    <if test="settleKeyName != null">
+      SETTLE_KEY_NAME,
+    </if>
+    <if test="ropBatchNo != null">
+      ROP_BATCH_NO,
+    </if>
+    <if test="keyType != null">
+      KEY_TYPE,
+    </if>
+    <if test="startTime != null">
+      START_TIME,
+    </if>
+    <if test="endTime != null">
+      END_TIME,
+    </if>
+    <if test="statusId != null">
+      STATUS_ID,
+    </if>
+    <if test="remark != null">
+      REMARK,
+    </if>
+    <if test="createdTime != null">
+      CREATED_TIME,
+    </if>
+    <if test="updatedTime != null">
+      UPDATED_TIME,
+    </if>
+  </sql>
+	<sql id="Base_Value_List">
+    #{ruleId,jdbcType=INTEGER},
+    #{ruleName,jdbcType=VARCHAR},
+    #{ruleType,jdbcType=VARCHAR},
+    #{readType,jdbcType=VARCHAR},
+    #{detKeyCode,jdbcType=VARCHAR},
+    #{accKeyCode,jdbcType=VARCHAR},
+    #{settleKeyName,jdbcType=VARCHAR},
+    #{ropBatchNo,jdbcType=VARCHAR},
+    #{keyType,jdbcType=TINYINT},
+    #{startTime,jdbcType=TIMESTAMP},
+    #{endTime,jdbcType=TIMESTAMP},
+    #{statusId,jdbcType=TINYINT},
+    #{remark,jdbcType=VARCHAR},
+    #{createdTime,jdbcType=TIMESTAMP},
+    #{updatedTime,jdbcType=TIMESTAMP},
+	</sql>
+  <sql id="Selective_Value_List">
+    <if test="ruleId != null">
+      #{ruleId,jdbcType=INTEGER},
+    </if>
+    <if test="ruleName != null">
+      #{ruleName,jdbcType=VARCHAR},
+    </if>
+    <if test="ruleType != null">
+      #{ruleType,jdbcType=VARCHAR},
+    </if>
+    <if test="readType != null">
+      #{readType,jdbcType=VARCHAR},
+    </if>
+    <if test="detKeyCode != null">
+      #{detKeyCode,jdbcType=VARCHAR},
+    </if>
+    <if test="accKeyCode != null">
+      #{accKeyCode,jdbcType=VARCHAR},
+    </if>
+    <if test="settleKeyName != null">
+      #{settleKeyName,jdbcType=VARCHAR},
+    </if>
+    <if test="ropBatchNo != null">
+      #{ropBatchNo,jdbcType=VARCHAR},
+    </if>
+    <if test="keyType != null">
+      #{keyType,jdbcType=TINYINT},
+    </if>
+    <if test="startTime != null">
+      #{startTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="endTime != null">
+      #{endTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="statusId != null">
+      #{statusId,jdbcType=TINYINT},
+    </if>
+    <if test="remark != null">
+      #{remark,jdbcType=VARCHAR},
+    </if>
+    <if test="createdTime != null">
+      #{createdTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="updatedTime != null">
+      #{updatedTime,jdbcType=TIMESTAMP},
+    </if>
+  </sql>
+  
+  <select id="selectByExample" parameterType="SettleRuleQuery" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_RULE
+    <include refid="Example_Where_Clause" />
+    <!-- order by CREATE_DATE -->
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_RULE
+    where RULE_ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from SETTLE_RULE
+    where RULE_ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="SettleRuleQuery">
+    delete from SETTLE_RULE
+    <include refid="Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterType="SettleRule">
+    insert into SETTLE_RULE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Base_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Base_Value_List"/>
+    </trim>
+  </insert>
+  <insert id="insertSelective" parameterType="SettleRule">
+    insert into SETTLE_RULE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Value_List"/>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="SettleRuleQuery" resultType="java.lang.Integer">
+    select count(*) from SETTLE_RULE
+    <include refid="Example_Where_Clause" />
+  </select>
+  <!-- 取有效时间内的对账规则 -->
+  <select id="selectByStart2EndTime" parameterType="SettleRuleQuery" resultMap="BaseResultMap">
+    select 
+    DET_KEY_CODE 
+    ,ACC_KEY_CODE 
+    ,KEY_TYPE 
+    from SETTLE_RULE
+    <include refid="Example_Where_Clause" />
+    and SETTLE_RULE.START_TIME &lt;= now() 
+    and SETTLE_RULE.END_TIME &gt;= now() 
+  <!-- order by CREATE_DATE -->
+  </select>
+  <!-- // 取有效时间内的对账规则 -->
+  <update id="updateByPrimaryKeySelective" parameterType="SettleRule">
+    update SETTLE_RULE
+    <include refid="Example_Set_Clause"/>
+    where RULE_ID = #{ruleId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="SettleRule">
+    update SETTLE_RULE
+    <include refid="Base_Set_Clause"/>
+    where RULE_ID = #{ruleId,jdbcType=BIGINT}
+  </update>
+  <!-- 分页查询 -->
+  <select id="selectByPreExample" parameterType="SettleRuleQuery" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_RULE
+    <include refid="Example_Where_Clause" />
+    <!-- order by CREATE_DATE -->
+    <!--分页查询 -->
+	<if test="orderBy !=null">
+		ORDER BY ${orderBy}
+	</if>
+	<if test="offset != null &amp; pageSize != null">
+		LIMIT #{offset}, #{pageSize}
+	</if>
+  </select>
+</mapper>

@@ -1,0 +1,906 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="TransDetailInfoMapper">
+	<resultMap id="BaseResultMap" type="TransDetailInfo">
+	  <result column="TRANS_DETAIL_ID" jdbcType="INTEGER" property="transDetailId" />
+	  <result column="PARENT_ID" jdbcType="VARCHAR" property="parentId" />
+	  <result column="REQUEST_NO" jdbcType="VARCHAR" property="requestNo" />
+	  <result column="SYS_NO" jdbcType="VARCHAR" property="sysNo" />
+	  <result column="TRANS_CODE" jdbcType="VARCHAR" property="transCode" />
+	  <result column="BUSI_CODE" jdbcType="VARCHAR" property="busiCode" />
+	  <result column="ORG_NO" jdbcType="VARCHAR" property="orgNo" />
+	  <result column="ORG_CODE" jdbcType="VARCHAR" property="orgCode" />
+	  <result column="CHANNEL_NO" jdbcType="VARCHAR" property="channelNo" />
+	  <result column="CHANNEL_HOME" jdbcType="VARCHAR" property="channelHome" />
+	  <result column="BATCH_NO" jdbcType="VARCHAR" property="batchNo" />
+	  <result column="TRANS_NO" jdbcType="VARCHAR" property="transNo" />
+	  <result column="GATEWAY_BATCH_NO" jdbcType="VARCHAR" property="gatewayBatchNo" />
+	  <result column="GATEWAY_TRANS_NO" jdbcType="VARCHAR" property="gatewayTransNo" />
+	  <result column="PAY_AMOUNT" jdbcType="DECIMAL" property="payAmount" />
+	  <result column="CURRENCY" jdbcType="VARCHAR" property="currency" />
+	  <result column="PAYER_ACCOUNT_NO" jdbcType="VARCHAR" property="payerAccountNo" />
+	  <result column="PAYER_ACCOUNT_TYPE" jdbcType="TINYINT" property="payerAccountType" />
+	  <result column="PAYER_ACCOUNT_NAME" jdbcType="VARCHAR" property="payerAccountName" />
+	  <result column="PAYER_BANK_NO" jdbcType="VARCHAR" property="payerBankNo" />
+	  <result column="PAYER_BANK_NAME" jdbcType="VARCHAR" property="payerBankName" />
+	  <result column="PAYER_DISTRICT_CODE" jdbcType="VARCHAR" property="payerDistrictCode" />
+	  <result column="RECEIVER_ACCOUNT_NO" jdbcType="VARCHAR" property="receiverAccountNo" />
+	  <result column="RECEIVER_ACCOUNT_TYPE" jdbcType="TINYINT" property="receiverAccountType" />
+	  <result column="RECEIVER_ACCOUNT_NAME" jdbcType="VARCHAR" property="receiverAccountName" />
+	  <result column="RECEIVER_BANK_NO" jdbcType="VARCHAR" property="receiverBankNo" />
+	  <result column="RECEIVER_BANK_NAME" jdbcType="VARCHAR" property="receiverBankName" />
+	  <result column="RECEIVER_DISTRICT_CODE" jdbcType="VARCHAR" property="receiverDistrictCode" />
+	  <result column="RECEIVER_PROVINCE" jdbcType="VARCHAR" property="receiverProvince" />
+	  <result column="RECEIVER_CITY" jdbcType="VARCHAR" property="receiverCity" />
+	  <result column="PROTOCOL_NO" jdbcType="VARCHAR" property="protocolNo" />
+	  <result column="PROTOCOL_USER" jdbcType="VARCHAR" property="protocolUser" />
+	  <result column="PAY_TIME" jdbcType="TIMESTAMP" property="payTime" />
+	  <result column="SUMMARY" jdbcType="VARCHAR" property="summary" />
+	  <result column="PURPOSE" jdbcType="VARCHAR" property="purpose" />
+	  <result column="ORDER_NO" jdbcType="VARCHAR" property="orderNo" />
+	  <result column="SYS_FLAG" jdbcType="TINYINT" property="sysFlag" />
+	  <result column="SPLIT_INFO" jdbcType="TINYINT" property="splitInfo" />
+	  <result column="BANK_ACCEPT_NO" jdbcType="VARCHAR" property="bankAcceptNo" />
+	  <result column="BANK_FLOW_NO" jdbcType="VARCHAR" property="bankFlowNo" />
+	  <result column="BANK_ORDER_NO" jdbcType="VARCHAR" property="bankOrderNo" />
+	  <result column="RETURN_CODE" jdbcType="VARCHAR" property="returnCode" />
+	  <result column="RETURN_MSG" jdbcType="VARCHAR" property="returnMsg" />
+	  <result column="RETURN_TIME" jdbcType="TIMESTAMP" property="returnTime" />
+	  <result column="STATUS_ID" jdbcType="TINYINT" property="statusId" />
+	  <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+	  <result column="EXPAND1" jdbcType="VARCHAR" property="expand1" />
+	  <result column="EXPAND2" jdbcType="VARCHAR" property="expand2" />
+	  <result column="EXPAND3" jdbcType="VARCHAR" property="expand3" />
+	  <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+	  <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <trim prefix="(" prefixOverrides="and" suffix=")">
+      <if test="transDetailId != null" >
+	      and TRANS_DETAIL_ID = #{transDetailId,jdbcType=INTEGER}
+	    </if>
+      <if test="parentId != null" >
+	      and PARENT_ID = #{parentId,jdbcType=VARCHAR}
+	    </if>
+      <if test="requestNo != null" >
+	      and REQUEST_NO = #{requestNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="sysNo != null" >
+	      and SYS_NO = #{sysNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="transCode != null" >
+	      and TRANS_CODE = #{transCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="busiCode != null" >
+	      and BUSI_CODE = #{busiCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="orgNo != null" >
+	      and ORG_NO = #{orgNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="orgCode != null" >
+	      and ORG_CODE = #{orgCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="channelNo != null" >
+	      and CHANNEL_NO = #{channelNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="channelHome != null" >
+	      and CHANNEL_HOME = #{channelHome,jdbcType=VARCHAR}
+	    </if>
+      <if test="batchNo != null" >
+	      and BATCH_NO = #{batchNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="transNo != null" >
+	      and TRANS_NO = #{transNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="gatewayBatchNo != null" >
+	      and GATEWAY_BATCH_NO = #{gatewayBatchNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="gatewayTransNo != null" >
+	      and GATEWAY_TRANS_NO = #{gatewayTransNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="payAmount != null" >
+	      and PAY_AMOUNT = #{payAmount,jdbcType=DECIMAL}
+	    </if>
+      <if test="currency != null" >
+	      and CURRENCY = #{currency,jdbcType=VARCHAR}
+	    </if>
+      <if test="payerAccountNo != null" >
+	      and PAYER_ACCOUNT_NO = #{payerAccountNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="payerAccountType != null" >
+	      and PAYER_ACCOUNT_TYPE = #{payerAccountType,jdbcType=TINYINT}
+	    </if>
+      <if test="payerAccountName != null" >
+	      and PAYER_ACCOUNT_NAME = #{payerAccountName,jdbcType=VARCHAR}
+	    </if>
+      <if test="payerBankNo != null" >
+	      and PAYER_BANK_NO = #{payerBankNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="payerBankName != null" >
+	      and PAYER_BANK_NAME = #{payerBankName,jdbcType=VARCHAR}
+	    </if>
+      <if test="payerDistrictCode != null" >
+	      and PAYER_DISTRICT_CODE = #{payerDistrictCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="receiverAccountNo != null" >
+	      and RECEIVER_ACCOUNT_NO = #{receiverAccountNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="receiverAccountType != null" >
+	      and RECEIVER_ACCOUNT_TYPE = #{receiverAccountType,jdbcType=TINYINT}
+	    </if>
+      <if test="receiverAccountName != null" >
+	      and RECEIVER_ACCOUNT_NAME = #{receiverAccountName,jdbcType=VARCHAR}
+	    </if>
+      <if test="receiverBankNo != null" >
+	      and RECEIVER_BANK_NO = #{receiverBankNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="receiverBankName != null" >
+	      and RECEIVER_BANK_NAME = #{receiverBankName,jdbcType=VARCHAR}
+	    </if>
+      <if test="receiverDistrictCode != null" >
+	      and RECEIVER_DISTRICT_CODE = #{receiverDistrictCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="receiverProvince != null" >
+	      and RECEIVER_PROVINCE = #{receiverProvince,jdbcType=VARCHAR}
+	    </if>
+      <if test="receiverCity != null" >
+	      and RECEIVER_CITY = #{receiverCity,jdbcType=VARCHAR}
+	    </if>
+      <if test="protocolNo != null" >
+	      and PROTOCOL_NO = #{protocolNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="protocolUser != null" >
+	      and PROTOCOL_USER = #{protocolUser,jdbcType=VARCHAR}
+	    </if>
+      <if test="payTime != null" >
+	      and PAY_TIME = #{payTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="summary != null" >
+	      and SUMMARY = #{summary,jdbcType=VARCHAR}
+	    </if>
+      <if test="purpose != null" >
+	      and PURPOSE = #{purpose,jdbcType=VARCHAR}
+	    </if>
+      <if test="orderNo != null" >
+	      and ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="sysFlag != null" >
+	      and SYS_FLAG = #{sysFlag,jdbcType=TINYINT}
+	    </if>
+      <if test="splitInfo != null" >
+	      and SPLIT_INFO = #{splitInfo,jdbcType=TINYINT}
+	    </if>
+      <if test="bankAcceptNo != null" >
+	      and BANK_ACCEPT_NO = #{bankAcceptNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="bankFlowNo != null" >
+	      and BANK_FLOW_NO = #{bankFlowNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="bankOrderNo != null" >
+	      and BANK_ORDER_NO = #{bankOrderNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="returnCode != null" >
+	      and RETURN_CODE = #{returnCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="returnMsg != null" >
+	      and RETURN_MSG = #{returnMsg,jdbcType=VARCHAR}
+	    </if>
+      <if test="returnTime != null" >
+	      and RETURN_TIME = #{returnTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="statusId != null" >
+	      and STATUS_ID = #{statusId,jdbcType=TINYINT}
+	    </if>
+      <if test="remark != null" >
+	      and REMARK = #{remark,jdbcType=VARCHAR}
+	    </if>
+      <if test="expand1 != null" >
+	      and EXPAND1 = #{expand1,jdbcType=VARCHAR}
+	    </if>
+      <if test="expand2 != null" >
+	      and EXPAND2 = #{expand2,jdbcType=VARCHAR}
+	    </if>
+      <if test="expand3 != null" >
+	      and EXPAND3 = #{expand3,jdbcType=VARCHAR}
+	    </if>
+      <if test="createdTime != null" >
+	      and CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="updatedTime != null" >
+	      and UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+	    </if>
+	  </trim>
+    </where>
+  </sql>
+  <sql id="Example_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+      <if test="transDetailId != null">
+        TRANS_DETAIL_ID = #{transDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="requestNo != null">
+        REQUEST_NO = #{requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sysNo != null">
+        SYS_NO = #{sysNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transCode != null">
+        TRANS_CODE = #{transCode,jdbcType=VARCHAR},
+      </if>
+      <if test="busiCode != null">
+        BUSI_CODE = #{busiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNo != null">
+        ORG_NO = #{orgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null">
+        ORG_CODE = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelNo != null">
+        CHANNEL_NO = #{channelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="channelHome != null">
+        CHANNEL_HOME = #{channelHome,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo != null">
+        BATCH_NO = #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transNo != null">
+        TRANS_NO = #{transNo,jdbcType=VARCHAR},
+      </if>
+      <if test="gatewayBatchNo != null">
+        GATEWAY_BATCH_NO = #{gatewayBatchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="gatewayTransNo != null">
+        GATEWAY_TRANS_NO = #{gatewayTransNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payAmount != null">
+        PAY_AMOUNT = #{payAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="currency != null">
+        CURRENCY = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="payerAccountNo != null">
+        PAYER_ACCOUNT_NO = #{payerAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payerAccountType != null">
+        PAYER_ACCOUNT_TYPE = #{payerAccountType,jdbcType=TINYINT},
+      </if>
+      <if test="payerAccountName != null">
+        PAYER_ACCOUNT_NAME = #{payerAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="payerBankNo != null">
+        PAYER_BANK_NO = #{payerBankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payerBankName != null">
+        PAYER_BANK_NAME = #{payerBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="payerDistrictCode != null">
+        PAYER_DISTRICT_CODE = #{payerDistrictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAccountNo != null">
+        RECEIVER_ACCOUNT_NO = #{receiverAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAccountType != null">
+        RECEIVER_ACCOUNT_TYPE = #{receiverAccountType,jdbcType=TINYINT},
+      </if>
+      <if test="receiverAccountName != null">
+        RECEIVER_ACCOUNT_NAME = #{receiverAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverBankNo != null">
+        RECEIVER_BANK_NO = #{receiverBankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverBankName != null">
+        RECEIVER_BANK_NAME = #{receiverBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverDistrictCode != null">
+        RECEIVER_DISTRICT_CODE = #{receiverDistrictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverProvince != null">
+        RECEIVER_PROVINCE = #{receiverProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverCity != null">
+        RECEIVER_CITY = #{receiverCity,jdbcType=VARCHAR},
+      </if>
+      <if test="protocolNo != null">
+        PROTOCOL_NO = #{protocolNo,jdbcType=VARCHAR},
+      </if>
+      <if test="protocolUser != null">
+        PROTOCOL_USER = #{protocolUser,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null">
+        PAY_TIME = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="summary != null">
+        SUMMARY = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="purpose != null">
+        PURPOSE = #{purpose,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sysFlag != null">
+        SYS_FLAG = #{sysFlag,jdbcType=TINYINT},
+      </if>
+      <if test="splitInfo != null">
+        SPLIT_INFO = #{splitInfo,jdbcType=TINYINT},
+      </if>
+      <if test="bankAcceptNo != null">
+        BANK_ACCEPT_NO = #{bankAcceptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankFlowNo != null">
+        BANK_FLOW_NO = #{bankFlowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankOrderNo != null">
+        BANK_ORDER_NO = #{bankOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="returnCode != null">
+        RETURN_CODE = #{returnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="returnMsg != null">
+        RETURN_MSG = #{returnMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="returnTime != null">
+        RETURN_TIME = #{returnTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statusId != null">
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="expand1 != null">
+        EXPAND1 = #{expand1,jdbcType=VARCHAR},
+      </if>
+      <if test="expand2 != null">
+        EXPAND2 = #{expand2,jdbcType=VARCHAR},
+      </if>
+      <if test="expand3 != null">
+        EXPAND3 = #{expand3,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      </trim>
+    </set>
+  </sql>
+  <sql id="Base_Column_List">
+    TRANS_DETAIL_ID,
+    PARENT_ID,
+    REQUEST_NO,
+    SYS_NO,
+    TRANS_CODE,
+    BUSI_CODE,
+    ORG_NO,
+    ORG_CODE,
+    CHANNEL_NO,
+    CHANNEL_HOME,
+    BATCH_NO,
+    TRANS_NO,
+    GATEWAY_BATCH_NO,
+    GATEWAY_TRANS_NO,
+    PAY_AMOUNT,
+    CURRENCY,
+    PAYER_ACCOUNT_NO,
+    PAYER_ACCOUNT_TYPE,
+    PAYER_ACCOUNT_NAME,
+    PAYER_BANK_NO,
+    PAYER_BANK_NAME,
+    PAYER_DISTRICT_CODE,
+    RECEIVER_ACCOUNT_NO,
+    RECEIVER_ACCOUNT_TYPE,
+    RECEIVER_ACCOUNT_NAME,
+    RECEIVER_BANK_NO,
+    RECEIVER_BANK_NAME,
+    RECEIVER_DISTRICT_CODE,
+    RECEIVER_PROVINCE,
+    RECEIVER_CITY,
+    PROTOCOL_NO,
+    PROTOCOL_USER,
+    PAY_TIME,
+    SUMMARY,
+    PURPOSE,
+    ORDER_NO,
+    SYS_FLAG,
+    SPLIT_INFO,
+    BANK_ACCEPT_NO,
+    BANK_FLOW_NO,
+    BANK_ORDER_NO,
+    RETURN_CODE,
+    RETURN_MSG,
+    RETURN_TIME,
+    STATUS_ID,
+    REMARK,
+    EXPAND1,
+    EXPAND2,
+    EXPAND3,
+    CREATED_TIME,
+    UPDATED_TIME,
+  </sql>
+  <sql id="Base_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+        TRANS_DETAIL_ID = #{transDetailId,jdbcType=INTEGER},
+        PARENT_ID = #{parentId,jdbcType=VARCHAR},
+        REQUEST_NO = #{requestNo,jdbcType=VARCHAR},
+        SYS_NO = #{sysNo,jdbcType=VARCHAR},
+        TRANS_CODE = #{transCode,jdbcType=VARCHAR},
+        BUSI_CODE = #{busiCode,jdbcType=VARCHAR},
+        ORG_NO = #{orgNo,jdbcType=VARCHAR},
+        ORG_CODE = #{orgCode,jdbcType=VARCHAR},
+        CHANNEL_NO = #{channelNo,jdbcType=VARCHAR},
+        CHANNEL_HOME = #{channelHome,jdbcType=VARCHAR},
+        BATCH_NO = #{batchNo,jdbcType=VARCHAR},
+        TRANS_NO = #{transNo,jdbcType=VARCHAR},
+        GATEWAY_BATCH_NO = #{gatewayBatchNo,jdbcType=VARCHAR},
+        GATEWAY_TRANS_NO = #{gatewayTransNo,jdbcType=VARCHAR},
+        PAY_AMOUNT = #{payAmount,jdbcType=DECIMAL},
+        CURRENCY = #{currency,jdbcType=VARCHAR},
+        PAYER_ACCOUNT_NO = #{payerAccountNo,jdbcType=VARCHAR},
+        PAYER_ACCOUNT_TYPE = #{payerAccountType,jdbcType=TINYINT},
+        PAYER_ACCOUNT_NAME = #{payerAccountName,jdbcType=VARCHAR},
+        PAYER_BANK_NO = #{payerBankNo,jdbcType=VARCHAR},
+        PAYER_BANK_NAME = #{payerBankName,jdbcType=VARCHAR},
+        PAYER_DISTRICT_CODE = #{payerDistrictCode,jdbcType=VARCHAR},
+        RECEIVER_ACCOUNT_NO = #{receiverAccountNo,jdbcType=VARCHAR},
+        RECEIVER_ACCOUNT_TYPE = #{receiverAccountType,jdbcType=TINYINT},
+        RECEIVER_ACCOUNT_NAME = #{receiverAccountName,jdbcType=VARCHAR},
+        RECEIVER_BANK_NO = #{receiverBankNo,jdbcType=VARCHAR},
+        RECEIVER_BANK_NAME = #{receiverBankName,jdbcType=VARCHAR},
+        RECEIVER_DISTRICT_CODE = #{receiverDistrictCode,jdbcType=VARCHAR},
+        RECEIVER_PROVINCE = #{receiverProvince,jdbcType=VARCHAR},
+        RECEIVER_CITY = #{receiverCity,jdbcType=VARCHAR},
+        PROTOCOL_NO = #{protocolNo,jdbcType=VARCHAR},
+        PROTOCOL_USER = #{protocolUser,jdbcType=VARCHAR},
+        PAY_TIME = #{payTime,jdbcType=TIMESTAMP},
+        SUMMARY = #{summary,jdbcType=VARCHAR},
+        PURPOSE = #{purpose,jdbcType=VARCHAR},
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+        SYS_FLAG = #{sysFlag,jdbcType=TINYINT},
+        SPLIT_INFO = #{splitInfo,jdbcType=TINYINT},
+        BANK_ACCEPT_NO = #{bankAcceptNo,jdbcType=VARCHAR},
+        BANK_FLOW_NO = #{bankFlowNo,jdbcType=VARCHAR},
+        BANK_ORDER_NO = #{bankOrderNo,jdbcType=VARCHAR},
+        RETURN_CODE = #{returnCode,jdbcType=VARCHAR},
+        RETURN_MSG = #{returnMsg,jdbcType=VARCHAR},
+        RETURN_TIME = #{returnTime,jdbcType=TIMESTAMP},
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+        REMARK = #{remark,jdbcType=VARCHAR},
+        EXPAND1 = #{expand1,jdbcType=VARCHAR},
+        EXPAND2 = #{expand2,jdbcType=VARCHAR},
+        EXPAND3 = #{expand3,jdbcType=VARCHAR},
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </trim>
+    </set>
+  </sql>
+  <sql id="Selective_Column_List">
+    <if test="transDetailId != null">
+      TRANS_DETAIL_ID,
+    </if>
+    <if test="parentId != null">
+      PARENT_ID,
+    </if>
+    <if test="requestNo != null">
+      REQUEST_NO,
+    </if>
+    <if test="sysNo != null">
+      SYS_NO,
+    </if>
+    <if test="transCode != null">
+      TRANS_CODE,
+    </if>
+    <if test="busiCode != null">
+      BUSI_CODE,
+    </if>
+    <if test="orgNo != null">
+      ORG_NO,
+    </if>
+    <if test="orgCode != null">
+      ORG_CODE,
+    </if>
+    <if test="channelNo != null">
+      CHANNEL_NO,
+    </if>
+    <if test="channelHome != null">
+      CHANNEL_HOME,
+    </if>
+    <if test="batchNo != null">
+      BATCH_NO,
+    </if>
+    <if test="transNo != null">
+      TRANS_NO,
+    </if>
+    <if test="gatewayBatchNo != null">
+      GATEWAY_BATCH_NO,
+    </if>
+    <if test="gatewayTransNo != null">
+      GATEWAY_TRANS_NO,
+    </if>
+    <if test="payAmount != null">
+      PAY_AMOUNT,
+    </if>
+    <if test="currency != null">
+      CURRENCY,
+    </if>
+    <if test="payerAccountNo != null">
+      PAYER_ACCOUNT_NO,
+    </if>
+    <if test="payerAccountType != null">
+      PAYER_ACCOUNT_TYPE,
+    </if>
+    <if test="payerAccountName != null">
+      PAYER_ACCOUNT_NAME,
+    </if>
+    <if test="payerBankNo != null">
+      PAYER_BANK_NO,
+    </if>
+    <if test="payerBankName != null">
+      PAYER_BANK_NAME,
+    </if>
+    <if test="payerDistrictCode != null">
+      PAYER_DISTRICT_CODE,
+    </if>
+    <if test="receiverAccountNo != null">
+      RECEIVER_ACCOUNT_NO,
+    </if>
+    <if test="receiverAccountType != null">
+      RECEIVER_ACCOUNT_TYPE,
+    </if>
+    <if test="receiverAccountName != null">
+      RECEIVER_ACCOUNT_NAME,
+    </if>
+    <if test="receiverBankNo != null">
+      RECEIVER_BANK_NO,
+    </if>
+    <if test="receiverBankName != null">
+      RECEIVER_BANK_NAME,
+    </if>
+    <if test="receiverDistrictCode != null">
+      RECEIVER_DISTRICT_CODE,
+    </if>
+    <if test="receiverProvince != null">
+      RECEIVER_PROVINCE,
+    </if>
+    <if test="receiverCity != null">
+      RECEIVER_CITY,
+    </if>
+    <if test="protocolNo != null">
+      PROTOCOL_NO,
+    </if>
+    <if test="protocolUser != null">
+      PROTOCOL_USER,
+    </if>
+    <if test="payTime != null">
+      PAY_TIME,
+    </if>
+    <if test="summary != null">
+      SUMMARY,
+    </if>
+    <if test="purpose != null">
+      PURPOSE,
+    </if>
+    <if test="orderNo != null">
+      ORDER_NO,
+    </if>
+    <if test="sysFlag != null">
+      SYS_FLAG,
+    </if>
+    <if test="splitInfo != null">
+      SPLIT_INFO,
+    </if>
+    <if test="bankAcceptNo != null">
+      BANK_ACCEPT_NO,
+    </if>
+    <if test="bankFlowNo != null">
+      BANK_FLOW_NO,
+    </if>
+    <if test="bankOrderNo != null">
+      BANK_ORDER_NO,
+    </if>
+    <if test="returnCode != null">
+      RETURN_CODE,
+    </if>
+    <if test="returnMsg != null">
+      RETURN_MSG,
+    </if>
+    <if test="returnTime != null">
+      RETURN_TIME,
+    </if>
+    <if test="statusId != null">
+      STATUS_ID,
+    </if>
+    <if test="remark != null">
+      REMARK,
+    </if>
+    <if test="expand1 != null">
+      EXPAND1,
+    </if>
+    <if test="expand2 != null">
+      EXPAND2,
+    </if>
+    <if test="expand3 != null">
+      EXPAND3,
+    </if>
+    <if test="createdTime != null">
+      CREATED_TIME,
+    </if>
+    <if test="updatedTime != null">
+      UPDATED_TIME,
+    </if>
+  </sql>
+	<sql id="Base_Value_List">
+    #{transDetailId,jdbcType=INTEGER},
+    #{parentId,jdbcType=VARCHAR},
+    #{requestNo,jdbcType=VARCHAR},
+    #{sysNo,jdbcType=VARCHAR},
+    #{transCode,jdbcType=VARCHAR},
+    #{busiCode,jdbcType=VARCHAR},
+    #{orgNo,jdbcType=VARCHAR},
+    #{orgCode,jdbcType=VARCHAR},
+    #{channelNo,jdbcType=VARCHAR},
+    #{channelHome,jdbcType=VARCHAR},
+    #{batchNo,jdbcType=VARCHAR},
+    #{transNo,jdbcType=VARCHAR},
+    #{gatewayBatchNo,jdbcType=VARCHAR},
+    #{gatewayTransNo,jdbcType=VARCHAR},
+    #{payAmount,jdbcType=DECIMAL},
+    #{currency,jdbcType=VARCHAR},
+    #{payerAccountNo,jdbcType=VARCHAR},
+    #{payerAccountType,jdbcType=TINYINT},
+    #{payerAccountName,jdbcType=VARCHAR},
+    #{payerBankNo,jdbcType=VARCHAR},
+    #{payerBankName,jdbcType=VARCHAR},
+    #{payerDistrictCode,jdbcType=VARCHAR},
+    #{receiverAccountNo,jdbcType=VARCHAR},
+    #{receiverAccountType,jdbcType=TINYINT},
+    #{receiverAccountName,jdbcType=VARCHAR},
+    #{receiverBankNo,jdbcType=VARCHAR},
+    #{receiverBankName,jdbcType=VARCHAR},
+    #{receiverDistrictCode,jdbcType=VARCHAR},
+    #{receiverProvince,jdbcType=VARCHAR},
+    #{receiverCity,jdbcType=VARCHAR},
+    #{protocolNo,jdbcType=VARCHAR},
+    #{protocolUser,jdbcType=VARCHAR},
+    #{payTime,jdbcType=TIMESTAMP},
+    #{summary,jdbcType=VARCHAR},
+    #{purpose,jdbcType=VARCHAR},
+    #{orderNo,jdbcType=VARCHAR},
+    #{sysFlag,jdbcType=TINYINT},
+    #{splitInfo,jdbcType=TINYINT},
+    #{bankAcceptNo,jdbcType=VARCHAR},
+    #{bankFlowNo,jdbcType=VARCHAR},
+    #{bankOrderNo,jdbcType=VARCHAR},
+    #{returnCode,jdbcType=VARCHAR},
+    #{returnMsg,jdbcType=VARCHAR},
+    #{returnTime,jdbcType=TIMESTAMP},
+    #{statusId,jdbcType=TINYINT},
+    #{remark,jdbcType=VARCHAR},
+    #{expand1,jdbcType=VARCHAR},
+    #{expand2,jdbcType=VARCHAR},
+    #{expand3,jdbcType=VARCHAR},
+    #{createdTime,jdbcType=TIMESTAMP},
+    #{updatedTime,jdbcType=TIMESTAMP},
+	</sql>
+  <sql id="Selective_Value_List">
+    <if test="transDetailId != null">
+      #{transDetailId,jdbcType=INTEGER},
+    </if>
+    <if test="parentId != null">
+      #{parentId,jdbcType=VARCHAR},
+    </if>
+    <if test="requestNo != null">
+      #{requestNo,jdbcType=VARCHAR},
+    </if>
+    <if test="sysNo != null">
+      #{sysNo,jdbcType=VARCHAR},
+    </if>
+    <if test="transCode != null">
+      #{transCode,jdbcType=VARCHAR},
+    </if>
+    <if test="busiCode != null">
+      #{busiCode,jdbcType=VARCHAR},
+    </if>
+    <if test="orgNo != null">
+      #{orgNo,jdbcType=VARCHAR},
+    </if>
+    <if test="orgCode != null">
+      #{orgCode,jdbcType=VARCHAR},
+    </if>
+    <if test="channelNo != null">
+      #{channelNo,jdbcType=VARCHAR},
+    </if>
+    <if test="channelHome != null">
+      #{channelHome,jdbcType=VARCHAR},
+    </if>
+    <if test="batchNo != null">
+      #{batchNo,jdbcType=VARCHAR},
+    </if>
+    <if test="transNo != null">
+      #{transNo,jdbcType=VARCHAR},
+    </if>
+    <if test="gatewayBatchNo != null">
+      #{gatewayBatchNo,jdbcType=VARCHAR},
+    </if>
+    <if test="gatewayTransNo != null">
+      #{gatewayTransNo,jdbcType=VARCHAR},
+    </if>
+    <if test="payAmount != null">
+      #{payAmount,jdbcType=DECIMAL},
+    </if>
+    <if test="currency != null">
+      #{currency,jdbcType=VARCHAR},
+    </if>
+    <if test="payerAccountNo != null">
+      #{payerAccountNo,jdbcType=VARCHAR},
+    </if>
+    <if test="payerAccountType != null">
+      #{payerAccountType,jdbcType=TINYINT},
+    </if>
+    <if test="payerAccountName != null">
+      #{payerAccountName,jdbcType=VARCHAR},
+    </if>
+    <if test="payerBankNo != null">
+      #{payerBankNo,jdbcType=VARCHAR},
+    </if>
+    <if test="payerBankName != null">
+      #{payerBankName,jdbcType=VARCHAR},
+    </if>
+    <if test="payerDistrictCode != null">
+      #{payerDistrictCode,jdbcType=VARCHAR},
+    </if>
+    <if test="receiverAccountNo != null">
+      #{receiverAccountNo,jdbcType=VARCHAR},
+    </if>
+    <if test="receiverAccountType != null">
+      #{receiverAccountType,jdbcType=TINYINT},
+    </if>
+    <if test="receiverAccountName != null">
+      #{receiverAccountName,jdbcType=VARCHAR},
+    </if>
+    <if test="receiverBankNo != null">
+      #{receiverBankNo,jdbcType=VARCHAR},
+    </if>
+    <if test="receiverBankName != null">
+      #{receiverBankName,jdbcType=VARCHAR},
+    </if>
+    <if test="receiverDistrictCode != null">
+      #{receiverDistrictCode,jdbcType=VARCHAR},
+    </if>
+    <if test="receiverProvince != null">
+      #{receiverProvince,jdbcType=VARCHAR},
+    </if>
+    <if test="receiverCity != null">
+      #{receiverCity,jdbcType=VARCHAR},
+    </if>
+    <if test="protocolNo != null">
+      #{protocolNo,jdbcType=VARCHAR},
+    </if>
+    <if test="protocolUser != null">
+      #{protocolUser,jdbcType=VARCHAR},
+    </if>
+    <if test="payTime != null">
+      #{payTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="summary != null">
+      #{summary,jdbcType=VARCHAR},
+    </if>
+    <if test="purpose != null">
+      #{purpose,jdbcType=VARCHAR},
+    </if>
+    <if test="orderNo != null">
+      #{orderNo,jdbcType=VARCHAR},
+    </if>
+    <if test="sysFlag != null">
+      #{sysFlag,jdbcType=TINYINT},
+    </if>
+    <if test="splitInfo != null">
+      #{splitInfo,jdbcType=TINYINT},
+    </if>
+    <if test="bankAcceptNo != null">
+      #{bankAcceptNo,jdbcType=VARCHAR},
+    </if>
+    <if test="bankFlowNo != null">
+      #{bankFlowNo,jdbcType=VARCHAR},
+    </if>
+    <if test="bankOrderNo != null">
+      #{bankOrderNo,jdbcType=VARCHAR},
+    </if>
+    <if test="returnCode != null">
+      #{returnCode,jdbcType=VARCHAR},
+    </if>
+    <if test="returnMsg != null">
+      #{returnMsg,jdbcType=VARCHAR},
+    </if>
+    <if test="returnTime != null">
+      #{returnTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="statusId != null">
+      #{statusId,jdbcType=TINYINT},
+    </if>
+    <if test="remark != null">
+      #{remark,jdbcType=VARCHAR},
+    </if>
+    <if test="expand1 != null">
+      #{expand1,jdbcType=VARCHAR},
+    </if>
+    <if test="expand2 != null">
+      #{expand2,jdbcType=VARCHAR},
+    </if>
+    <if test="expand3 != null">
+      #{expand3,jdbcType=VARCHAR},
+    </if>
+    <if test="createdTime != null">
+      #{createdTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="updatedTime != null">
+      #{updatedTime,jdbcType=TIMESTAMP},
+    </if>
+  </sql>
+  
+  <select id="selectByExample" parameterType="TransDetailInfoQuery" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from TRANS_DETAIL_INFO
+    <include refid="Example_Where_Clause" />
+    <!-- order by CREATE_DATE -->
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from TRANS_DETAIL_INFO
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from TRANS_DETAIL_INFO
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="TransDetailInfoQuery">
+    delete from TRANS_DETAIL_INFO
+    <include refid="Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterType="TransDetailInfo">
+    insert into TRANS_DETAIL_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Base_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Base_Value_List"/>
+    </trim>
+  </insert>
+  <insert id="insertSelective" parameterType="TransDetailInfo">
+    insert into TRANS_DETAIL_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Value_List"/>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="TransDetailInfoQuery" resultType="java.lang.Integer">
+    select count(*) from TRANS_DETAIL_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="TransDetailInfo">
+    update TRANS_DETAIL_INFO
+    <include refid="Example_Set_Clause"/>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="TransDetailInfo">
+    update TRANS_DETAIL_INFO
+    <include refid="Base_Set_Clause"/>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

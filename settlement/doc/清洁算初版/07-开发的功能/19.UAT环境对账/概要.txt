@@ -1,0 +1,53 @@
+背景: 
+	在开发、生产和测试的过程中各个非生产的环境都有可能向上游生产环境发送交易, 这些交易在第二天会出现在生产环境的上游对账文件中, 清结算在做T+1日对账时
+上游对账文件中这部分非生产的环境的交易无法核对导致长款的产生.
+	在对账功能上线使用以来非生产环境导致的长款尤其是UAT环境,占绝大多数.每天都需要占用大量时间人工处理这部分长款.所以需要一个其他环境对账(UAT) 来代替
+人工完成这部分工作.
+
+设计:
+1. 获取对账数据
+	1.1 获取上游数据
+		数据源: 
+			生产
+		表:
+			SETTLE_TRANS_ACCOUNT
+		条件:
+			SETTLE_TIME = T-1
+			STATUS_ID = 23//长款
+			PAY_CHANNEL_ID = ?
+			READ_TYPE = ?
+	1.2 获取下游数据
+		数据源: 
+			UAT (设计成变量)
+		表:
+			SETTLE_TRANS_DETAIL
+		条件:
+			ACCOUNT_DATE = T-1
+			ORDER_TYPE=1
+			PAY_CHANNEL_ID = ?
+2.查询对账条件
+	2.1 
+		数据源: 
+			生产
+		表:
+			SETTLE_RULE
+		条件:
+			RULE_TYPE = ?
+			READ_TYPE = ?
+3. 对账
+4. 对账结果
+	4.1 修改SETTLE_BALANCE_ENTRY表
+		STATUS_ID = 4
+		remark = UAT环境交易
+	4.2 修改SETTLE_TRANS_ACCOUNT表
+		STATUS_ID = 211
+		remark = UAT环境交易
+5.开发"其他环境对账"画面
+	5.1 入参
+		支付渠道:	PAY_CHANNEL_ID
+		对账类型:	READ_TYPE
+		账期:		ACCOUNT_DATE
+	备注
+		将 其他环境 的数据源设计成变量
+	参考
+		/rkylin-settle-web/collate/collate_open_view

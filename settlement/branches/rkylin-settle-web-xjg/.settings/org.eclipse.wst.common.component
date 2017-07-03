@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="rkylin-settle">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="rkylin-common-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/chanjetpay-common/chanjetpay-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="rkylin-api-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/rkylin-api/rkylin-api">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="rkylin-settle"/>
+        <property name="java-output-path" value="/rkylin-settle/target/classes"/>
+    </wb-module>
+</project-modules>

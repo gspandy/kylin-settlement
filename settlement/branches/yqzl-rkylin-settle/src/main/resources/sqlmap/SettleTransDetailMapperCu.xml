@@ -1,0 +1,2623 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SettleTransDetailMapperCu">
+	<resultMap id="BaseResultMap" type="SettleTransDetail">
+	  <result column="TRANS_DETAIL_ID" jdbcType="INTEGER" property="transDetailId" />
+	  <result column="REQUEST_NO" jdbcType="VARCHAR" property="requestNo" />
+	  <result column="REQUEST_TIME" jdbcType="TIMESTAMP" property="requestTime" />
+	  <result column="TRANS_FLOW_NO" jdbcType="VARCHAR" property="transFlowNo" />
+	  <result column="ORDER_NO" jdbcType="VARCHAR" property="orderNo" />
+	  <result column="RELATE_ORDER_NO" jdbcType="VARCHAR" property="relateOrderNo" />
+	  <result column="ORDER_PACKAGE_NO" jdbcType="VARCHAR" property="orderPackageNo" />
+	  <result column="ORDER_DATE" jdbcType="TIMESTAMP" property="orderDate" />
+	  <result column="ORDER_AMOUNT" jdbcType="DECIMAL" property="orderAmount" />
+	  <result column="ORDER_COUNT" jdbcType="INTEGER" property="orderCount" />
+	  <result column="ORDER_TYPE" jdbcType="TINYINT" property="orderType" />
+	  <result column="TRANS_TYPE" jdbcType="TINYINT" property="transType" />
+	  <result column="FUNC_CODE" jdbcType="VARCHAR" property="funcCode" />
+	  <result column="DEAL_PRODUCT_CODE" jdbcType="VARCHAR" property="dealProductCode" />
+	  <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+	  <result column="INTER_MERCHANT_CODE" jdbcType="VARCHAR" property="interMerchantCode" />
+	  <result column="MERCHANT_CODE" jdbcType="VARCHAR" property="merchantCode" />
+	  <result column="INTO_INST_CODE" jdbcType="VARCHAR" property="intoInstCode" />
+	  <result column="AMOUNT" jdbcType="DECIMAL" property="amount" />
+	  <result column="FEE_AMOUNT" jdbcType="DECIMAL" property="feeAmount" />
+	  <result column="FEE_AMOUNT1" jdbcType="DECIMAL" property="feeAmount1" />
+	  <result column="FEE_AMOUNT2" jdbcType="DECIMAL" property="feeAmount2" />
+	  <result column="FEE_AMOUNT3" jdbcType="DECIMAL" property="feeAmount3" />
+	  <result column="FEE_AMOUNT4" jdbcType="DECIMAL" property="feeAmount4" />
+	  <result column="USER_FEE" jdbcType="DECIMAL" property="userFee" />
+	  <result column="PROFIT" jdbcType="DECIMAL" property="profit" />
+	  <result column="FC_AMOUNT" jdbcType="DECIMAL" property="fcAmount" />
+	  <result column="BUSINESS_TYPE" jdbcType="VARCHAR" property="businessType" />
+	  <result column="PAY_CHANNEL_ID" jdbcType="VARCHAR" property="payChannelId" />
+	  <result column="BANK_CODE" jdbcType="VARCHAR" property="bankCode" />
+	  <result column="USER_IP_ADDRESS" jdbcType="VARCHAR" property="userIpAddress" />
+	  <result column="ERROR_CODE" jdbcType="VARCHAR" property="errorCode" />
+	  <result column="ERROR_MSG" jdbcType="VARCHAR" property="errorMsg" />
+	  <result column="PRODUCT_ID" jdbcType="VARCHAR" property="productId" />
+	  <result column="PRODUCT_W_ID" jdbcType="VARCHAR" property="productWid" />
+	  <result column="CANCEL_IND" jdbcType="TINYINT" property="cancelInd" />
+	  <result column="DATA_FROM" jdbcType="TINYINT" property="dataFrom" />
+	  <result column="DELIVER_STATUS_ID" jdbcType="TINYINT" property="deliverStatusId" />
+	  <result column="INVOICE_NO" jdbcType="VARCHAR" property="invoiceNo" />
+	  <result column="OBLIGATE1" jdbcType="VARCHAR" property="obligate1" />
+	  <result column="OBLIGATE2" jdbcType="VARCHAR" property="obligate2" />
+	  <result column="OBLIGATE3" jdbcType="VARCHAR" property="obligate3" />
+	  <result column="STATUS_ID" jdbcType="TINYINT" property="statusId" />
+	  <result column="READ_STATUS_ID" jdbcType="TINYINT" property="readStatusId" />
+	  <result column="DFLAG" jdbcType="TINYINT" property="dflag" />
+	  <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+	  <result column="ACCOUNT_DATE" jdbcType="TIMESTAMP" property="accountDate" />
+	  <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+	  <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+	  <result column="REQUEST_ID" jdbcType="INTEGER" property="requestId" />
+	  <result column="ROLE_CODE" jdbcType="VARCHAR" property="roleCode" />
+	  <result column="INTER_ROLE_CODE" jdbcType="VARCHAR" property="interRoleCode" />
+	  <result column="REFER_USER_ID" jdbcType="VARCHAR" property="referUserId" />
+	  <result column="REFER_ROLE_CODE" jdbcType="VARCHAR" property="referRoleCode" />
+	  <result column="REFER_PRODUCT_ID" jdbcType="VARCHAR" property="referProductId" />
+	  <result column="OTHER_AMOUNT" jdbcType="DECIMAL" property="otherAmount" />
+	  <result column="USER_FEE_WAY" jdbcType="TINYINT" property="userFeeWay" />
+	  <result column="INTEREST" jdbcType="DECIMAL" property="interest" />
+	  <result column="PAY_WAY" jdbcType="VARCHAR" property="payWay" />
+	  <result column="PROCESS_STATUS" jdbcType="TINYINT" property="processStatus" />
+	  <result column="ORIGINAL_ORDER_PACKAGE_NO" jdbcType="VARCHAR" property="originalOrderPackageNo" />
+	  <result column="ORIGINAL_ORDER_ID" jdbcType="VARCHAR" property="originalOrderId" />
+	  <result column="CURRENCY" jdbcType="VARCHAR" property="currency" />
+	  <result column="REVERSE_FLAG" jdbcType="TINYINT" property="reverseFlag" />
+	  <result column="CANCEL_TAG" jdbcType="TINYINT" property="cancelTag" />
+	  <result column="ACCEPT_INST_CODE" jdbcType="VARCHAR" property="acceptInstCode" />
+	  <result column="ACCEPT_INST_ID" jdbcType="VARCHAR" property="acceptInstId" />
+	  <result column="TARGET_MERCHANT_CODE" jdbcType="VARCHAR" property="targetMerchantCode" />
+	  <result column="TARGET_TERMINAL_CODE" jdbcType="VARCHAR" property="targetTerminalCode" />
+	  <result column="CHANNEL_RETURN_CODE" jdbcType="VARCHAR" property="channelReturnCode" />
+	  <result column="RETURN_MEG" jdbcType="VARCHAR" property="returnMeg" />
+	  <result column="RECEIPT_SERIAL_NO" jdbcType="VARCHAR" property="receiptSerialNo" />
+	  <result column="MCC" jdbcType="VARCHAR" property="mcc" />
+	  <result column="AUTH_CODE" jdbcType="VARCHAR" property="authCode" />
+	  <result column="CHANNEL_INFO" jdbcType="VARCHAR" property="channelInfo" />
+	  <result column="TRADE_ESB_NO" jdbcType="VARCHAR" property="tradeEsbNo" />
+	  <result column="RESERVE_1" jdbcType="VARCHAR" property="reserve1" />
+	  <result column="RESERVE_2" jdbcType="VARCHAR" property="reserve2" />
+	  <result column="RESERVE_3" jdbcType="VARCHAR" property="reserve3" />
+	  <result column="READ_CREATED_TIME" jdbcType="TIMESTAMP" property="readCreatedTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <trim prefix="(" prefixOverrides="and" suffix=")">
+      <if test="transDetailId != null" >
+	      and TRANS_DETAIL_ID = #{transDetailId,jdbcType=INTEGER}
+	    </if>
+      <if test="requestNo != null" >
+	      and REQUEST_NO = #{requestNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="requestTime != null" >
+	      and REQUEST_TIME = #{requestTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="transFlowNo != null" >
+	      and TRANS_FLOW_NO = #{transFlowNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="orderNo != null" >
+	      and ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="relateOrderNo != null" >
+	      and RELATE_ORDER_NO = #{relateOrderNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="orderPackageNo != null" >
+	      and ORDER_PACKAGE_NO = #{orderPackageNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="orderDate != null" >
+	      and ORDER_DATE = #{orderDate,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="orderAmount != null" >
+	      and ORDER_AMOUNT = #{orderAmount,jdbcType=DECIMAL}
+	    </if>
+      <if test="orderCount != null" >
+	      and ORDER_COUNT = #{orderCount,jdbcType=INTEGER}
+	    </if>
+      <if test="orderType != null" >
+	      and ORDER_TYPE = #{orderType,jdbcType=TINYINT}
+	    </if>
+      <if test="transType != null" >
+	      and TRANS_TYPE = #{transType,jdbcType=TINYINT}
+	    </if>
+      <if test="funcCode != null" >
+	      and FUNC_CODE = #{funcCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="dealProductCode != null" >
+	      and DEAL_PRODUCT_CODE = #{dealProductCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="userId != null" >
+	      and USER_ID = #{userId,jdbcType=VARCHAR}
+	    </if>
+      <if test="interMerchantCode != null" >
+	      and INTER_MERCHANT_CODE = #{interMerchantCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="merchantCode != null" >
+	      and MERCHANT_CODE = #{merchantCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="intoInstCode != null" >
+	      and INTO_INST_CODE = #{intoInstCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="amount != null" >
+	      and AMOUNT = #{amount,jdbcType=DECIMAL}
+	    </if>
+      <if test="feeAmount != null" >
+	      and FEE_AMOUNT = #{feeAmount,jdbcType=DECIMAL}
+	    </if>
+      <if test="feeAmount1 != null" >
+	      and FEE_AMOUNT1 = #{feeAmount1,jdbcType=DECIMAL}
+	    </if>
+      <if test="feeAmount2 != null" >
+	      and FEE_AMOUNT2 = #{feeAmount2,jdbcType=DECIMAL}
+	    </if>
+      <if test="feeAmount3 != null" >
+	      and FEE_AMOUNT3 = #{feeAmount3,jdbcType=DECIMAL}
+	    </if>
+      <if test="feeAmount4 != null" >
+	      and FEE_AMOUNT4 = #{feeAmount4,jdbcType=DECIMAL}
+	    </if>
+      <if test="userFee != null" >
+	      and USER_FEE = #{userFee,jdbcType=DECIMAL}
+	    </if>
+      <if test="profit != null" >
+	      and PROFIT = #{profit,jdbcType=DECIMAL}
+	    </if>
+      <if test="fcAmount != null" >
+	      and FC_AMOUNT = #{fcAmount,jdbcType=DECIMAL}
+	    </if>
+      <if test="businessType != null" >
+	      and BUSINESS_TYPE = #{businessType,jdbcType=VARCHAR}
+	    </if>
+      <if test="payChannelId != null" >
+	      and PAY_CHANNEL_ID = #{payChannelId,jdbcType=VARCHAR}
+	    </if>
+      <if test="bankCode != null" >
+	      and BANK_CODE = #{bankCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="userIpAddress != null" >
+	      and USER_IP_ADDRESS = #{userIpAddress,jdbcType=VARCHAR}
+	    </if>
+      <if test="errorCode != null" >
+	      and ERROR_CODE = #{errorCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="errorMsg != null" >
+	      and ERROR_MSG = #{errorMsg,jdbcType=VARCHAR}
+	    </if>
+      <if test="productId != null" >
+	      and PRODUCT_ID = #{productId,jdbcType=VARCHAR}
+	    </if>
+      <if test="productWid != null" >
+	      and PRODUCT_W_ID = #{productWid,jdbcType=VARCHAR}
+	    </if>
+      <if test="cancelInd != null" >
+	      and CANCEL_IND = #{cancelInd,jdbcType=TINYINT}
+	    </if>
+      <if test="dataFrom != null" >
+	      and DATA_FROM = #{dataFrom,jdbcType=TINYINT}
+	    </if>
+      <if test="deliverStatusId != null" >
+	      and DELIVER_STATUS_ID = #{deliverStatusId,jdbcType=TINYINT}
+	    </if>
+      <if test="invoiceNo != null" >
+	      and INVOICE_NO = #{invoiceNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="obligate1 != null" >
+	      and OBLIGATE1 = #{obligate1,jdbcType=VARCHAR}
+	    </if>
+      <if test="obligate2 != null" >
+	      and OBLIGATE2 = #{obligate2,jdbcType=VARCHAR}
+	    </if>
+      <if test="obligate3 != null" >
+	      and OBLIGATE3 = #{obligate3,jdbcType=VARCHAR}
+	    </if>
+      <if test="statusId != null" >
+	      and STATUS_ID = #{statusId,jdbcType=TINYINT}
+	    </if>
+      <if test="readStatusId != null" >
+	      and READ_STATUS_ID = #{readStatusId,jdbcType=TINYINT}
+	    </if>
+      <if test="dflag != null" >
+	      and DFLAG = #{dflag,jdbcType=TINYINT}
+	    </if>
+      <if test="remark != null" >
+	      and REMARK = #{remark,jdbcType=VARCHAR}
+	    </if>
+      <if test="accountDate != null" >
+	      and ACCOUNT_DATE = #{accountDate,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="createdTime != null" >
+	      and CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="updatedTime != null" >
+	      and UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="requestId != null" >
+	      and REQUEST_ID = #{requestId,jdbcType=INTEGER}
+	    </if>
+      <if test="roleCode != null" >
+	      and ROLE_CODE = #{roleCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="interRoleCode != null" >
+	      and INTER_ROLE_CODE = #{interRoleCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="referUserId != null" >
+	      and REFER_USER_ID = #{referUserId,jdbcType=VARCHAR}
+	    </if>
+      <if test="referRoleCode != null" >
+	      and REFER_ROLE_CODE = #{referRoleCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="referProductId != null" >
+	      and REFER_PRODUCT_ID = #{referProductId,jdbcType=VARCHAR}
+	    </if>
+      <if test="otherAmount != null" >
+	      and OTHER_AMOUNT = #{otherAmount,jdbcType=DECIMAL}
+	    </if>
+      <if test="userFeeWay != null" >
+	      and USER_FEE_WAY = #{userFeeWay,jdbcType=TINYINT}
+	    </if>
+      <if test="interest != null" >
+	      and INTEREST = #{interest,jdbcType=DECIMAL}
+	    </if>
+      <if test="payWay != null" >
+	      and PAY_WAY = #{payWay,jdbcType=VARCHAR}
+	    </if>
+      <if test="processStatus != null" >
+	      and PROCESS_STATUS = #{processStatus,jdbcType=TINYINT}
+	    </if>
+      <if test="originalOrderPackageNo != null" >
+	      and ORIGINAL_ORDER_PACKAGE_NO = #{originalOrderPackageNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="originalOrderId != null" >
+	      and ORIGINAL_ORDER_ID = #{originalOrderId,jdbcType=VARCHAR}
+	    </if>
+      <if test="currency != null" >
+	      and CURRENCY = #{currency,jdbcType=VARCHAR}
+	    </if>
+      <if test="reverseFlag != null" >
+	      and REVERSE_FLAG = #{reverseFlag,jdbcType=TINYINT}
+	    </if>
+      <if test="cancelTag != null" >
+	      and CANCEL_TAG = #{cancelTag,jdbcType=TINYINT}
+	    </if>
+      <if test="acceptInstCode != null" >
+	      and ACCEPT_INST_CODE = #{acceptInstCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="acceptInstId != null" >
+	      and ACCEPT_INST_ID = #{acceptInstId,jdbcType=VARCHAR}
+	    </if>
+      <if test="targetMerchantCode != null" >
+	      and TARGET_MERCHANT_CODE = #{targetMerchantCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="targetTerminalCode != null" >
+	      and TARGET_TERMINAL_CODE = #{targetTerminalCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="channelReturnCode != null" >
+	      and CHANNEL_RETURN_CODE = #{channelReturnCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="returnMeg != null" >
+	      and RETURN_MEG = #{returnMeg,jdbcType=VARCHAR}
+	    </if>
+      <if test="receiptSerialNo != null" >
+	      and RECEIPT_SERIAL_NO = #{receiptSerialNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="mcc != null" >
+	      and MCC = #{mcc,jdbcType=VARCHAR}
+	    </if>
+      <if test="authCode != null" >
+	      and AUTH_CODE = #{authCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="channelInfo != null" >
+	      and CHANNEL_INFO = #{channelInfo,jdbcType=VARCHAR}
+	    </if>
+      <if test="tradeEsbNo != null" >
+	      and TRADE_ESB_NO = #{tradeEsbNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="reserve1 != null" >
+	      and RESERVE_1 = #{reserve1,jdbcType=VARCHAR}
+	    </if>
+      <if test="reserve2 != null" >
+	      and RESERVE_2 = #{reserve2,jdbcType=VARCHAR}
+	    </if>
+      <if test="reserve3 != null" >
+	      and RESERVE_3 = #{reserve3,jdbcType=VARCHAR}
+	    </if>
+      <if test="readCreatedTime != null" >
+	      and READ_CREATED_TIME = #{readCreatedTime,jdbcType=TIMESTAMP}
+	    </if>
+	  </trim>
+    </where>
+  </sql>
+  <sql id="Example_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+      <if test="transDetailId != null">
+        TRANS_DETAIL_ID = #{transDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="requestNo != null">
+        REQUEST_NO = #{requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="requestTime != null">
+        REQUEST_TIME = #{requestTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transFlowNo != null">
+        TRANS_FLOW_NO = #{transFlowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="relateOrderNo != null">
+        RELATE_ORDER_NO = #{relateOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPackageNo != null">
+        ORDER_PACKAGE_NO = #{orderPackageNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null">
+        ORDER_DATE = #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderAmount != null">
+        ORDER_AMOUNT = #{orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderCount != null">
+        ORDER_COUNT = #{orderCount,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null">
+        ORDER_TYPE = #{orderType,jdbcType=TINYINT},
+      </if>
+      <if test="transType != null">
+        TRANS_TYPE = #{transType,jdbcType=TINYINT},
+      </if>
+      <if test="funcCode != null">
+        FUNC_CODE = #{funcCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dealProductCode != null">
+        DEAL_PRODUCT_CODE = #{dealProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="interMerchantCode != null">
+        INTER_MERCHANT_CODE = #{interMerchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantCode != null">
+        MERCHANT_CODE = #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="intoInstCode != null">
+        INTO_INST_CODE = #{intoInstCode,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="feeAmount != null">
+        FEE_AMOUNT = #{feeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="feeAmount1 != null">
+        FEE_AMOUNT1 = #{feeAmount1,jdbcType=DECIMAL},
+      </if>
+      <if test="feeAmount2 != null">
+        FEE_AMOUNT2 = #{feeAmount2,jdbcType=DECIMAL},
+      </if>
+      <if test="feeAmount3 != null">
+        FEE_AMOUNT3 = #{feeAmount3,jdbcType=DECIMAL},
+      </if>
+      <if test="feeAmount4 != null">
+        FEE_AMOUNT4 = #{feeAmount4,jdbcType=DECIMAL},
+      </if>
+      <if test="userFee != null">
+        USER_FEE = #{userFee,jdbcType=DECIMAL},
+      </if>
+      <if test="profit != null">
+        PROFIT = #{profit,jdbcType=DECIMAL},
+      </if>
+      <if test="fcAmount != null">
+        FC_AMOUNT = #{fcAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="businessType != null">
+        BUSINESS_TYPE = #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="payChannelId != null">
+        PAY_CHANNEL_ID = #{payChannelId,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null">
+        BANK_CODE = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userIpAddress != null">
+        USER_IP_ADDRESS = #{userIpAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="errorCode != null">
+        ERROR_CODE = #{errorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errorMsg != null">
+        ERROR_MSG = #{errorMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="productWid != null">
+        PRODUCT_W_ID = #{productWid,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelInd != null">
+        CANCEL_IND = #{cancelInd,jdbcType=TINYINT},
+      </if>
+      <if test="dataFrom != null">
+        DATA_FROM = #{dataFrom,jdbcType=TINYINT},
+      </if>
+      <if test="deliverStatusId != null">
+        DELIVER_STATUS_ID = #{deliverStatusId,jdbcType=TINYINT},
+      </if>
+      <if test="invoiceNo != null">
+        INVOICE_NO = #{invoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="obligate1 != null">
+        OBLIGATE1 = #{obligate1,jdbcType=VARCHAR},
+      </if>
+      <if test="obligate2 != null">
+        OBLIGATE2 = #{obligate2,jdbcType=VARCHAR},
+      </if>
+      <if test="obligate3 != null">
+        OBLIGATE3 = #{obligate3,jdbcType=VARCHAR},
+      </if>
+      <if test="statusId != null">
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+      </if>
+      <if test="readStatusId != null">
+        READ_STATUS_ID = #{readStatusId,jdbcType=TINYINT},
+      </if>
+      <if test="dflag != null">
+        DFLAG = #{dflag,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="accountDate != null">
+        ACCOUNT_DATE = #{accountDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="requestId != null">
+        REQUEST_ID = #{requestId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="interRoleCode != null">
+        INTER_ROLE_CODE = #{interRoleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="referUserId != null">
+        REFER_USER_ID = #{referUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="referRoleCode != null">
+        REFER_ROLE_CODE = #{referRoleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="referProductId != null">
+        REFER_PRODUCT_ID = #{referProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="otherAmount != null">
+        OTHER_AMOUNT = #{otherAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="userFeeWay != null">
+        USER_FEE_WAY = #{userFeeWay,jdbcType=TINYINT},
+      </if>
+      <if test="interest != null">
+        INTEREST = #{interest,jdbcType=DECIMAL},
+      </if>
+      <if test="payWay != null">
+        PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="processStatus != null">
+        PROCESS_STATUS = #{processStatus,jdbcType=TINYINT},
+      </if>
+      <if test="originalOrderPackageNo != null">
+        ORIGINAL_ORDER_PACKAGE_NO = #{originalOrderPackageNo,jdbcType=VARCHAR},
+      </if>
+      <if test="originalOrderId != null">
+        ORIGINAL_ORDER_ID = #{originalOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null">
+        CURRENCY = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="reverseFlag != null">
+        REVERSE_FLAG = #{reverseFlag,jdbcType=TINYINT},
+      </if>
+      <if test="cancelTag != null">
+        CANCEL_TAG = #{cancelTag,jdbcType=TINYINT},
+      </if>
+      <if test="acceptInstCode != null">
+        ACCEPT_INST_CODE = #{acceptInstCode,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptInstId != null">
+        ACCEPT_INST_ID = #{acceptInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="targetMerchantCode != null">
+        TARGET_MERCHANT_CODE = #{targetMerchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="targetTerminalCode != null">
+        TARGET_TERMINAL_CODE = #{targetTerminalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelReturnCode != null">
+        CHANNEL_RETURN_CODE = #{channelReturnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="returnMeg != null">
+        RETURN_MEG = #{returnMeg,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptSerialNo != null">
+        RECEIPT_SERIAL_NO = #{receiptSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mcc != null">
+        MCC = #{mcc,jdbcType=VARCHAR},
+      </if>
+      <if test="authCode != null">
+        AUTH_CODE = #{authCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelInfo != null">
+        CHANNEL_INFO = #{channelInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeEsbNo != null">
+        TRADE_ESB_NO = #{tradeEsbNo,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve1 != null">
+        RESERVE_1 = #{reserve1,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve2 != null">
+        RESERVE_2 = #{reserve2,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve3 != null">
+        RESERVE_3 = #{reserve3,jdbcType=VARCHAR},
+      </if>
+      <if test="readCreatedTime != null">
+        READ_CREATED_TIME = #{readCreatedTime,jdbcType=TIMESTAMP},
+      </if>
+      </trim>
+    </set>
+  </sql>
+  <sql id="Base_Column_List">
+  	TRANS_DETAIL_ID,
+    REQUEST_NO,
+    REQUEST_TIME,
+    TRANS_FLOW_NO,
+    ORDER_NO,
+    RELATE_ORDER_NO,
+    ORDER_PACKAGE_NO,
+    ORDER_DATE,
+    ORDER_AMOUNT,
+    ORDER_COUNT,
+    ORDER_TYPE,
+    TRANS_TYPE,
+    FUNC_CODE,
+    DEAL_PRODUCT_CODE,
+    USER_ID,
+    INTER_MERCHANT_CODE,
+    MERCHANT_CODE,
+    INTO_INST_CODE,
+    AMOUNT,
+    FEE_AMOUNT,
+    FEE_AMOUNT1,
+    FEE_AMOUNT2,
+    FEE_AMOUNT3,
+    FEE_AMOUNT4,
+    USER_FEE,
+    PROFIT,
+    FC_AMOUNT,
+    BUSINESS_TYPE,
+    PAY_CHANNEL_ID,
+    BANK_CODE,
+    USER_IP_ADDRESS,
+    ERROR_CODE,
+    ERROR_MSG,
+    PRODUCT_ID,
+    PRODUCT_W_ID,
+    CANCEL_IND,
+    DATA_FROM,
+    DELIVER_STATUS_ID,
+    INVOICE_NO,
+    OBLIGATE1,
+    OBLIGATE2,
+    OBLIGATE3,
+    STATUS_ID,
+    READ_STATUS_ID,
+    DFLAG,
+    REMARK,
+    ACCOUNT_DATE,
+    REQUEST_ID,
+    ROLE_CODE,
+    INTER_ROLE_CODE,
+    REFER_USER_ID,
+    REFER_ROLE_CODE,
+    REFER_PRODUCT_ID,
+    OTHER_AMOUNT,
+    USER_FEE_WAY,
+    INTEREST,
+    PAY_WAY,
+    PROCESS_STATUS,
+    ORIGINAL_ORDER_PACKAGE_NO,
+    ORIGINAL_ORDER_ID,
+    CURRENCY,
+    REVERSE_FLAG,
+    CANCEL_TAG,
+    ACCEPT_INST_CODE,
+    ACCEPT_INST_ID,
+    TARGET_MERCHANT_CODE,
+    TARGET_TERMINAL_CODE,
+    CHANNEL_RETURN_CODE,
+    RETURN_MEG,
+    RECEIPT_SERIAL_NO,
+    MCC,
+    AUTH_CODE,
+    CHANNEL_INFO,
+    TRADE_ESB_NO,
+    RESERVE_1,
+    RESERVE_2,
+    RESERVE_3,
+    READ_CREATED_TIME,
+  </sql>
+  <sql id="Batch_Base_Column_List">
+    REQUEST_NO,
+    REQUEST_TIME,
+    TRANS_FLOW_NO,
+    ORDER_NO,
+    RELATE_ORDER_NO,
+    ORDER_PACKAGE_NO,
+    ORDER_DATE,
+    ORDER_AMOUNT,
+    ORDER_COUNT,
+    ORDER_TYPE,
+    TRANS_TYPE,
+    FUNC_CODE,
+    DEAL_PRODUCT_CODE,
+    USER_ID,
+    INTER_MERCHANT_CODE,
+    MERCHANT_CODE,
+    INTO_INST_CODE,
+    AMOUNT,
+    FEE_AMOUNT,
+    FEE_AMOUNT1,
+    FEE_AMOUNT2,
+    FEE_AMOUNT3,
+    FEE_AMOUNT4,
+    USER_FEE,
+    PROFIT,
+    FC_AMOUNT,
+    BUSINESS_TYPE,
+    PAY_CHANNEL_ID,
+    BANK_CODE,
+    USER_IP_ADDRESS,
+    ERROR_CODE,
+    ERROR_MSG,
+    PRODUCT_ID,
+    PRODUCT_W_ID,
+    CANCEL_IND,
+    DATA_FROM,
+    DELIVER_STATUS_ID,
+    INVOICE_NO,
+    OBLIGATE1,
+    OBLIGATE2,
+    OBLIGATE3,
+    STATUS_ID,
+    READ_STATUS_ID,
+    DFLAG,
+    REMARK,
+    ACCOUNT_DATE,
+    REQUEST_ID,
+    ROLE_CODE,
+    INTER_ROLE_CODE,
+    REFER_USER_ID,
+    REFER_ROLE_CODE,
+    REFER_PRODUCT_ID,
+    OTHER_AMOUNT,
+    USER_FEE_WAY,
+    INTEREST,
+    PAY_WAY,
+    PROCESS_STATUS,
+    ORIGINAL_ORDER_PACKAGE_NO,
+    ORIGINAL_ORDER_ID,
+    CURRENCY,
+    REVERSE_FLAG,
+    CANCEL_TAG,
+    ACCEPT_INST_CODE,
+    ACCEPT_INST_ID,
+    TARGET_MERCHANT_CODE,
+    TARGET_TERMINAL_CODE,
+    CHANNEL_RETURN_CODE,
+    RETURN_MEG,
+    RECEIPT_SERIAL_NO,
+    MCC,
+    AUTH_CODE,
+    CHANNEL_INFO,
+    TRADE_ESB_NO,
+    RESERVE_1,
+    RESERVE_2,
+    RESERVE_3,
+    READ_CREATED_TIME,
+  </sql>
+  <sql id="Base_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+        TRANS_DETAIL_ID = #{transDetailId,jdbcType=INTEGER},
+        REQUEST_NO = #{requestNo,jdbcType=VARCHAR},
+        REQUEST_TIME = #{requestTime,jdbcType=TIMESTAMP},
+        TRANS_FLOW_NO = #{transFlowNo,jdbcType=VARCHAR},
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+        RELATE_ORDER_NO = #{relateOrderNo,jdbcType=VARCHAR},
+        ORDER_PACKAGE_NO = #{orderPackageNo,jdbcType=VARCHAR},
+        ORDER_DATE = #{orderDate,jdbcType=TIMESTAMP},
+        ORDER_AMOUNT = #{orderAmount,jdbcType=DECIMAL},
+        ORDER_COUNT = #{orderCount,jdbcType=INTEGER},
+        ORDER_TYPE = #{orderType,jdbcType=TINYINT},
+        TRANS_TYPE = #{transType,jdbcType=TINYINT},
+        FUNC_CODE = #{funcCode,jdbcType=VARCHAR},
+        DEAL_PRODUCT_CODE = #{dealProductCode,jdbcType=VARCHAR},
+        USER_ID = #{userId,jdbcType=VARCHAR},
+        INTER_MERCHANT_CODE = #{interMerchantCode,jdbcType=VARCHAR},
+        MERCHANT_CODE = #{merchantCode,jdbcType=VARCHAR},
+        INTO_INST_CODE = #{intoInstCode,jdbcType=VARCHAR},
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+        FEE_AMOUNT = #{feeAmount,jdbcType=DECIMAL},
+        FEE_AMOUNT1 = #{feeAmount1,jdbcType=DECIMAL},
+        FEE_AMOUNT2 = #{feeAmount2,jdbcType=DECIMAL},
+        FEE_AMOUNT3 = #{feeAmount3,jdbcType=DECIMAL},
+        FEE_AMOUNT4 = #{feeAmount4,jdbcType=DECIMAL},
+        USER_FEE = #{userFee,jdbcType=DECIMAL},
+        PROFIT = #{profit,jdbcType=DECIMAL},
+        FC_AMOUNT = #{fcAmount,jdbcType=DECIMAL},
+        BUSINESS_TYPE = #{businessType,jdbcType=VARCHAR},
+        PAY_CHANNEL_ID = #{payChannelId,jdbcType=VARCHAR},
+        BANK_CODE = #{bankCode,jdbcType=VARCHAR},
+        USER_IP_ADDRESS = #{userIpAddress,jdbcType=VARCHAR},
+        ERROR_CODE = #{errorCode,jdbcType=VARCHAR},
+        ERROR_MSG = #{errorMsg,jdbcType=VARCHAR},
+        PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+        PRODUCT_W_ID = #{productWid,jdbcType=VARCHAR},
+        CANCEL_IND = #{cancelInd,jdbcType=TINYINT},
+        DATA_FROM = #{dataFrom,jdbcType=TINYINT},
+        DELIVER_STATUS_ID = #{deliverStatusId,jdbcType=TINYINT},
+        INVOICE_NO = #{invoiceNo,jdbcType=VARCHAR},
+        OBLIGATE1 = #{obligate1,jdbcType=VARCHAR},
+        OBLIGATE2 = #{obligate2,jdbcType=VARCHAR},
+        OBLIGATE3 = #{obligate3,jdbcType=VARCHAR},
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+        READ_STATUS_ID = #{readStatusId,jdbcType=TINYINT},
+        DFLAG = #{dflag,jdbcType=TINYINT},
+        REMARK = #{remark,jdbcType=VARCHAR},
+        ACCOUNT_DATE = #{accountDate,jdbcType=TIMESTAMP},
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+        REQUEST_ID = #{requestId,jdbcType=INTEGER},
+        ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
+        INTER_ROLE_CODE = #{interRoleCode,jdbcType=VARCHAR},
+        REFER_USER_ID = #{referUserId,jdbcType=VARCHAR},
+        REFER_ROLE_CODE = #{referRoleCode,jdbcType=VARCHAR},
+        REFER_PRODUCT_ID = #{referProductId,jdbcType=VARCHAR},
+        OTHER_AMOUNT = #{otherAmount,jdbcType=DECIMAL},
+        USER_FEE_WAY = #{userFeeWay,jdbcType=TINYINT},
+        INTEREST = #{interest,jdbcType=DECIMAL},
+        PAY_WAY = #{payWay,jdbcType=VARCHAR},
+        PROCESS_STATUS = #{processStatus,jdbcType=TINYINT},
+        ORIGINAL_ORDER_PACKAGE_NO = #{originalOrderPackageNo,jdbcType=VARCHAR},
+        ORIGINAL_ORDER_ID = #{originalOrderId,jdbcType=VARCHAR},
+        CURRENCY = #{currency,jdbcType=VARCHAR},
+        REVERSE_FLAG = #{reverseFlag,jdbcType=TINYINT},
+        CANCEL_TAG = #{cancelTag,jdbcType=TINYINT},
+        ACCEPT_INST_CODE = #{acceptInstCode,jdbcType=VARCHAR},
+        ACCEPT_INST_ID = #{acceptInstId,jdbcType=VARCHAR},
+        TARGET_MERCHANT_CODE = #{targetMerchantCode,jdbcType=VARCHAR},
+        TARGET_TERMINAL_CODE = #{targetTerminalCode,jdbcType=VARCHAR},
+        CHANNEL_RETURN_CODE = #{channelReturnCode,jdbcType=VARCHAR},
+        RETURN_MEG = #{returnMeg,jdbcType=VARCHAR},
+        RECEIPT_SERIAL_NO = #{receiptSerialNo,jdbcType=VARCHAR},
+        MCC = #{mcc,jdbcType=VARCHAR},
+        AUTH_CODE = #{authCode,jdbcType=VARCHAR},
+        CHANNEL_INFO = #{channelInfo,jdbcType=VARCHAR},
+        TRADE_ESB_NO = #{tradeEsbNo,jdbcType=VARCHAR},
+        RESERVE_1 = #{reserve1,jdbcType=VARCHAR},
+        RESERVE_2 = #{reserve2,jdbcType=VARCHAR},
+        RESERVE_3 = #{reserve3,jdbcType=VARCHAR},
+        READ_CREATED_TIME = #{readCreatedTime,jdbcType=TIMESTAMP},
+      </trim>
+    </set>
+  </sql>
+  <sql id="Selective_Column_List">
+    <if test="transDetailId != null">
+      TRANS_DETAIL_ID,
+    </if>
+    <if test="requestNo != null">
+      REQUEST_NO,
+    </if>
+    <if test="requestTime != null">
+      REQUEST_TIME,
+    </if>
+    <if test="transFlowNo != null">
+      TRANS_FLOW_NO,
+    </if>
+    <if test="orderNo != null">
+      ORDER_NO,
+    </if>
+    <if test="relateOrderNo != null">
+      RELATE_ORDER_NO,
+    </if>
+    <if test="orderPackageNo != null">
+      ORDER_PACKAGE_NO,
+    </if>
+    <if test="orderDate != null">
+      ORDER_DATE,
+    </if>
+    <if test="orderAmount != null">
+      ORDER_AMOUNT,
+    </if>
+    <if test="orderCount != null">
+      ORDER_COUNT,
+    </if>
+    <if test="orderType != null">
+      ORDER_TYPE,
+    </if>
+    <if test="transType != null">
+      TRANS_TYPE,
+    </if>
+    <if test="funcCode != null">
+      FUNC_CODE,
+    </if>
+    <if test="dealProductCode != null">
+      DEAL_PRODUCT_CODE,
+    </if>
+    <if test="userId != null">
+      USER_ID,
+    </if>
+    <if test="interMerchantCode != null">
+      INTER_MERCHANT_CODE,
+    </if>
+    <if test="merchantCode != null">
+      MERCHANT_CODE,
+    </if>
+    <if test="intoInstCode != null">
+      INTO_INST_CODE,
+    </if>
+    <if test="amount != null">
+      AMOUNT,
+    </if>
+    <if test="feeAmount != null">
+      FEE_AMOUNT,
+    </if>
+    <if test="feeAmount1 != null">
+      FEE_AMOUNT1,
+    </if>
+    <if test="feeAmount2 != null">
+      FEE_AMOUNT2,
+    </if>
+    <if test="feeAmount3 != null">
+      FEE_AMOUNT3,
+    </if>
+    <if test="feeAmount4 != null">
+      FEE_AMOUNT4,
+    </if>
+    <if test="userFee != null">
+      USER_FEE,
+    </if>
+    <if test="profit != null">
+      PROFIT,
+    </if>
+    <if test="fcAmount != null">
+      FC_AMOUNT,
+    </if>
+    <if test="businessType != null">
+      BUSINESS_TYPE,
+    </if>
+    <if test="payChannelId != null">
+      PAY_CHANNEL_ID,
+    </if>
+    <if test="bankCode != null">
+      BANK_CODE,
+    </if>
+    <if test="userIpAddress != null">
+      USER_IP_ADDRESS,
+    </if>
+    <if test="errorCode != null">
+      ERROR_CODE,
+    </if>
+    <if test="errorMsg != null">
+      ERROR_MSG,
+    </if>
+    <if test="productId != null">
+      PRODUCT_ID,
+    </if>
+    <if test="productWid != null">
+      PRODUCT_W_ID,
+    </if>
+    <if test="cancelInd != null">
+      CANCEL_IND,
+    </if>
+    <if test="dataFrom != null">
+      DATA_FROM,
+    </if>
+    <if test="deliverStatusId != null">
+      DELIVER_STATUS_ID,
+    </if>
+    <if test="invoiceNo != null">
+      INVOICE_NO,
+    </if>
+    <if test="obligate1 != null">
+      OBLIGATE1,
+    </if>
+    <if test="obligate2 != null">
+      OBLIGATE2,
+    </if>
+    <if test="obligate3 != null">
+      OBLIGATE3,
+    </if>
+    <if test="statusId != null">
+      STATUS_ID,
+    </if>
+    <if test="readStatusId != null">
+      READ_STATUS_ID,
+    </if>
+    <if test="dflag != null">
+      DFLAG,
+    </if>
+    <if test="remark != null">
+      REMARK,
+    </if>
+    <if test="accountDate != null">
+      ACCOUNT_DATE,
+    </if>
+    <if test="createdTime != null">
+      CREATED_TIME,
+    </if>
+    <if test="updatedTime != null">
+      UPDATED_TIME,
+    </if>
+    <if test="requestId != null">
+      REQUEST_ID,
+    </if>
+    <if test="roleCode != null">
+      ROLE_CODE,
+    </if>
+    <if test="interRoleCode != null">
+      INTER_ROLE_CODE,
+    </if>
+    <if test="referUserId != null">
+      REFER_USER_ID,
+    </if>
+    <if test="referRoleCode != null">
+      REFER_ROLE_CODE,
+    </if>
+    <if test="referProductId != null">
+      REFER_PRODUCT_ID,
+    </if>
+    <if test="otherAmount != null">
+      OTHER_AMOUNT,
+    </if>
+    <if test="userFeeWay != null">
+      USER_FEE_WAY,
+    </if>
+    <if test="interest != null">
+      INTEREST,
+    </if>
+    <if test="payWay != null">
+      PAY_WAY,
+    </if>
+    <if test="processStatus != null">
+      PROCESS_STATUS,
+    </if>
+    <if test="originalOrderPackageNo != null">
+      ORIGINAL_ORDER_PACKAGE_NO,
+    </if>
+    <if test="originalOrderId != null">
+      ORIGINAL_ORDER_ID,
+    </if>
+    <if test="currency != null">
+      CURRENCY,
+    </if>
+    <if test="reverseFlag != null">
+      REVERSE_FLAG,
+    </if>
+    <if test="cancelTag != null">
+      CANCEL_TAG,
+    </if>
+    <if test="acceptInstCode != null">
+      ACCEPT_INST_CODE,
+    </if>
+    <if test="acceptInstId != null">
+      ACCEPT_INST_ID,
+    </if>
+    <if test="targetMerchantCode != null">
+      TARGET_MERCHANT_CODE,
+    </if>
+    <if test="targetTerminalCode != null">
+      TARGET_TERMINAL_CODE,
+    </if>
+    <if test="channelReturnCode != null">
+      CHANNEL_RETURN_CODE,
+    </if>
+    <if test="returnMeg != null">
+      RETURN_MEG,
+    </if>
+    <if test="receiptSerialNo != null">
+      RECEIPT_SERIAL_NO,
+    </if>
+    <if test="mcc != null">
+      MCC,
+    </if>
+    <if test="authCode != null">
+      AUTH_CODE,
+    </if>
+    <if test="channelInfo != null">
+      CHANNEL_INFO,
+    </if>
+    <if test="tradeEsbNo != null">
+      TRADE_ESB_NO,
+    </if>
+    <if test="reserve1 != null">
+      RESERVE_1,
+    </if>
+    <if test="reserve2 != null">
+      RESERVE_2,
+    </if>
+    <if test="reserve3 != null">
+      RESERVE_3,
+    </if>
+    <if test="readCreatedTime != null">
+      READ_CREATED_TIME,
+    </if>
+  </sql>
+	<sql id="Base_Value_List">
+    #{transDetailId,jdbcType=INTEGER},
+    #{requestNo,jdbcType=VARCHAR},
+    #{requestTime,jdbcType=TIMESTAMP},
+    #{transFlowNo,jdbcType=VARCHAR},
+    #{orderNo,jdbcType=VARCHAR},
+    #{relateOrderNo,jdbcType=VARCHAR},
+    #{orderPackageNo,jdbcType=VARCHAR},
+    #{orderDate,jdbcType=TIMESTAMP},
+    #{orderAmount,jdbcType=DECIMAL},
+    #{orderCount,jdbcType=INTEGER},
+    #{orderType,jdbcType=TINYINT},
+    #{transType,jdbcType=TINYINT},
+    #{funcCode,jdbcType=VARCHAR},
+    #{dealProductCode,jdbcType=VARCHAR},
+    #{userId,jdbcType=VARCHAR},
+    #{interMerchantCode,jdbcType=VARCHAR},
+    #{merchantCode,jdbcType=VARCHAR},
+    #{intoInstCode,jdbcType=VARCHAR},
+    #{amount,jdbcType=DECIMAL},
+    #{feeAmount,jdbcType=DECIMAL},
+    #{feeAmount1,jdbcType=DECIMAL},
+    #{feeAmount2,jdbcType=DECIMAL},
+    #{feeAmount3,jdbcType=DECIMAL},
+    #{feeAmount4,jdbcType=DECIMAL},
+    #{userFee,jdbcType=DECIMAL},
+    #{profit,jdbcType=DECIMAL},
+    #{fcAmount,jdbcType=DECIMAL},
+    #{businessType,jdbcType=VARCHAR},
+    #{payChannelId,jdbcType=VARCHAR},
+    #{bankCode,jdbcType=VARCHAR},
+    #{userIpAddress,jdbcType=VARCHAR},
+    #{errorCode,jdbcType=VARCHAR},
+    #{errorMsg,jdbcType=VARCHAR},
+    #{productId,jdbcType=VARCHAR},
+    #{productWid,jdbcType=VARCHAR},
+    #{cancelInd,jdbcType=TINYINT},
+    #{dataFrom,jdbcType=TINYINT},
+    #{deliverStatusId,jdbcType=TINYINT},
+    #{invoiceNo,jdbcType=VARCHAR},
+    #{obligate1,jdbcType=VARCHAR},
+    #{obligate2,jdbcType=VARCHAR},
+    #{obligate3,jdbcType=VARCHAR},
+    #{statusId,jdbcType=TINYINT},
+    #{readStatusId,jdbcType=TINYINT},
+    #{dflag,jdbcType=TINYINT},
+    #{remark,jdbcType=VARCHAR},
+    #{accountDate,jdbcType=TIMESTAMP},
+    #{createdTime,jdbcType=TIMESTAMP},
+    #{updatedTime,jdbcType=TIMESTAMP},
+    #{requestId,jdbcType=INTEGER},
+    #{roleCode,jdbcType=VARCHAR},
+    #{interRoleCode,jdbcType=VARCHAR},
+    #{referUserId,jdbcType=VARCHAR},
+    #{referRoleCode,jdbcType=VARCHAR},
+    #{referProductId,jdbcType=VARCHAR},
+    #{otherAmount,jdbcType=DECIMAL},
+    #{userFeeWay,jdbcType=TINYINT},
+    #{interest,jdbcType=DECIMAL},
+    #{payWay,jdbcType=VARCHAR},
+    #{processStatus,jdbcType=TINYINT},
+    #{originalOrderPackageNo,jdbcType=VARCHAR},
+    #{originalOrderId,jdbcType=VARCHAR},
+    #{currency,jdbcType=VARCHAR},
+    #{reverseFlag,jdbcType=TINYINT},
+    #{cancelTag,jdbcType=TINYINT},
+    #{acceptInstCode,jdbcType=VARCHAR},
+    #{acceptInstId,jdbcType=VARCHAR},
+    #{targetMerchantCode,jdbcType=VARCHAR},
+    #{targetTerminalCode,jdbcType=VARCHAR},
+    #{channelReturnCode,jdbcType=VARCHAR},
+    #{returnMeg,jdbcType=VARCHAR},
+    #{receiptSerialNo,jdbcType=VARCHAR},
+    #{mcc,jdbcType=VARCHAR},
+    #{authCode,jdbcType=VARCHAR},
+    #{channelInfo,jdbcType=VARCHAR},
+    #{tradeEsbNo,jdbcType=VARCHAR},
+    #{reserve1,jdbcType=VARCHAR},
+    #{reserve2,jdbcType=VARCHAR},
+    #{reserve3,jdbcType=VARCHAR},
+    #{readCreatedTime,jdbcType=TIMESTAMP},
+	</sql>
+  <sql id="Selective_Value_List">
+    <if test="transDetailId != null">
+      #{transDetailId,jdbcType=INTEGER},
+    </if>
+    <if test="requestNo != null">
+      #{requestNo,jdbcType=VARCHAR},
+    </if>
+    <if test="requestTime != null">
+      #{requestTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="transFlowNo != null">
+      #{transFlowNo,jdbcType=VARCHAR},
+    </if>
+    <if test="orderNo != null">
+      #{orderNo,jdbcType=VARCHAR},
+    </if>
+    <if test="relateOrderNo != null">
+      #{relateOrderNo,jdbcType=VARCHAR},
+    </if>
+    <if test="orderPackageNo != null">
+      #{orderPackageNo,jdbcType=VARCHAR},
+    </if>
+    <if test="orderDate != null">
+      #{orderDate,jdbcType=TIMESTAMP},
+    </if>
+    <if test="orderAmount != null">
+      #{orderAmount,jdbcType=DECIMAL},
+    </if>
+    <if test="orderCount != null">
+      #{orderCount,jdbcType=INTEGER},
+    </if>
+    <if test="orderType != null">
+      #{orderType,jdbcType=TINYINT},
+    </if>
+    <if test="transType != null">
+      #{transType,jdbcType=TINYINT},
+    </if>
+    <if test="funcCode != null">
+      #{funcCode,jdbcType=VARCHAR},
+    </if>
+    <if test="dealProductCode != null">
+      #{dealProductCode,jdbcType=VARCHAR},
+    </if>
+    <if test="userId != null">
+      #{userId,jdbcType=VARCHAR},
+    </if>
+    <if test="interMerchantCode != null">
+      #{interMerchantCode,jdbcType=VARCHAR},
+    </if>
+    <if test="merchantCode != null">
+      #{merchantCode,jdbcType=VARCHAR},
+    </if>
+    <if test="intoInstCode != null">
+      #{intoInstCode,jdbcType=VARCHAR},
+    </if>
+    <if test="amount != null">
+      #{amount,jdbcType=DECIMAL},
+    </if>
+    <if test="feeAmount != null">
+      #{feeAmount,jdbcType=DECIMAL},
+    </if>
+    <if test="feeAmount1 != null">
+      #{feeAmount1,jdbcType=DECIMAL},
+    </if>
+    <if test="feeAmount2 != null">
+      #{feeAmount2,jdbcType=DECIMAL},
+    </if>
+    <if test="feeAmount3 != null">
+      #{feeAmount3,jdbcType=DECIMAL},
+    </if>
+    <if test="feeAmount4 != null">
+      #{feeAmount4,jdbcType=DECIMAL},
+    </if>
+    <if test="userFee != null">
+      #{userFee,jdbcType=DECIMAL},
+    </if>
+    <if test="profit != null">
+      #{profit,jdbcType=DECIMAL},
+    </if>
+    <if test="fcAmount != null">
+      #{fcAmount,jdbcType=DECIMAL},
+    </if>
+    <if test="businessType != null">
+      #{businessType,jdbcType=VARCHAR},
+    </if>
+    <if test="payChannelId != null">
+      #{payChannelId,jdbcType=VARCHAR},
+    </if>
+    <if test="bankCode != null">
+      #{bankCode,jdbcType=VARCHAR},
+    </if>
+    <if test="userIpAddress != null">
+      #{userIpAddress,jdbcType=VARCHAR},
+    </if>
+    <if test="errorCode != null">
+      #{errorCode,jdbcType=VARCHAR},
+    </if>
+    <if test="errorMsg != null">
+      #{errorMsg,jdbcType=VARCHAR},
+    </if>
+    <if test="productId != null">
+      #{productId,jdbcType=VARCHAR},
+    </if>
+    <if test="productWid != null">
+      #{productWid,jdbcType=VARCHAR},
+    </if>
+    <if test="cancelInd != null">
+      #{cancelInd,jdbcType=TINYINT},
+    </if>
+    <if test="dataFrom != null">
+      #{dataFrom,jdbcType=TINYINT},
+    </if>
+    <if test="deliverStatusId != null">
+      #{deliverStatusId,jdbcType=TINYINT},
+    </if>
+    <if test="invoiceNo != null">
+      #{invoiceNo,jdbcType=VARCHAR},
+    </if>
+    <if test="obligate1 != null">
+      #{obligate1,jdbcType=VARCHAR},
+    </if>
+    <if test="obligate2 != null">
+      #{obligate2,jdbcType=VARCHAR},
+    </if>
+    <if test="obligate3 != null">
+      #{obligate3,jdbcType=VARCHAR},
+    </if>
+    <if test="statusId != null">
+      #{statusId,jdbcType=TINYINT},
+    </if>
+    <if test="readStatusId != null">
+      #{readStatusId,jdbcType=TINYINT},
+    </if>
+    <if test="dflag != null">
+      #{dflag,jdbcType=TINYINT},
+    </if>
+    <if test="remark != null">
+      #{remark,jdbcType=VARCHAR},
+    </if>
+    <if test="accountDate != null">
+      #{accountDate,jdbcType=TIMESTAMP},
+    </if>
+    <if test="createdTime != null">
+      #{createdTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="updatedTime != null">
+      #{updatedTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="requestId != null">
+      #{requestId,jdbcType=INTEGER},
+    </if>
+    <if test="roleCode != null">
+      #{roleCode,jdbcType=VARCHAR},
+    </if>
+    <if test="interRoleCode != null">
+      #{interRoleCode,jdbcType=VARCHAR},
+    </if>
+    <if test="referUserId != null">
+      #{referUserId,jdbcType=VARCHAR},
+    </if>
+    <if test="referRoleCode != null">
+      #{referRoleCode,jdbcType=VARCHAR},
+    </if>
+    <if test="referProductId != null">
+      #{referProductId,jdbcType=VARCHAR},
+    </if>
+    <if test="otherAmount != null">
+      #{otherAmount,jdbcType=DECIMAL},
+    </if>
+    <if test="userFeeWay != null">
+      #{userFeeWay,jdbcType=TINYINT},
+    </if>
+    <if test="interest != null">
+      #{interest,jdbcType=DECIMAL},
+    </if>
+    <if test="payWay != null">
+      #{payWay,jdbcType=VARCHAR},
+    </if>
+    <if test="processStatus != null">
+      #{processStatus,jdbcType=TINYINT},
+    </if>
+    <if test="originalOrderPackageNo != null">
+      #{originalOrderPackageNo,jdbcType=VARCHAR},
+    </if>
+    <if test="originalOrderId != null">
+      #{originalOrderId,jdbcType=VARCHAR},
+    </if>
+    <if test="currency != null">
+      #{currency,jdbcType=VARCHAR},
+    </if>
+    <if test="reverseFlag != null">
+      #{reverseFlag,jdbcType=TINYINT},
+    </if>
+    <if test="cancelTag != null">
+      #{cancelTag,jdbcType=TINYINT},
+    </if>
+    <if test="acceptInstCode != null">
+      #{acceptInstCode,jdbcType=VARCHAR},
+    </if>
+    <if test="acceptInstId != null">
+      #{acceptInstId,jdbcType=VARCHAR},
+    </if>
+    <if test="targetMerchantCode != null">
+      #{targetMerchantCode,jdbcType=VARCHAR},
+    </if>
+    <if test="targetTerminalCode != null">
+      #{targetTerminalCode,jdbcType=VARCHAR},
+    </if>
+    <if test="channelReturnCode != null">
+      #{channelReturnCode,jdbcType=VARCHAR},
+    </if>
+    <if test="returnMeg != null">
+      #{returnMeg,jdbcType=VARCHAR},
+    </if>
+    <if test="receiptSerialNo != null">
+      #{receiptSerialNo,jdbcType=VARCHAR},
+    </if>
+    <if test="mcc != null">
+      #{mcc,jdbcType=VARCHAR},
+    </if>
+    <if test="authCode != null">
+      #{authCode,jdbcType=VARCHAR},
+    </if>
+    <if test="channelInfo != null">
+      #{channelInfo,jdbcType=VARCHAR},
+    </if>
+    <if test="tradeEsbNo != null">
+      #{tradeEsbNo,jdbcType=VARCHAR},
+    </if>
+    <if test="reserve1 != null">
+      #{reserve1,jdbcType=VARCHAR},
+    </if>
+    <if test="reserve2 != null">
+      #{reserve2,jdbcType=VARCHAR},
+    </if>
+    <if test="reserve3 != null">
+      #{reserve3,jdbcType=VARCHAR},
+    </if>
+    <if test="readCreatedTime != null">
+      #{readCreatedTime,jdbcType=TIMESTAMP},
+    </if>
+  </sql>
+  
+  <!-- 自定义 容器入参 -->
+  <sql id="Batch_Base_Value_List">
+    #{item.requestNo,jdbcType=VARCHAR},
+    #{item.requestTime,jdbcType=TIMESTAMP},
+    #{item.transFlowNo,jdbcType=VARCHAR},
+    #{item.orderNo,jdbcType=VARCHAR},
+    #{item.relateOrderNo,jdbcType=VARCHAR},
+    #{item.orderPackageNo,jdbcType=VARCHAR},
+    #{item.orderDate,jdbcType=TIMESTAMP},
+    #{item.orderAmount,jdbcType=DECIMAL},
+    #{item.orderCount,jdbcType=INTEGER},
+    #{item.orderType,jdbcType=TINYINT},
+    #{item.transType,jdbcType=TINYINT},
+    #{item.funcCode,jdbcType=VARCHAR},
+    #{item.dealProductCode,jdbcType=VARCHAR},
+    #{item.userId,jdbcType=VARCHAR},
+    #{item.interMerchantCode,jdbcType=VARCHAR},
+    #{item.merchantCode,jdbcType=VARCHAR},
+    #{item.intoInstCode,jdbcType=VARCHAR},
+    #{item.amount,jdbcType=DECIMAL},
+    #{item.feeAmount,jdbcType=DECIMAL},
+    #{item.feeAmount1,jdbcType=DECIMAL},
+    #{item.feeAmount2,jdbcType=DECIMAL},
+    #{item.feeAmount3,jdbcType=DECIMAL},
+    #{item.feeAmount4,jdbcType=DECIMAL},
+    #{item.userFee,jdbcType=DECIMAL},
+    #{item.profit,jdbcType=DECIMAL},
+    #{item.fcAmount,jdbcType=DECIMAL},
+    #{item.businessType,jdbcType=VARCHAR},
+    #{item.payChannelId,jdbcType=VARCHAR},
+    #{item.bankCode,jdbcType=VARCHAR},
+    #{item.userIpAddress,jdbcType=VARCHAR},
+    #{item.errorCode,jdbcType=VARCHAR},
+    #{item.errorMsg,jdbcType=VARCHAR},
+    #{item.productId,jdbcType=VARCHAR},
+    #{item.productWid,jdbcType=VARCHAR},
+    #{item.cancelInd,jdbcType=TINYINT},
+    #{item.dataFrom,jdbcType=TINYINT},
+    #{item.deliverStatusId,jdbcType=TINYINT},
+    #{item.invoiceNo,jdbcType=VARCHAR},
+    #{item.obligate1,jdbcType=VARCHAR},
+    #{item.obligate2,jdbcType=VARCHAR},
+    #{item.obligate3,jdbcType=VARCHAR},
+    #{item.statusId,jdbcType=TINYINT},
+    #{item.readStatusId,jdbcType=TINYINT},
+    #{item.dflag,jdbcType=TINYINT},
+    #{item.remark,jdbcType=VARCHAR},
+    #{item.accountDate,jdbcType=TIMESTAMP},
+    #{item.requestId,jdbcType=INTEGER},
+    #{item.roleCode,jdbcType=VARCHAR},
+    #{item.interRoleCode,jdbcType=VARCHAR},
+    #{item.referUserId,jdbcType=VARCHAR},
+    #{item.referRoleCode,jdbcType=VARCHAR},
+    #{item.referProductId,jdbcType=VARCHAR},
+    #{item.otherAmount,jdbcType=DECIMAL},
+    #{item.userFeeWay,jdbcType=TINYINT},
+    #{item.interest,jdbcType=DECIMAL},
+    #{item.payWay,jdbcType=VARCHAR},
+    #{item.processStatus,jdbcType=TINYINT},
+    #{item.originalOrderPackageNo,jdbcType=VARCHAR},
+    #{item.originalOrderId,jdbcType=VARCHAR},
+    #{item.currency,jdbcType=VARCHAR},
+    #{item.reverseFlag,jdbcType=TINYINT},
+    #{item.cancelTag,jdbcType=TINYINT},
+    #{item.acceptInstCode,jdbcType=VARCHAR},
+    #{item.acceptInstId,jdbcType=VARCHAR},
+    #{item.targetMerchantCode,jdbcType=VARCHAR},
+    #{item.targetTerminalCode,jdbcType=VARCHAR},
+    #{item.channelReturnCode,jdbcType=VARCHAR},
+    #{item.returnMeg,jdbcType=VARCHAR},
+    #{item.receiptSerialNo,jdbcType=VARCHAR},
+    #{item.mcc,jdbcType=VARCHAR},
+    #{item.authCode,jdbcType=VARCHAR},
+    #{item.channelInfo,jdbcType=VARCHAR},
+    #{item.tradeEsbNo,jdbcType=VARCHAR},
+    #{item.reserve1,jdbcType=VARCHAR},
+    #{item.reserve2,jdbcType=VARCHAR},
+    #{item.reserve3,jdbcType=VARCHAR},
+    #{item.readCreatedTime,jdbcType=TIMESTAMP},
+  </sql>
+  
+  
+  <!-- 查询下游对账交易信息 -->
+  <select id="selectCollateTransInfo" parameterType="map" resultType="java.util.HashMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_TRANS_DETAIL
+	where 
+	STATUS_ID in
+	<foreach collection="statusIds" item="statusId"  open="(" separator="," close=")">  
+	    #{statusId}  
+	</foreach>
+	<if test="funcRelation != 0">
+		and FUNC_CODE 
+		<if test="funcRelation == 1">in</if> 
+		<if test="funcRelation == 2">not in</if>
+		<foreach collection="funcCodes" item="funcCode"  open="(" separator="," close=")">  
+		    #{funcCode}  
+		</foreach>
+	</if> 
+	and  
+	(
+        MERCHANT_CODE in (${marchantCodes}) <!-- SQL注入 -->
+        and ORDER_TYPE = #{orderType} 
+        and ACCOUNT_DATE = str_to_date(#{accountDate}, '%Y%m%d %H:%i:%s') 
+	    and (REMARK is null or REMARK != 'qjs_tuikuan') 
+	) 
+	order by REQUEST_TIME
+  </select>
+  <!-- //查询下游对账交易信息 -->
+  
+  <!-- 查询'分润'交易信息 -->
+  <select id="selectProfitTransInfo" parameterType="map" resultType="java.util.HashMap">
+    select 
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim> 
+    from SETTLE_TRANS_DETAIL 
+	where 
+	ORDER_TYPE = #{orderType} 
+	and STATUS_ID in 
+	<foreach collection="statusIds" item="statusId"  open="(" separator="," close=")">  
+	    #{statusId}  
+	</foreach> 
+	and (OBLIGATE1 != #{isBilled} or OBLIGATE1 is null) 
+  </select>
+  <!-- //查询'分润'交易信息 -->
+  
+  <!-- 查询'清算'交易信息参与对账 -->
+  <select id="selectListMapByExample" parameterType="SettleTransDetailQuery" resultType="java.util.HashMap">
+   select
+    ti.TRANS_DETAIL_ID,
+    ti.REQUEST_NO,
+    ti.REQUEST_TIME,
+    ti.TRANS_FLOW_NO,
+    ti.ORDER_NO,
+    ti.ORDER_PACKAGE_NO,
+    ti.ORDER_DATE,
+    ti.ORDER_AMOUNT,
+    ti.ORDER_COUNT,
+    ti.ORDER_TYPE,
+    ti.FUNC_CODE,
+    ti.USER_ID,
+    ti.INTER_MERCHANT_CODE,
+    ti.MERCHANT_CODE,
+    ti.AMOUNT,
+    ti.FEE_AMOUNT,
+    ti.FEE_AMOUNT1,
+    ti.FEE_AMOUNT2,
+    ti.FEE_AMOUNT3,
+    ti.FEE_AMOUNT4,
+    ti.USER_FEE,
+    ti.PROFIT,
+    ti.FC_AMOUNT,
+    ti.BUSINESS_TYPE,
+    ti.PAY_CHANNEL_ID,
+    ti.BANK_CODE,
+    ti.USER_IP_ADDRESS,
+    ti.ERROR_CODE,
+    ti.ERROR_MSG,
+    ti.PRODUCT_ID,
+    ti.PRODUCT_W_ID,
+    ti.CANCEL_IND,
+    ti.DATA_FROM,
+    ti.DELIVER_STATUS_ID,
+    ti.INVOICE_NO,
+    ti.OBLIGATE1,
+    ti.OBLIGATE2,
+    ti.OBLIGATE3,
+    ti.STATUS_ID,
+    ti.READ_STATUS_ID,
+    ti.DFLAG,
+    ti.REMARK,
+    ti.ACCOUNT_DATE,
+    ti.CREATED_TIME,
+    ti.UPDATED_TIME
+   from SETTLE_TRANS_DETAIL ti
+ 	where 1=1
+   	and ti.ORDER_TYPE = #{orderType}  
+    and ti.FUNC_CODE in (${funcCode})
+    and ti.status_id in (11,22,24)
+    <if test="merchantCode != null">
+     and ti.MERCHANT_CODE in (${merchantCode}) 
+    </if>
+    <if test="businessType != null">
+     and ti.BUSINESS_TYPE = #{businessType} 
+    </if>
+    <if test="readStatusId != null">
+     and ti.READ_STATUS_ID = #{readStatusId} 
+    </if>
+    <if test="obligate2 != null">
+     and ti.READ_STATUS_ID != #{obligate2,jdbcType=TINYINT}
+    </if>
+    and (
+	    ti.PAY_CHANNEL_ID = #{payChannelId}
+	    <if test="payChannelId == '01'">
+	    or ti.PAY_CHANNEL_ID is NULL 
+	    </if>
+    )
+    order by ti.REQUEST_TIME
+  </select>
+  <!-- // 查询'清算'交易信息参与对账 -->
+
+  <!-- 查询交易信息By主键数组 -->
+  <select id="selectByIds" parameterType="map" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_TRANS_DETAIL
+    where 
+    TRANS_DETAIL_ID IN 
+    <foreach collection="ids" item="id"  open="(" separator="," close=")">  
+	    #{id}  
+	</foreach> 
+  </select>
+  
+  <!-- 查询交易信息(账户跟多渠道对账) -->
+  <select id="selectCollateDetail" parameterType="map" resultType="java.util.HashMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_TRANS_DETAIL
+	where 
+		1=1
+	<if test="notStatusId != null">
+		<![CDATA[
+		   AND STATUS_ID <> ${notStatusId}
+		]]>
+	</if> 
+	
+	<if test="funcCodes != null">
+		AND FUNC_CODE in 
+		<foreach collection="funcCodes" item="funcCode"  open="(" separator="," close=")">  
+		    #{funcCode}  
+		</foreach> 
+	</if>
+	
+	<if test="minAccountDate != null">
+		<![CDATA[
+			and ACCOUNT_DATE >= #{minAccountDate,jdbcType=TIMESTAMP}
+		 ]]>
+	</if>
+	
+	<if test="accountDate != null">
+		<![CDATA[
+			and ACCOUNT_DATE = #{accountDate,jdbcType=TIMESTAMP}
+		 ]]>
+	</if>
+	
+	<if test="statusId != null">
+		<![CDATA[
+			and STATUS_ID = #{statusId}
+		 ]]>
+	</if>
+	
+	<if test="dataFrom != null">
+		<![CDATA[
+			and DATA_FROM = #{dataFrom}
+		 ]]>
+	</if>
+	
+	<if test="orderType != null">
+		<![CDATA[
+			and ORDER_TYPE = #{orderType}
+		 ]]>
+	</if>
+	
+	<if test="merchantCode != null">
+		<![CDATA[
+			and MERCHANT_CODE = #{merchantCode}
+		 ]]>
+	</if>
+	
+	<if test="notReserve1 != null">
+		<![CDATA[
+		   AND (RESERVE_1 is NULL OR RESERVE_1 <> ${notReserve1})
+		]]>
+	</if> 
+  </select>
+  <!-- //查询交易信息(账户跟多渠道对账) -->
+  
+  <!-- 批量修改交易信息对账状态 -->
+  <update id="updateTransStatusId" parameterType="map">
+    update SETTLE_TRANS_DETAIL 
+    <set>
+      <trim suffixOverrides=",">
+	      <if test="statusId != null">STATUS_ID = #{statusId},</if>
+	      <if test="isBilled != null">OBLIGATE1 = #{isBilled},</if>
+	      <if test="reserve1 != null">RESERVE_1 = #{reserve1},</if>
+      </trim>
+    </set>
+    where TRANS_DETAIL_ID in
+    <foreach collection="idList" item="id"  open="(" separator="," close=")">  
+        #{id}  
+    </foreach>  
+  </update>
+  <!-- // 批量修改交易信息对账状态 -->
+  
+  <!-- 查询'清算'交易信息准备'挂账' -->
+  <select id="selectBillTransInfo" parameterType="map" resultType="java.util.HashMap">
+    select 
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim> 
+    from 
+       SETTLE_TRANS_DETAIL 
+	where 
+	   ORDER_TYPE = #{orderType} 
+	and 
+	   OBLIGATE1 is null
+	and 
+	   FUNC_CODE in 
+	<foreach collection="funcCodes" item="funcCode"  open="(" separator="," close=")">  
+	    #{funcCode}  
+	</foreach> 
+  </select>
+  <!-- // 查询'清算'交易信息准备'挂账' -->
+  
+  <!-- 根据订单号和商户编号更新交易信息表 -->
+  <update id="updateByAccountOrderInfo" parameterType="SettleTransDetail">
+    update SETTLE_TRANS_DETAIL 
+    set READ_STATUS_ID = #{readStatusId,jdbcType=TINYINT}
+ 	where 
+ 	ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+    and MERCHANT_CODE = #{merchantCode,jdbcType=VARCHAR}
+    and FUNC_CODE = #{funcCode,jdbcType=VARCHAR}
+    and ORDER_TYPE = #{orderType,jdbcType=TINYINT}
+  </update>
+  <!-- // 根据订单号和商户编号更新交易信息表 -->
+  
+  <!-- 多渠道读取重复数据 update方法 因是在自动生成的update SQL中进行的修改, 更新时需要注意  -->
+  <update id="updateByPrimaryKeySelective" parameterType="SettleTransDetail">
+    update SETTLE_TRANS_DETAIL
+    <include refid="Example_Set_Clause"/>
+    where 
+    <if test="transDetailId != null">
+       TRANS_DETAIL_ID = #{transDetailId,jdbcType=BIGINT}
+    </if>
+    <if test="transDetailId == null">
+       INVOICE_NO = #{invoiceNo,jdbcType=VARCHAR}
+    </if>
+  </update>
+  <!-- // 多渠道读取重复数据 update方法 -->
+  
+  <!-- 查询'代收付'交易信息 -->
+  <select id="selectDsfTransInfo" parameterType="map" resultType="java.util.HashMap">
+    select 
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim> 
+    from SETTLE_TRANS_DETAIL 
+	where  1=1
+	<if test="dFlags != null">
+		and DFLAG in 
+		<foreach collection="dFlags" item="dFlag"  open="(" separator="," close=")">  
+		    #{dFlag}
+		</foreach>
+	 </if> 
+	 <if test="merchantCode != null">
+		and MERCHANT_CODE = #{merchantCode}
+	 </if> 
+	 <if test="userId != null">
+		and USER_ID = #{userId}
+	 </if>
+	 <if test="orderType != null">
+		and ORDER_TYPE = #{orderType}
+	 </if> 
+	 <if test="funcCode != null">
+		and FUNC_CODE = #{funcCode}
+	 </if> 
+	 <if test="accountDate != null">
+	 	<![CDATA[
+	 		and ACCOUNT_DATE >= date_add(#{accountDate,jdbcType=TIMESTAMP}, interval -2 day) 
+	      	and ACCOUNT_DATE <= #{accountDate,jdbcType=TIMESTAMP}
+		]]>
+	 </if>
+	 <if test="ids != null">
+		and TRANS_DETAIL_ID in
+		<foreach collection="ids" item="id"  open="(" separator="," close=")">  
+		    #{id}
+		</foreach>
+	 </if> 
+	 <if test="ErrorMsg == null and funcCodes != null">
+		and FUNC_CODE in
+		<foreach collection="funcCodes" item="funcCode"  open="(" separator="," close=")">  
+		    #{funcCode}
+		</foreach>
+	 </if> 
+	 
+	 <if test="ErrorMsg != null and funcCodes != null">
+	 	and (FUNC_CODE in
+		<foreach collection="funcCodes" item="funcCode"  open="(" separator="," close=")">  
+		    #{funcCode}
+		</foreach>
+		or ERROR_MSG = #{ErrorMsg}
+		)
+	 </if>
+	  <if test="readStatusId != null">
+		and READ_STATUS_ID = #{readStatusId}
+	 </if>
+	 <if test="notStatusId != null">
+		  <![CDATA[
+			  and STATUS_ID <> #{notStatusId}
+		  ]]>
+	 </if>
+	  <if test="rootInstCds != null">
+		and MERCHANT_CODE in
+		<foreach collection="rootInstCds" item="rootInstCd"  open="(" separator="," close=")">  
+		    #{rootInstCd}
+		</foreach>
+	 </if> 
+	 <if test="deliverStatusIds != null">
+		and DELIVER_STATUS_ID in
+		<foreach collection="deliverStatusIds" item="deliverStatusId"  open="(" separator="," close=")">  
+		    #{deliverStatusId}
+		</foreach>
+	 </if> 
+	 <if test="businessTypes != null">
+		and BUSINESS_TYPE in
+		<foreach collection="businessTypes" item="businessType"  open="(" separator="," close=")">  
+		    #{businessType}
+		</foreach>
+	 </if> 
+	 
+	  <if test="limit != null">
+	      limit #{limit}
+	  </if>
+  </select>
+  
+   <!-- 查询'代收付'交易count-->
+  <select id="selectDsfTransCount" parameterType="map" resultType="java.lang.Integer">
+    select 
+      count(*) 
+    from SETTLE_TRANS_DETAIL 
+	where  1=1
+	<if test="dFlags != null">
+		and DFLAG in 
+		<foreach collection="dFlags" item="dFlag"  open="(" separator="," close=")">  
+		    #{dFlag}
+		</foreach>
+	 </if> 
+	 <if test="merchantCode != null">
+		and MERCHANT_CODE = #{merchantCode}
+	 </if> 
+	 <if test="userId != null">
+		and USER_ID = #{userId}
+	 </if>
+	 <if test="orderType != null">
+		and ORDER_TYPE = #{orderType}
+	 </if> 
+	 <if test="funcCode != null">
+		and FUNC_CODE = #{funcCode}
+	 </if> 
+	 <if test="accountDate != null">
+	 	<![CDATA[
+	 		and ACCOUNT_DATE >= date_add(#{accountDate,jdbcType=TIMESTAMP}, interval -2 day) 
+	      	and ACCOUNT_DATE <= #{accountDate,jdbcType=TIMESTAMP}
+		]]>
+	 </if>
+	 <if test="ids != null">
+		and TRANS_DETAIL_ID in
+		<foreach collection="ids" item="id"  open="(" separator="," close=")">  
+		    #{id}
+		</foreach>
+	 </if> 
+	 <if test="ErrorMsg == null and funcCodes != null">
+		and FUNC_CODE in
+		<foreach collection="funcCodes" item="funcCode"  open="(" separator="," close=")">  
+		    #{funcCode}
+		</foreach>
+	 </if> 
+	 
+	 <if test="ErrorMsg != null and funcCodes != null">
+	 	and (FUNC_CODE in
+		<foreach collection="funcCodes" item="funcCode"  open="(" separator="," close=")">  
+		    #{funcCode}
+		</foreach>
+		or ERROR_MSG = #{ErrorMsg}
+		)
+	 </if>
+	  <if test="readStatusId != null">
+		and READ_STATUS_ID = #{readStatusId}
+	 </if>
+	 <if test="notStatusId != null">
+		  <![CDATA[
+			  and STATUS_ID <> #{notStatusId}
+		  ]]>
+	 </if>
+	  <if test="rootInstCds != null">
+		and MERCHANT_CODE in
+		<foreach collection="rootInstCds" item="rootInstCd"  open="(" separator="," close=")">  
+		    #{rootInstCd}
+		</foreach>
+	 </if> 
+	 <if test="deliverStatusIds != null">
+		and DELIVER_STATUS_ID in
+		<foreach collection="deliverStatusIds" item="deliverStatusId"  open="(" separator="," close=")">  
+		    #{deliverStatusId}
+		</foreach>
+	 </if> 
+	 <if test="businessTypes != null">
+		and BUSINESS_TYPE in
+		<foreach collection="businessTypes" item="businessType"  open="(" separator="," close=")">  
+		    #{businessType}
+		</foreach>
+	 </if> 
+	 
+	 <if test="limit != null">
+	      limit #{limit}
+	  </if>
+  </select>
+  
+  
+   <!-- 查询本次'代收付'交易信息的机构号 -->
+  <select id="selectRootInstCds" parameterType="map" resultType="java.lang.String">
+    select 
+         DISTINCT MERCHANT_CODE
+    from SETTLE_TRANS_DETAIL 
+	where  1=1
+	<if test="dFlags != null">
+		and DFLAG in 
+		<foreach collection="dFlags" item="dFlag"  open="(" separator="," close=")">  
+		    #{dFlag}
+		</foreach>
+	 </if> 
+	 <if test="merchantCode != null">
+		and MERCHANT_CODE = #{merchantCode}
+	 </if> 
+	 <if test="userId != null">
+		and USER_ID = #{userId}
+	 </if>
+	 <if test="orderType != null">
+		and ORDER_TYPE = #{orderType}
+	 </if> 
+	 <if test="funcCode != null">
+		and FUNC_CODE = #{funcCode}
+	 </if> 
+	 <if test="accountDate != null">
+	 	<![CDATA[
+	 		and ACCOUNT_DATE >= date_add(#{accountDate,jdbcType=TIMESTAMP}, interval -2 day) 
+	      	and ACCOUNT_DATE <= #{accountDate,jdbcType=TIMESTAMP}
+		]]>
+	 </if>
+	 <if test="ids != null">
+		and TRANS_DETAIL_ID in
+		<foreach collection="ids" item="id"  open="(" separator="," close=")">  
+		    #{id}
+		</foreach>
+	 </if> 
+	 <if test="ErrorMsg == null and funcCodes != null">
+		and FUNC_CODE in
+		<foreach collection="funcCodes" item="funcCode"  open="(" separator="," close=")">  
+		    #{funcCode}
+		</foreach>
+	 </if> 
+	 
+	 <if test="ErrorMsg != null and funcCodes != null">
+	 	and (FUNC_CODE in
+		<foreach collection="funcCodes" item="funcCode"  open="(" separator="," close=")">  
+		    #{funcCode}
+		</foreach>
+		or ERROR_MSG = #{ErrorMsg}
+		)
+	 </if>
+	  <if test="readStatusId != null">
+		and READ_STATUS_ID = #{readStatusId}
+	 </if>
+	 <if test="notStatusId != null">
+		  <![CDATA[
+			  and STATUS_ID <> #{notStatusId}
+		  ]]>
+	 </if>
+	  <if test="rootInstCds != null">
+		and MERCHANT_CODE in
+		<foreach collection="rootInstCds" item="rootInstCd"  open="(" separator="," close=")">  
+		    #{rootInstCd}
+		</foreach>
+	 </if> 
+	 <if test="deliverStatusIds != null">
+		and DELIVER_STATUS_ID in
+		<foreach collection="deliverStatusIds" item="deliverStatusId"  open="(" separator="," close=")">  
+		    #{deliverStatusId}
+		</foreach>
+	 </if> 
+	 <if test="businessTypes != null">
+		and BUSINESS_TYPE in
+		<foreach collection="businessTypes" item="businessType"  open="(" separator="," close=")">  
+		    #{businessType}
+		</foreach>
+	 </if> 
+  </select>
+  
+  <!-- 批量插入 -->
+  <insert id="batchInsertSelective" parameterType="java.util.List">
+    insert into SETTLE_TRANS_DETAIL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Batch_Base_Column_List"/>
+    </trim> 
+    values 
+    <foreach collection="list" item="item"  open="" separator="," close="">  	
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <include refid="Batch_Base_Value_List"/>
+	    </trim>
+    </foreach>
+  </insert>
+  
+  <!-- 批量修改'被冲正'交易 -->
+  <update id="updateMTAegisCorrectOrder" parameterType="java.util.List">
+    update SETTLE_TRANS_DETAIL 
+    <set>
+      READ_STATUS_ID = 6,
+      CANCEL_IND = 1,
+      REVERSE_FLAG = 1
+    </set>
+    where TRANS_DETAIL_ID in
+    <foreach collection="list" item="id"  open="(" separator="," close=")">  
+        #{id}  
+    </foreach>  
+  </update>
+  <!-- // 批量修改'被冲正'交易 -->
+  
+  <!-- 批量修改'被抹账'交易 -->
+  <update id="updateMTAegisWipeOutTheAccount" parameterType="java.util.List">
+    update SETTLE_TRANS_DETAIL 
+    <set>
+      READ_STATUS_ID = 6,
+      CANCEL_IND = 2,
+      CANCEL_TAG = 1
+    </set>
+    where TRANS_DETAIL_ID in
+    <foreach collection="list" item="id"  open="(" separator="," close=")">  
+        #{id}  
+    </foreach>  
+  </update>
+  <!-- // 批量修改'被抹账'交易 -->
+  
+  <!-- 批量修改'被退票'交易 -->
+  <update id="updateMTAegisSendBack" parameterType="java.util.List">
+    update SETTLE_TRANS_DETAIL 
+    <set>
+      READ_STATUS_ID = 9
+    </set>
+    where TRANS_DETAIL_ID in
+    <foreach collection="list" item="id"  open="(" separator="," close=")">  
+        #{id}  
+    </foreach>  
+  </update>
+  <!-- // 批量修改'被退票'交易 -->
+  
+  <!-- 通过系统订单号查询'清算'交易信息主键ID -->
+  <select id="queryTransDetailIdsByOrderNo" parameterType="java.util.List" resultType="java.lang.Integer">
+    select 
+       TRANS_DETAIL_ID 
+    from 
+       SETTLE_TRANS_DETAIL 
+	where 
+	   ORDER_TYPE = 0
+	and 
+	   ORDER_NO in 
+	<foreach collection="list" item="theOrderNo"  open="(" separator="," close=")">  
+	    #{theOrderNo,jdbcType=VARCHAR}
+	</foreach> 
+  </select>
+  <!-- // 通过系统订单号查询'清算'交易信息主键ID -->
+  <!-- 实收  汇总交易金额 -->
+  <select id="collectAmountByExample" parameterType="SettleTransDetailQuery" resultType="java.util.HashMap">
+    select 
+        d.CHANNEL_INFO,d.FUNC_CODE,d.MERCHANT_CODE,d.PAY_CHANNEL_ID,d.PAY_WAY,d.AMOUNT,d.TRANS_DETAIL_ID,date_format(d.ACCOUNT_DATE, '%Y%m%d') as ACCOUNT_DATE
+    from
+        SETTLE_TRANS_DETAIL d
+    <where>
+      <trim prefix="(" prefixOverrides="and" suffix=")">
+      NOT EXISTS (SELECT 1 FROM SETTLE_KERNEL_DETAIL_RELATION r WHERE d.TRANS_DETAIL_ID = r.TRANS_DETAIL_ID and r.COLLECT_TYPE = #{transType} and r.ACCOUNT_DATE = d.ACCOUNT_DATE)
+      <!-- 借用 obligate1字段存储 dflag 状态集合字符串 例如 4,40,41 -->
+	  <if test="obligate1 != null" >
+	   <![CDATA[
+			 and dflag in (${obligate1})
+			 and date_add(NOW(), interval -1 day) <= d.UPDATED_TIME
+		 	 and NOW() > d.UPDATED_TIME 
+			 and ACCOUNT_DATE >= date_add(#{accountDate,jdbcType=TIMESTAMP}, interval -14 day) 
+	      	 and ACCOUNT_DATE <= #{accountDate,jdbcType=TIMESTAMP}
+	     ]]>
+	  </if>
+	  <if test="obligate1 == null" >  
+	     <![CDATA[
+			  and ACCOUNT_DATE = #{accountDate,jdbcType=TIMESTAMP}
+	     ]]>
+	  </if>
+      <if test="orderType != null" >
+	      and ORDER_TYPE = #{orderType,jdbcType=TINYINT}
+	    </if>
+	  <if test="dataFrom != null" >
+	      and DATA_FROM = #{dataFrom,jdbcType=TINYINT}
+	    </if>
+      <if test="funcCode != null" >
+	      and FUNC_CODE = #{funcCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="merchantCode != null" >
+	      and MERCHANT_CODE = #{merchantCode,jdbcType=VARCHAR}
+	    </if>
+	  <if test="payWay != null" >
+	      and PAY_WAY = #{payWay,jdbcType=VARCHAR}
+	    </if>
+      <if test="payChannelId != null" >
+      	   <if test="payChannelId == '01'" >
+      	      and (PAY_CHANNEL_ID = #{payChannelId,jdbcType=VARCHAR} or PAY_CHANNEL_ID is null)
+      	   </if>
+      	   <if test="payChannelId != '01'" >
+      	      and PAY_CHANNEL_ID = #{payChannelId,jdbcType=VARCHAR}
+      	   </if>
+	    </if>
+      <if test="readStatusId != null" >
+	      and READ_STATUS_ID != #{readStatusId,jdbcType=TINYINT}
+	    </if>
+	  </trim>
+    </where>
+    order by d.ACCOUNT_DATE desc
+  </select>
+  <!-- // 实收 汇总交易金额 -->
+  
+  <!-- 应收  汇总交易金额
+  <select id="collectShouldAmountByExample" parameterType="SettleTransDetailQuery" resultType="java.util.HashMap">
+    select 
+        d.AMOUNT,d.TRANS_DETAIL_ID,date_format(d.ACCOUNT_DATE, '%Y%m%d') as ACCOUNT_DATE
+    from
+        SETTLE_TRANS_DETAIL d
+    <where>
+      <trim prefix="(" prefixOverrides="and" suffix=")">
+      NOT EXISTS (SELECT 1 FROM SETTLE_KERNEL_DETAIL_RELATION r WHERE d.TRANS_DETAIL_ID = r.TRANS_DETAIL_ID and r.COLLECT_TYPE = #{transType} and r.ACCOUNT_DATE = d.ACCOUNT_DATE)
+      <if test="accountDate != null" >
+	      and ACCOUNT_DATE = #{accountDate,jdbcType=TIMESTAMP} 
+	    </if>
+      <if test="orderType != null" >
+	      and ORDER_TYPE = #{orderType,jdbcType=TINYINT}
+	    </if>
+	   <if test="dataFrom != null" >
+	      and DATA_FROM = #{dataFrom,jdbcType=TINYINT}
+	    </if>
+      <if test="funcCode != null" >
+	      and FUNC_CODE = #{funcCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="merchantCode != null" >
+	      and MERCHANT_CODE = #{merchantCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="readStatusId != null" >
+	      and READ_STATUS_ID != #{readStatusId,jdbcType=TINYINT}
+	    </if>
+	  </trim>
+    </where>
+  </select> -->
+  <!-- // 应收 汇总交易金额 -->
+  
+  
+  <!-- 批量修改'被抹账'交易 -->
+  <update id="updateTransAmount" parameterType="map">
+    update SETTLE_TRANS_DETAIL 
+    <set>
+      <trim suffixOverrides=",">
+	      <if test="USER_FEE != null">USER_FEE = ${useFee},</if>
+	      <if test="FEE_AMOUNT != null">FEE_AMOUNT = ${feeAmount},</if>
+	      <if test="FEE_AMOUNT1 != null">FEE_AMOUNT1 = ${feeAmount1},</if>
+	      <if test="FEE_AMOUNT2 != null">FEE_AMOUNT2 = ${feeAmount2},</if>
+	      <if test="FEE_AMOUNT3 != null">FEE_AMOUNT3 = ${feeAmount3},</if>
+	      <if test="FEE_AMOUNT4 != null">FEE_AMOUNT4 = ${feeAmount4},</if>
+      </trim>
+    </set>
+    where TRANS_DETAIL_ID = ${transDetailId}
+  </update>
+  <!-- 通过主键ID Array批量查询 交易信息 -->
+  <select id="selectByIdsArr" parameterType="map" resultMap="BaseResultMap">
+    select
+	    d.TRANS_DETAIL_ID,
+	    d.FUNC_CODE,
+	    d.MERCHANT_CODE,
+	    d.AMOUNT,
+	    d.PAY_CHANNEL_ID,
+	    d.ACCOUNT_DATE 
+    from 
+    	SETTLE_TRANS_DETAIL d
+    where 
+    	NOT EXISTS (SELECT 1 FROM SETTLE_KERNEL_DETAIL_RELATION r WHERE d.TRANS_DETAIL_ID = r.TRANS_DETAIL_ID and r.COLLECT_TYPE = #{transType} and r.ACCOUNT_DATE = d.ACCOUNT_DATE)
+    	and TRANS_DETAIL_ID in 
+    <foreach collection="idsArr" item="id"  open="(" separator="," close=")">  
+        #{id}  
+    </foreach>
+  </select>
+  
+  <!-- 批量修改 退票交易 查询 原交易pay_channel_id('协议,渠道') -->
+  <update id="updatePayChannelIdByoriginalTrans" parameterType="map">
+    UPDATE `SETTLE_TRANS_DETAIL` t1
+		INNER JOIN (
+			SELECT
+				t0.PAY_CHANNEL_ID	
+				,t0.ORDER_NO
+			FROM
+				`SETTLE_TRANS_DETAIL` t0
+			WHERE
+				t0.TRANS_DETAIL_ID in  
+			<foreach collection="originalOrderIdsArr" item="id"  open="(" separator="," close=")">  
+		        #{id}  
+		    </foreach>
+		) t2
+	on t2.ORDER_NO = t1.ORIGINAL_ORDER_ID 
+	SET t1.PAY_CHANNEL_ID = t2.PAY_CHANNEL_ID
+	WHERE t1.TRANS_DETAIL_ID in 
+	<foreach collection="idsArr" item="id"  open="(" separator="," close=")">  
+        #{id} 
+    </foreach>
+  </update>
+  
+	<!-- 批量修改 退款交易 查询 原交易pay_channel_id('协议,渠道') -->
+	<update id="updatePayChannelIdBy4015Trans" parameterType="map">
+	UPDATE `SETTLE_TRANS_DETAIL` t1
+	 INNER JOIN (
+	  SELECT
+		t0.PAY_CHANNEL_ID,
+		t0.REQUEST_NO
+	  FROM
+		`SETTLE_TRANS_DETAIL` t0
+	  WHERE
+		t0.ACCOUNT_DATE > date_sub(now(), INTERVAL 15 DAY)
+	    AND t0.FUNC_CODE = '4017'
+	    AND ((t0.PAY_CHANNEL_ID) IS NOT NULL OR t0.PAY_CHANNEL_ID != '')
+	 ) t2 ON t2.REQUEST_NO = t1.REQUEST_NO
+	SET t1.PAY_CHANNEL_ID = t2.PAY_CHANNEL_ID
+	WHERE
+	 t1.ACCOUNT_DATE > date_sub(now(), INTERVAL 15 DAY)
+	 AND t1.FUNC_CODE = '10014'
+	 AND ((t1.PAY_CHANNEL_ID) IS NULL OR t1.PAY_CHANNEL_ID = '')
+	</update>
+	
+	<!-- 批量修改 将SETTLE_TRANS_ACCOUNT表的(手续费)和(机构,协议)回写到SETTLE_TRANS_DETAIL表 -->
+	<update id="updateAccountInfoToDetailInfo" parameterType="map">
+	UPDATE SETTLE_TRANS_DETAIL d
+	INNER JOIN (
+		SELECT
+			ORDER_NO,
+			TRANS_AMOUNT,
+			FEE_AMOUNT,
+			MERCHANT_CODE,
+			PAY_CHANNEL_ID,
+			TRANS_FLOW_NO
+		FROM
+			SETTLE_TRANS_ACCOUNT
+		WHERE
+			READ_TYPE != '04'
+		AND
+		<if test="endDate == null">
+			<![CDATA[
+				SETTLE_TIME <= date_sub(#{beginDate,jdbcType=TIMESTAMP}, interval 0 day)
+			AND SETTLE_TIME >= date_sub(#{beginDate,jdbcType=TIMESTAMP}, interval 10 day)
+			]]>
+		</if>
+		<if test="endDate != null">
+			<![CDATA[
+				SETTLE_TIME <= #{endDate,jdbcType=TIMESTAMP}
+			AND SETTLE_TIME >= date_sub(#{beginDate,jdbcType=TIMESTAMP}, interval 10 day)
+			]]>
+		</if>
+	) a 
+	ON d.REQUEST_NO = a.ORDER_NO
+	AND d.ORDER_AMOUNT = a.TRANS_AMOUNT 
+	SET d.FEE_AMOUNT = a.FEE_AMOUNT,
+	 d.PAY_CHANNEL_ID = CONCAT(
+		a.MERCHANT_CODE,
+		',',
+		a.PAY_CHANNEL_ID
+	)
+	WHERE
+	d.ORDER_TYPE = 0 AND
+	<if test="endDate == null">
+		<![CDATA[
+			d.ACCOUNT_DATE = #{beginDate,jdbcType=TIMESTAMP}
+		]]>
+	</if>
+	<if test="endDate != null">
+		<![CDATA[
+			d.ACCOUNT_DATE <= #{endDate,jdbcType=TIMESTAMP}
+		AND d.ACCOUNT_DATE >= #{beginDate,jdbcType=TIMESTAMP}
+		]]>
+	</if>
+	</update>
+	<update id="updateAccountInfoToDetailInfo04" parameterType="map">
+	UPDATE SETTLE_TRANS_DETAIL d
+	INNER JOIN (
+		SELECT
+			ORDER_NO,
+			TRANS_AMOUNT,
+			FEE_AMOUNT,
+			MERCHANT_CODE,
+			PAY_CHANNEL_ID,
+			TRANS_FLOW_NO
+		FROM
+			SETTLE_TRANS_ACCOUNT
+		WHERE
+			READ_TYPE = '04'
+		AND
+		<if test="endDate == null">
+			<![CDATA[
+				SETTLE_TIME <= date_sub(#{beginDate,jdbcType=TIMESTAMP}, interval 0 day)
+			AND SETTLE_TIME >= date_sub(#{beginDate,jdbcType=TIMESTAMP}, interval 10 day)
+			]]>
+		</if>
+		<if test="endDate != null">
+			<![CDATA[
+				SETTLE_TIME <= #{endDate,jdbcType=TIMESTAMP}
+			AND SETTLE_TIME >= date_sub(#{beginDate,jdbcType=TIMESTAMP}, interval 10 day)
+			]]>
+		</if>
+	) a 
+	ON d.REQUEST_NO = a.TRANS_FLOW_NO
+	AND d.ORDER_AMOUNT = a.TRANS_AMOUNT 
+	SET d.FEE_AMOUNT = a.FEE_AMOUNT,
+	 d.PAY_CHANNEL_ID = CONCAT(
+		a.MERCHANT_CODE,
+		',',
+		a.PAY_CHANNEL_ID
+	)
+	WHERE
+	d.ORDER_TYPE = 0 AND
+	<if test="endDate == null">
+		<![CDATA[
+			d.ACCOUNT_DATE = #{beginDate,jdbcType=TIMESTAMP}
+		]]>
+	</if>
+	<if test="endDate != null">
+		<![CDATA[
+			d.ACCOUNT_DATE <= #{endDate,jdbcType=TIMESTAMP}
+		AND d.ACCOUNT_DATE >= #{beginDate,jdbcType=TIMESTAMP}
+		]]>
+	</if>
+	</update>
+	<!-- 通过主键ID Array批量查询 交易信息 -->
+	 <select id="selectByUnKnowStatus" parameterType="map" resultType="java.util.HashMap">
+	   select
+	   	TRANS_DETAIL_ID,
+	    ORDER_NO,
+	    ORDER_AMOUNT,
+	    ACCOUNT_DATE
+	   from 
+	   	SETTLE_TRANS_DETAIL d
+	   where 
+	   	<if test="endDate == null">
+			<![CDATA[
+				d.ACCOUNT_DATE = #{beginDate,jdbcType=TIMESTAMP}
+			]]>
+		</if>
+		<if test="endDate != null">
+			<![CDATA[
+				d.ACCOUNT_DATE <= #{endDate,jdbcType=TIMESTAMP}
+			AND d.ACCOUNT_DATE >= #{beginDate,jdbcType=TIMESTAMP}
+			]]>
+		</if>
+	   	AND READ_STATUS_ID in
+	   <foreach collection="statusIdsArr" item="id"  open="(" separator="," close=")">  
+	       #{id}  
+	   </foreach>
+	 </select>
+	 
+	 <!-- 汇总手续费同时支持分页查询 -->
+	 <select id="summaryFeeAmount" parameterType="map" resultType="java.util.HashMap">
+	  <if test='flag == "single"'>
+	   SELECT
+		DATE_FORMAT(ACCOUNT_DATE,'%Y-%m-%d')ACCOUNT_DATE,
+	  	count(1) TOTAL,
+	    sum(AMOUNT) AMOUNT,
+		sum(FEE_AMOUNT) FEE_AMOUNT,
+		PAY_CHANNEL_ID,
+	    (select b.PARAMETER_VALUE from SETTLE_PARAMETER_INFO b where PARAMETER_TYPE='1000000019' and b.PARAMETER_CODE=d1.FUNC_CODE and STATUS_ID='1') FUNC_CODE, 
+		(select b.PARAMETER_VALUE from SETTLE_PARAMETER_INFO b where PARAMETER_TYPE='1000000013' and b.PARAMETER_CODE=d1.MERCHANT_CODE and STATUS_ID='1') MERCHANT_CODE
+	   FROM
+	    SETTLE_TRANS_DETAIL d1
+	   WHERE 1=1 
+		<if test="accountDateStr != null ">
+			<![CDATA[
+			AND ACCOUNT_DATE = #{accountDateStr,jdbcType=VARCHAR} 
+			]]>
+		</if>
+		<if test="payChannelId != null">
+			<![CDATA[
+			AND substring_index(PAY_CHANNEL_ID,',', -1) = #{payChannelId,jdbcType=VARCHAR} 
+			]]>
+		</if>
+		<if test="merchantCode != null">
+			<![CDATA[
+			AND MERCHANT_CODE = #{merchantCode,jdbcType=VARCHAR} 
+			]]>
+		</if>
+		<if test="funcCodes != null">
+		  AND FUNC_CODE in 
+			<foreach collection="funcCodes" item="funcCode" open=" (" close=") " separator=",">
+			    #{funcCode}
+			</foreach>
+		</if>
+		<if test="dataFrom != null">
+			<![CDATA[
+			AND DATA_FROM = #{dataFrom,jdbcType=TINYINT} 
+			]]>
+		</if>
+		 GROUP BY PAY_CHANNEL_ID,MERCHANT_CODE,ACCOUNT_DATE,FUNC_CODE 
+		 ORDER BY FUNC_CODE 
+		<if test="offset != null and pageSize != null">
+			LIMIT #{offset}, #{pageSize}
+		</if>
+	   </if>
+	   
+	   <if test='flag == "double"'>
+		SELECT 
+		  DATE_FORMAT(ACCOUNT_DATE,'%Y-%m-%d')ACCOUNT_DATE,
+		  count(1) TOTAL, 
+		  sum(AMOUNT) AMOUNT, 
+		  sum(FEE_AMOUNT) FEE_AMOUNT, 
+		  PAY_CHANNEL_ID,
+		  (select b.PARAMETER_VALUE from SETTLE_PARAMETER_INFO b where PARAMETER_TYPE='1000000019' and b.PARAMETER_CODE=d2.FUNC_CODE and STATUS_ID='1') FUNC_CODE, 
+		  (select b.OBLIGATE3 from SETTLE_PARAMETER_INFO b where PARAMETER_TYPE='1000000013' and b.PARAMETER_CODE=d2.MERCHANT_CODE and STATUS_ID='1') MERCHANT_CODE
+		FROM  
+			SETTLE_TRANS_DETAIL d2  
+		WHERE 1=1 
+		 AND FUNC_CODE in("4015","4017") 
+			AND DATA_FROM = 0 
+			<if test="accountDateStr != null ">
+				<![CDATA[
+				AND ACCOUNT_DATE = #{accountDateStr,jdbcType=VARCHAR} 
+				]]>
+			</if>
+			<if test="payChannelId != null">
+				<![CDATA[
+				AND substring_index(PAY_CHANNEL_ID,',', -1) = #{payChannelId,jdbcType=VARCHAR} 
+				]]>
+			</if>
+			<if test="merchantCode != null">
+				<![CDATA[
+				AND MERCHANT_CODE = #{merchantCode,jdbcType=VARCHAR} 
+				]]>
+			</if>
+		GROUP BY PAY_CHANNEL_ID,MERCHANT_CODE,ACCOUNT_DATE,FUNC_CODE 
+		UNION 
+		SELECT 
+			DATE_FORMAT(ACCOUNT_DATE,'%Y-%m-%d')ACCOUNT_DATE,
+		    count(1) TOTAL, 
+		    sum(AMOUNT) AMOUNT, 
+			sum(FEE_AMOUNT) FEE_AMOUNT, 
+			PAY_CHANNEL_ID,
+		    (select b.PARAMETER_VALUE from SETTLE_PARAMETER_INFO b where PARAMETER_TYPE='1000000019' and b.PARAMETER_CODE=d3.FUNC_CODE and STATUS_ID='1') FUNC_CODE, 
+			(select b.OBLIGATE3 from SETTLE_PARAMETER_INFO b where PARAMETER_TYPE='1000000013' and b.PARAMETER_CODE=d3.MERCHANT_CODE and STATUS_ID='1') MERCHANT_CODE
+		FROM 
+			SETTLE_TRANS_DETAIL  d3
+		WHERE 1=1 
+		    AND FUNC_CODE in("4013","4014") 
+			AND DATA_FROM = 3 
+			<if test="accountDateStr != null ">
+				<![CDATA[
+				AND ACCOUNT_DATE = #{accountDateStr,jdbcType=VARCHAR} 
+				]]>
+			</if>
+			<if test="payChannelId != null">
+				<![CDATA[
+				AND substring_index(PAY_CHANNEL_ID,',', -1) = #{payChannelId,jdbcType=VARCHAR} 
+				]]>
+			</if>
+			<if test="merchantCode != null">
+				<![CDATA[ 
+				AND MERCHANT_CODE = #{merchantCode,jdbcType=VARCHAR} 
+				]]>
+			</if>
+		GROUP BY PAY_CHANNEL_ID,MERCHANT_CODE,ACCOUNT_DATE,FUNC_CODE 
+		ORDER BY FUNC_CODE 
+		<if test="offset != null and pageSize != null">
+			LIMIT #{offset}, #{pageSize} 
+		</if>
+	  </if>
+	  </select>
+  <!-- // 分页查询 -->
+  
+  <!-- 账户结算查询 分页查询 -->
+  <sql id="SHPT_Where_Clause">
+  	<where>
+	  	<if test="endDate == null">
+			<![CDATA[
+				ACCOUNT_DATE = date_format(#{beginDate,jdbcType=TIMESTAMP}, '%Y-%m-%d 00:00:00')
+			]]>
+		</if>
+		<if test="endDate != null">
+			<![CDATA[
+				ACCOUNT_DATE <= date_format(#{endDate,jdbcType=TIMESTAMP}, '%Y-%m-%d 00:00:00')
+			AND ACCOUNT_DATE >= date_format(#{beginDate,jdbcType=TIMESTAMP}, '%Y-%m-%d 00:00:00')
+			]]>
+		</if>
+		<if test="payChannelId != null" >
+	      and substring_index(PAY_CHANNEL_ID,',', -1) = #{payChannelId,jdbcType=VARCHAR}
+	    </if>
+	    <if test="merchantCode != null" >
+	      and MERCHANT_CODE = #{merchantCode,jdbcType=VARCHAR}
+	    </if>
+	    <if test="FUNC_CODE != null" >
+	      and FUNC_CODE = #{funcCode,jdbcType=VARCHAR}
+	    </if>
+	    <if test="FUNC_CODE == null" >
+	      and FUNC_CODE in ('4013','4014','4015','4016','4017','5024')
+	    </if>
+	    and ORDER_TYPE = 0
+  	</where>
+  </sql>
+  <sql id="SHPT_Column_List">
+  	TRANS_DETAIL_ID,
+    REQUEST_NO,
+    REQUEST_TIME,
+    TRANS_FLOW_NO,
+    ORDER_NO,
+    RELATE_ORDER_NO,
+    ORDER_PACKAGE_NO,
+    ORDER_DATE,
+    ORDER_AMOUNT,
+    ORDER_COUNT,
+    ORDER_TYPE,
+    TRANS_TYPE,
+    DEAL_PRODUCT_CODE,
+    USER_ID,
+    INTER_MERCHANT_CODE,
+    INTO_INST_CODE,
+    AMOUNT,
+    FEE_AMOUNT,
+    FEE_AMOUNT1,
+    FEE_AMOUNT2,
+    FEE_AMOUNT3,
+    FEE_AMOUNT4,
+    USER_FEE,
+    PROFIT,
+    FC_AMOUNT,
+    BUSINESS_TYPE,
+    BANK_CODE,
+    USER_IP_ADDRESS,
+    ERROR_CODE,
+    ERROR_MSG,
+    PRODUCT_ID,
+    PRODUCT_W_ID,
+    CANCEL_IND,
+    DATA_FROM,
+    DELIVER_STATUS_ID,
+    INVOICE_NO,
+    OBLIGATE1,
+    OBLIGATE2,
+    OBLIGATE3,
+    STATUS_ID,
+    READ_STATUS_ID,
+    DFLAG,
+    REMARK,
+    ACCOUNT_DATE,
+    REQUEST_ID,
+    ROLE_CODE,
+    INTER_ROLE_CODE,
+    REFER_USER_ID,
+    REFER_ROLE_CODE,
+    REFER_PRODUCT_ID,
+    OTHER_AMOUNT,
+    USER_FEE_WAY,
+    INTEREST,
+    PAY_WAY,
+    PROCESS_STATUS,
+    ORIGINAL_ORDER_PACKAGE_NO,
+    ORIGINAL_ORDER_ID,
+    CURRENCY,
+    REVERSE_FLAG,
+    CANCEL_TAG,
+    ACCEPT_INST_CODE,
+    ACCEPT_INST_ID,
+    TARGET_MERCHANT_CODE,
+    TARGET_TERMINAL_CODE,
+    CHANNEL_RETURN_CODE,
+    RETURN_MEG,
+    RECEIPT_SERIAL_NO,
+    MCC,
+    AUTH_CODE,
+    CHANNEL_INFO,
+    TRADE_ESB_NO,
+    RESERVE_1,
+    RESERVE_2,
+    RESERVE_3,
+    READ_CREATED_TIME,
+    PAY_CHANNEL_ID,
+    (select b.PARAMETER_VALUE from SETTLE_PARAMETER_INFO b where PARAMETER_TYPE='1000000019' and b.PARAMETER_CODE=SETTLE_TRANS_DETAIL.FUNC_CODE and STATUS_ID='1') FUNC_CODE, 
+	(select b.OBLIGATE3 from SETTLE_PARAMETER_INFO b where PARAMETER_TYPE='1000000013' and b.PARAMETER_CODE=SETTLE_TRANS_DETAIL.MERCHANT_CODE and STATUS_ID='1') MERCHANT_CODE
+  </sql>
+  <select id="selectBySHPTPage" parameterType="map" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="SHPT_Column_List" />
+    </trim>
+    from SETTLE_TRANS_DETAIL
+    <include refid="SHPT_Where_Clause" />
+    <!-- order by CREATE_DATE -->
+    <!--分页查询 -->
+	<if test="orderBy != null">
+		ORDER BY ${orderBy}
+	</if>
+	<if test="offset != null &amp; pageSize != null">
+		LIMIT #{offset}, #{pageSize}
+	</if>
+  </select>
+  <!-- 总条数 -->
+  <select id="countBySHPTPage" parameterType="map" resultType="java.lang.Integer">
+    select count(*) from SETTLE_TRANS_DETAIL
+    <include refid="SHPT_Where_Clause" />
+  </select>
+  <!-- 下载全部 -->
+  <select id="selectAllBySHPT" parameterType="map" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="SHPT_Column_List" />
+    </trim>
+    from SETTLE_TRANS_DETAIL
+    <include refid="SHPT_Where_Clause" />
+  </select>
+  <!-- // 账户结算查询 分页查询 -->
+  
+  <!-- 批量修改 代收付交易dflag -->
+  <update id="batchUpdateSettleTransDetailDflag" parameterType="map">
+    update SETTLE_TRANS_DETAIL 
+    <set>
+      <trim suffixOverrides=",">
+          <if test="dflag != null">DFLAG = #{dflag},</if>
+          <if test="obligate1 != null">OBLIGATE1 = #{obligate1},</if>
+      </trim>
+    </set>
+    where TRANS_DETAIL_ID in
+    <foreach collection="idList" item="id"  open="(" separator="," close=")">  
+        #{id}  
+    </foreach>  
+  </update>
+</mapper>

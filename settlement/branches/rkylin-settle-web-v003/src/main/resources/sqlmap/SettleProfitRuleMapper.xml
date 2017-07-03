@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SettleProfitRuleMapper">
+	<resultMap id="BaseResultMap" type="SettleProfitRule">
+	  <result column="PROFIT_DETAIL_ID" jdbcType="VARCHAR" property="profitDetailId" />
+	  <result column="SUB_ID" jdbcType="VARCHAR" property="subId" />
+	  <result column="PROFIT_OBJECT" jdbcType="TINYINT" property="profitObject" />
+	  <result column="ROOT_INST_CD" jdbcType="VARCHAR" property="rootInstCd" />
+	  <result column="PRODUCT_ID" jdbcType="VARCHAR" property="productId" />
+	  <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+	  <result column="PROFIT_TYPE" jdbcType="TINYINT" property="profitType" />
+	  <result column="IS_MUST" jdbcType="TINYINT" property="isMust" />
+	  <result column="PROFIT_MD" jdbcType="TINYINT" property="profitMd" />
+	  <result column="PROFIT_FEE" jdbcType="VARCHAR" property="profitFee" />
+	  <result column="FEILV_UP" jdbcType="DECIMAL" property="feilvUp" />
+	  <result column="FEILV_BELOW" jdbcType="DECIMAL" property="feilvBelow" />
+	  <result column="START_TIME" jdbcType="TIMESTAMP" property="startTime" />
+	  <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" />
+	  <result column="OBLIGATE1" jdbcType="VARCHAR" property="obligate1" />
+	  <result column="OBLIGATE2" jdbcType="VARCHAR" property="obligate2" />
+	  <result column="STATUS_ID" jdbcType="TINYINT" property="statusId" />
+	  <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+	  <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+	  <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <trim prefix="(" prefixOverrides="and" suffix=")">
+      <if test="profitDetailId != null" >
+	      and PROFIT_DETAIL_ID = #{profitDetailId,jdbcType=VARCHAR}
+	    </if>
+      <if test="subId != null" >
+	      and SUB_ID = #{subId,jdbcType=VARCHAR}
+	    </if>
+      <if test="profitObject != null" >
+	      and PROFIT_OBJECT = #{profitObject,jdbcType=TINYINT}
+	    </if>
+      <if test="rootInstCd != null" >
+	      and ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR}
+	    </if>
+      <if test="productId != null" >
+	      and PRODUCT_ID = #{productId,jdbcType=VARCHAR}
+	    </if>
+      <if test="userId != null" >
+	      and USER_ID = #{userId,jdbcType=VARCHAR}
+	    </if>
+      <if test="profitType != null" >
+	      and PROFIT_TYPE = #{profitType,jdbcType=TINYINT}
+	    </if>
+      <if test="isMust != null" >
+	      and IS_MUST = #{isMust,jdbcType=TINYINT}
+	    </if>
+      <if test="profitMd != null" >
+	      and PROFIT_MD = #{profitMd,jdbcType=TINYINT}
+	    </if>
+      <if test="profitFee != null" >
+	      and PROFIT_FEE = #{profitFee,jdbcType=VARCHAR}
+	    </if>
+      <if test="feilvUp != null" >
+	      and FEILV_UP = #{feilvUp,jdbcType=DECIMAL}
+	    </if>
+      <if test="feilvBelow != null" >
+	      and FEILV_BELOW = #{feilvBelow,jdbcType=DECIMAL}
+	    </if>
+      <if test="startTime != null" >
+	      and START_TIME = #{startTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="endTime != null" >
+	      and END_TIME = #{endTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="obligate1 != null" >
+	      and OBLIGATE1 = #{obligate1,jdbcType=VARCHAR}
+	    </if>
+      <if test="obligate2 != null" >
+	      and OBLIGATE2 = #{obligate2,jdbcType=VARCHAR}
+	    </if>
+      <if test="statusId != null" >
+	      and STATUS_ID = #{statusId,jdbcType=TINYINT}
+	    </if>
+      <if test="remark != null" >
+	      and REMARK = #{remark,jdbcType=VARCHAR}
+	    </if>
+      <if test="createdTime != null" >
+	      and CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="updatedTime != null" >
+	      and UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+	    </if>
+	  <!-- 分页查询，画面获取使用 -->
+	  <if test="startTimeStr != null" >
+	      and START_TIME &gt;= #{startTimeStr,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="endTimeStr != null" >
+	      and END_TIME &lt;= #{endTimeStr,jdbcType=TIMESTAMP}
+	    </if>
+	  </trim>
+    </where>
+  </sql>
+  <sql id="Example_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+      <if test="profitDetailId != null">
+        PROFIT_DETAIL_ID = #{profitDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="subId != null">
+        SUB_ID = #{subId,jdbcType=VARCHAR},
+      </if>
+      <if test="profitObject != null">
+        PROFIT_OBJECT = #{profitObject,jdbcType=TINYINT},
+      </if>
+      <if test="rootInstCd != null">
+        ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="profitType != null">
+        PROFIT_TYPE = #{profitType,jdbcType=TINYINT},
+      </if>
+      <if test="isMust != null">
+        IS_MUST = #{isMust,jdbcType=TINYINT},
+      </if>
+      <if test="profitMd != null">
+        PROFIT_MD = #{profitMd,jdbcType=TINYINT},
+      </if>
+      <if test="profitFee != null">
+        PROFIT_FEE = #{profitFee,jdbcType=VARCHAR},
+      </if>
+      <if test="feilvUp != null">
+        FEILV_UP = #{feilvUp,jdbcType=DECIMAL},
+      </if>
+      <if test="feilvBelow != null">
+        FEILV_BELOW = #{feilvBelow,jdbcType=DECIMAL},
+      </if>
+      <if test="startTime != null">
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="obligate1 != null">
+        OBLIGATE1 = #{obligate1,jdbcType=VARCHAR},
+      </if>
+      <if test="obligate2 != null">
+        OBLIGATE2 = #{obligate2,jdbcType=VARCHAR},
+      </if>
+      <if test="statusId != null">
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      </trim>
+    </set>
+  </sql>
+  <sql id="Base_Column_List">
+    PROFIT_DETAIL_ID,
+    SUB_ID,
+    PROFIT_OBJECT,
+    ROOT_INST_CD,
+    PRODUCT_ID,
+    USER_ID,
+    PROFIT_TYPE,
+    IS_MUST,
+    PROFIT_MD,
+    PROFIT_FEE,
+    FEILV_UP,
+    FEILV_BELOW,
+    START_TIME,
+    END_TIME,
+    OBLIGATE1,
+    OBLIGATE2,
+    STATUS_ID,
+    REMARK,
+    CREATED_TIME,
+    UPDATED_TIME,
+  </sql>
+  <sql id="Base_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+        PROFIT_DETAIL_ID = #{profitDetailId,jdbcType=VARCHAR},
+        SUB_ID = #{subId,jdbcType=VARCHAR},
+        PROFIT_OBJECT = #{profitObject,jdbcType=TINYINT},
+        ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR},
+        PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+        USER_ID = #{userId,jdbcType=VARCHAR},
+        PROFIT_TYPE = #{profitType,jdbcType=TINYINT},
+        IS_MUST = #{isMust,jdbcType=TINYINT},
+        PROFIT_MD = #{profitMd,jdbcType=TINYINT},
+        PROFIT_FEE = #{profitFee,jdbcType=VARCHAR},
+        FEILV_UP = #{feilvUp,jdbcType=DECIMAL},
+        FEILV_BELOW = #{feilvBelow,jdbcType=DECIMAL},
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+        OBLIGATE1 = #{obligate1,jdbcType=VARCHAR},
+        OBLIGATE2 = #{obligate2,jdbcType=VARCHAR},
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+        REMARK = #{remark,jdbcType=VARCHAR},
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </trim>
+    </set>
+  </sql>
+  <sql id="Selective_Column_List">
+    <if test="profitDetailId != null">
+      PROFIT_DETAIL_ID,
+    </if>
+    <if test="subId != null">
+      SUB_ID,
+    </if>
+    <if test="profitObject != null">
+      PROFIT_OBJECT,
+    </if>
+    <if test="rootInstCd != null">
+      ROOT_INST_CD,
+    </if>
+    <if test="productId != null">
+      PRODUCT_ID,
+    </if>
+    <if test="userId != null">
+      USER_ID,
+    </if>
+    <if test="profitType != null">
+      PROFIT_TYPE,
+    </if>
+    <if test="isMust != null">
+      IS_MUST,
+    </if>
+    <if test="profitMd != null">
+      PROFIT_MD,
+    </if>
+    <if test="profitFee != null">
+      PROFIT_FEE,
+    </if>
+    <if test="feilvUp != null">
+      FEILV_UP,
+    </if>
+    <if test="feilvBelow != null">
+      FEILV_BELOW,
+    </if>
+    <if test="startTime != null">
+      START_TIME,
+    </if>
+    <if test="endTime != null">
+      END_TIME,
+    </if>
+    <if test="obligate1 != null">
+      OBLIGATE1,
+    </if>
+    <if test="obligate2 != null">
+      OBLIGATE2,
+    </if>
+    <if test="statusId != null">
+      STATUS_ID,
+    </if>
+    <if test="remark != null">
+      REMARK,
+    </if>
+    <if test="createdTime != null">
+      CREATED_TIME,
+    </if>
+    <if test="updatedTime != null">
+      UPDATED_TIME,
+    </if>
+  </sql>
+	<sql id="Base_Value_List">
+    #{profitDetailId,jdbcType=VARCHAR},
+    #{subId,jdbcType=VARCHAR},
+    #{profitObject,jdbcType=TINYINT},
+    #{rootInstCd,jdbcType=VARCHAR},
+    #{productId,jdbcType=VARCHAR},
+    #{userId,jdbcType=VARCHAR},
+    #{profitType,jdbcType=TINYINT},
+    #{isMust,jdbcType=TINYINT},
+    #{profitMd,jdbcType=TINYINT},
+    #{profitFee,jdbcType=VARCHAR},
+    #{feilvUp,jdbcType=DECIMAL},
+    #{feilvBelow,jdbcType=DECIMAL},
+    #{startTime,jdbcType=TIMESTAMP},
+    #{endTime,jdbcType=TIMESTAMP},
+    #{obligate1,jdbcType=VARCHAR},
+    #{obligate2,jdbcType=VARCHAR},
+    #{statusId,jdbcType=TINYINT},
+    #{remark,jdbcType=VARCHAR},
+    #{createdTime,jdbcType=TIMESTAMP},
+    #{updatedTime,jdbcType=TIMESTAMP},
+	</sql>
+  <sql id="Selective_Value_List">
+    <if test="profitDetailId != null">
+      #{profitDetailId,jdbcType=VARCHAR},
+    </if>
+    <if test="subId != null">
+      #{subId,jdbcType=VARCHAR},
+    </if>
+    <if test="profitObject != null">
+      #{profitObject,jdbcType=TINYINT},
+    </if>
+    <if test="rootInstCd != null">
+      #{rootInstCd,jdbcType=VARCHAR},
+    </if>
+    <if test="productId != null">
+      #{productId,jdbcType=VARCHAR},
+    </if>
+    <if test="userId != null">
+      #{userId,jdbcType=VARCHAR},
+    </if>
+    <if test="profitType != null">
+      #{profitType,jdbcType=TINYINT},
+    </if>
+    <if test="isMust != null">
+      #{isMust,jdbcType=TINYINT},
+    </if>
+    <if test="profitMd != null">
+      #{profitMd,jdbcType=TINYINT},
+    </if>
+    <if test="profitFee != null">
+      #{profitFee,jdbcType=VARCHAR},
+    </if>
+    <if test="feilvUp != null">
+      #{feilvUp,jdbcType=DECIMAL},
+    </if>
+    <if test="feilvBelow != null">
+      #{feilvBelow,jdbcType=DECIMAL},
+    </if>
+    <if test="startTime != null">
+      #{startTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="endTime != null">
+      #{endTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="obligate1 != null">
+      #{obligate1,jdbcType=VARCHAR},
+    </if>
+    <if test="obligate2 != null">
+      #{obligate2,jdbcType=VARCHAR},
+    </if>
+    <if test="statusId != null">
+      #{statusId,jdbcType=TINYINT},
+    </if>
+    <if test="remark != null">
+      #{remark,jdbcType=VARCHAR},
+    </if>
+    <if test="createdTime != null">
+      #{createdTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="updatedTime != null">
+      #{updatedTime,jdbcType=TIMESTAMP},
+    </if>
+  </sql>
+  
+  <select id="selectByExample" parameterType="SettleProfitRuleQuery" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_PROFIT_RULE
+    <include refid="Example_Where_Clause" />
+    <!-- order by CREATE_DATE -->
+  </select>
+  
+  <!-- 获取所有分润规则明细 -->
+  <select id="selectAllProfitRule" parameterType="SettleProfitRuleQuery" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_PROFIT_RULE
+    <include refid="Example_Where_Clause" />
+     <!-- 判断 有效时间 -->
+    and  SETTLE_PROFIT_RULE.START_TIME &lt;= now() 
+    and  SETTLE_PROFIT_RULE.END_TIME &gt;= now() 
+    
+    <!-- order by CREATE_DATE -->
+  </select>
+  <!-- // 获取所有分润规则明细 -->
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_PROFIT_RULE
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from SETTLE_PROFIT_RULE
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="SettleProfitRuleQuery">
+    delete from SETTLE_PROFIT_RULE
+    <include refid="Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterType="SettleProfitRule">
+    insert into SETTLE_PROFIT_RULE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Base_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Base_Value_List"/>
+    </trim>
+  </insert>
+  <insert id="insertSelective" parameterType="SettleProfitRule">
+    insert into SETTLE_PROFIT_RULE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Value_List"/>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="SettleProfitRuleQuery" resultType="java.lang.Integer">
+    select count(*) from SETTLE_PROFIT_RULE
+    <include refid="Example_Where_Clause" />
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="SettleProfitRule">
+    update SETTLE_PROFIT_RULE
+    <include refid="Example_Set_Clause"/>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="SettleProfitRule">
+    update SETTLE_PROFIT_RULE
+    <include refid="Base_Set_Clause"/>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <!-- 分页查询 -->
+  <select id="selectByPreExample" parameterType="SettleProfitRuleQuery" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_PROFIT_RULE
+    <include refid="Example_Where_Clause" />
+    <!-- order by CREATE_DATE -->
+    <!--分页查询 -->
+	<if test="orderBy !=null">
+		ORDER BY ${orderBy}
+	</if>
+	<if test="offset != null &amp; pageSize != null">
+		LIMIT #{offset}, #{pageSize}
+	</if>
+  </select>
+  <!-- 根据联合主键，更新清分规则明细 -->
+  <update id="updateByUnionKeySelective" parameterType="SettleProfitRule">
+    update SETTLE_PROFIT_RULE
+    <include refid="Example_Set_Clause"/>
+    where PROFIT_DETAIL_ID = #{profitDetailId,jdbcType=VARCHAR}
+    AND SUB_ID = #{subId,jdbcType=VARCHAR}
+  </update>
+  <!-- 根据联合主键，更新清分规则明细 -->
+  <update id="updateProfitDetailIdByMatch" parameterType="SettleProfitRuleQuery">
+    update SETTLE_PROFIT_RULE
+    SET PROFIT_DETAIL_ID = #{obligate1,jdbcType=VARCHAR}
+    where PROFIT_DETAIL_ID = #{profitDetailId,jdbcType=VARCHAR}
+    AND SUB_ID = #{subId,jdbcType=VARCHAR}
+    AND CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+  </update>
+  <!-- 查询未分配的和指定PROFIT_DETAIL_ID的 规则明细 -->
+  <select id="findByprofitDetailId" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_PROFIT_RULE
+    WHERE PROFIT_DETAIL_ID = '-1' 
+   	OR PROFIT_DETAIL_ID = #{profitDetailId,jdbcType=VARCHAR}
+  </select>
+</mapper>

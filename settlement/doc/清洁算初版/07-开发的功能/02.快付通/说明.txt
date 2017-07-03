@@ -1,0 +1,33 @@
+易宝支付
+		下载对账文件
+			代收:	2017020900090277_Lychee_acp.json
+			代收付:	2017020900090277_Lychee_pay.json
+		对账文件入库
+			func_code
+				代收:4013
+				代付:4014
+			pay_channel_id
+				S04
+			read_type
+				02
+
+		读取多渠道对账交易(channelNo)
+			代收:4013
+			代付:4014
+		算手续费
+			未开发
+
+		对账
+			取detail多渠道交易(未知)
+				测试配置N000001
+			取account对账文件交易
+			对账规则
+
+		注:放在同一个定时任务中, 多渠道系统每天早上5:15开始下载对账文件，预计5:20上传完毕。
+			清结算5:29AM 下载对账文件, 入库
+			清结算5:39AM 对账
+		
+		字典表添加配置
+			PARAMETER_TYPE='1000000013'	PAY_CHANNEL_ID
+			PARAMETER_TYPE='1000000018'	FUNC_CODE
+			PARAMETER_TYPE='1000000019'	MERCHANT_CODE

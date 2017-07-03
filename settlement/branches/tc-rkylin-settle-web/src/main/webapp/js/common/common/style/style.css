@@ -1,0 +1,54 @@
+.onShow
+{
+    /*background:url(../images/onShow.gif) no-repeat;
+    padding-left:25px; */
+	width:340px;
+	font-size: 12px;
+	line-height:22px; 
+	color:#bdbdbd;
+	vertical-align:middle;
+}
+.onFocus
+{
+   /* background:#fff url(../images/onFocus.gif) no-repeat;
+    padding-left:25px; */
+	width:340px;
+	font-size: 12px;
+	line-height:22px; 
+	color:#bdbdbd;
+	vertical-align:middle;
+}
+.onError
+{
+    /*background:#fff url(../images/onError.gif) no-repeat;
+    padding-left:25px;*/
+	width:340px;
+	font-size: 12px;
+	line-height:22px; 
+	color:#ed6365;
+	vertical-align:middle;
+}
+.onCorrect
+{
+    /*background:#fff url(../images/onCorrect.gif) no-repeat;
+    padding-left:25px;*/
+    width:340px;
+	font-size: 12px;
+	line-height:22px; 
+	vertical-align:middle;
+}
+.onLoad
+{
+   /* background:#fff url(../images/onLoad.gif) no-repeat 3px 3px;
+    padding-left:25px;*/
+	width:340px;
+	font-size: 12px;
+	line-height:22px; ]
+	color:#ed6365;
+	vertical-align:middle;
+} 
+
+.inputOnShow
+{
+	color: #999999
+}

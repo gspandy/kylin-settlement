@@ -1,0 +1,15 @@
+settle清结算日终结算
+	//调用账户分润接口
+	String resultMessage = paymentInternalOutService.shareBenefit(finanaceEntry, userId, merchantId, productId, referUserId);
+	//交易后退款前查询余额
+	balance = paymentAccountServiceApi.getBalance(user, paramString);
+	//交易后退款转账
+	errorResponse = paymentAccountServiceApi.transferForDubbo(transOrderInfo, productId);
+
+settle-web交易信息画面
+	//冲正 paymentAccountServiceApi
+	ErrorResponse errorResponse = payAccSerApi.antideductForDubbo(funcCode, newOrderNo, userIpAddress, orderNo, rootInstCd);
+	//消费后退款 paymentAccountServiceApi		
+	ErrorResponse errorResponse = payAccSerApi.afterSpendingRefundForDubbo(transOrderInfo, productId, referUserId);				
+	//抹账 paymentInternalOutService
+	ErrorResponse errorResponse = payIntOutSer.wipeAccountForDubbo(newOrderNo, orderNo, merchantCode);

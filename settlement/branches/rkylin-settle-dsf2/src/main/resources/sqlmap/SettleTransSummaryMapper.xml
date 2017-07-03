@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SettleTransSummaryMapper">
+	<resultMap id="BaseResultMap" type="SettleTransSummary">
+	  <result column="TRANS_SUM_ID" jdbcType="INTEGER" property="transSumId" />
+	  <result column="ROOT_INST_CD" jdbcType="VARCHAR" property="rootInstCd" />
+	  <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+	  <result column="FUNC_CODE" jdbcType="VARCHAR" property="funcCode" />
+	  <result column="ACCOUNT_DATE" jdbcType="TIMESTAMP" property="accountDate" />
+	  <result column="BUSINESS_TYPE" jdbcType="VARCHAR" property="businessType" />
+	  <result column="ORDER_NO" jdbcType="VARCHAR" property="orderNo" />
+	  <result column="BATCH_NO" jdbcType="VARCHAR" property="batchNo" />
+	  <result column="AMOUNT" jdbcType="DECIMAL" property="amount" />
+	  <result column="STATUS_ID" jdbcType="TINYINT" property="statusId" />
+	  <result column="OBLIGATE1" jdbcType="VARCHAR" property="obligate1" />
+	  <result column="OBLIGATE2" jdbcType="VARCHAR" property="obligate2" />
+	  <result column="OBLIGATE3" jdbcType="VARCHAR" property="obligate3" />
+	  <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+	  <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+	  <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <trim prefix="(" prefixOverrides="and" suffix=")">
+      <if test="transSumId != null" >
+	      and TRANS_SUM_ID = #{transSumId,jdbcType=INTEGER}
+	    </if>
+      <if test="rootInstCd != null" >
+	      and ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR}
+	    </if>
+      <if test="userId != null" >
+	      and USER_ID = #{userId,jdbcType=VARCHAR}
+	    </if>
+      <if test="funcCode != null" >
+	      and FUNC_CODE = #{funcCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="accountDate != null" >
+	      and ACCOUNT_DATE = #{accountDate,jdbcType=TIMESTAMP}
+	    </if>
+	  <if test="businessType != null" >
+	      and BUSINESS_TYPE = #{businessType,jdbcType=VARCHAR}
+	    </if>
+      <if test="orderNo != null" >
+	      and ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="batchNo != null" >
+	      and BATCH_NO = #{batchNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="amount != null" >
+	      and AMOUNT = #{amount,jdbcType=DECIMAL}
+	    </if>
+      <if test="statusId != null" >
+	      and STATUS_ID = #{statusId,jdbcType=TINYINT}
+	    </if>
+	     <if test="obligate1 != null" >
+	      and OBLIGATE1 = #{obligate1,jdbcType=VARCHAR}
+	    </if>
+	     <if test="obligate2 != null" >
+	      and OBLIGATE2 = #{obligate2,jdbcType=VARCHAR}
+	    </if>
+	     <if test="obligate3 != null" >
+	      and OBLIGATE3 = #{obligate3,jdbcType=VARCHAR}
+	    </if>
+	     <if test="remark != null" >
+	      and REMARK = #{remark,jdbcType=VARCHAR}
+	    </if>
+      <if test="createdTime != null" >
+	      and CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="updatedTime != null" >
+	      and UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+	    </if>
+	 <if test="statusIds != null">
+	      AND STATUS_ID in  
+	   	   <foreach collection="statusIds" item="statusId"  open="(" separator="," close=")">  
+			    #{statusId}
+			</foreach>
+      </if>
+	  </trim>
+    </where>
+  </sql>
+  <sql id="Example_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+      <if test="transSumId != null">
+        TRANS_SUM_ID = #{transSumId,jdbcType=INTEGER},
+      </if>
+      <if test="rootInstCd != null">
+        ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="funcCode != null">
+        FUNC_CODE = #{funcCode,jdbcType=VARCHAR},
+      </if>
+      <if test="accountDate != null">
+        ACCOUNT_DATE = #{accountDate,jdbcType=TIMESTAMP},
+      </if>
+       <if test="businessType != null" >
+	     BUSINESS_TYPE = #{businessType,jdbcType=VARCHAR},
+	    </if>
+      <if test="orderNo != null">
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo != null">
+        BATCH_NO = #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="statusId != null">
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+      </if>
+        <if test="obligate1 != null" >
+	      and OBLIGATE1 = #{obligate1,jdbcType=VARCHAR}
+	    </if>
+	     <if test="obligate2 != null" >
+	      and OBLIGATE2 = #{obligate2,jdbcType=VARCHAR}
+	    </if>
+	     <if test="obligate3 != null" >
+	      and OBLIGATE3 = #{obligate3,jdbcType=VARCHAR}
+	    </if>
+	     <if test="remark != null" >
+	      and REMARK = #{remark,jdbcType=VARCHAR}
+	    </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      </trim>
+    </set>
+  </sql>
+  <sql id="Base_Column_List">
+    TRANS_SUM_ID,
+    ROOT_INST_CD,
+    USER_ID,
+    FUNC_CODE,
+    ACCOUNT_DATE,
+    BUSINESS_TYPE,
+    ORDER_NO,
+    BATCH_NO,
+    AMOUNT,
+    STATUS_ID,
+    OBLIGATE1,
+    OBLIGATE2,
+    OBLIGATE3,
+    REMARK,
+    CREATED_TIME,
+    UPDATED_TIME,
+  </sql>
+  <sql id="Base_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+        TRANS_SUM_ID = #{transSumId,jdbcType=INTEGER},
+        ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR},
+        USER_ID = #{userId,jdbcType=VARCHAR},
+        FUNC_CODE = #{funcCode,jdbcType=VARCHAR},
+        ACCOUNT_DATE = #{accountDate,jdbcType=TIMESTAMP},
+        BUSINESS_TYPE = #{businessType,jdbcType=VARCHAR},
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+        BATCH_NO = #{batchNo,jdbcType=VARCHAR},
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+        OBLIGATE1 = #{obligate1,jdbcType=VARCHAR},
+        OBLIGATE2 = #{obligate2,jdbcType=VARCHAR},
+        OBLIGATE3 = #{obligate3,jdbcType=VARCHAR},
+        REMARK = #{remark,jdbcType=VARCHAR},
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </trim>
+    </set>
+  </sql>
+  <sql id="Selective_Column_List">
+    <if test="transSumId != null">
+      TRANS_SUM_ID,
+    </if>
+    <if test="rootInstCd != null">
+      ROOT_INST_CD,
+    </if>
+    <if test="userId != null">
+      USER_ID,
+    </if>
+    <if test="funcCode != null">
+      FUNC_CODE,
+    </if>
+    <if test="accountDate != null">
+      ACCOUNT_DATE,
+    </if>
+    <if test="businessType != null">
+      BUSINESS_TYPE,
+    </if>
+    <if test="orderNo != null">
+      ORDER_NO,
+    </if>
+    <if test="batchNo != null">
+      BATCH_NO,
+    </if>
+    <if test="amount != null">
+      AMOUNT,
+    </if>
+    <if test="statusId != null">
+      STATUS_ID,
+    </if>
+   <if test="obligate1 != null">
+      OBLIGATE1,
+    </if>
+    <if test="obligate2 != null">
+      OBLIGATE2,
+    </if>
+    <if test="obligate3 != null">
+      OBLIGATE3,
+    </if>
+    <if test="remark != null">
+      REMARK,
+    </if>
+    <if test="createdTime != null">
+      CREATED_TIME,
+    </if>
+    <if test="updatedTime != null">
+      UPDATED_TIME,
+    </if>
+  </sql>
+	<sql id="Base_Value_List">
+    #{transSumId,jdbcType=INTEGER},
+    #{rootInstCd,jdbcType=VARCHAR},
+    #{userId,jdbcType=VARCHAR},
+    #{funcCode,jdbcType=VARCHAR},
+    #{accountDate,jdbcType=TIMESTAMP},
+    #{businessType,jdbcType=VARCHAR},
+    #{orderNo,jdbcType=VARCHAR},
+    #{batchNo,jdbcType=VARCHAR},
+    #{amount,jdbcType=DECIMAL},
+    #{statusId,jdbcType=TINYINT},
+    #{obligate1,jdbcType=VARCHAR},
+    #{obligate2,jdbcType=VARCHAR},
+    #{obligate3,jdbcType=VARCHAR},
+    #{remark,jdbcType=VARCHAR},
+    #{createdTime,jdbcType=TIMESTAMP},
+    #{updatedTime,jdbcType=TIMESTAMP},
+	</sql>
+  <sql id="Selective_Value_List">
+    <if test="transSumId != null">
+      #{transSumId,jdbcType=INTEGER},
+    </if>
+    <if test="rootInstCd != null">
+      #{rootInstCd,jdbcType=VARCHAR},
+    </if>
+    <if test="userId != null">
+      #{userId,jdbcType=VARCHAR},
+    </if>
+    <if test="funcCode != null">
+      #{funcCode,jdbcType=VARCHAR},
+    </if>
+    <if test="accountDate != null">
+      #{accountDate,jdbcType=TIMESTAMP},
+    </if>
+    <if test="businessType != null">
+      #{businessType,jdbcType=VARCHAR},
+    </if>
+    <if test="orderNo != null">
+      #{orderNo,jdbcType=VARCHAR},
+    </if>
+    <if test="batchNo != null">
+      #{batchNo,jdbcType=VARCHAR},
+    </if>
+    <if test="amount != null">
+      #{amount,jdbcType=DECIMAL},
+    </if>
+    <if test="statusId != null">
+      #{statusId,jdbcType=TINYINT},
+    </if>
+    <if test="obligate1 != null">
+      #{obligate1,jdbcType=VARCHAR},
+    </if>
+      <if test="obligate2 != null">
+      #{obligate2,jdbcType=VARCHAR},
+    </if>
+      <if test="obligate3 != null">
+      #{obligate3,jdbcType=VARCHAR},
+    </if>
+      <if test="remark != null">
+      #{remark,jdbcType=VARCHAR},
+    </if>
+    <if test="createdTime != null">
+      #{createdTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="updatedTime != null">
+      #{updatedTime,jdbcType=TIMESTAMP},
+    </if>
+  </sql>
+  
+  <select id="selectByExample" parameterType="SettleTransSummaryQuery" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_TRANS_SUMMARY
+    <include refid="Example_Where_Clause" />
+    <!-- order by CREATE_DATE -->
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_TRANS_SUMMARY
+    where TRANS_SUM_ID = #{transSumId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from SETTLE_TRANS_SUMMARY
+    where TRANS_SUM_ID = #{transSumId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="SettleTransSummaryQuery">
+    delete from SETTLE_TRANS_SUMMARY
+    <include refid="Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterType="SettleTransSummary">
+    insert into SETTLE_TRANS_SUMMARY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Base_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Base_Value_List"/>
+    </trim>
+  </insert>
+  <insert id="insertSelective" parameterType="SettleTransSummary">
+    insert into SETTLE_TRANS_SUMMARY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Value_List"/>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="SettleTransSummaryQuery" resultType="java.lang.Integer">
+    select count(*) from SETTLE_TRANS_SUMMARY
+    <include refid="Example_Where_Clause" />
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="SettleTransSummary">
+    update SETTLE_TRANS_SUMMARY
+    <include refid="Example_Set_Clause"/>
+    where TRANS_SUM_ID = #{transSumId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="SettleTransSummary">
+    update SETTLE_TRANS_SUMMARY
+    <include refid="Base_Set_Clause"/>
+    where TRANS_SUM_ID = #{transSumId,jdbcType=BIGINT}
+  </update>
+</mapper>

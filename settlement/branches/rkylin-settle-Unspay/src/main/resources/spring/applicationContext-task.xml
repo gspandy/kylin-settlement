@@ -1,0 +1,1608 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+	    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd" >
+	<!-- 定时任务java类 -->
+	<bean id="profitTask" class="com.rkylin.settle.task.ProfitTask"/>
+	<bean id="collateTask" class="com.rkylin.settle.task.CollateTask"/>
+	<bean id="dsfTask" class="com.rkylin.settle.task.DsfTask"/>
+	<bean id="collectTask" class="com.rkylin.settle.task.CollectTask"/>
+	<bean id="updateAccToDetailTask" class="com.rkylin.settle.task.UpdateAccToDetailTask"/>
+	<bean id="settlementTask" class="com.rkylin.settle.task.SettlementTask"/>
+	<bean id="collateOETask" class="com.rkylin.settle.task.CollateOETask"/>
+	
+	<!-- 引用定时任务文件 计会计账 -->
+	<import resource="classpath:spring/task-collect.xml"/>
+	<!-- 引用定时任务文件 读账户系统交易 -->
+	<import resource="classpath:spring/task-getAccountTransOrderInfo.xml"/>
+	<!-- 同步上游和下游的交易信息定时任务 -->
+	<import resource="classpath:spring/task-updateAccToDetail.xml"/>
+	<!-- 清结算其他业务定时任务 -->
+	<import resource="classpath:spring/task-settlement.xml"/>
+	<!-- 引用定时任务文件 其他环境对账 -->
+	<import resource="classpath:spring/task-collect_oe.xml"/>
+	<!-- 引用定时任务文件 对账 -->
+	<import resource="classpath:spring/task-collate.xml"/>
+	<!-- 
+		定时清分, 清分后结算, 分润规则刷新, 订单号关系刷新, 金额关系刷新  start
+	 -->
+	<bean id="doProfitDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="profitTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>profitTask</value>
+		</property>
+	</bean>
+	<bean id="readAccDateBySP" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="profitTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>readAccDateBySP</value>
+		</property>
+	</bean>
+	<bean id="readAccOldDateBySP" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="profitTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>readAccOldDateBySP</value>
+		</property>
+	</bean>
+	<bean id="doProfitBalanceDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="profitTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>profitBalanceTask</value>
+		</property>
+	</bean>
+	<bean id="refreshProfitKeyDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="profitTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>refreshProfitKeyTask</value>
+		</property>
+	</bean>
+	<bean id="refreshFuncCodeAndOrderNoRelationDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="profitTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>refreshFuncCodeAndOrderNoRelationTask</value>
+		</property>
+	</bean>
+	<bean id="refreshFuncCodeAndAmountRelationDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="profitTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>refreshFuncCodeAndAmountRelationTask</value>
+		</property>
+	</bean>
+	<!-- 
+		'清分'定时任务 调度触发器  执行1次/2分钟
+	 -->
+	<bean id="doProfitTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="doProfitDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0/2 * * * ?</value>
+		</property>
+	</bean>
+	<!-- 
+		'清分'定时任务 调度触发器  日切之后执行 23:10
+	 -->
+	<bean id="readAccDateBySPTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="readAccDateBySP" />
+		</property>
+		<property name="cronExpression">
+			<value>0 10 23 * * ?</value>
+		</property>
+	</bean>
+	<!-- 
+		'清分'定时任务 调度触发器  日切之后执行 23:10
+	 -->
+	<bean id="readAccOldDateBySPTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="readAccOldDateBySP" />
+		</property>
+		<property name="cronExpression">
+			<value>0 40 23 * * ?</value>
+		</property>
+	</bean>
+	<!-- 
+		'清分后结算'定时任务 调度触发器  执行1次/1天 
+	-->
+	<bean id="doProfitBalanceTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="doProfitBalanceDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0 23 * * ?</value>
+		</property>
+	</bean>
+	<!-- 
+		'分润'规则刷新定时任务 调度触发器  执行1次/1天 
+	-->
+	<bean id="refreshProfitKeyTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="refreshProfitKeyDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0 0 * * ?</value>
+		</property>
+	</bean>
+	<!-- 
+		'订单号'对应规则刷新定时任务 调度触发器  执行1次/待定 
+	-->
+	<bean id="refreshFuncCodeAndOrderNoRelationTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="refreshFuncCodeAndOrderNoRelationDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0 5 0 * * ?</value>
+		</property>
+	</bean>
+	<!-- 
+		'金额'对应规则刷新定时任务 调度触发器  执行1次/待定 
+	-->
+	<bean id="refreshFuncCodeAndAmountRelationTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="refreshFuncCodeAndAmountRelationDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0 10 0 * * ?</value>
+		</property>
+	</bean>
+	
+	
+	
+	
+	<!-- 
+		从【多渠道】读取对账交易信息
+	 -->
+	<bean id="getTransDetailFromMultiGate" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>getTransDetailFromMultiGate</value>
+		</property>
+	</bean>
+	<!-- 
+		// 从【多渠道】读取对账交易信息
+	-->
+	<!-- 
+		【通联代收付】对账相关定时任务 读取多渠道对账交易 -> 下载上游对账文件 -> 读取对账文件并入库 -> 上传下游对账文件 start
+	 -->
+	<bean id="tLFileDownAndReadCollateFileZF" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>tLFileDownAndReadCollateFileZF</value>
+		</property>
+	</bean>
+	<bean id="collateZF" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>collateZF</value>
+		</property>
+	</bean>
+	<!-- 
+		【畅捷代收付】对账相关定时任务 读取多渠道对账交易 -> 下载上游对账文件 -> 读取对账文件并入库 -> 上传下游对账文件 start
+	 -->
+	<bean id="cJZFFileDownAndReadCollateFile" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>cJZFFileDownAndReadCollateFile</value>
+		</property>
+	</bean>
+	<bean id="collateCJZF" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>collateCJZF</value>
+		</property>
+	</bean>
+	<bean id="uploadCollateFile" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>uploadCollateFile</value>
+		</property>
+	</bean>
+	
+	
+	
+	<!-- 
+		获取【多渠道】对账交易信息 04:00 / 天 
+	-->
+	<bean id="getTransDetailFromMultiGateTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="getTransDetailFromMultiGate" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0 4 * * ?</value>
+		</property>
+	</bean>
+	<!-- 
+		下载【通联非充值】上游对账文件并读取入库 07:00 / 天 
+	-->
+	<bean id="tLFileDownAndReadCollateFileZFTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="tLFileDownAndReadCollateFileZF" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0 7 * * ?</value>
+		</property>
+	</bean>
+	<!-- 
+		对账【通联非充值】 07:30 / 天 
+	-->
+	<bean id="collateZFTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="collateZF" />
+		</property>
+		<property name="cronExpression">
+			<value>0 30 7 * * ?</value>
+		</property>
+	</bean>
+	<!-- 
+		下载【畅捷非充值】上游对账文件并读取入库 ??:?? / 天 
+	-->
+	<bean id="cJZFFileDownAndReadCollateFileTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="cJZFFileDownAndReadCollateFile" />
+		</property>
+		<property name="cronExpression">
+			<value>0 20 9 * * ?</value>
+		</property>
+	</bean>
+	<!-- 
+		对账【畅捷非充值】 ??:?? / 天 
+	-->
+	<bean id="collateCJZFTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="collateCJZF" />
+		</property>
+		<property name="cronExpression">
+			<value>0 50 9 * * ?</value>
+		</property>
+	</bean>
+	<!-- 上传下游全部对账文件 10:50 / 天 -->
+	<bean id="uploadCollateFileTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="uploadCollateFile" />
+		</property>
+		<property name="cronExpression">
+			<value>0 50 10 * * ?</value>
+		</property>
+	</bean>
+	<!-- 
+		//【通联代收付】对账相关定时任务 读取多渠道对账交易 -> 下载上游对账文件 -> 读取对账文件并入库 -> 上传下游对账文件 end
+	-->
+	 
+	 <!-- 
+		【通联网关支付&移动支付】对账相关定时任务 读取多渠道对账交易 -> 下载上游对账文件 -> 读取对账文件并入库 -> 上传下游对账文件 start
+	 -->
+	<bean id="tLFileDownAndReadCollateFileWG" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>tLFileDownAndReadCollateFileWG</value>
+		</property>
+	</bean>
+	<bean id="tLFileDownAndReadCollateFileYD" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>tLFileDownAndReadCollateFileYD</value>
+		</property>
+	</bean>
+	<bean id="tLFileDownAndReadCollateFileWX" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>tLFileDownAndReadCollateFileWX</value>
+		</property>
+	</bean>
+	<bean id="tLFileDownAndReadCollateFileTLSDK" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>tLFileDownAndReadCollateFileTLSDK</value>
+		</property>
+	</bean>
+	<bean id="tLFileDownAndReadCollateFileWXAPP" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>tLFileDownAndReadCollateFileWXAPP</value>
+		</property>
+	</bean>
+	<bean id="collateWGAndYD" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>collateWGAndYD</value>
+		</property>
+	</bean>
+	<bean id="crateCollateFile" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>crateCollateFile</value>
+		</property>
+	</bean>
+	<!-- 下载【通联充值(网关)】上游对账文件并读取入库 13:30 / 天 -->
+	<bean id="tLFileDownAndReadCollateFileWGTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="tLFileDownAndReadCollateFileWG" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0 9 * * ?</value>
+		</property>
+	</bean>
+	<!-- 下载【通联充值(移动)】上游对账文件并读取入库 13:30 / 天 -->
+	<bean id="tLFileDownAndReadCollateFileYDTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="tLFileDownAndReadCollateFileYD" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0 9 * * ?</value>
+		</property>
+	</bean>
+	<!-- 下载【通联充值(微信)】上游对账文件并读取入库 08:00 / 天 -->
+	<bean id="tLFileDownAndReadCollateFileWXTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="tLFileDownAndReadCollateFileWX" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0 8 * * ?</value>
+		</property>
+	</bean>
+	<!-- 下载【通联充值(SDK)】上游对账文件并读取入库 08:30 / 天 -->
+	<bean id="tLFileDownAndReadCollateFileTLSDKTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="tLFileDownAndReadCollateFileTLSDK" />
+		</property>
+		<property name="cronExpression">
+			<value>0 29 8 * * ?</value>
+		</property>
+	</bean>
+	<bean id="tLFileDownAndReadCollateFileWXAPPTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="tLFileDownAndReadCollateFileWXAPP" />
+		</property>
+		<property name="cronExpression">
+			<value>0 29 7 * * ?</value>
+		</property>
+	</bean>
+	<!-- 对账【通联充值(网关&移动)】 14:00 / 天 -->
+	<bean id="collateWGAndYDTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="collateWGAndYD" />
+		</property>
+		<property name="cronExpression">
+			<value>0 30 9 * * ?</value>
+		</property>
+	</bean>
+	<!-- 生成下游对账文件  10:30 / 天 -->
+	<bean id="crateCollateFileTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="crateCollateFile" />
+		</property>
+		<property name="cronExpression">
+			<value>0 30 10 * * ?</value>
+		</property>
+	</bean>
+	 <!-- 
+		// 【通联网关支付&移动支付】对账相关定时任务 读取多渠道对账交易 -> 下载上游对账文件 -> 读取对账文件并入库 -> 上传下游对账文件 end
+	 -->
+	 
+	 
+	 
+	 <!-- 
+		【连连快捷支付】对账相关定时任务 读取多渠道对账交易 -> 下载上游对账文件 -> 读取对账文件并入库 -> 上传下游对账文件 start
+	 -->
+	<bean id="lLKJFileDownAndReadCollateFile" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>lLKJFileDownAndReadCollateFile</value>
+		</property>
+	</bean>
+	<bean id="collateLLKJ" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>collateLLKJ</value>
+		</property>
+	</bean>
+	<!-- 下载【连连快捷支付】上游对账文件并读取入库 14:10 / 天 -->
+	<bean id="lLKJFileDownAndReadCollateFileTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="lLKJFileDownAndReadCollateFile" />
+		</property>
+		<property name="cronExpression">
+			<value>0 10 9 * * ?</value>
+		</property>
+	</bean>
+	<!-- 对账【连连快捷】  -->
+	<bean id="collateLLKJTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="collateLLKJ" />
+		</property>
+		<property name="cronExpression">
+			<value>0 20 9 * * ?</value>
+		</property>
+	</bean>
+	 <!-- 
+		// 【连连快捷支付】对账相关定时任务 读取多渠道对账交易 -> 下载上游对账文件 -> 读取对账文件并入库 -> 上传下游对账文件 end
+	 -->
+	 
+	 
+	 <!-- 
+		【连连支付ZF】对账相关定时任务 读取多渠道对账交易 -> 下载上游对账文件 -> 读取对账文件并入库 -> 上传下游对账文件 start
+	 -->
+	<bean id="lLZFFileDownAndReadCollateFile" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>lLZFFileDownAndReadCollateFile</value>
+		</property>
+	</bean>
+	<bean id="collateLLZF" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>collateLLZF</value>
+		</property>
+	</bean>
+	<!-- 下载【连连ZF】上游对账文件并读取入库 14:10 / 天 -->
+	<bean id="lLZFFileDownAndReadCollateFileTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="lLZFFileDownAndReadCollateFile" />
+		</property>
+		<property name="cronExpression">
+			<value>0 15 9 * * ?</value>
+		</property>
+	</bean>
+	<!-- 对账【连连ZF】 14:20 / 天 -->
+	<bean id="collateLLZFTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="collateLLZF" />
+		</property>
+		<property name="cronExpression">
+			<value>0 25 9 * * ?</value>
+		</property>
+	</bean>
+	 <!-- 
+		// 【连连支付ZF】对账相关定时任务 读取多渠道对账交易 -> 下载上游对账文件 -> 读取对账文件并入库 -> 上传下游对账文件 end
+	 -->
+	 
+	 
+	 <!-- 
+		【联动优势网关】对账相关定时任务 读取多渠道对账交易 -> 下载上游对账文件 -> 读取对账文件并入库 -> 上传下游对账文件 start
+	 -->
+	<bean id="lDWGFileDownAndReadCollateFile" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>lDWGFileDownAndReadCollateFile</value>
+		</property>
+	</bean>
+	<!-- 
+		【联动优势代收付】对账相关定时任务 读取多渠道对账交易 -> 下载上游对账文件 -> 读取对账文件并入库 -> 上传下游对账文件 start
+	 -->
+	<bean id="lDZFFileDownAndReadCollateFile" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>lDZFFileDownAndReadCollateFile</value>
+		</property>
+	</bean>
+	<bean id="collateLDWG" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>collateLDWG</value>
+		</property>
+	</bean>
+	<bean id="collateLDZF" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>collateLDZF</value>
+		</property>
+	</bean>
+	<!-- 下载【联动优势网关】上游对账文件并读取入库 -->
+	<bean id="lDWGFileDownAndReadCollateFileTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="lDWGFileDownAndReadCollateFile" />
+		</property>
+		<property name="cronExpression">
+			<value>0 50 9 * * ?</value>
+		</property>
+	</bean>
+	<!-- 下载【联动优势 代收付】上游对账文件并读取入库 -->
+	<bean id="lDZFFileDownAndReadCollateFileTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="lDZFFileDownAndReadCollateFile" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0 10 * * ?</value>
+		</property>
+	</bean>
+	<!-- 对账【联动优势 网关】 -->
+	<bean id="collateLDWGTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="collateLDWG" />
+		</property>
+		<property name="cronExpression">
+			<value>0 1 10 * * ?</value>
+		</property>
+	</bean>
+	<!-- 对账【联动优势 代收付】 -->
+	<bean id="collateLDZFTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="collateLDZF" />
+		</property>
+		<property name="cronExpression">
+			<value>0 5 10 * * ?</value>
+		</property>
+	</bean>
+	 <!-- 
+		// 【联动优势网关】对账相关定时任务 读取多渠道对账交易 -> 下载上游对账文件 -> 读取对账文件并入库 -> 上传下游对账文件 end
+	 -->
+	 
+	 <!-- 代收付相关的定时任务 start -->
+	<!--代收和T0标记的代付汇总定时任务  -->
+	<bean id="DsSummeryAndSend" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="dsfTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>dealDs</value>
+		</property>
+	</bean>
+	<bean id="DsSummeryAndSendTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="DsSummeryAndSend" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0 16 * * ?</value>
+			<!-- <value>0 0/2 * * * ?</value> -->
+		</property>
+	</bean>
+	
+	<!--代付和提现汇总定时任务  -->
+	<bean id="DfSummery" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="dsfTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>dealDf</value>
+		</property>
+	</bean>
+	<bean id="DfSummeryTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="DfSummery" />
+		</property>
+		<property name="cronExpression">
+			<value>0 10 7 * * ?</value>
+			 <!-- <value>0 0/2 * * * ?</value> -->
+		</property>
+	</bean>
+	
+	
+   <bean id="sendDf" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="dsfTask"/>
+		</property>
+		<property name="targetMethod">
+		    <value>sendDsf</value>
+		</property>
+	</bean>
+	<bean id="sendDfTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="sendDf" />
+		</property>
+		<property name="cronExpression">
+		   <value>0 45 11 * * ?</value>
+	<!-- 	 <value>0 0/1 * * * ?</value> -->
+		</property>
+	</bean>
+	
+	 <bean id="sendFailToAccount" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="dsfTask"/>
+		</property>
+		<property name="targetMethod">
+		    <value>sendFailToAccount</value>
+		</property>
+	</bean>
+	<bean id="sendFailToAccountTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="sendFailToAccount" />
+		</property>
+		<property name="cronExpression">
+			 <value>0 0 19 * * ?</value> 
+		</property>
+	</bean>
+	
+	
+	<!--代付和提现汇总定时任务  -->
+	<bean id="YFQSummery" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="dsfTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>dealYFQ</value>
+		</property>
+	</bean>
+	<bean id="YFQSummeryTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="YFQSummery" />
+		</property>
+		<property name="cronExpression">
+			<!--时间还未确定，暂时定16:00  -->
+			<value>0 0 16 * * ?</value>
+		</property>
+	</bean>
+    <!-- 代收付相关的定时任务  end-->
+    
+    <!-- 
+		【平安银企代收付】对账相关定时任务 读取多渠道对账交易 -> 下载上游对账文件 -> 读取对账文件并入库 -> 上传下游对账文件 start
+	 -->
+	<bean id="pabZFFileDownAndReadCollateFile" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>PABZFFileDownAndReadCollateFile</value>
+		</property>
+	</bean>
+	<bean id="collatePABZF" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>collatePAZF</value>
+		</property>
+	</bean>
+    <!-- 
+		下载【平安银企代收付】上游对账文件并读取入库 ??:?? / 天 
+	-->
+	<bean id="pabZFFileDownAndReadCollateFileTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="pabZFFileDownAndReadCollateFile" />
+		</property>
+		<property name="cronExpression">
+			<value>0 30 8 * * ?</value>
+		</property>
+	</bean>
+	<!-- 
+		对账【畅捷非充值】 ??:?? / 天 
+	-->
+	<bean id="collatePABZFTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="collatePABZF" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0 9 * * ?</value>
+		</property>
+	</bean>
+	
+    <!--账户跟多渠道对账  start -->
+     <bean id="collecteAccAndMulti" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+		    <value>collateAccAndMulti</value>
+		</property>
+	</bean>
+	<bean id="collecteAccAndMultiTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="collecteAccAndMulti" />
+		</property>
+		<property name="cronExpression">
+			 <value>0 10 10 * * ?</value> 
+		</property>
+	</bean>
+   <!--账户跟多渠道对账  end -->
+    
+    <!-- 课栈T0 提现汇总 -->
+	<bean id="kzTxSummary" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="dsfTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>kzTxSummary</value>
+		</property>
+	</bean>
+	<bean id="kzTxSummaryTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="kzTxSummary" />
+		</property>
+		<property name="cronExpression">
+			 <value>0 20 7 * * ?</value>
+		</property>
+	</bean>
+	
+	
+	<!-- 
+		读取贷款系统还款信息
+	 -->
+	<bean id="getLoanTransOrderInfosTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="getLoanTransOrderInfosDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0 45 7 * * ?</value>
+		</property>
+	</bean>
+	<!-- 
+		读取贷款系统还款信息  start
+	 -->
+	<bean id="getLoanTransOrderInfosDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="profitTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>getLoanTrans</value>
+		</property>
+	</bean>
+	<!-- 
+		'清分'定时任务 调度触发器
+	 -->
+	<bean id="doProfitForLoanTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="doProfitForLoanDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0 20 10 * * ?</value>
+		</property>
+	</bean>
+	<!-- 
+		定时清分, 清分后结算, 分润规则刷新, 订单号关系刷新, 金额关系刷新  start
+	 -->
+	<bean id="doProfitForLoanDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="profitTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>profitForLoanTask</value>
+		</property>
+	</bean>
+	<!-- 
+		还款结算定时任务 调度触发器
+	 -->
+	<bean id="doProfitBalanceForLoanTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="doProfitBalanceForLoanDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0 25 10 * * ?</value>
+		</property>
+	</bean>
+	<!-- 
+		还款结算  start
+	 -->
+	<bean id="doProfitBalanceForLoanDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="profitTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>profitBalanceForLaonTask</value>
+		</property>
+	</bean>
+	<!-- 
+		生成代付交易  start
+	 -->
+	<bean id="doSettleInvoiceDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="profitTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>settleInvoiceTask</value>
+		</property>
+	</bean>
+	<!-- 
+		生成代付交易  start
+	 -->
+	<bean id="doInvoiceSettleDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="profitTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>invoiceSettleTask</value>
+		</property>
+	</bean>
+	<!-- 
+		生成还款头寸  start
+	 -->
+	<bean id="doInvoiceSettleForCashDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="profitTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>invoiceSettleForCashTask</value>
+		</property>
+	</bean>
+	<!-- 
+		生成代付数据 定时任务 调度触发器
+	 -->
+	<bean id="doSettleInvoiceTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="doSettleInvoiceDetail" />
+		</property>
+		<property name="cronExpression">
+			 <value>0 30 10 * * ?</value> 
+		</property>
+	</bean> 
+	<!-- 
+		生成代付交易 定时任务 调度触发器
+	 -->
+	<bean id="doInvoiceSettleTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="doInvoiceSettleDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0 35 10 * * ?</value>
+		</property>
+	</bean>
+	
+	<!-- 
+		生成还款头寸交易 定时任务 调度触发器
+	 -->
+	<bean id="doInvoiceSettleForCashTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="doInvoiceSettleForCashDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0 40 10 * * ?</value>
+		</property>
+	</bean>
+		<!-- 
+		定时清分, 清分后结算, 分润规则刷新, 订单号关系刷新, 金额关系刷新  start
+	 -->
+	<bean id="getPosDetailFromOrdertaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="profitTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>getPosDetailFromOrdertask</value>
+		</property>
+	</bean>
+	<!-- 
+		'清分'定时任务 调度触发器
+	 -->
+	<bean id="getPosDetailFromOrdertaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="getPosDetailFromOrdertaskDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0 2 0/1 * * ?</value>
+		</property>
+	</bean>
+	
+	<!-- 
+		定时清分, 清分后结算, 分润规则刷新, 订单号关系刷新, 金额关系刷新  start
+	 -->
+	<bean id="rOPFileDownTaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="profitTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>rOPFileDownTask</value>
+		</property>
+	</bean>
+	<!-- 
+		'清分'定时任务 调度触发器
+	 -->
+	<bean id="rOPFileDownTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="rOPFileDownTaskDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0 10 * * ?</value>
+		</property>
+	</bean>
+	
+	<!-- 
+		定时清分, 清分后结算, 分润规则刷新, 订单号关系刷新, 金额关系刷新  start
+	 -->
+	<bean id="readCollateFileTaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="profitTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>readCollateFileTask</value>
+		</property>
+	</bean>
+	<!-- 
+		'清分'定时任务 调度触发器
+	 -->
+	<bean id="readCollateFileTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="readCollateFileTaskDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0 05 10 * * ?</value>
+		</property>
+	</bean>
+
+	<!-- 
+		定时清分, 清分后结算, 分润规则刷新, 订单号关系刷新, 金额关系刷新  start
+	 -->
+	<bean id="collageForPosTaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="profitTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>collageForPosTask</value>
+		</property>
+	</bean>
+	<!-- 
+		'清分'定时任务 调度触发器
+	 -->
+	<bean id="collageForPosTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="collageForPosTaskDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0 10 10 * * ?</value>
+		</property>
+	</bean>
+
+	<!-- 
+		定时清分, 清分后结算, 分润规则刷新, 订单号关系刷新, 金额关系刷新  start
+	 -->
+	<bean id="settleForPosTaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="profitTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>settleForPosTask</value>
+		</property>
+	</bean>
+	<!-- 
+		'清分'定时任务 调度触发器
+	 -->
+	<bean id="settleForPosTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="settleForPosTaskDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0 15 03,10,11,17,20 * * ?</value>
+		</property>
+	</bean>
+	
+	 <!-- 
+		下载融宝对账文件
+	 -->
+	<bean id="rbWGFileDownAndReadCollateFile" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>RBWGFileDownAndReadCollateFile</value>
+		</property>
+	</bean>
+
+	<bean id="rbWGFileDownAndReadCollateFileTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="rbWGFileDownAndReadCollateFile" />
+		</property>
+		<property name="cronExpression">
+			<value>0 15 8 * * ?</value>
+		</property>
+	</bean>
+	
+	 <!-- 
+		融宝网关对账
+	 -->
+	<bean id="collateRBWG" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>collateRBWG</value>
+		</property>
+	</bean>
+
+	<bean id="collateRBWGTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="collateRBWG" />
+		</property>
+		<property name="cronExpression">
+			<value>0 35 8 * * ?</value>
+		</property>
+	</bean>
+	<!-- 平安银行 跨行&B2B -->
+	<bean id="pABKHKFFileDownAndReadCollateFile" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>pABKHKFFileDownAndReadCollateFile</value>
+		</property>
+	</bean>
+	<bean id="pABKHKFFileDownAndReadCollateFileTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="pABKHKFFileDownAndReadCollateFile" />
+		</property>
+		<property name="cronExpression">
+			<value>0 39 9 * * ?</value>
+		</property>
+	</bean>
+	<bean id="collatePAKHKF" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>collatePAKHKF</value>
+		</property>
+	</bean>
+	<bean id="collatePAKHKFTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="collatePAKHKF" />
+		</property>
+		<property name="cronExpression">
+			<value>0 49 9 * * ?</value>
+		</property>
+	</bean>
+	<bean id="pABB2BFileDownAndReadCollateFile" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>pABB2BFileDownAndReadCollateFile</value>
+		</property>
+	</bean>
+	<bean id="pABB2BFileDownAndReadCollateFileTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="pABB2BFileDownAndReadCollateFile" />
+		</property>
+		<property name="cronExpression">
+			<value>0 39 7 * * ?</value>
+		</property>
+	</bean>
+	<bean id="collatePABB2B" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>collatePABB2B</value>
+		</property>
+	</bean>
+	<bean id="collatePABB2BTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="collatePABB2B" />
+		</property>
+		<property name="cronExpression">
+			<value>0 49 7 * * ?</value>
+		</property>
+	</bean>
+	<!-- // 平安银行 跨行&B2B -->
+	
+	
+	 <!-- 丰年T0 代付汇总 -->
+	<bean id="fnDfT0Summary" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="dsfTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>fnT0DfSummary</value>
+		</property>
+	</bean>
+	<bean id="fnDfT0SummaryTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="fnDfT0Summary" />
+		</property>
+		<property name="cronExpression">
+			 <value>0 0 11 * * ?</value>
+		</property>
+	</bean>
+
+	 <!-- 结算文件生成-->
+	<bean id="FileSummeryAndSend" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="dsfTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>dealFile</value>
+		</property>
+	</bean>
+	<bean id="FileSummeryAndSendTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="FileSummeryAndSend" />
+		</property>
+		<property name="cronExpression">
+			 <value>0 0 9,11,14,17 * * ?</value>
+		</property>
+	</bean>
+
+	<!-- 快付通 代收付 -->
+	<bean id="lycheeFileDownAndReadCollateFile" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>lycheeFileDownAndReadCollateFile</value>
+		</property>
+	</bean>
+	<bean id="lycheeFileDownAndReadCollateFileTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="lycheeFileDownAndReadCollateFile" />
+		</property>
+		<property name="cronExpression">
+			<value>0 29 5 * * ?</value>
+		</property>
+	</bean>
+	<bean id="collateLychee" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>collateLychee</value>
+		</property>
+	</bean>
+	<bean id="collateLycheeTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="collateLychee" />
+		</property>
+		<property name="cronExpression">
+			<value>0 39 5 * * ?</value>
+		</property>
+	</bean>
+	<!-- // 快付通 代收付 -->
+	
+  <!-- 易宝下载对账文件、入库、对账（总的） -->
+	<bean id="ybDealFile" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>ybFileDownAndCollateAll</value>
+		</property>
+	</bean>
+	<bean id="ybDealFileTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="ybDealFile" />
+		</property>
+		<property name="cronExpression">
+			 <value>0 20 6 * * ?</value>
+		</property>
+	</bean>
+	
+	<!-- 民生单笔代付下载对账文件、入库、对账（总的） -->
+	<bean id="cMBCDealFile" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>cMBCFileDownAndCollateAll</value>
+		</property>
+	</bean>
+	<bean id="cMBCDealFileTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="cMBCDealFile" />
+		</property>
+		<property name="cronExpression">
+			 <value>0 11 11 * * ?</value>
+		</property>
+	</bean>
+	
+	<!-- 易宝代付下载对账文件、入库、对账（总的） -->
+	<bean id="ybDfDealFile" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>ybDf</value>
+		</property>
+	</bean>
+	<bean id="ybDfDealFileTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="ybDfDealFile" />
+		</property>
+		<property name="cronExpression">
+			 <value>0 30 8 * * ?</value>
+		</property>
+	</bean>
+	
+	<!-- 融宝代付下载对账文件、入库、对账（总的） -->
+	<bean id="rbDfDealFile" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="collateTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>rbDf</value>
+		</property>
+	</bean>
+	<bean id="rbDfDealFileTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="rbDfDealFile" />
+		</property>
+		<property name="cronExpression">
+			 <value>0 00 9 * * ?</value>
+		</property>
+	</bean>
+	
+ <!-- 银企直连代付汇总 -->
+	<bean id="yqzlDfSummary" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="dsfTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>yqzlDfSummary</value>
+		</property>
+	</bean>
+	<bean id="yqzlDfSummaryTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="yqzlDfSummary" />
+		</property>
+		<property name="cronExpression">
+			 <value>0 33 11 * * ?</value>
+		</property>
+	</bean>
+	
+	 <!-- 
+	 	调度工厂 
+	 -->
+	<bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+			<!-- '系统设置'相关定时任务 -->
+				<!-- 刷新分润规则  执行1次/1天 -->
+				<ref bean="refreshProfitKeyTrigger" />
+				<!-- 刷新订单号对应规则 执行1次/1天 -->
+				<ref bean="refreshFuncCodeAndOrderNoRelationTrigger" />
+				<!-- 刷新订金额应规则  执行1次/1天 -->
+				<ref bean="refreshFuncCodeAndAmountRelationTrigger" />
+			<!-- // '系统设置'相关定时任务 -->
+			
+			<!-- '清分业务'相关定时任务 -->
+				<!-- 清分后结算 -->
+				<ref bean="doProfitBalanceTrigger" />
+				<!-- 清分 -->
+				<ref bean="doProfitTrigger" />
+				<!-- 读取账户系统交易
+				<ref bean="getAccountTransOrderInfosTrigger" /> -->
+				<!-- 读取账户系统交易 -->
+				<ref bean="getAccountOldTransOrderInfosTrigger" />
+				<!-- 读取账户系统交易 二期 日切执行的存储过程
+				<ref bean="readAccDateBySPTrigger" /> -->
+				<!-- 读取账户系统交易 一期 日切执行的存储过程 -->
+				<ref bean="getLoanTransOrderInfosTrigger" /> 
+				<!-- 贷款清分 -->
+				<ref bean="doProfitForLoanTrigger" />
+				<!-- 贷款清分结算 -->
+				<ref bean="doProfitBalanceForLoanTrigger" />
+				<!-- 根据分润结果表生成代付/提现交易数据 -->
+				<ref bean="doSettleInvoiceTrigger" />
+				<!-- 根据分润结算表调用账户生成代付/提现交易 -->
+				<ref bean="doInvoiceSettleTrigger" />
+				<!-- 根据分润结算表调用账户生成头寸代付/提现交易 -->
+				<ref bean="doInvoiceSettleForCashTrigger" />
+				<!-- 从订单系统读取pos支付交易 -->
+				<ref bean="getPosDetailFromOrdertaskTrigger" />
+				<!-- ROP上下载银联商务对账文件 -->
+				<ref bean="rOPFileDownTaskTrigger" />
+				<!-- 读取上游对账入库 -->
+				<ref bean="readCollateFileTaskTrigger" />
+				<!-- pos收单交易对账文件 -->
+				<ref bean="collageForPosTaskTrigger" />
+				<!-- pos交易结算 -->
+				<ref bean="settleForPosTaskTrigger" />
+				<!-- 读取账户系统交易 一期 日切执行的存储过程 -->
+				<ref bean="readAccOldDateBySPTrigger" />
+			<!-- // '清分业务'相关定时任务 -->
+			
+			<!-- 读取【多渠道系统】对账交易信息 -->
+				<!-- 每天上午04:00执行1次 -->
+				<ref bean="getTransDetailFromMultiGateTrigger" />
+			<!-- //读取【多渠道系统】对账交易信息 -->
+			
+			<!-- '对账业务'【通联非充值】对账定时任务 -->
+				<!-- 下载上游对账文件 -->
+				<ref bean="tLFileDownAndReadCollateFileZFTrigger" />
+				<!-- 对账 -->
+				<ref bean="collateZFTrigger" />
+				<!-- 上传下游对账文件 -->
+				<ref bean="uploadCollateFileTrigger" />
+			<!-- // '对账业务'【通联非充值】对账定时任务 -->
+			
+			<!-- '对账业务'【通联充值(网关&移动)】对账定时任务 -->
+				<!-- 下载上游对账文件 -->
+				<ref bean="tLFileDownAndReadCollateFileWGTrigger" />
+				<!-- 下载上游对账文件 -->
+				<ref bean="tLFileDownAndReadCollateFileYDTrigger" />
+				<!-- 下载上游对账文件 -->
+				<ref bean="tLFileDownAndReadCollateFileWXTrigger" />
+				<!-- 下载上游对账文件SDK -->
+				<ref bean="tLFileDownAndReadCollateFileTLSDKTrigger" />
+				<!-- 下载上游对账文件WXAPP -->
+				<ref bean="tLFileDownAndReadCollateFileWXAPPTrigger" />
+				<!-- 对账 -->
+				<ref bean="collateWGAndYDTrigger" />
+				<!-- 生成下游对账文件 -->
+				<ref bean="crateCollateFileTrigger" />
+			<!-- // '对账业务'【通联非充值】对账定时任务 -->
+			
+			<!-- '对账业务'【连连快捷支付】对账定时任务 -->
+				<!-- 下载上游对账文件 -->
+				<ref bean="lLKJFileDownAndReadCollateFileTrigger" />
+				<!-- 对账 -->
+				<ref bean="collateLLKJTrigger" />
+			<!-- // '对账业务'【连连快捷支付】对账定时任务 -->
+			
+			<!-- '对账业务'【连连ZF】对账定时任务 -->
+				<!-- 下载上游对账文件 -->
+				<ref bean="lLZFFileDownAndReadCollateFileTrigger" />
+				<!-- 对账 -->
+				<ref bean="collateLLZFTrigger" />
+			<!-- // '对账业务'【连连ZF】对账定时任务 -->
+			
+			<!-- '对账业务'【联动优势网关】对账定时任务 -->
+				<!-- 下载上游对账文件 -->
+				<ref bean="lDWGFileDownAndReadCollateFileTrigger" />
+				<!-- 对账 -->
+				<ref bean="collateLDWGTrigger" />
+			<!-- // '对账业务'【联动优势网关】对账定时任务 -->
+			
+			<!-- '对账业务'【联动优势 代收付】对账定时任务 -->
+				<!-- 下载上游对账文件 -->
+				<ref bean="lDZFFileDownAndReadCollateFileTrigger" />
+				<!-- 对账 -->
+				<ref bean="collateLDZFTrigger" />
+			<!-- // '对账业务'【联动优势 代收付】对账定时任务 -->
+			
+			<!-- '对账业务'【畅捷代收付】对账定时任务 -->
+				<!-- 下载上游对账文件 -->
+				<ref bean="cJZFFileDownAndReadCollateFileTrigger" />
+				<!-- 对账 -->
+				<ref bean="collateCJZFTrigger" />
+			<!-- // '对账业务'【畅捷代收付】对账定时任务 -->
+			
+			 <!--代付汇总定时任务  -->
+			 <!-- 课栈T日提现汇总 -->
+			<!-- <ref bean="kzTxSummaryTrigger" /> -->
+			  <!--T-1日代付汇总  -->
+			  <ref bean="DfSummeryTrigger" />
+			  <!-- 推送交易给代收付系统定时任务-->
+		      <ref bean="sendDfTrigger" /> 
+			  <!-- 将失败单推送给账户系统-->
+			  <ref bean="sendFailToAccountTrigger" /> 
+			  <!-- 代收汇总定时任务 -->
+			  <ref bean="DsSummeryAndSendTrigger" />
+			  <!-- 一分钱汇总定时任务 -->
+			  <ref bean="YFQSummeryTrigger" />
+			   <!-- 丰年T0代付汇总定时任务 -->
+			  <ref bean="fnDfT0SummaryTrigger" />
+			   <!--现金贷定时任务 -->
+			  <ref bean="FileSummeryAndSendTrigger" />
+			  
+			  <!-- '对账业务'【平安银企收付】对账定时任务 -->
+				<!-- 下载上游对账文件 -->
+				<ref bean="pabZFFileDownAndReadCollateFileTrigger" />
+				<!-- 对账 -->
+				<ref bean="collatePABZFTrigger" />
+			<!-- // '对账业务'【畅捷代收付】对账定时任务 -->
+			
+			  <!-- 结算(日切)后汇总 23:20 -->
+			  <ref bean="collectBalanceTrigger" />
+			  <!-- 对账后汇总 11:30 -->
+			  <ref bean="collectCollateTrigger" />
+			   <!-- 账户跟多渠道对账 10:10 -->
+			  <ref bean="collecteAccAndMultiTrigger" />
+			  <!-- 从401回写payChannelId和协议号 11:00 -->
+			  <ref bean="updatePayChannelIdBy4015TransTrigger" />
+			  
+			  <!-- '对账业务'【融宝】对账定时任务 -->
+		      <!-- 下载上游对账文件 -->
+			  <ref bean="rbWGFileDownAndReadCollateFileTrigger" />
+			  <!-- 对账 -->
+			  <ref bean="collateRBWGTrigger" />
+			  <!-- // '对账业务'【融宝】对账定时任务 -->
+			  <!-- 同步上游和下游的交易手续费渠道号定时任务 -->
+			  <ref bean="updateAccountInfoToDetailInfoTrigger" />
+			  <ref bean="updateAccountInfoToPosInfoTrigger" />
+			  <!-- 平安银行 跨行&B2B -->
+			  <ref bean="pABKHKFFileDownAndReadCollateFileTrigger" />
+			  <ref bean="collatePAKHKFTrigger" />
+			  <ref bean="pABB2BFileDownAndReadCollateFileTrigger" />
+			  <ref bean="collatePABB2BTrigger" />
+			  <!-- // 平安银行 跨行&B2B -->
+			  <!-- 快付通 代收付 -->
+			  <ref bean="lycheeFileDownAndReadCollateFileTrigger" />
+			  <ref bean="collateLycheeTrigger" />
+			  <!-- // 快付通 代收付 -->
+			  <!-- 易宝 -->
+			  <ref bean="ybDealFileTrigger" />
+			  <!-- // 易宝 -->
+			  <!-- 查询银企直联测试交易并汇总金额 -->
+			  <ref bean="selectTestTransAndSumAmountYQZLTrigger" />
+			  <!-- // 查询银企直联测试交易并汇总金额 -->
+			  <!-- 修改订单系统POS还款交易手续费 -->
+              <ref bean="selectPosTransFeeAndUpdateOrderTrigger" />
+              <!-- //修改订单系统POS还款交易手续费 -->
+              <!--民生单笔代付 -->
+			  <ref bean="cMBCDealFileTrigger" />
+			  <!--易宝代付 -->
+			  <ref bean="ybDfDealFileTrigger" />
+			   <!--融宝代付 -->
+			  <ref bean="rbDfDealFileTrigger" />
+			  <!-- UAT对账（其他环境） -->
+			  <ref bean="oeUATCollateTrigger" />
+			  <!-- 银生宝 -->
+			  <ref bean="unsPayCollateTrigger" />
+			</list>
+		</property>
+	</bean>
+	 <!-- 
+	 	// 调度工厂 
+	 -->
+</beans>

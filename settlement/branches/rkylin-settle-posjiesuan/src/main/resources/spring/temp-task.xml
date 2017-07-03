@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+	    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd" >
+	
+	 <bean id="dsfTask" class="com.rkylin.settle.task.DsfTask"/>
+	
+	<!--代收和T0标记的代付汇总定时任务  -->
+	<bean id="DsSummeryAndSend" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="dsfTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>dealDs</value>
+		</property>
+	</bean>
+	<bean id="DsSummeryAndSendTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="DsSummeryAndSend" />
+		</property>
+		<property name="cronExpression">
+			<!-- <value>0 0 16 * * ?</value> -->
+			<value>0 0/10 * * * ?</value>
+		</property>
+	</bean>
+	
+	<!--代付和提现汇总定时任务  -->
+	<bean id="DfSummery" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="dsfTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>dealDf</value>
+		</property>
+	</bean>
+	<bean id="DfSummeryTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="DfSummery" />
+		</property>
+		<property name="cronExpression">
+			<!--  <value>0 0 7 * * ?</value> -->
+			 <value>0 0/1 * * * ?</value>
+		</property>
+	</bean>
+	
+	
+   <bean id="sendDf" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="dsfTask"/>
+		</property>
+		<property name="targetMethod">
+		    <value>sendDsf</value>
+		</property>
+	</bean>
+	<bean id="sendDfTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="sendDf" />
+		</property>
+		<property name="cronExpression">
+			 <value>0 45 11 * * ?</value> 
+		</property>
+	</bean>
+	
+	 <bean id="sendFailToAccount" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="dsfTask"/>
+		</property>
+		<property name="targetMethod">
+		    <value>sendFailToAccount</value>
+		</property>
+	</bean>
+	<bean id="sendFailToAccountTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="sendFailToAccount" />
+		</property>
+		<property name="cronExpression">
+			 <value>0 0 19 * * ?</value> 
+		</property>
+	</bean>
+	
+	<!-- 课栈T0 提现汇总 -->
+	<bean id="kzTxSummary" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="dsfTask"/>
+		</property>
+		<property name="targetMethod">
+			<value>kzTxSummary</value>
+		</property>
+	</bean>
+	<bean id="kzTxSummaryTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="kzTxSummary" />
+		</property>
+		<property name="cronExpression">
+			 <value>0 0/7 * * * ?</value>
+		</property>
+	</bean>
+	
+	 
+	<!-- 调度工厂  start -->
+	<bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+			
+			 <ref bean="kzTxSummaryTrigger" />
+			  <!--代付汇总定时任务  -->
+			     <ref bean="DfSummeryTrigger" />
+			  <!-- 推送交易给代收付系统定时任务 -->
+			  <!--    <ref bean="sendDfTrigger" /> -->
+			  <!-- 将失败单推送给代收付系统 -->
+			  <!--    <ref bean="sendFailToAccountTrigger" /> -->
+			  <!-- 代收汇总定时任务 -->
+<!-- 			  <ref bean="DsSummeryAndSendTrigger" /> -->
+			</list>
+		</property>
+	</bean>
+	<!-- 调度工厂  end -->
+</beans>

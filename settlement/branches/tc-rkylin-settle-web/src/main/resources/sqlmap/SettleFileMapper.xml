@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SettleFileMapper">
+	<resultMap id="BaseResultMap" type="SettleFile">
+	  <result column="FILE_ID" jdbcType="INTEGER" property="fileId" />
+	  <result column="FILE_NAME" jdbcType="VARCHAR" property="fileName" />
+	  <result column="ROOT_INST_CD" jdbcType="VARCHAR" property="rootInstCd" />
+	  <result column="FUNC_CODES" jdbcType="VARCHAR" property="funcCodes" />
+	  <result column="FUNC_RELATION" jdbcType="TINYINT" property="funcRelation" />
+	  <result column="PAY_CHANNEL_ID" jdbcType="VARCHAR" property="payChannelId" />
+	  <result column="READ_TYPE" jdbcType="VARCHAR" property="readType" />
+	  <result column="TRANS_STATUS_IDS" jdbcType="VARCHAR" property="transStatusIds" />
+	  <result column="FILE_PREFIX" jdbcType="VARCHAR" property="filePrefix" />
+	  <result column="FILE_POSTFIX" jdbcType="VARCHAR" property="filePostfix" />
+	  <result column="FILE_TYPE" jdbcType="VARCHAR" property="fileType" />
+	  <result column="FILE_ACTIVE" jdbcType="TINYINT" property="fileActive" />
+	  <result column="FILE_SUB_ID" jdbcType="TINYINT" property="fileSubId" />
+	  <result column="FILE_ENCODE" jdbcType="VARCHAR" property="fileEncode" />
+	  <result column="SPLIT_STR" jdbcType="VARCHAR" property="splitStr" />
+	  <result column="UPLOAD_KEY_NAME" jdbcType="VARCHAR" property="uploadKeyName" />
+	  <result column="UPLOAD_KEY_FLG" jdbcType="TINYINT" property="uploadKeyFlg" />
+	  <result column="ROP_BATCH_NO" jdbcType="VARCHAR" property="ropBatchNo" />
+	  <result column="START_TIME" jdbcType="TIMESTAMP" property="startTime" />
+	  <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" />
+	  <result column="OBLIGATE1" jdbcType="VARCHAR" property="obligate1" />
+	  <result column="OBLIGATE2" jdbcType="VARCHAR" property="obligate2" />
+	  <result column="STATUS_ID" jdbcType="TINYINT" property="statusId" />
+	  <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+	  <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+	  <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+	  <result column="ROP_FILE_TYPE" jdbcType="TINYINT" property="ropFileType" />
+	  <result column="DATE_STEP" jdbcType="TINYINT" property="dateStep" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <trim prefix="(" prefixOverrides="and" suffix=")">
+      <if test="fileId != null" >
+	      and FILE_ID = #{fileId,jdbcType=INTEGER}
+	    </if>
+      <if test="fileName != null" >
+	      and FILE_NAME = #{fileName,jdbcType=VARCHAR}
+	    </if>
+      <if test="rootInstCd != null" >
+	      and ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR}
+	    </if>
+      <if test="funcCodes != null" >
+	      and FUNC_CODES = #{funcCodes,jdbcType=VARCHAR}
+	    </if>
+      <if test="funcRelation != null" >
+	      and FUNC_RELATION = #{funcRelation,jdbcType=TINYINT}
+	    </if>
+      <if test="payChannelId != null" >
+	      and PAY_CHANNEL_ID = #{payChannelId,jdbcType=VARCHAR}
+	    </if>
+      <if test="readType != null" >
+	      and READ_TYPE = #{readType,jdbcType=VARCHAR}
+	    </if>
+      <if test="transStatusIds != null" >
+	      and TRANS_STATUS_IDS = #{transStatusIds,jdbcType=VARCHAR}
+	    </if>
+      <if test="filePrefix != null" >
+	      and FILE_PREFIX = #{filePrefix,jdbcType=VARCHAR}
+	    </if>
+      <if test="filePostfix != null" >
+	      and FILE_POSTFIX = #{filePostfix,jdbcType=VARCHAR}
+	    </if>
+      <if test="fileType != null" >
+	      and FILE_TYPE = #{fileType,jdbcType=VARCHAR}
+	    </if>
+      <if test="fileActive != null" >
+	      and FILE_ACTIVE = #{fileActive,jdbcType=TINYINT}
+	    </if>
+      <if test="fileSubId != null" >
+	      and FILE_SUB_ID = #{fileSubId,jdbcType=TINYINT}
+	    </if>
+      <if test="fileEncode != null" >
+	      and FILE_ENCODE = #{fileEncode,jdbcType=VARCHAR}
+	    </if>
+      <if test="splitStr != null" >
+	      and SPLIT_STR = #{splitStr,jdbcType=VARCHAR}
+	    </if>
+      <if test="uploadKeyName != null" >
+	      and UPLOAD_KEY_NAME = #{uploadKeyName,jdbcType=VARCHAR}
+	    </if>
+      <if test="uploadKeyFlg != null" >
+	      and UPLOAD_KEY_FLG = #{uploadKeyFlg,jdbcType=TINYINT}
+	    </if>
+      <if test="ropBatchNo != null" >
+	      and ROP_BATCH_NO = #{ropBatchNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="startTime != null" >
+	      and START_TIME = #{startTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="endTime != null" >
+	      and END_TIME = #{endTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="obligate1 != null" >
+	      and OBLIGATE1 = #{obligate1,jdbcType=VARCHAR}
+	    </if>
+      <if test="obligate2 != null" >
+	      and OBLIGATE2 = #{obligate2,jdbcType=VARCHAR}
+	    </if>
+      <if test="statusId != null" >
+	      and STATUS_ID = #{statusId,jdbcType=TINYINT}
+	    </if>
+      <if test="remark != null" >
+	      and REMARK = #{remark,jdbcType=VARCHAR}
+	    </if>
+      <if test="createdTime != null" >
+	      and CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="updatedTime != null" >
+	      and UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="ropFileType != null" >
+	      and ROP_FILE_TYPE = #{ropFileType,jdbcType=TINYINT}
+	    </if>
+      <if test="dateStep != null" >
+	      and DATE_STEP = #{dateStep,jdbcType=TINYINT}
+	   </if>
+	  <!-- 分页查询，画面获取使用 -->
+	  <if test="startTimeStr != null" >
+	      and START_TIME &gt;= #{startTimeStr,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="endTimeStr != null" >
+	      and END_TIME &lt;= #{endTimeStr,jdbcType=TIMESTAMP}
+	    </if>
+	  <if test="fileNameStr != null" >
+	      and FILE_NAME like CONCAT('%',#{fileNameStr,jdbcType=VARCHAR},'%')
+	    </if>
+	  <if test="funcCodesStr != null" >
+	      and FUNC_CODES like CONCAT('%',#{funcCodesStr,jdbcType=VARCHAR},'%')
+	    </if>
+	  <if test="filePrefixStr != null" >
+	      and FILE_PREFIX like CONCAT('%',#{filePrefixStr,jdbcType=VARCHAR},'%')
+	    </if>
+	  </trim>
+    </where>
+  </sql>
+  <sql id="Example_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+      <if test="fileId != null">
+        FILE_ID = #{fileId,jdbcType=INTEGER},
+      </if>
+      <if test="fileName != null">
+        FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="rootInstCd != null">
+        ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR},
+      </if>
+      <if test="funcCodes != null">
+        FUNC_CODES = #{funcCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="funcRelation != null">
+        FUNC_RELATION = #{funcRelation,jdbcType=TINYINT},
+      </if>
+      <if test="payChannelId != null">
+        PAY_CHANNEL_ID = #{payChannelId,jdbcType=VARCHAR},
+      </if>
+      <if test="readType != null">
+        READ_TYPE = #{readType,jdbcType=VARCHAR},
+      </if>
+      <if test="transStatusIds != null">
+        TRANS_STATUS_IDS = #{transStatusIds,jdbcType=VARCHAR},
+      </if>
+      <if test="filePrefix != null">
+        FILE_PREFIX = #{filePrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="filePostfix != null">
+        FILE_POSTFIX = #{filePostfix,jdbcType=VARCHAR},
+      </if>
+      <if test="fileType != null">
+        FILE_TYPE = #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="fileActive != null">
+        FILE_ACTIVE = #{fileActive,jdbcType=TINYINT},
+      </if>
+      <if test="fileSubId != null">
+        FILE_SUB_ID = #{fileSubId,jdbcType=TINYINT},
+      </if>
+      <if test="fileEncode != null">
+        FILE_ENCODE = #{fileEncode,jdbcType=VARCHAR},
+      </if>
+      <if test="splitStr != null">
+        SPLIT_STR = #{splitStr,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadKeyName != null">
+        UPLOAD_KEY_NAME = #{uploadKeyName,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadKeyFlg != null">
+        UPLOAD_KEY_FLG = #{uploadKeyFlg,jdbcType=TINYINT},
+      </if>
+      <if test="ropBatchNo != null">
+        ROP_BATCH_NO = #{ropBatchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="obligate1 != null">
+        OBLIGATE1 = #{obligate1,jdbcType=VARCHAR},
+      </if>
+      <if test="obligate2 != null">
+        OBLIGATE2 = #{obligate2,jdbcType=VARCHAR},
+      </if>
+      <if test="statusId != null">
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ropFileType != null">
+        ROP_FILE_TYPE = #{ropFileType,jdbcType=TINYINT},
+      </if>
+      <if test="dateStep != null">
+        DATE_STEP = #{dateStep,jdbcType=TINYINT},
+      </if>
+      </trim>
+    </set>
+  </sql>
+  <sql id="Base_Column_List">
+    FILE_ID,
+    FILE_NAME,
+    ROOT_INST_CD,
+    FUNC_CODES,
+    FUNC_RELATION,
+    PAY_CHANNEL_ID,
+    READ_TYPE,
+    TRANS_STATUS_IDS,
+    FILE_PREFIX,
+    FILE_POSTFIX,
+    FILE_TYPE,
+    FILE_ACTIVE,
+    FILE_SUB_ID,
+    FILE_ENCODE,
+    SPLIT_STR,
+    UPLOAD_KEY_NAME,
+    UPLOAD_KEY_FLG,
+    ROP_BATCH_NO,
+    START_TIME,
+    END_TIME,
+    OBLIGATE1,
+    OBLIGATE2,
+    STATUS_ID,
+    REMARK,
+    CREATED_TIME,
+    UPDATED_TIME,
+    ROP_FILE_TYPE,
+    DATE_STEP,
+  </sql>
+  <sql id="Base_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+        FILE_ID = #{fileId,jdbcType=INTEGER},
+        FILE_NAME = #{fileName,jdbcType=VARCHAR},
+        ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR},
+        FUNC_CODES = #{funcCodes,jdbcType=VARCHAR},
+        FUNC_RELATION = #{funcRelation,jdbcType=TINYINT},
+        PAY_CHANNEL_ID = #{payChannelId,jdbcType=VARCHAR},
+        READ_TYPE = #{readType,jdbcType=VARCHAR},
+        TRANS_STATUS_IDS = #{transStatusIds,jdbcType=VARCHAR},
+        FILE_PREFIX = #{filePrefix,jdbcType=VARCHAR},
+        FILE_POSTFIX = #{filePostfix,jdbcType=VARCHAR},
+        FILE_TYPE = #{fileType,jdbcType=VARCHAR},
+        FILE_ACTIVE = #{fileActive,jdbcType=TINYINT},
+        FILE_SUB_ID = #{fileSubId,jdbcType=TINYINT},
+        FILE_ENCODE = #{fileEncode,jdbcType=VARCHAR},
+        SPLIT_STR = #{splitStr,jdbcType=VARCHAR},
+        UPLOAD_KEY_NAME = #{uploadKeyName,jdbcType=VARCHAR},
+        UPLOAD_KEY_FLG = #{uploadKeyFlg,jdbcType=TINYINT},
+        ROP_BATCH_NO = #{ropBatchNo,jdbcType=VARCHAR},
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+        OBLIGATE1 = #{obligate1,jdbcType=VARCHAR},
+        OBLIGATE2 = #{obligate2,jdbcType=VARCHAR},
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+        REMARK = #{remark,jdbcType=VARCHAR},
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+        ROP_FILE_TYPE = #{ropFileType,jdbcType=TINYINT},
+        DATE_STEP = #{dateStep,jdbcType=TINYINT},
+      </trim>
+    </set>
+  </sql>
+  <sql id="Selective_Column_List">
+    <if test="fileId != null">
+      FILE_ID,
+    </if>
+    <if test="fileName != null">
+      FILE_NAME,
+    </if>
+    <if test="rootInstCd != null">
+      ROOT_INST_CD,
+    </if>
+    <if test="funcCodes != null">
+      FUNC_CODES,
+    </if>
+    <if test="funcRelation != null">
+      FUNC_RELATION,
+    </if>
+    <if test="payChannelId != null">
+      PAY_CHANNEL_ID,
+    </if>
+    <if test="readType != null">
+      READ_TYPE,
+    </if>
+    <if test="transStatusIds != null">
+      TRANS_STATUS_IDS,
+    </if>
+    <if test="filePrefix != null">
+      FILE_PREFIX,
+    </if>
+    <if test="filePostfix != null">
+      FILE_POSTFIX,
+    </if>
+    <if test="fileType != null">
+      FILE_TYPE,
+    </if>
+    <if test="fileActive != null">
+      FILE_ACTIVE,
+    </if>
+    <if test="fileSubId != null">
+      FILE_SUB_ID,
+    </if>
+    <if test="fileEncode != null">
+      FILE_ENCODE,
+    </if>
+    <if test="splitStr != null">
+      SPLIT_STR,
+    </if>
+    <if test="uploadKeyName != null">
+      UPLOAD_KEY_NAME,
+    </if>
+    <if test="uploadKeyFlg != null">
+      UPLOAD_KEY_FLG,
+    </if>
+    <if test="ropBatchNo != null">
+      ROP_BATCH_NO,
+    </if>
+    <if test="startTime != null">
+      START_TIME,
+    </if>
+    <if test="endTime != null">
+      END_TIME,
+    </if>
+    <if test="obligate1 != null">
+      OBLIGATE1,
+    </if>
+    <if test="obligate2 != null">
+      OBLIGATE2,
+    </if>
+    <if test="statusId != null">
+      STATUS_ID,
+    </if>
+    <if test="remark != null">
+      REMARK,
+    </if>
+    <if test="createdTime != null">
+      CREATED_TIME,
+    </if>
+    <if test="updatedTime != null">
+      UPDATED_TIME,
+    </if>
+    <if test="ropFileType != null">
+      ROP_FILE_TYPE,
+    </if>
+    <if test="dateStep != null">
+      DATE_STEP,
+    </if>
+  </sql>
+	<sql id="Base_Value_List">
+    #{fileId,jdbcType=INTEGER},
+    #{fileName,jdbcType=VARCHAR},
+    #{rootInstCd,jdbcType=VARCHAR},
+    #{funcCodes,jdbcType=VARCHAR},
+    #{funcRelation,jdbcType=TINYINT},
+    #{payChannelId,jdbcType=VARCHAR},
+    #{readType,jdbcType=VARCHAR},
+    #{transStatusIds,jdbcType=VARCHAR},
+    #{filePrefix,jdbcType=VARCHAR},
+    #{filePostfix,jdbcType=VARCHAR},
+    #{fileType,jdbcType=VARCHAR},
+    #{fileActive,jdbcType=TINYINT},
+    #{fileSubId,jdbcType=TINYINT},
+    #{fileEncode,jdbcType=VARCHAR},
+    #{splitStr,jdbcType=VARCHAR},
+    #{uploadKeyName,jdbcType=VARCHAR},
+    #{uploadKeyFlg,jdbcType=TINYINT},
+    #{ropBatchNo,jdbcType=VARCHAR},
+    #{startTime,jdbcType=TIMESTAMP},
+    #{endTime,jdbcType=TIMESTAMP},
+    #{obligate1,jdbcType=VARCHAR},
+    #{obligate2,jdbcType=VARCHAR},
+    #{statusId,jdbcType=TINYINT},
+    #{remark,jdbcType=VARCHAR},
+    #{createdTime,jdbcType=TIMESTAMP},
+    #{updatedTime,jdbcType=TIMESTAMP},
+    #{ropFileType,jdbcType=TINYINT},
+    #{dateStep,jdbcType=TINYINT},
+	</sql>
+  <sql id="Selective_Value_List">
+    <if test="fileId != null">
+      #{fileId,jdbcType=INTEGER},
+    </if>
+    <if test="fileName != null">
+      #{fileName,jdbcType=VARCHAR},
+    </if>
+    <if test="rootInstCd != null">
+      #{rootInstCd,jdbcType=VARCHAR},
+    </if>
+    <if test="funcCodes != null">
+      #{funcCodes,jdbcType=VARCHAR},
+    </if>
+    <if test="funcRelation != null">
+      #{funcRelation,jdbcType=TINYINT},
+    </if>
+    <if test="payChannelId != null">
+      #{payChannelId,jdbcType=VARCHAR},
+    </if>
+    <if test="readType != null">
+      #{readType,jdbcType=VARCHAR},
+    </if>
+    <if test="transStatusIds != null">
+      #{transStatusIds,jdbcType=VARCHAR},
+    </if>
+    <if test="filePrefix != null">
+      #{filePrefix,jdbcType=VARCHAR},
+    </if>
+    <if test="filePostfix != null">
+      #{filePostfix,jdbcType=VARCHAR},
+    </if>
+    <if test="fileType != null">
+      #{fileType,jdbcType=VARCHAR},
+    </if>
+    <if test="fileActive != null">
+      #{fileActive,jdbcType=TINYINT},
+    </if>
+    <if test="fileSubId != null">
+      #{fileSubId,jdbcType=TINYINT},
+    </if>
+    <if test="fileEncode != null">
+      #{fileEncode,jdbcType=VARCHAR},
+    </if>
+    <if test="splitStr != null">
+      #{splitStr,jdbcType=VARCHAR},
+    </if>
+    <if test="uploadKeyName != null">
+      #{uploadKeyName,jdbcType=VARCHAR},
+    </if>
+    <if test="uploadKeyFlg != null">
+      #{uploadKeyFlg,jdbcType=TINYINT},
+    </if>
+    <if test="ropBatchNo != null">
+      #{ropBatchNo,jdbcType=VARCHAR},
+    </if>
+    <if test="startTime != null">
+      #{startTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="endTime != null">
+      #{endTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="obligate1 != null">
+      #{obligate1,jdbcType=VARCHAR},
+    </if>
+    <if test="obligate2 != null">
+      #{obligate2,jdbcType=VARCHAR},
+    </if>
+    <if test="statusId != null">
+      #{statusId,jdbcType=TINYINT},
+    </if>
+    <if test="remark != null">
+      #{remark,jdbcType=VARCHAR},
+    </if>
+    <if test="createdTime != null">
+      #{createdTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="updatedTime != null">
+      #{updatedTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="ropFileType != null">
+      #{ropFileType,jdbcType=TINYINT},
+    </if>
+    <if test="dateStep != null">
+      #{dateStep,jdbcType=TINYINT},
+    </if>
+  </sql>
+  
+  <select id="selectByExample" parameterType="SettleFileQuery" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_FILE
+    <include refid="Example_Where_Clause" />
+    <!-- order by CREATE_DATE -->
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_FILE
+    where FILE_ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from SETTLE_FILE
+    where FILE_ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="SettleFileQuery">
+    delete from SETTLE_FILE
+    <include refid="Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterType="SettleFile">
+    insert into SETTLE_FILE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Base_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Base_Value_List"/>
+    </trim>
+  </insert>
+  <insert id="insertSelective" parameterType="SettleFile">
+    insert into SETTLE_FILE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Value_List"/>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="SettleFileQuery" resultType="java.lang.Integer">
+    select count(*) from SETTLE_FILE
+    <include refid="Example_Where_Clause" />
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="SettleFile">
+    update SETTLE_FILE
+    <include refid="Example_Set_Clause"/>
+    where FILE_ID = #{fileId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="SettleFile">
+    update SETTLE_FILE
+    <include refid="Base_Set_Clause"/>
+    where FILE_ID = #{fileId,jdbcType=BIGINT}
+  </update>
+  <!-- 分页查询 -->
+  <select id="selectByPreExample" parameterType="SettleFileQuery" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_FILE
+    <include refid="Example_Where_Clause" />
+    <!-- order by CREATE_DATE -->
+    <!--分页查询 -->
+	<if test="orderBy !=null">
+		ORDER BY ${orderBy}
+	</if>
+	<if test="offset != null &amp; pageSize != null">
+		LIMIT #{offset}, #{pageSize}
+	</if>
+  </select>
+</mapper>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+        ">
+    <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样   -->
+    <dubbo:registry  protocol="zookeeper" address="${registry-address}" />
+    <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
+    <!-- 账户'分润结算'||'挂账后支付'  API -->
+	<dubbo:reference check="false" version="1.0.0" id="transactionCommonService" interface="com.rongcapital.mtaegis.service.TransactionCommonApi" />
+	<!-- 账户'余额转账'API -->
+	<dubbo:reference check="false" version="1.0.0" id="balanceQueryService" interface="com.rongcapital.mtaegis.service.BalanceQueryApi" />
+	<!-- 账户 查询银行卡信息(ACCOUNT_INFO) -->
+	<dubbo:reference check="false" version="1.0.0" id="accountInfoServiceExtImpl" interface="com.rongcapital.mtaegis.service.AccountInfoExtApi" />
+	<!-- 账户 查询银行卡信息(CORPORAT_ACCOUNT_INFO) 一分钱 -->
+	<dubbo:reference check="false" version="1.0.0" id="corporatAccountInfoServiceImpl" interface="com.rongcapital.mtaegis.service.CorporatAccountInfoApi" />
+	<!-- 账户'退票'API -->
+	<dubbo:reference check="false" version="1.0.0" id="refundService" interface="com.rongcapital.mtaegis.service.RefundApi" retries="0" />
+	<!--一分钱代收付结果推送给账户 -->
+	<dubbo:reference check="false" version="1.0.0" id="transOrderInfoApi" interface="com.rongcapital.mtaegis.service.TransOrderInfoApi" />
+	<!-- 从订单系统查询绑卡信息 -->
+	<dubbo:reference check="false" group="${service-group-crps}" id="orderAccountInfoService" interface="com.rkylin.order.service.OrderAccountInfoService" />
+	<!-- 代收付结果推送给订单系统  -->
+	<dubbo:reference check="false" group="${service-group-crps}" id="settlementToOrderService" interface="com.rkylin.order.mixservice.SettlementToOrderService" />
+	<!-- 架构组 ActiveMQ 封装类 -->
+	<dubbo:reference check="false" version="1.0.0" id="activemqSenderService" interface="com.rongcapital.activemq.api.service.ActivemqSenderService" />
+	<!-- 多渠道'平安银行'API -->
+	<dubbo:reference check="false" group="${service-group-gate}" version="1.0.0" id="pabAccountService" interface="com.rkylin.gaterouter.service.PabAccountService" />
+	<!-- '代收付系统'API -->
+	<dubbo:reference check="false" group="${service-group-crps}" version="1.0.0" id="crpsApiService" interface="com.rkylin.crps.service.CrpsApiService" />
+	<!-- 账户一期 查询卡信息-->
+	<dubbo:reference check="false" id="accountManagementService" group="${service-group-account}" interface="com.rkylin.wheatfield.api.AccountManagementService" />
+	<!-- 账务'冲正，抹帐 （单条）' -->
+	<dubbo:reference check="false" version="1.0.0" id="writeOffService" interface="com.rongcapital.mtaegis.service.WriteOffApi" />
+	<!-- 账户一期   批量 代付 结果返回 -->
+	<dubbo:reference check="false" version="1.0.0" timeout="60000" id="multWithholdAndWithdrowResultReturnApi" interface="com.rongcapital.mtaegis.service.MultWithholdAndWithdrowResultReturnApi" />
+	<!-- 账户一期   批量 代收 结果返回 -->
+	<dubbo:reference check="false" version="1.0.0"  timeout="60000" id="multCollectionResultReturnApi" interface="com.rongcapital.mtaegis.service.MultCollectionResultReturnApi" />
+	<!-- 账户一期 批量 转账-->
+	<dubbo:reference check="false" group="${service-group-account}"  timeout="60000" id="TransOrderDubboService" interface="com.rkylin.wheatfield.api.TransOrderDubboService" />
+	<!-- 账户'余额转账'API -->
+	<dubbo:reference check="false" group="${service-group-account}" id="semiAutomatizationService" interface="com.rkylin.wheatfield.api.SemiAutomatizationServiceApi" />
+	<!-- 账户'分润结算'API -->	
+	<dubbo:reference check="false" group="${service-group-account}" id="paymentInternalService" interface="com.rkylin.wheatfield.api.PaymentInternalOutService" />
+	<!-- 账户'余额转账'API -->
+	<dubbo:reference check="false" group="${service-group-account}" id="paymentAccountService" interface="com.rkylin.wheatfield.api.PaymentAccountServiceApi" />
+	<!-- 计息'查询还款金额&更新还款状态'API -->
+	<dubbo:reference check="false" group="${service-group-interest}" timeout="30000" id="iBorrowRepaymentDubboService" interface="com.rkylin.interest.api.IBorrowRepaymentDubboService" />
+	<!-- 订单'落单接口'API -->
+	<dubbo:reference check="false" group="${service-group-order}" timeout="30000" id="orderInfoBaseService" interface="com.rkylin.order.service.OrderInfoBaseService" />
+	
+</beans>

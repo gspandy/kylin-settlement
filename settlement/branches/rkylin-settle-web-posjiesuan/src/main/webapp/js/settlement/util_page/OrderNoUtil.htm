@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+	<head>
+		<title>订单号比对工具</title>
+		<script>
+			function doC() {
+				var lt_txt = document.getElementById("lt").value.replace(/\n/g,";");
+				var rt_txt = document.getElementById("rt").value.replace(/\n/g,";");
+				var result_div = document.getElementById("result_div");
+				var result_div2 = document.getElementById("result_div2");
+				
+				var larr = lt_txt.split(";");
+				var rarr = rt_txt.split(";");
+				
+				var resultArr = array_difference(larr, rarr);
+				var resultArr2 = array_difference(rarr, larr);
+				
+				var result_txt = "";
+				var result_txt2 = "";
+				for(var i = 0; i < resultArr.length; i ++) {
+					result_txt += "<div>" + resultArr[i] + "</div>";
+				}
+				for(var i = 0; i < resultArr2.length; i ++) {
+					result_txt2 += "<div>" + resultArr2[i] + "</div>";
+				}
+				result_div.innerHTML = result_txt;
+				result_div2.innerHTML = result_txt2;
+			}
+			function array_difference(a, b) { // 差集 a - b
+			    //clone = a
+			    var clone = a.slice(0);
+			    for(var i = 0; i < b.length; i ++) {
+			        var temp = b[i];
+			        for(var j = 0; j < clone.length; j ++) {
+			            if(temp === clone[j]) {
+			                //remove clone[j]
+			                clone.splice(j,1);
+			            }
+			        }
+			    }
+			    return array_remove_repeat(clone);
+			}
+			function array_remove_repeat(a) { // 去重
+			    var r = [];
+			    for(var i = 0; i < a.length; i ++) {
+			        var flag = true;
+			        var temp = a[i];
+			        for(var j = 0; j < r.length; j ++) {
+			            if(temp === r[j]) {
+			                flag = false;
+			                break;
+			            }
+			        }
+			        if(flag) {
+			            r.push(temp);
+			        }
+			    }
+			    return r;
+			}
+		</script>
+	</head>
+
+	<body>
+		<table>
+			<tr  valign="middle">
+				<td>订单号一组</td>
+				<td></td>
+				<td>订单号二组</td>
+				<td>筛选订单号(一组)</td>
+				<td>筛选订单号(二组)</td>
+			<tr  valign="middle">
+				<td>
+					<textarea rows="40" cols="40" id="lt"></textarea>
+				</td>
+				<td>
+					<input type="button" value="比较" id="c_btn" onclick="doC();"  />
+				</td>
+				<td>
+					<textarea rows="40" cols="40" id="rt"></textarea>
+				</td>
+				<td valign="top">
+					<div id="result_div" style="color:ff0000;">
+					</div>
+				</td>
+				<td valign="top">
+					<div id="result_div2" style="color:0000ff;">
+					</div>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

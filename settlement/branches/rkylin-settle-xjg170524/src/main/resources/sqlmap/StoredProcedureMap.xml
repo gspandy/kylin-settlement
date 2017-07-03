@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="StoredProcedureMap">
+	<!-- 获取账户系统T日全部的交易信息 -->
+	<select id="pro_sync_act_trans_acc1" resultType="java.util.Map" parameterType="java.util.Map" statementType="CALLABLE">
+        /*!mycat: sql=SELECT */CALL PRO_SYNC_ACT_TRANS_ACC1()
+	</select>
+	<!-- 获取账户系统T日全部的交易信息 -->
+	<select id="pro_sync_act_trans_acc2" resultType="java.util.Map" parameterType="java.util.Map" statementType="CALLABLE">         
+        /*!mycat: sql=SELECT */CALL PRO_SYNC_ACT_TRANS_ACC2()
+	</select>
+</mapper>

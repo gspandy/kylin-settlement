@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SettlewebAccountsumCompareMapper">
+	<resultMap id="BaseResultMap" type="SettlewebAccountsumCompare">
+	  <result column="ID" jdbcType="INTEGER" property="id" />
+	  <result column="PAY_CHANNEL_ID" jdbcType="VARCHAR" property="payChannelId" />
+	  <result column="MERCHANT_CODE" jdbcType="VARCHAR" property="merchantCode" />
+	  <result column="ROOT_INST_CD" jdbcType="VARCHAR" property="rootInstCd" />
+	  <result column="READ_TYPE" jdbcType="VARCHAR" property="readType" />
+	  <result column="ACCOUNT_TYPE" jdbcType="VARCHAR" property="accountType" />
+	  <result column="COUNT_1" jdbcType="VARCHAR" property="count1" />
+	  <result column="AMOUNT_1" jdbcType="VARCHAR" property="amount1" />
+	  <result column="COUNT_2" jdbcType="VARCHAR" property="count2" />
+	  <result column="AMOUNT_2" jdbcType="VARCHAR" property="amount2" />
+	  <result column="COUNT_3" jdbcType="VARCHAR" property="count3" />
+	  <result column="AMOUNT_3" jdbcType="VARCHAR" property="amount3" />
+	  <result column="COUNT_4" jdbcType="VARCHAR" property="count4" />
+	  <result column="AMOUNT_4" jdbcType="VARCHAR" property="amount4" />
+	  <result column="REQUEST_NO" jdbcType="VARCHAR" property="requestNo" />
+	  <result column="FEE_AMOUNT" jdbcType="VARCHAR" property="feeAmount" />
+	  <result column="FEE_AMOUNT1" jdbcType="VARCHAR" property="feeAmount1" />
+	  <result column="FEE_AMOUNT2" jdbcType="VARCHAR" property="feeAmount2" />
+	  <result column="FEE_AMOUNT3" jdbcType="VARCHAR" property="feeAmount3" />
+	  <result column="ACCOUNT_RESULT" jdbcType="VARCHAR" property="accountResult" />
+	  <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+	  <result column="OBLIGATE1" jdbcType="VARCHAR" property="obligate1" />
+	  <result column="OBLIGATE2" jdbcType="VARCHAR" property="obligate2" />
+	  <result column="OBLIGATE3" jdbcType="VARCHAR" property="obligate3" />
+	  <result column="STATUS_ID" jdbcType="TINYINT" property="statusId" />
+	  <result column="ACCOUNT_DATE" jdbcType="TIMESTAMP" property="accountDate" />
+	  <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+	  <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <trim prefix="(" prefixOverrides="and" suffix=")">
+      <if test="payChannelId != null" >
+	      and PAY_CHANNEL_ID = #{payChannelId,jdbcType=VARCHAR}
+	    </if>
+      <if test="merchantCode != null" >
+	      and MERCHANT_CODE = #{merchantCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="rootInstCd != null" >
+	      and ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR}
+	    </if>
+      <if test="readType != null" >
+	      and READ_TYPE = #{readType,jdbcType=VARCHAR}
+	    </if>
+      <if test="accountType != null" >
+	      and ACCOUNT_TYPE = #{accountType,jdbcType=VARCHAR}
+	    </if>
+      <if test="count1 != null" >
+	      and COUNT_1 = #{count1,jdbcType=VARCHAR}
+	    </if>
+      <if test="amount1 != null" >
+	      and AMOUNT_1 = #{amount1,jdbcType=VARCHAR}
+	    </if>
+      <if test="count2 != null" >
+	      and COUNT_2 = #{count2,jdbcType=VARCHAR}
+	    </if>
+      <if test="amount2 != null" >
+	      and AMOUNT_2 = #{amount2,jdbcType=VARCHAR}
+	    </if>
+      <if test="count3 != null" >
+	      and COUNT_3 = #{count3,jdbcType=VARCHAR}
+	    </if>
+      <if test="amount3 != null" >
+	      and AMOUNT_3 = #{amount3,jdbcType=VARCHAR}
+	    </if>
+      <if test="count4 != null" >
+	      and COUNT_4 = #{count4,jdbcType=VARCHAR}
+	    </if>
+      <if test="amount4 != null" >
+	      and AMOUNT_4 = #{amount4,jdbcType=VARCHAR}
+	    </if>
+      <if test="requestNo != null" >
+	      and REQUEST_NO = #{requestNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="feeAmount != null" >
+	      and FEE_AMOUNT = #{feeAmount,jdbcType=VARCHAR}
+	    </if>
+      <if test="feeAmount1 != null" >
+	      and FEE_AMOUNT1 = #{feeAmount1,jdbcType=VARCHAR}
+	    </if>
+      <if test="feeAmount2 != null" >
+	      and FEE_AMOUNT2 = #{feeAmount2,jdbcType=VARCHAR}
+	    </if>
+      <if test="feeAmount3 != null" >
+	      and FEE_AMOUNT3 = #{feeAmount3,jdbcType=VARCHAR}
+	    </if>
+      <if test="accountResult != null" >
+	      and ACCOUNT_RESULT = #{accountResult,jdbcType=VARCHAR}
+	    </if>
+      <if test="remark != null" >
+	      and REMARK = #{remark,jdbcType=VARCHAR}
+	    </if>
+      <if test="obligate1 != null" >
+	      and OBLIGATE1 = #{obligate1,jdbcType=VARCHAR}
+	    </if>
+      <if test="obligate2 != null" >
+	      and OBLIGATE2 = #{obligate2,jdbcType=VARCHAR}
+	    </if>
+      <if test="obligate3 != null" >
+	      and OBLIGATE3 = #{obligate3,jdbcType=VARCHAR}
+	    </if>
+      <if test="statusId != null" >
+	      and STATUS_ID = #{statusId,jdbcType=TINYINT}
+	    </if>
+      <if test="accountDate != null" >
+	      and ACCOUNT_DATE = #{accountDate,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="createdTime != null" >
+	      and CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="updatedTime != null" >
+	      and UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+	    </if>
+	  </trim>
+    </where>
+  </sql>
+  <sql id="Example_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+      <if test="payChannelId != null">
+        PAY_CHANNEL_ID = #{payChannelId,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantCode != null">
+        MERCHANT_CODE = #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rootInstCd != null">
+        ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR},
+      </if>
+      <if test="readType != null">
+        READ_TYPE = #{readType,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null">
+        ACCOUNT_TYPE = #{accountType,jdbcType=VARCHAR},
+      </if>
+      <if test="count1 != null">
+        COUNT_1 = #{count1,jdbcType=VARCHAR},
+      </if>
+      <if test="amount1 != null">
+        AMOUNT_1 = #{amount1,jdbcType=VARCHAR},
+      </if>
+      <if test="count2 != null">
+        COUNT_2 = #{count2,jdbcType=VARCHAR},
+      </if>
+      <if test="amount2 != null">
+        AMOUNT_2 = #{amount2,jdbcType=VARCHAR},
+      </if>
+      <if test="count3 != null">
+        COUNT_3 = #{count3,jdbcType=VARCHAR},
+      </if>
+      <if test="amount3 != null">
+        AMOUNT_3 = #{amount3,jdbcType=VARCHAR},
+      </if>
+      <if test="count4 != null">
+        COUNT_4 = #{count4,jdbcType=VARCHAR},
+      </if>
+      <if test="amount4 != null">
+        AMOUNT_4 = #{amount4,jdbcType=VARCHAR},
+      </if>
+      <if test="requestNo != null">
+        REQUEST_NO = #{requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="feeAmount != null">
+        FEE_AMOUNT = #{feeAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="feeAmount1 != null">
+        FEE_AMOUNT1 = #{feeAmount1,jdbcType=VARCHAR},
+      </if>
+      <if test="feeAmount2 != null">
+        FEE_AMOUNT2 = #{feeAmount2,jdbcType=VARCHAR},
+      </if>
+      <if test="feeAmount3 != null">
+        FEE_AMOUNT3 = #{feeAmount3,jdbcType=VARCHAR},
+      </if>
+      <if test="accountResult != null">
+        ACCOUNT_RESULT = #{accountResult,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="obligate1 != null">
+        OBLIGATE1 = #{obligate1,jdbcType=VARCHAR},
+      </if>
+      <if test="obligate2 != null">
+        OBLIGATE2 = #{obligate2,jdbcType=VARCHAR},
+      </if>
+      <if test="obligate3 != null">
+        OBLIGATE3 = #{obligate3,jdbcType=VARCHAR},
+      </if>
+      <if test="statusId != null">
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+      </if>
+      <if test="accountDate != null">
+        ACCOUNT_DATE = #{accountDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      </trim>
+    </set>
+  </sql>
+  <sql id="Base_Column_List">
+    ID,
+    PAY_CHANNEL_ID,
+    MERCHANT_CODE,
+    ROOT_INST_CD,
+    READ_TYPE,
+    ACCOUNT_TYPE,
+    COUNT_1,
+    AMOUNT_1,
+    COUNT_2,
+    AMOUNT_2,
+    COUNT_3,
+    AMOUNT_3,
+    COUNT_4,
+    AMOUNT_4,
+    REQUEST_NO,
+    FEE_AMOUNT,
+    FEE_AMOUNT1,
+    FEE_AMOUNT2,
+    FEE_AMOUNT3,
+    ACCOUNT_RESULT,
+    REMARK,
+    OBLIGATE1,
+    OBLIGATE2,
+    OBLIGATE3,
+    STATUS_ID,
+    ACCOUNT_DATE,
+    CREATED_TIME,
+    UPDATED_TIME,
+  </sql>
+  <sql id="Base_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+        PAY_CHANNEL_ID = #{payChannelId,jdbcType=VARCHAR},
+        MERCHANT_CODE = #{merchantCode,jdbcType=VARCHAR},
+        ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR},
+        READ_TYPE = #{readType,jdbcType=VARCHAR},
+        ACCOUNT_TYPE = #{accountType,jdbcType=VARCHAR},
+        COUNT_1 = #{count1,jdbcType=VARCHAR},
+        AMOUNT_1 = #{amount1,jdbcType=VARCHAR},
+        COUNT_2 = #{count2,jdbcType=VARCHAR},
+        AMOUNT_2 = #{amount2,jdbcType=VARCHAR},
+        COUNT_3 = #{count3,jdbcType=VARCHAR},
+        AMOUNT_3 = #{amount3,jdbcType=VARCHAR},
+        COUNT_4 = #{count4,jdbcType=VARCHAR},
+        AMOUNT_4 = #{amount4,jdbcType=VARCHAR},
+        REQUEST_NO = #{requestNo,jdbcType=VARCHAR},
+        FEE_AMOUNT = #{feeAmount,jdbcType=VARCHAR},
+        FEE_AMOUNT1 = #{feeAmount1,jdbcType=VARCHAR},
+        FEE_AMOUNT2 = #{feeAmount2,jdbcType=VARCHAR},
+        FEE_AMOUNT3 = #{feeAmount3,jdbcType=VARCHAR},
+        ACCOUNT_RESULT = #{accountResult,jdbcType=VARCHAR},
+        REMARK = #{remark,jdbcType=VARCHAR},
+        OBLIGATE1 = #{obligate1,jdbcType=VARCHAR},
+        OBLIGATE2 = #{obligate2,jdbcType=VARCHAR},
+        OBLIGATE3 = #{obligate3,jdbcType=VARCHAR},
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+        ACCOUNT_DATE = #{accountDate,jdbcType=TIMESTAMP},
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </trim>
+    </set>
+  </sql>
+  <sql id="Selective_Column_List">
+    <if test="payChannelId != null">
+      PAY_CHANNEL_ID,
+    </if>
+    <if test="merchantCode != null">
+      MERCHANT_CODE,
+    </if>
+    <if test="rootInstCd != null">
+      ROOT_INST_CD,
+    </if>
+    <if test="readType != null">
+      READ_TYPE,
+    </if>
+    <if test="accountType != null">
+      ACCOUNT_TYPE,
+    </if>
+    <if test="count1 != null">
+      COUNT_1,
+    </if>
+    <if test="amount1 != null">
+      AMOUNT_1,
+    </if>
+    <if test="count2 != null">
+      COUNT_2,
+    </if>
+    <if test="amount2 != null">
+      AMOUNT_2,
+    </if>
+    <if test="count3 != null">
+      COUNT_3,
+    </if>
+    <if test="amount3 != null">
+      AMOUNT_3,
+    </if>
+    <if test="count4 != null">
+      COUNT_4,
+    </if>
+    <if test="amount4 != null">
+      AMOUNT_4,
+    </if>
+    <if test="requestNo != null">
+      REQUEST_NO,
+    </if>
+    <if test="feeAmount != null">
+      FEE_AMOUNT,
+    </if>
+    <if test="feeAmount1 != null">
+      FEE_AMOUNT1,
+    </if>
+    <if test="feeAmount2 != null">
+      FEE_AMOUNT2,
+    </if>
+    <if test="feeAmount3 != null">
+      FEE_AMOUNT3,
+    </if>
+    <if test="accountResult != null">
+      ACCOUNT_RESULT,
+    </if>
+    <if test="remark != null">
+      REMARK,
+    </if>
+    <if test="obligate1 != null">
+      OBLIGATE1,
+    </if>
+    <if test="obligate2 != null">
+      OBLIGATE2,
+    </if>
+    <if test="obligate3 != null">
+      OBLIGATE3,
+    </if>
+    <if test="statusId != null">
+      STATUS_ID,
+    </if>
+    <if test="accountDate != null">
+      ACCOUNT_DATE,
+    </if>
+    <if test="createdTime != null">
+      CREATED_TIME,
+    </if>
+    <if test="updatedTime != null">
+      UPDATED_TIME,
+    </if>
+  </sql>
+	<sql id="Base_Value_List">
+    #{id,jdbcType=INTEGER},
+    #{payChannelId,jdbcType=VARCHAR},
+    #{merchantCode,jdbcType=VARCHAR},
+    #{rootInstCd,jdbcType=VARCHAR},
+    #{readType,jdbcType=VARCHAR},
+    #{accountType,jdbcType=TINYINT},
+    #{count1,jdbcType=VARCHAR},
+    #{amount1,jdbcType=VARCHAR},
+    #{count2,jdbcType=VARCHAR},
+    #{amount2,jdbcType=VARCHAR},
+    #{count3,jdbcType=VARCHAR},
+    #{amount3,jdbcType=VARCHAR},
+    #{count4,jdbcType=VARCHAR},
+    #{amount4,jdbcType=VARCHAR},
+    #{requestNo,jdbcType=VARCHAR},
+    #{feeAmount,jdbcType=VARCHAR},
+    #{feeAmount1,jdbcType=VARCHAR},
+    #{feeAmount2,jdbcType=VARCHAR},
+    #{feeAmount3,jdbcType=VARCHAR},
+    #{accountResult,jdbcType=VARCHAR},
+    #{remark,jdbcType=VARCHAR},
+    #{obligate1,jdbcType=VARCHAR},
+    #{obligate2,jdbcType=VARCHAR},
+    #{obligate3,jdbcType=VARCHAR},
+    #{statusId,jdbcType=TINYINT},
+    #{accountDate,jdbcType=TIMESTAMP},
+    #{createdTime,jdbcType=TIMESTAMP},
+    #{updatedTime,jdbcType=TIMESTAMP},
+	</sql>
+  <sql id="Selective_Value_List">
+    <if test="payChannelId != null">
+      #{payChannelId,jdbcType=VARCHAR},
+    </if>
+    <if test="merchantCode != null">
+      #{merchantCode,jdbcType=VARCHAR},
+    </if>
+    <if test="rootInstCd != null">
+      #{rootInstCd,jdbcType=VARCHAR},
+    </if>
+    <if test="readType != null">
+      #{readType,jdbcType=VARCHAR},
+    </if>
+    <if test="accountType != null">
+      #{accountType,jdbcType=TINYINT},
+    </if>
+    <if test="count1 != null">
+      #{count1,jdbcType=VARCHAR},
+    </if>
+    <if test="amount1 != null">
+      #{amount1,jdbcType=VARCHAR},
+    </if>
+    <if test="count2 != null">
+      #{count2,jdbcType=VARCHAR},
+    </if>
+    <if test="amount2 != null">
+      #{amount2,jdbcType=VARCHAR},
+    </if>
+    <if test="count3 != null">
+      #{count3,jdbcType=VARCHAR},
+    </if>
+    <if test="amount3 != null">
+      #{amount3,jdbcType=VARCHAR},
+    </if>
+    <if test="count4 != null">
+      #{count4,jdbcType=VARCHAR},
+    </if>
+    <if test="amount4 != null">
+      #{amount4,jdbcType=VARCHAR},
+    </if>
+    <if test="requestNo != null">
+      #{requestNo,jdbcType=VARCHAR},
+    </if>
+    <if test="feeAmount != null">
+      #{feeAmount,jdbcType=VARCHAR},
+    </if>
+    <if test="feeAmount1 != null">
+      #{feeAmount1,jdbcType=VARCHAR},
+    </if>
+    <if test="feeAmount2 != null">
+      #{feeAmount2,jdbcType=VARCHAR},
+    </if>
+    <if test="feeAmount3 != null">
+      #{feeAmount3,jdbcType=VARCHAR},
+    </if>
+    <if test="accountResult != null">
+      #{accountResult,jdbcType=VARCHAR},
+    </if>
+    <if test="remark != null">
+      #{remark,jdbcType=VARCHAR},
+    </if>
+    <if test="obligate1 != null">
+      #{obligate1,jdbcType=VARCHAR},
+    </if>
+    <if test="obligate2 != null">
+      #{obligate2,jdbcType=VARCHAR},
+    </if>
+    <if test="obligate3 != null">
+      #{obligate3,jdbcType=VARCHAR},
+    </if>
+    <if test="statusId != null">
+      #{statusId,jdbcType=TINYINT},
+    </if>
+    <if test="accountDate != null">
+      #{accountDate,jdbcType=TIMESTAMP},
+    </if>
+    <if test="createdTime != null">
+      #{createdTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="updatedTime != null">
+      #{updatedTime,jdbcType=TIMESTAMP},
+    </if>
+  </sql>
+  
+  <select id="selectByExample" parameterType="SettlewebAccountsumCompareQuery" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLEWEB_ACCOUNTSUM_COMPARE
+    <include refid="Example_Where_Clause" />
+    <!-- 账期范围查询 -->
+	<if test="accountDateStrEnd != null ">
+		<![CDATA[
+		AND ACCOUNT_DATE <= #{accountDateStrEnd,jdbcType=VARCHAR}
+		]]>
+	</if>
+	<if test="accountDateStrBegin != null">
+		<![CDATA[
+		AND ACCOUNT_DATE >= #{accountDateStrBegin,jdbcType=VARCHAR}
+		]]>
+	</if>
+    <!-- order by CREATE_DATE -->
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLEWEB_ACCOUNTSUM_COMPARE
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from SETTLEWEB_ACCOUNTSUM_COMPARE
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="SettlewebAccountsumCompareQuery">
+    delete from SETTLEWEB_ACCOUNTSUM_COMPARE
+    <include refid="Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterType="SettlewebAccountsumCompare">
+    insert into SETTLEWEB_ACCOUNTSUM_COMPARE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Base_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Base_Value_List"/>
+    </trim>
+  </insert>
+  <insert id="insertSelective" parameterType="SettlewebAccountsumCompare">
+    insert into SETTLEWEB_ACCOUNTSUM_COMPARE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Value_List"/>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="SettlewebAccountsumCompareQuery" resultType="java.lang.Integer">
+    select count(*) from SETTLEWEB_ACCOUNTSUM_COMPARE
+    <include refid="Example_Where_Clause" />
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="SettlewebAccountsumCompare">
+    update SETTLEWEB_ACCOUNTSUM_COMPARE
+    <include refid="Example_Set_Clause"/>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="SettlewebAccountsumCompare">
+    update SETTLEWEB_ACCOUNTSUM_COMPARE
+    <include refid="Base_Set_Clause"/>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <!-- 分页查询 -->
+  <select id="selectByPreExample" parameterType="SettlewebAccountsumCompareQuery" resultMap="BaseResultMap">
+    select
+    sac.ID,
+	sac.PAY_CHANNEL_ID,
+	sac.ROOT_INST_CD,
+	sac.READ_TYPE,
+	sac.ACCOUNT_TYPE,
+	sac.COUNT_1,
+	sac.AMOUNT_1,
+	sac.COUNT_2,
+	sac.AMOUNT_2,
+	sac.COUNT_3,
+	sac.AMOUNT_3,
+	sac.COUNT_4,
+	sac.AMOUNT_4,
+	sac.REQUEST_NO,
+	sac.FEE_AMOUNT,
+	sac.FEE_AMOUNT1,
+	sac.FEE_AMOUNT2,
+	sac.FEE_AMOUNT3,
+	sac.ACCOUNT_RESULT,
+	sac.REMARK,
+	sac.OBLIGATE1,
+	sac.OBLIGATE2,
+	sac.OBLIGATE3,
+	sac.STATUS_ID,
+	sac.ACCOUNT_DATE,
+	sac.CREATED_TIME,
+	sac.UPDATED_TIME,
+    p.OBLIGATE3 as MERCHANT_CODE
+    from SETTLEWEB_ACCOUNTSUM_COMPARE sac LEFT JOIN SETTLE_PARAMETER_INFO p ON p.PARAMETER_TYPE='1000000013' AND sac.MERCHANT_CODE = p.PARAMETER_CODE 
+    <include refid="Example_Where_Clause" />
+    <!-- 账期范围查询 -->
+	<if test="accountDateStrEnd != null ">
+			<![CDATA[
+			AND ACCOUNT_DATE <= #{accountDateStrEnd,jdbcType=VARCHAR}
+			]]>
+	</if>
+	<if test="accountDateStrBegin != null">
+			<![CDATA[
+			AND ACCOUNT_DATE >= #{accountDateStrBegin,jdbcType=VARCHAR}
+			]]>
+	</if>
+    <!-- order by CREATE_DATE -->
+    <!--分页查询 -->
+	<if test="orderBy !=null">
+		ORDER BY ${orderBy}
+	</if>
+	<if test="offset != null &amp; pageSize != null">
+		LIMIT #{offset}, #{pageSize}
+	</if>
+  </select>
+  <!-- // 分页查询 -->
+</mapper>

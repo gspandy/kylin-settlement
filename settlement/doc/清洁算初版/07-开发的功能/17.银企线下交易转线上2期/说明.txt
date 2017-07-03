@@ -1,0 +1,12 @@
+1.POS交易中汇总的结算金额 不加到 待清算账户! 之后逻辑不变, 查待清算账户余额进行还款.
+	修改前
+	3.	计算1取得数据的结算金额
+			3.1.	调用账户调账接口
+					待清算账户 += 结算金额
+			3.2.	更新SETTLE_POS_DETAIL数据的DeliverStatusId = 2
+	修改后
+	3.	计算1取得数据的结算金额
+			3.1. 	删除原逻辑
+			3.2.	更新SETTLE_POS_DETAIL数据的DeliverStatusId = 2
+
+2.修改POS还款全部分润规则, SETTLE_PORFIT_INVOICE表不生成4411交易.[仅SQL]

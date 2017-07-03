@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:cache="http://www.springframework.org/schema/cache"
+	   xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+	    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+	      http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-3.2.xsd"
+	   default-autowire="byName" default-lazy-init="true">
+
+	<!-- scanner redis properties -->
+	<context:property-placeholder location="classpath:redis.properties"  ignore-unresolvable="true"/>
+	<context:component-scan base-package="com.rkylin.cache.*"/>
+
+	<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxIdle" value="${redis.maxIdle}" />
+		<property name="maxActive" value="${redis.maxActive}" />
+		<property name="maxWait" value="${redis.maxWait}" />
+		<property name="testOnBorrow" value="${redis.testOnBorrow}" />
+	</bean>
+
+	<bean id="connectionFactory"
+		  class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+		  p:host-name="${redis.host}" p:port="${redis.port}" p:password="${redis.pass}"
+		  p:pool-config-ref="poolConfig" />
+
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<!-- 如果不配置Serializer，那么存储的时候只能使用String，如果用User类型存储，那么会提示错误User can't cast to String！！！-->
+		<property name="keySerializer">
+			<bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		</property>
+		<property name="valueSerializer">
+			<bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
+		</property>
+	</bean>
+
+	<bean id="guavaCache" class="com.rkylin.cache.GuavaCache" scope="singleton" lazy-init="false"/>
+
+	<bean id="redisAccountNoCreator" class="com.rkylin.common.RedisAccountNoCreator"></bean>
+	<bean id="redisIdGenerator" class="com.rkylin.common.RedisIdGenerator"></bean>
+
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+
+		<!-- 指定配置文件的位置 -->
+
+		<property name="configLocation" value="classpath:common/ehcache.xml"/>
+
+		<!-- 指定新建的CacheManager的名称 -->
+	</bean>
+
+	<bean id="localEhcache" class="com.rkylin.cache.LocalEhcache" lazy-init="false">
+		<constructor-arg ref="cacheManager"></constructor-arg>
+	</bean>
+</beans>

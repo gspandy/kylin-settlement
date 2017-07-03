@@ -1,0 +1,40 @@
+机构码	fin_account_id	useID	管理分组	账户名称
+M000033	TIM14623543519684028	14623543519684028	P000279	商单云_保理_收款主账户
+M000033	TIM14623543519704022	14623543519704022	P000280	商单云_保理_放款主账户
+M000033			P000281	商单云平台核心企业_主账户
+M000033			P000282	商单云平台供应商_主账户
+M000033			P000283	商单云平台供应商_待清算账户
+
+保利云平台
+	多渠道订单推数据, 约定字段
+		角色
+			供应商
+			核心企业
+			保理
+		名词解释
+			供应商 还钱给 保理 是融单
+			核心企业 还钱给 供应商 是商单
+	与多渠道约定
+		供应商主账户		订单表userId字段
+		供应商管理分组		订单表productId字段
+		保理主账户		订单表goodsDetail字段JSON, key为factorUserId
+		保理管理分组		订单表goodsDetail字段JSON, key为factorProductId
+		商单号			订单表goodsDetail字段JSON, key为businessOrderNo
+		保理公司名称		订单表goodsDetail字段JSON, key为factorTitle
+	任务
+		!画面 调用账户系统接口刷新settle_parameter_info表供应商账户信息
+		
+		!多渠道向订单系统插入交易可以联调
+		
+		?向订单系统插入商单号, 存入哪个字段?
+		?账户预置机构号后可以配置清分规则		
+		?需要保理公司名称(OK)
+
+		?获取账户信息逻辑流程(解决)
+			账户提供的结构 是查询 rootInstCd和product下所有的userId
+			清结算还需要 每个供应商账户对应的待清算账户信息
+
+		?同一机构对应多个保理(忽略)
+			程序向parameter_info更新数据, 主账户信息, 待清算账户信息和保理主账户信息
+			汇总交易sumAmtMap的时候原来的还用merchant_code+user_id当key, 保理云平台的用merchant_code+user_id+保理user_id当key
+			并且在sumAmtMap记录保理user_id和保理product_id

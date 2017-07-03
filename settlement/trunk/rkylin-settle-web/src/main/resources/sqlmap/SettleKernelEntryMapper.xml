@@ -1,0 +1,721 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SettleKernelEntryMapper">
+	<resultMap id="BaseResultMap" type="SettleKernelEntry">
+	  <result column="ID" jdbcType="BIGINT" property="id" />
+	  <result column="TRANS_ENTRY_SA_ID" jdbcType="VARCHAR" property="transEntrySaId" />
+	  <result column="TRANS_DATE" jdbcType="TIMESTAMP" property="transDate" />
+	  <result column="REQUEST_ID_FROM" jdbcType="VARCHAR" property="requestIdFrom" />
+	  <result column="TRANS_ID" jdbcType="BIGINT" property="transId" />
+	  <result column="TRANS_NUMBER" jdbcType="TINYINT" property="transNumber" />
+	  <result column="TRANS_NO" jdbcType="TINYINT" property="transNo" />
+	  <result column="FUNC_CODE" jdbcType="VARCHAR" property="funcCode" />
+	  <result column="FIN_ACCOUNT_ID1" jdbcType="VARCHAR" property="finAccountId1" />
+	  <result column="PAYMENT_AMOUNT1" jdbcType="DECIMAL" property="paymentAmount1" />
+	  <result column="CURRENCY1" jdbcType="VARCHAR" property="currency1" />
+	  <result column="FIN_ACCOUNT_ID2" jdbcType="VARCHAR" property="finAccountId2" />
+	  <result column="PAYMENT_AMOUNT2" jdbcType="DECIMAL" property="paymentAmount2" />
+	  <result column="CURRENCY2" jdbcType="VARCHAR" property="currency2" />
+	  <result column="ACCOUNTING_STATUS" jdbcType="TINYINT" property="accountingStatus" />
+	  <result column="REVERSE_NUMBER" jdbcType="VARCHAR" property="reverseNumber" />
+	  <result column="REFER_ENTRY_ID" jdbcType="VARCHAR" property="referEntryId" />
+	  <result column="ACCOUNT_DATE" jdbcType="TIMESTAMP" property="accountDate" />
+	  <result column="REMARK1" jdbcType="VARCHAR" property="remark1" />
+	  <result column="ROOT_INST_CD" jdbcType="VARCHAR" property="rootInstCd" />
+	  <result column="BUSI_TYPE_CODE" jdbcType="VARCHAR" property="busiTypeCode" />
+	  <result column="MERCHANT_NO" jdbcType="VARCHAR" property="merchantNo" />
+	  <result column="ACCOUNT_NO" jdbcType="VARCHAR" property="accountNo" />
+	  <result column="SETTLE_TYPE" jdbcType="VARCHAR" property="settleType" />
+	  <result column="PAY_TYPE" jdbcType="VARCHAR" property="payType" />
+	  <result column="SETTLE_CYCLE" jdbcType="VARCHAR" property="settleCycle" />
+	  <result column="T_N" jdbcType="VARCHAR" property="tn" />
+	  <result column="SETTLE_DAY" jdbcType="TIMESTAMP" property="settleDay" />
+	  <result column="ACTUAL_SETTLE_DAY" jdbcType="TIMESTAMP" property="actualSettleDay" />
+	  <result column="SETTLE_NO" jdbcType="VARCHAR" property="settleNo" />
+	  <result column="REMARK2" jdbcType="VARCHAR" property="remark2" />
+	  <result column="STATUS_ID" jdbcType="TINYINT" property="statusId" />
+	  <result column="READ_STATUS_ID" jdbcType="TINYINT" property="readStatusId" />
+	  <result column="RS_MSG" jdbcType="VARCHAR" property="rsMsg" />
+	  <result column="OBLIGATE1" jdbcType="VARCHAR" property="obligate1" />
+	  <result column="OBLIGATE2" jdbcType="VARCHAR" property="obligate2" />
+	  <result column="OBLIGATE3" jdbcType="VARCHAR" property="obligate3" />
+	  <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+	  <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <trim prefix="(" prefixOverrides="and" suffix=")">
+      <if test="transEntrySaId != null" >
+	      and TRANS_ENTRY_SA_ID = #{transEntrySaId,jdbcType=VARCHAR}
+	    </if>
+      <if test="transDate != null" >
+	      and TRANS_DATE = #{transDate,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="requestIdFrom != null" >
+	      and REQUEST_ID_FROM = #{requestIdFrom,jdbcType=VARCHAR}
+	    </if>
+      <if test="transId != null" >
+	      and TRANS_ID = #{transId,jdbcType=BIGINT}
+	    </if>
+      <if test="transNumber != null" >
+	      and TRANS_NUMBER = #{transNumber,jdbcType=TINYINT}
+	    </if>
+      <if test="transNo != null" >
+	      and TRANS_NO = #{transNo,jdbcType=TINYINT}
+	    </if>
+      <if test="funcCode != null" >
+	      and FUNC_CODE = #{funcCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="finAccountId1 != null" >
+	      and FIN_ACCOUNT_ID1 = #{finAccountId1,jdbcType=VARCHAR}
+	    </if>
+      <if test="paymentAmount1 != null" >
+	      and PAYMENT_AMOUNT1 = #{paymentAmount1,jdbcType=DECIMAL}
+	    </if>
+      <if test="currency1 != null" >
+	      and CURRENCY1 = #{currency1,jdbcType=VARCHAR}
+	    </if>
+      <if test="finAccountId2 != null" >
+	      and FIN_ACCOUNT_ID2 = #{finAccountId2,jdbcType=VARCHAR}
+	    </if>
+      <if test="paymentAmount2 != null" >
+	      and PAYMENT_AMOUNT2 = #{paymentAmount2,jdbcType=DECIMAL}
+	    </if>
+      <if test="currency2 != null" >
+	      and CURRENCY2 = #{currency2,jdbcType=VARCHAR}
+	    </if>
+      <if test="accountingStatus != null" >
+	      and ACCOUNTING_STATUS = #{accountingStatus,jdbcType=TINYINT}
+	    </if>
+      <if test="reverseNumber != null" >
+	      and REVERSE_NUMBER = #{reverseNumber,jdbcType=VARCHAR}
+	    </if>
+      <if test="referEntryId != null" >
+	      and REFER_ENTRY_ID = #{referEntryId,jdbcType=VARCHAR}
+	    </if>
+      <if test="accountDate != null" >
+	      and ACCOUNT_DATE = #{accountDate,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="remark1 != null" >
+	      and REMARK1 = #{remark1,jdbcType=VARCHAR}
+	    </if>
+      <if test="rootInstCd != null" >
+	      and ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR}
+	    </if>
+      <if test="busiTypeCode != null" >
+	      and BUSI_TYPE_CODE = #{busiTypeCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="merchantNo != null" >
+	      and MERCHANT_NO = #{merchantNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="accountNo != null" >
+	      and ACCOUNT_NO = #{accountNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="settleType != null" >
+	      and SETTLE_TYPE = #{settleType,jdbcType=VARCHAR}
+	    </if>
+      <if test="payType != null" >
+	      and PAY_TYPE = #{payType,jdbcType=VARCHAR}
+	    </if>
+      <if test="settleCycle != null" >
+	      and SETTLE_CYCLE = #{settleCycle,jdbcType=VARCHAR}
+	    </if>
+      <if test="tn != null" >
+	      and T_N = #{tn,jdbcType=VARCHAR}
+	    </if>
+      <if test="settleDay != null" >
+	      and SETTLE_DAY = #{settleDay,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="actualSettleDay != null" >
+	      and ACTUAL_SETTLE_DAY = #{actualSettleDay,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="settleNo != null" >
+	      and SETTLE_NO = #{settleNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="remark2 != null" >
+	      and REMARK2 = #{remark2,jdbcType=VARCHAR}
+	    </if>
+      <if test="statusId != null" >
+	      and STATUS_ID = #{statusId,jdbcType=TINYINT}
+	    </if>
+      <if test="readStatusId != null" >
+	      and READ_STATUS_ID = #{readStatusId,jdbcType=TINYINT}
+	    </if>
+      <if test="rsMsg != null" >
+	      and RS_MSG = #{rsMsg,jdbcType=VARCHAR}
+	    </if>
+      <if test="obligate1 != null" >
+	      and OBLIGATE1 = #{obligate1,jdbcType=VARCHAR}
+	    </if>
+      <if test="obligate2 != null" >
+	      and OBLIGATE2 = #{obligate2,jdbcType=VARCHAR}
+	    </if>
+      <if test="obligate3 != null" >
+	      and OBLIGATE3 = #{obligate3,jdbcType=VARCHAR}
+	    </if>
+      <if test="createdTime != null" >
+	      and CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="updatedTime != null" >
+	      and UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+	    </if>
+	  <if test="accountDateStr != null" >
+	      and ACCOUNT_DATE = #{accountDateStr,jdbcType=VARCHAR}
+	    </if>
+	  </trim>
+    </where>
+  </sql>
+  <sql id="Example_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+      <if test="transEntrySaId != null">
+        TRANS_ENTRY_SA_ID = #{transEntrySaId,jdbcType=VARCHAR},
+      </if>
+      <if test="transDate != null">
+        TRANS_DATE = #{transDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="requestIdFrom != null">
+        REQUEST_ID_FROM = #{requestIdFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="transId != null">
+        TRANS_ID = #{transId,jdbcType=BIGINT},
+      </if>
+      <if test="transNumber != null">
+        TRANS_NUMBER = #{transNumber,jdbcType=TINYINT},
+      </if>
+      <if test="transNo != null">
+        TRANS_NO = #{transNo,jdbcType=TINYINT},
+      </if>
+      <if test="funcCode != null">
+        FUNC_CODE = #{funcCode,jdbcType=VARCHAR},
+      </if>
+      <if test="finAccountId1 != null">
+        FIN_ACCOUNT_ID1 = #{finAccountId1,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentAmount1 != null">
+        PAYMENT_AMOUNT1 = #{paymentAmount1,jdbcType=DECIMAL},
+      </if>
+      <if test="currency1 != null">
+        CURRENCY1 = #{currency1,jdbcType=VARCHAR},
+      </if>
+      <if test="finAccountId2 != null">
+        FIN_ACCOUNT_ID2 = #{finAccountId2,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentAmount2 != null">
+        PAYMENT_AMOUNT2 = #{paymentAmount2,jdbcType=DECIMAL},
+      </if>
+      <if test="currency2 != null">
+        CURRENCY2 = #{currency2,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingStatus != null">
+        ACCOUNTING_STATUS = #{accountingStatus,jdbcType=TINYINT},
+      </if>
+      <if test="reverseNumber != null">
+        REVERSE_NUMBER = #{reverseNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="referEntryId != null">
+        REFER_ENTRY_ID = #{referEntryId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountDate != null">
+        ACCOUNT_DATE = #{accountDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark1 != null">
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="rootInstCd != null">
+        ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR},
+      </if>
+      <if test="busiTypeCode != null">
+        BUSI_TYPE_CODE = #{busiTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantNo != null">
+        MERCHANT_NO = #{merchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNo != null">
+        ACCOUNT_NO = #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="settleType != null">
+        SETTLE_TYPE = #{settleType,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null">
+        PAY_TYPE = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="settleCycle != null">
+        SETTLE_CYCLE = #{settleCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="tn != null">
+        T_N = #{tn,jdbcType=VARCHAR},
+      </if>
+      <if test="settleDay != null">
+        SETTLE_DAY = #{settleDay,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualSettleDay != null">
+        ACTUAL_SETTLE_DAY = #{actualSettleDay,jdbcType=TIMESTAMP},
+      </if>
+      <if test="settleNo != null">
+        SETTLE_NO = #{settleNo,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null">
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="statusId != null">
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+      </if>
+      <if test="readStatusId != null">
+        READ_STATUS_ID = #{readStatusId,jdbcType=TINYINT},
+      </if>
+      <if test="rsMsg != null">
+        RS_MSG = #{rsMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="obligate1 != null">
+        OBLIGATE1 = #{obligate1,jdbcType=VARCHAR},
+      </if>
+      <if test="obligate2 != null">
+        OBLIGATE2 = #{obligate2,jdbcType=VARCHAR},
+      </if>
+      <if test="obligate3 != null">
+        OBLIGATE3 = #{obligate3,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      </trim>
+    </set>
+  </sql>
+  <sql id="Base_Column_List">
+    ID,
+    TRANS_ENTRY_SA_ID,
+    TRANS_DATE,
+    REQUEST_ID_FROM,
+    TRANS_ID,
+    TRANS_NUMBER,
+    TRANS_NO,
+    FUNC_CODE,
+    FIN_ACCOUNT_ID1,
+    PAYMENT_AMOUNT1,
+    CURRENCY1,
+    FIN_ACCOUNT_ID2,
+    PAYMENT_AMOUNT2,
+    CURRENCY2,
+    ACCOUNTING_STATUS,
+    REVERSE_NUMBER,
+    REFER_ENTRY_ID,
+    ACCOUNT_DATE,
+    REMARK1,
+    ROOT_INST_CD,
+    BUSI_TYPE_CODE,
+    MERCHANT_NO,
+    ACCOUNT_NO,
+    SETTLE_TYPE,
+    PAY_TYPE,
+    SETTLE_CYCLE,
+    T_N,
+    SETTLE_DAY,
+    ACTUAL_SETTLE_DAY,
+    SETTLE_NO,
+    REMARK2,
+    STATUS_ID,
+    READ_STATUS_ID,
+    RS_MSG,
+    OBLIGATE1,
+    OBLIGATE2,
+    OBLIGATE3,
+    CREATED_TIME,
+    UPDATED_TIME,
+  </sql>
+  <sql id="Base_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+        TRANS_ENTRY_SA_ID = #{transEntrySaId,jdbcType=VARCHAR},
+        TRANS_DATE = #{transDate,jdbcType=TIMESTAMP},
+        REQUEST_ID_FROM = #{requestIdFrom,jdbcType=VARCHAR},
+        TRANS_ID = #{transId,jdbcType=BIGINT},
+        TRANS_NUMBER = #{transNumber,jdbcType=TINYINT},
+        TRANS_NO = #{transNo,jdbcType=TINYINT},
+        FUNC_CODE = #{funcCode,jdbcType=VARCHAR},
+        FIN_ACCOUNT_ID1 = #{finAccountId1,jdbcType=VARCHAR},
+        PAYMENT_AMOUNT1 = #{paymentAmount1,jdbcType=DECIMAL},
+        CURRENCY1 = #{currency1,jdbcType=VARCHAR},
+        FIN_ACCOUNT_ID2 = #{finAccountId2,jdbcType=VARCHAR},
+        PAYMENT_AMOUNT2 = #{paymentAmount2,jdbcType=DECIMAL},
+        CURRENCY2 = #{currency2,jdbcType=VARCHAR},
+        ACCOUNTING_STATUS = #{accountingStatus,jdbcType=TINYINT},
+        REVERSE_NUMBER = #{reverseNumber,jdbcType=VARCHAR},
+        REFER_ENTRY_ID = #{referEntryId,jdbcType=VARCHAR},
+        ACCOUNT_DATE = #{accountDate,jdbcType=TIMESTAMP},
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+        ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR},
+        BUSI_TYPE_CODE = #{busiTypeCode,jdbcType=VARCHAR},
+        MERCHANT_NO = #{merchantNo,jdbcType=VARCHAR},
+        ACCOUNT_NO = #{accountNo,jdbcType=VARCHAR},
+        SETTLE_TYPE = #{settleType,jdbcType=VARCHAR},
+        PAY_TYPE = #{payType,jdbcType=VARCHAR},
+        SETTLE_CYCLE = #{settleCycle,jdbcType=VARCHAR},
+        T_N = #{tn,jdbcType=VARCHAR},
+        SETTLE_DAY = #{settleDay,jdbcType=TIMESTAMP},
+        ACTUAL_SETTLE_DAY = #{actualSettleDay,jdbcType=TIMESTAMP},
+        SETTLE_NO = #{settleNo,jdbcType=VARCHAR},
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+        READ_STATUS_ID = #{readStatusId,jdbcType=TINYINT},
+        RS_MSG = #{rsMsg,jdbcType=VARCHAR},
+        OBLIGATE1 = #{obligate1,jdbcType=VARCHAR},
+        OBLIGATE2 = #{obligate2,jdbcType=VARCHAR},
+        OBLIGATE3 = #{obligate3,jdbcType=VARCHAR},
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </trim>
+    </set>
+  </sql>
+  <sql id="Selective_Column_List">
+    <if test="transEntrySaId != null">
+      TRANS_ENTRY_SA_ID,
+    </if>
+    <if test="transDate != null">
+      TRANS_DATE,
+    </if>
+    <if test="requestIdFrom != null">
+      REQUEST_ID_FROM,
+    </if>
+    <if test="transId != null">
+      TRANS_ID,
+    </if>
+    <if test="transNumber != null">
+      TRANS_NUMBER,
+    </if>
+    <if test="transNo != null">
+      TRANS_NO,
+    </if>
+    <if test="funcCode != null">
+      FUNC_CODE,
+    </if>
+    <if test="finAccountId1 != null">
+      FIN_ACCOUNT_ID1,
+    </if>
+    <if test="paymentAmount1 != null">
+      PAYMENT_AMOUNT1,
+    </if>
+    <if test="currency1 != null">
+      CURRENCY1,
+    </if>
+    <if test="finAccountId2 != null">
+      FIN_ACCOUNT_ID2,
+    </if>
+    <if test="paymentAmount2 != null">
+      PAYMENT_AMOUNT2,
+    </if>
+    <if test="currency2 != null">
+      CURRENCY2,
+    </if>
+    <if test="accountingStatus != null">
+      ACCOUNTING_STATUS,
+    </if>
+    <if test="reverseNumber != null">
+      REVERSE_NUMBER,
+    </if>
+    <if test="referEntryId != null">
+      REFER_ENTRY_ID,
+    </if>
+    <if test="accountDate != null">
+      ACCOUNT_DATE,
+    </if>
+    <if test="remark1 != null">
+      REMARK1,
+    </if>
+    <if test="rootInstCd != null">
+      ROOT_INST_CD,
+    </if>
+    <if test="busiTypeCode != null">
+      BUSI_TYPE_CODE,
+    </if>
+    <if test="merchantNo != null">
+      MERCHANT_NO,
+    </if>
+    <if test="accountNo != null">
+      ACCOUNT_NO,
+    </if>
+    <if test="settleType != null">
+      SETTLE_TYPE,
+    </if>
+    <if test="payType != null">
+      PAY_TYPE,
+    </if>
+    <if test="settleCycle != null">
+      SETTLE_CYCLE,
+    </if>
+    <if test="tn != null">
+      T_N,
+    </if>
+    <if test="settleDay != null">
+      SETTLE_DAY,
+    </if>
+    <if test="actualSettleDay != null">
+      ACTUAL_SETTLE_DAY,
+    </if>
+    <if test="settleNo != null">
+      SETTLE_NO,
+    </if>
+    <if test="remark2 != null">
+      REMARK2,
+    </if>
+    <if test="statusId != null">
+      STATUS_ID,
+    </if>
+    <if test="readStatusId != null">
+      READ_STATUS_ID,
+    </if>
+    <if test="rsMsg != null">
+      RS_MSG,
+    </if>
+    <if test="obligate1 != null">
+      OBLIGATE1,
+    </if>
+    <if test="obligate2 != null">
+      OBLIGATE2,
+    </if>
+    <if test="obligate3 != null">
+      OBLIGATE3,
+    </if>
+    <if test="createdTime != null">
+      CREATED_TIME,
+    </if>
+    <if test="updatedTime != null">
+      UPDATED_TIME,
+    </if>
+  </sql>
+	<sql id="Base_Value_List">
+    #{id,jdbcType=BIGINT},
+    #{transEntrySaId,jdbcType=VARCHAR},
+    #{transDate,jdbcType=TIMESTAMP},
+    #{requestIdFrom,jdbcType=VARCHAR},
+    #{transId,jdbcType=BIGINT},
+    #{transNumber,jdbcType=TINYINT},
+    #{transNo,jdbcType=TINYINT},
+    #{funcCode,jdbcType=VARCHAR},
+    #{finAccountId1,jdbcType=VARCHAR},
+    #{paymentAmount1,jdbcType=DECIMAL},
+    #{currency1,jdbcType=VARCHAR},
+    #{finAccountId2,jdbcType=VARCHAR},
+    #{paymentAmount2,jdbcType=DECIMAL},
+    #{currency2,jdbcType=VARCHAR},
+    #{accountingStatus,jdbcType=TINYINT},
+    #{reverseNumber,jdbcType=VARCHAR},
+    #{referEntryId,jdbcType=VARCHAR},
+    #{accountDate,jdbcType=TIMESTAMP},
+    #{remark1,jdbcType=VARCHAR},
+    #{rootInstCd,jdbcType=VARCHAR},
+    #{busiTypeCode,jdbcType=VARCHAR},
+    #{merchantNo,jdbcType=VARCHAR},
+    #{accountNo,jdbcType=VARCHAR},
+    #{settleType,jdbcType=VARCHAR},
+    #{payType,jdbcType=VARCHAR},
+    #{settleCycle,jdbcType=VARCHAR},
+    #{tn,jdbcType=VARCHAR},
+    #{settleDay,jdbcType=TIMESTAMP},
+    #{actualSettleDay,jdbcType=TIMESTAMP},
+    #{settleNo,jdbcType=VARCHAR},
+    #{remark2,jdbcType=VARCHAR},
+    #{statusId,jdbcType=TINYINT},
+    #{readStatusId,jdbcType=TINYINT},
+    #{rsMsg,jdbcType=VARCHAR},
+    #{obligate1,jdbcType=VARCHAR},
+    #{obligate2,jdbcType=VARCHAR},
+    #{obligate3,jdbcType=VARCHAR},
+    #{createdTime,jdbcType=TIMESTAMP},
+    #{updatedTime,jdbcType=TIMESTAMP},
+	</sql>
+  <sql id="Selective_Value_List">
+    <if test="transEntrySaId != null">
+      #{transEntrySaId,jdbcType=VARCHAR},
+    </if>
+    <if test="transDate != null">
+      #{transDate,jdbcType=TIMESTAMP},
+    </if>
+    <if test="requestIdFrom != null">
+      #{requestIdFrom,jdbcType=VARCHAR},
+    </if>
+    <if test="transId != null">
+      #{transId,jdbcType=BIGINT},
+    </if>
+    <if test="transNumber != null">
+      #{transNumber,jdbcType=TINYINT},
+    </if>
+    <if test="transNo != null">
+      #{transNo,jdbcType=TINYINT},
+    </if>
+    <if test="funcCode != null">
+      #{funcCode,jdbcType=VARCHAR},
+    </if>
+    <if test="finAccountId1 != null">
+      #{finAccountId1,jdbcType=VARCHAR},
+    </if>
+    <if test="paymentAmount1 != null">
+      #{paymentAmount1,jdbcType=DECIMAL},
+    </if>
+    <if test="currency1 != null">
+      #{currency1,jdbcType=VARCHAR},
+    </if>
+    <if test="finAccountId2 != null">
+      #{finAccountId2,jdbcType=VARCHAR},
+    </if>
+    <if test="paymentAmount2 != null">
+      #{paymentAmount2,jdbcType=DECIMAL},
+    </if>
+    <if test="currency2 != null">
+      #{currency2,jdbcType=VARCHAR},
+    </if>
+    <if test="accountingStatus != null">
+      #{accountingStatus,jdbcType=TINYINT},
+    </if>
+    <if test="reverseNumber != null">
+      #{reverseNumber,jdbcType=VARCHAR},
+    </if>
+    <if test="referEntryId != null">
+      #{referEntryId,jdbcType=VARCHAR},
+    </if>
+    <if test="accountDate != null">
+      #{accountDate,jdbcType=TIMESTAMP},
+    </if>
+    <if test="remark1 != null">
+      #{remark1,jdbcType=VARCHAR},
+    </if>
+    <if test="rootInstCd != null">
+      #{rootInstCd,jdbcType=VARCHAR},
+    </if>
+    <if test="busiTypeCode != null">
+      #{busiTypeCode,jdbcType=VARCHAR},
+    </if>
+    <if test="merchantNo != null">
+      #{merchantNo,jdbcType=VARCHAR},
+    </if>
+    <if test="accountNo != null">
+      #{accountNo,jdbcType=VARCHAR},
+    </if>
+    <if test="settleType != null">
+      #{settleType,jdbcType=VARCHAR},
+    </if>
+    <if test="payType != null">
+      #{payType,jdbcType=VARCHAR},
+    </if>
+    <if test="settleCycle != null">
+      #{settleCycle,jdbcType=VARCHAR},
+    </if>
+    <if test="tn != null">
+      #{tn,jdbcType=VARCHAR},
+    </if>
+    <if test="settleDay != null">
+      #{settleDay,jdbcType=TIMESTAMP},
+    </if>
+    <if test="actualSettleDay != null">
+      #{actualSettleDay,jdbcType=TIMESTAMP},
+    </if>
+    <if test="settleNo != null">
+      #{settleNo,jdbcType=VARCHAR},
+    </if>
+    <if test="remark2 != null">
+      #{remark2,jdbcType=VARCHAR},
+    </if>
+    <if test="statusId != null">
+      #{statusId,jdbcType=TINYINT},
+    </if>
+    <if test="readStatusId != null">
+      #{readStatusId,jdbcType=TINYINT},
+    </if>
+    <if test="rsMsg != null">
+      #{rsMsg,jdbcType=VARCHAR},
+    </if>
+    <if test="obligate1 != null">
+      #{obligate1,jdbcType=VARCHAR},
+    </if>
+    <if test="obligate2 != null">
+      #{obligate2,jdbcType=VARCHAR},
+    </if>
+    <if test="obligate3 != null">
+      #{obligate3,jdbcType=VARCHAR},
+    </if>
+    <if test="createdTime != null">
+      #{createdTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="updatedTime != null">
+      #{updatedTime,jdbcType=TIMESTAMP},
+    </if>
+  </sql>
+  
+  <select id="selectByExample" parameterType="SettleKernelEntryQuery" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_KERNEL_ENTRY
+    <include refid="Example_Where_Clause" />
+    <!-- order by CREATE_DATE -->
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_KERNEL_ENTRY
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from SETTLE_KERNEL_ENTRY
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="SettleKernelEntryQuery">
+    delete from SETTLE_KERNEL_ENTRY
+    <include refid="Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterType="SettleKernelEntry">
+    insert into SETTLE_KERNEL_ENTRY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Base_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Base_Value_List"/>
+    </trim>
+  </insert>
+  <insert id="insertSelective" parameterType="SettleKernelEntry">
+    insert into SETTLE_KERNEL_ENTRY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Value_List"/>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="SettleKernelEntryQuery" resultType="java.lang.Integer">
+    select count(*) from SETTLE_KERNEL_ENTRY
+    <include refid="Example_Where_Clause" />
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="SettleKernelEntry">
+    update SETTLE_KERNEL_ENTRY
+    <include refid="Example_Set_Clause"/>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="SettleKernelEntry">
+    update SETTLE_KERNEL_ENTRY
+    <include refid="Base_Set_Clause"/>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <!-- 分页查询 -->
+  <select id="selectByPreExample" parameterType="SettleKernelEntryQuery" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_KERNEL_ENTRY
+    <include refid="Example_Where_Clause" />
+    <!-- order by CREATE_DATE -->
+    <!--分页查询 -->
+	<if test="orderBy !=null">
+		ORDER BY ${orderBy}
+	</if>
+	<if test="offset != null &amp; pageSize != null">
+		LIMIT #{offset}, #{pageSize}
+	</if>
+  </select>
+</mapper>

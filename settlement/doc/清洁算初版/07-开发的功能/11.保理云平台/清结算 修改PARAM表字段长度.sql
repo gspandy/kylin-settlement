@@ -1,0 +1,1 @@
+alter table SETTLE_PARAMETER_INFO modify column PARAMETER_CODE varchar(40) COMMENT '参数编码';

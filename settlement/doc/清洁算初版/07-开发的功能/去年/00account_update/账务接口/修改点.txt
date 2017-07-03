@@ -1,0 +1,2 @@
+1. settle_trans_profit 表添加了 user_ip_address 和 role_code 两个字段
+	实时清分(/2分钟) 操作中将 将被清分交易 (settle_trans_detail) 中的user_ip_address 和 role_code  插入到 (settle_trans_profit) 中

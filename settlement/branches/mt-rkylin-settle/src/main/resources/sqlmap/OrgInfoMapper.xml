@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="OrgInfoMapper">
+	<resultMap id="BaseResultMap" type="OrgInfo">
+	  <result column="ORG_ID" jdbcType="INTEGER" property="orgId" />
+	  <result column="ORG_NO" jdbcType="VARCHAR" property="orgNo" />
+	  <result column="ORG_CODE" jdbcType="VARCHAR" property="orgCode" />
+	  <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+	  <result column="ORG_REMARK" jdbcType="VARCHAR" property="orgRemark" />
+	  <result column="CHANNEL_HOME" jdbcType="VARCHAR" property="channelHome" />
+	  <result column="PRIVATE_KEY" jdbcType="VARCHAR" property="privateKey" />
+	  <result column="PUBLIC_KEY" jdbcType="VARCHAR" property="publicKey" />
+	  <result column="CHANNEL_PKEY" jdbcType="VARCHAR" property="channelPkey" />
+	  <result column="CHANNEL_WSDL" jdbcType="VARCHAR" property="channelWsdl" />
+	  <result column="CHANNEL_URL1" jdbcType="VARCHAR" property="channelUrl1" />
+	  <result column="CHANNEL_URL2" jdbcType="VARCHAR" property="channelUrl2" />
+	  <result column="NOTIFY_TYPE" jdbcType="VARCHAR" property="notifyType" />
+	  <result column="NOTIFY_URL1" jdbcType="VARCHAR" property="notifyUrl1" />
+	  <result column="NOTIFY_URL2" jdbcType="VARCHAR" property="notifyUrl2" />
+	  <result column="USERNAME" jdbcType="VARCHAR" property="username" />
+	  <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+	  <result column="DATA_FORMAT" jdbcType="VARCHAR" property="dataFormat" />
+	  <result column="TIMEOUT" jdbcType="INTEGER" property="timeout" />
+	  <result column="VERSION" jdbcType="VARCHAR" property="version" />
+	  <result column="CHARSET" jdbcType="VARCHAR" property="charset" />
+	  <result column="LANGUAGE" jdbcType="VARCHAR" property="language" />
+	  <result column="SIGN_TYPE" jdbcType="VARCHAR" property="signType" />
+	  <result column="ACCOUNT_NO" jdbcType="VARCHAR" property="accountNo" />
+	  <result column="ACCOUNT_TYPE" jdbcType="TINYINT" property="accountType" />
+	  <result column="ACCOUNT_NAME" jdbcType="VARCHAR" property="accountName" />
+	  <result column="BANK_NO" jdbcType="VARCHAR" property="bankNo" />
+	  <result column="BANK_NAME" jdbcType="VARCHAR" property="bankName" />
+	  <result column="DISTRICT_CODE" jdbcType="VARCHAR" property="districtCode" />
+	  <result column="PROVINCE" jdbcType="VARCHAR" property="province" />
+	  <result column="CITY" jdbcType="VARCHAR" property="city" />
+	  <result column="EXPAND1" jdbcType="VARCHAR" property="expand1" />
+	  <result column="EXPAND2" jdbcType="VARCHAR" property="expand2" />
+	  <result column="EXPAND3" jdbcType="VARCHAR" property="expand3" />
+	  <result column="EXPAND4" jdbcType="VARCHAR" property="expand4" />
+	  <result column="STATUS_ID" jdbcType="TINYINT" property="statusId" />
+	  <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+	  <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <trim prefix="(" prefixOverrides="and" suffix=")">
+      <if test="orgId != null" >
+	      and ORG_ID = #{orgId,jdbcType=INTEGER}
+	    </if>
+      <if test="orgNo != null" >
+	      and ORG_NO = #{orgNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="orgCode != null" >
+	      and ORG_CODE = #{orgCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="orgNum != null" >
+	      and ORG_NUM = #{orgNum,jdbcType=VARCHAR}
+	    </if>
+      <if test="orgRemark != null" >
+	      and ORG_REMARK = #{orgRemark,jdbcType=VARCHAR}
+	    </if>
+      <if test="channelHome != null" >
+	      and CHANNEL_HOME = #{channelHome,jdbcType=VARCHAR}
+	    </if>
+      <if test="privateKey != null" >
+	      and PRIVATE_KEY = #{privateKey,jdbcType=VARCHAR}
+	    </if>
+      <if test="publicKey != null" >
+	      and PUBLIC_KEY = #{publicKey,jdbcType=VARCHAR}
+	    </if>
+      <if test="channelPkey != null" >
+	      and CHANNEL_PKEY = #{channelPkey,jdbcType=VARCHAR}
+	    </if>
+      <if test="channelWsdl != null" >
+	      and CHANNEL_WSDL = #{channelWsdl,jdbcType=VARCHAR}
+	    </if>
+      <if test="channelUrl1 != null" >
+	      and CHANNEL_URL1 = #{channelUrl1,jdbcType=VARCHAR}
+	    </if>
+      <if test="channelUrl2 != null" >
+	      and CHANNEL_URL2 = #{channelUrl2,jdbcType=VARCHAR}
+	    </if>
+      <if test="notifyType != null" >
+	      and NOTIFY_TYPE = #{notifyType,jdbcType=VARCHAR}
+	    </if>
+      <if test="notifyUrl1 != null" >
+	      and NOTIFY_URL1 = #{notifyUrl1,jdbcType=VARCHAR}
+	    </if>
+      <if test="notifyUrl2 != null" >
+	      and NOTIFY_URL2 = #{notifyUrl2,jdbcType=VARCHAR}
+	    </if>
+      <if test="username != null" >
+	      and USERNAME = #{username,jdbcType=VARCHAR}
+	    </if>
+      <if test="password != null" >
+	      and PASSWORD = #{password,jdbcType=VARCHAR}
+	    </if>
+      <if test="dataFormat != null" >
+	      and DATA_FORMAT = #{dataFormat,jdbcType=VARCHAR}
+	    </if>
+      <if test="timeout != null" >
+	      and TIMEOUT = #{timeout,jdbcType=INTEGER}
+	    </if>
+      <if test="version != null" >
+	      and VERSION = #{version,jdbcType=VARCHAR}
+	    </if>
+      <if test="charset != null" >
+	      and CHARSET = #{charset,jdbcType=VARCHAR}
+	    </if>
+      <if test="language != null" >
+	      and LANGUAGE = #{language,jdbcType=VARCHAR}
+	    </if>
+      <if test="signType != null" >
+	      and SIGN_TYPE = #{signType,jdbcType=VARCHAR}
+	    </if>
+      <if test="accountNo != null" >
+	      and ACCOUNT_NO = #{accountNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="accountType != null" >
+	      and ACCOUNT_TYPE = #{accountType,jdbcType=TINYINT}
+	    </if>
+      <if test="accountName != null" >
+	      and ACCOUNT_NAME = #{accountName,jdbcType=VARCHAR}
+	    </if>
+      <if test="bankNo != null" >
+	      and BANK_NO = #{bankNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="bankName != null" >
+	      and BANK_NAME = #{bankName,jdbcType=VARCHAR}
+	    </if>
+      <if test="districtCode != null" >
+	      and DISTRICT_CODE = #{districtCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="province != null" >
+	      and PROVINCE = #{province,jdbcType=VARCHAR}
+	    </if>
+      <if test="city != null" >
+	      and CITY = #{city,jdbcType=VARCHAR}
+	    </if>
+      <if test="expand1 != null" >
+	      and EXPAND1 = #{expand1,jdbcType=VARCHAR}
+	    </if>
+      <if test="expand2 != null" >
+	      and EXPAND2 = #{expand2,jdbcType=VARCHAR}
+	    </if>
+      <if test="expand3 != null" >
+	      and EXPAND3 = #{expand3,jdbcType=VARCHAR}
+	    </if>
+      <if test="expand4 != null" >
+	      and EXPAND4 = #{expand4,jdbcType=VARCHAR}
+	    </if>
+      <if test="statusId != null" >
+	      and STATUS_ID = #{statusId,jdbcType=TINYINT}
+	    </if>
+      <if test="createdTime != null" >
+	      and CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="updatedTime != null" >
+	      and UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+	    </if>
+	  </trim>
+    </where>
+  </sql>
+  <sql id="Example_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+      <if test="orgId != null">
+        ORG_ID = #{orgId,jdbcType=INTEGER},
+      </if>
+      <if test="orgNo != null">
+        ORG_NO = #{orgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null">
+        ORG_CODE = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgRemark != null">
+        ORG_REMARK = #{orgRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="channelHome != null">
+        CHANNEL_HOME = #{channelHome,jdbcType=VARCHAR},
+      </if>
+      <if test="privateKey != null">
+        PRIVATE_KEY = #{privateKey,jdbcType=VARCHAR},
+      </if>
+      <if test="publicKey != null">
+        PUBLIC_KEY = #{publicKey,jdbcType=VARCHAR},
+      </if>
+      <if test="channelPkey != null">
+        CHANNEL_PKEY = #{channelPkey,jdbcType=VARCHAR},
+      </if>
+      <if test="channelWsdl != null">
+        CHANNEL_WSDL = #{channelWsdl,jdbcType=VARCHAR},
+      </if>
+      <if test="channelUrl1 != null">
+        CHANNEL_URL1 = #{channelUrl1,jdbcType=VARCHAR},
+      </if>
+      <if test="channelUrl2 != null">
+        CHANNEL_URL2 = #{channelUrl2,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyType != null">
+        NOTIFY_TYPE = #{notifyType,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyUrl1 != null">
+        NOTIFY_URL1 = #{notifyUrl1,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyUrl2 != null">
+        NOTIFY_URL2 = #{notifyUrl2,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="dataFormat != null">
+        DATA_FORMAT = #{dataFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="timeout != null">
+        TIMEOUT = #{timeout,jdbcType=INTEGER},
+      </if>
+      <if test="version != null">
+        VERSION = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="charset != null">
+        CHARSET = #{charset,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null">
+        LANGUAGE = #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="signType != null">
+        SIGN_TYPE = #{signType,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNo != null">
+        ACCOUNT_NO = #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null">
+        ACCOUNT_TYPE = #{accountType,jdbcType=TINYINT},
+      </if>
+      <if test="accountName != null">
+        ACCOUNT_NAME = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankNo != null">
+        BANK_NO = #{bankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        BANK_NAME = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="districtCode != null">
+        DISTRICT_CODE = #{districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        PROVINCE = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        CITY = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="expand1 != null">
+        EXPAND1 = #{expand1,jdbcType=VARCHAR},
+      </if>
+      <if test="expand2 != null">
+        EXPAND2 = #{expand2,jdbcType=VARCHAR},
+      </if>
+      <if test="expand3 != null">
+        EXPAND3 = #{expand3,jdbcType=VARCHAR},
+      </if>
+      <if test="expand4 != null">
+        EXPAND4 = #{expand4,jdbcType=VARCHAR},
+      </if>
+      <if test="statusId != null">
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      </trim>
+    </set>
+  </sql>
+  <sql id="Base_Column_List">
+    ORG_ID,
+    ORG_NO,
+    ORG_CODE,
+    ORG_NUM,
+    ORG_REMARK,
+    CHANNEL_HOME,
+    PRIVATE_KEY,
+    PUBLIC_KEY,
+    CHANNEL_PKEY,
+    CHANNEL_WSDL,
+    CHANNEL_URL1,
+    CHANNEL_URL2,
+    NOTIFY_TYPE,
+    NOTIFY_URL1,
+    NOTIFY_URL2,
+    USERNAME,
+    PASSWORD,
+    DATA_FORMAT,
+    TIMEOUT,
+    VERSION,
+    CHARSET,
+    LANGUAGE,
+    SIGN_TYPE,
+    ACCOUNT_NO,
+    ACCOUNT_TYPE,
+    ACCOUNT_NAME,
+    BANK_NO,
+    BANK_NAME,
+    DISTRICT_CODE,
+    PROVINCE,
+    CITY,
+    EXPAND1,
+    EXPAND2,
+    EXPAND3,
+    EXPAND4,
+    STATUS_ID,
+    CREATED_TIME,
+    UPDATED_TIME,
+  </sql>
+  <sql id="Base_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+        ORG_ID = #{orgId,jdbcType=INTEGER},
+        ORG_NO = #{orgNo,jdbcType=VARCHAR},
+        ORG_CODE = #{orgCode,jdbcType=VARCHAR},
+        ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+        ORG_REMARK = #{orgRemark,jdbcType=VARCHAR},
+        CHANNEL_HOME = #{channelHome,jdbcType=VARCHAR},
+        PRIVATE_KEY = #{privateKey,jdbcType=VARCHAR},
+        PUBLIC_KEY = #{publicKey,jdbcType=VARCHAR},
+        CHANNEL_PKEY = #{channelPkey,jdbcType=VARCHAR},
+        CHANNEL_WSDL = #{channelWsdl,jdbcType=VARCHAR},
+        CHANNEL_URL1 = #{channelUrl1,jdbcType=VARCHAR},
+        CHANNEL_URL2 = #{channelUrl2,jdbcType=VARCHAR},
+        NOTIFY_TYPE = #{notifyType,jdbcType=VARCHAR},
+        NOTIFY_URL1 = #{notifyUrl1,jdbcType=VARCHAR},
+        NOTIFY_URL2 = #{notifyUrl2,jdbcType=VARCHAR},
+        USERNAME = #{username,jdbcType=VARCHAR},
+        PASSWORD = #{password,jdbcType=VARCHAR},
+        DATA_FORMAT = #{dataFormat,jdbcType=VARCHAR},
+        TIMEOUT = #{timeout,jdbcType=INTEGER},
+        VERSION = #{version,jdbcType=VARCHAR},
+        CHARSET = #{charset,jdbcType=VARCHAR},
+        LANGUAGE = #{language,jdbcType=VARCHAR},
+        SIGN_TYPE = #{signType,jdbcType=VARCHAR},
+        ACCOUNT_NO = #{accountNo,jdbcType=VARCHAR},
+        ACCOUNT_TYPE = #{accountType,jdbcType=TINYINT},
+        ACCOUNT_NAME = #{accountName,jdbcType=VARCHAR},
+        BANK_NO = #{bankNo,jdbcType=VARCHAR},
+        BANK_NAME = #{bankName,jdbcType=VARCHAR},
+        DISTRICT_CODE = #{districtCode,jdbcType=VARCHAR},
+        PROVINCE = #{province,jdbcType=VARCHAR},
+        CITY = #{city,jdbcType=VARCHAR},
+        EXPAND1 = #{expand1,jdbcType=VARCHAR},
+        EXPAND2 = #{expand2,jdbcType=VARCHAR},
+        EXPAND3 = #{expand3,jdbcType=VARCHAR},
+        EXPAND4 = #{expand4,jdbcType=VARCHAR},
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </trim>
+    </set>
+  </sql>
+  <sql id="Selective_Column_List">
+    <if test="orgId != null">
+      ORG_ID,
+    </if>
+    <if test="orgNo != null">
+      ORG_NO,
+    </if>
+    <if test="orgCode != null">
+      ORG_CODE,
+    </if>
+    <if test="orgNum != null">
+      ORG_NUM,
+    </if>
+    <if test="orgRemark != null">
+      ORG_REMARK,
+    </if>
+    <if test="channelHome != null">
+      CHANNEL_HOME,
+    </if>
+    <if test="privateKey != null">
+      PRIVATE_KEY,
+    </if>
+    <if test="publicKey != null">
+      PUBLIC_KEY,
+    </if>
+    <if test="channelPkey != null">
+      CHANNEL_PKEY,
+    </if>
+    <if test="channelWsdl != null">
+      CHANNEL_WSDL,
+    </if>
+    <if test="channelUrl1 != null">
+      CHANNEL_URL1,
+    </if>
+    <if test="channelUrl2 != null">
+      CHANNEL_URL2,
+    </if>
+    <if test="notifyType != null">
+      NOTIFY_TYPE,
+    </if>
+    <if test="notifyUrl1 != null">
+      NOTIFY_URL1,
+    </if>
+    <if test="notifyUrl2 != null">
+      NOTIFY_URL2,
+    </if>
+    <if test="username != null">
+      USERNAME,
+    </if>
+    <if test="password != null">
+      PASSWORD,
+    </if>
+    <if test="dataFormat != null">
+      DATA_FORMAT,
+    </if>
+    <if test="timeout != null">
+      TIMEOUT,
+    </if>
+    <if test="version != null">
+      VERSION,
+    </if>
+    <if test="charset != null">
+      CHARSET,
+    </if>
+    <if test="language != null">
+      LANGUAGE,
+    </if>
+    <if test="signType != null">
+      SIGN_TYPE,
+    </if>
+    <if test="accountNo != null">
+      ACCOUNT_NO,
+    </if>
+    <if test="accountType != null">
+      ACCOUNT_TYPE,
+    </if>
+    <if test="accountName != null">
+      ACCOUNT_NAME,
+    </if>
+    <if test="bankNo != null">
+      BANK_NO,
+    </if>
+    <if test="bankName != null">
+      BANK_NAME,
+    </if>
+    <if test="districtCode != null">
+      DISTRICT_CODE,
+    </if>
+    <if test="province != null">
+      PROVINCE,
+    </if>
+    <if test="city != null">
+      CITY,
+    </if>
+    <if test="expand1 != null">
+      EXPAND1,
+    </if>
+    <if test="expand2 != null">
+      EXPAND2,
+    </if>
+    <if test="expand3 != null">
+      EXPAND3,
+    </if>
+    <if test="expand4 != null">
+      EXPAND4,
+    </if>
+    <if test="statusId != null">
+      STATUS_ID,
+    </if>
+    <if test="createdTime != null">
+      CREATED_TIME,
+    </if>
+    <if test="updatedTime != null">
+      UPDATED_TIME,
+    </if>
+  </sql>
+	<sql id="Base_Value_List">
+    #{orgId,jdbcType=INTEGER},
+    #{orgNo,jdbcType=VARCHAR},
+    #{orgCode,jdbcType=VARCHAR},
+    #{orgNum,jdbcType=VARCHAR},
+    #{orgRemark,jdbcType=VARCHAR},
+    #{channelHome,jdbcType=VARCHAR},
+    #{privateKey,jdbcType=VARCHAR},
+    #{publicKey,jdbcType=VARCHAR},
+    #{channelPkey,jdbcType=VARCHAR},
+    #{channelWsdl,jdbcType=VARCHAR},
+    #{channelUrl1,jdbcType=VARCHAR},
+    #{channelUrl2,jdbcType=VARCHAR},
+    #{notifyType,jdbcType=VARCHAR},
+    #{notifyUrl1,jdbcType=VARCHAR},
+    #{notifyUrl2,jdbcType=VARCHAR},
+    #{username,jdbcType=VARCHAR},
+    #{password,jdbcType=VARCHAR},
+    #{dataFormat,jdbcType=VARCHAR},
+    #{timeout,jdbcType=INTEGER},
+    #{version,jdbcType=VARCHAR},
+    #{charset,jdbcType=VARCHAR},
+    #{language,jdbcType=VARCHAR},
+    #{signType,jdbcType=VARCHAR},
+    #{accountNo,jdbcType=VARCHAR},
+    #{accountType,jdbcType=TINYINT},
+    #{accountName,jdbcType=VARCHAR},
+    #{bankNo,jdbcType=VARCHAR},
+    #{bankName,jdbcType=VARCHAR},
+    #{districtCode,jdbcType=VARCHAR},
+    #{province,jdbcType=VARCHAR},
+    #{city,jdbcType=VARCHAR},
+    #{expand1,jdbcType=VARCHAR},
+    #{expand2,jdbcType=VARCHAR},
+    #{expand3,jdbcType=VARCHAR},
+    #{expand4,jdbcType=VARCHAR},
+    #{statusId,jdbcType=TINYINT},
+    #{createdTime,jdbcType=TIMESTAMP},
+    #{updatedTime,jdbcType=TIMESTAMP},
+	</sql>
+  <sql id="Selective_Value_List">
+    <if test="orgId != null">
+      #{orgId,jdbcType=INTEGER},
+    </if>
+    <if test="orgNo != null">
+      #{orgNo,jdbcType=VARCHAR},
+    </if>
+    <if test="orgCode != null">
+      #{orgCode,jdbcType=VARCHAR},
+    </if>
+    <if test="orgNum != null">
+      #{orgNum,jdbcType=VARCHAR},
+    </if>
+    <if test="orgRemark != null">
+      #{orgRemark,jdbcType=VARCHAR},
+    </if>
+    <if test="channelHome != null">
+      #{channelHome,jdbcType=VARCHAR},
+    </if>
+    <if test="privateKey != null">
+      #{privateKey,jdbcType=VARCHAR},
+    </if>
+    <if test="publicKey != null">
+      #{publicKey,jdbcType=VARCHAR},
+    </if>
+    <if test="channelPkey != null">
+      #{channelPkey,jdbcType=VARCHAR},
+    </if>
+    <if test="channelWsdl != null">
+      #{channelWsdl,jdbcType=VARCHAR},
+    </if>
+    <if test="channelUrl1 != null">
+      #{channelUrl1,jdbcType=VARCHAR},
+    </if>
+    <if test="channelUrl2 != null">
+      #{channelUrl2,jdbcType=VARCHAR},
+    </if>
+    <if test="notifyType != null">
+      #{notifyType,jdbcType=VARCHAR},
+    </if>
+    <if test="notifyUrl1 != null">
+      #{notifyUrl1,jdbcType=VARCHAR},
+    </if>
+    <if test="notifyUrl2 != null">
+      #{notifyUrl2,jdbcType=VARCHAR},
+    </if>
+    <if test="username != null">
+      #{username,jdbcType=VARCHAR},
+    </if>
+    <if test="password != null">
+      #{password,jdbcType=VARCHAR},
+    </if>
+    <if test="dataFormat != null">
+      #{dataFormat,jdbcType=VARCHAR},
+    </if>
+    <if test="timeout != null">
+      #{timeout,jdbcType=INTEGER},
+    </if>
+    <if test="version != null">
+      #{version,jdbcType=VARCHAR},
+    </if>
+    <if test="charset != null">
+      #{charset,jdbcType=VARCHAR},
+    </if>
+    <if test="language != null">
+      #{language,jdbcType=VARCHAR},
+    </if>
+    <if test="signType != null">
+      #{signType,jdbcType=VARCHAR},
+    </if>
+    <if test="accountNo != null">
+      #{accountNo,jdbcType=VARCHAR},
+    </if>
+    <if test="accountType != null">
+      #{accountType,jdbcType=TINYINT},
+    </if>
+    <if test="accountName != null">
+      #{accountName,jdbcType=VARCHAR},
+    </if>
+    <if test="bankNo != null">
+      #{bankNo,jdbcType=VARCHAR},
+    </if>
+    <if test="bankName != null">
+      #{bankName,jdbcType=VARCHAR},
+    </if>
+    <if test="districtCode != null">
+      #{districtCode,jdbcType=VARCHAR},
+    </if>
+    <if test="province != null">
+      #{province,jdbcType=VARCHAR},
+    </if>
+    <if test="city != null">
+      #{city,jdbcType=VARCHAR},
+    </if>
+    <if test="expand1 != null">
+      #{expand1,jdbcType=VARCHAR},
+    </if>
+    <if test="expand2 != null">
+      #{expand2,jdbcType=VARCHAR},
+    </if>
+    <if test="expand3 != null">
+      #{expand3,jdbcType=VARCHAR},
+    </if>
+    <if test="expand4 != null">
+      #{expand4,jdbcType=VARCHAR},
+    </if>
+    <if test="statusId != null">
+      #{statusId,jdbcType=TINYINT},
+    </if>
+    <if test="createdTime != null">
+      #{createdTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="updatedTime != null">
+      #{updatedTime,jdbcType=TIMESTAMP},
+    </if>
+  </sql>
+  
+  <select id="selectByExample" parameterType="OrgInfoQuery" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from ORG_INFO
+    <include refid="Example_Where_Clause" />
+    <!-- order by CREATE_DATE -->
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from ORG_INFO
+    where ORG_ID = #{orgId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ORG_INFO
+    where ORG_ID = #{orgId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="OrgInfoQuery">
+    delete from ORG_INFO
+    <include refid="Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterType="OrgInfo">
+    insert into ORG_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Base_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Base_Value_List"/>
+    </trim>
+  </insert>
+  <insert id="insertSelective" parameterType="OrgInfo">
+    insert into ORG_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Value_List"/>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="OrgInfoQuery" resultType="java.lang.Integer">
+    select count(*) from ORG_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="OrgInfo">
+    update ORG_INFO
+    <include refid="Example_Set_Clause"/>
+    where ORG_ID = #{orgId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="OrgInfo">
+    update ORG_INFO
+    <include refid="Base_Set_Clause"/>
+    where ORG_ID = #{orgId,jdbcType=BIGINT}
+  </update>
+</mapper>

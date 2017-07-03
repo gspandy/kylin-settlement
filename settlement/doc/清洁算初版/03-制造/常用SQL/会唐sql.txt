@@ -1,0 +1,50 @@
+-- ³äÖµ
+select
+    left(ti.account_date,10),
+		ti.user_id,
+		ti.MERCHANT_CODE,
+		ti.ORDER_PACKAGE_NO,
+		ti.AMOUNT,
+		left(ti.Request_Time,10),
+		right(ti.Request_Time,8),
+		ti.FUNC_CODE,
+		ti.Request_No,
+		ti.order_count,
+		ti.status,
+		ti.FEE_AMOUNT,
+		ti.User_Fee,
+		ti.Remark
+   from TRANS_ORDER_INFO ti
+   where 1=1
+    and ti.status = 1
+		and ti.FUNC_CODE in ('4015','4017')
+    and ti.account_date >= '2016-01-13 00:00:00'
+    and ti.account_date <= '2016-01-13 00:00:00'
+    and ti.MERCHANT_CODE = 'M000003'
+   order by ti.REQUEST_TIME
+
+-- ´ú¸¶
+select
+    left(ti.account_date,10),
+		ti.user_id,
+		ti.INTER_MERCHANT_CODE,
+		ti.Request_No,
+		ti.AMOUNT,
+		left(ti.Request_Time,10),
+		right(ti.Request_Time,8),
+		ti.FUNC_CODE,
+		ti.order_No,
+		ti.order_count,
+		ti.status,
+		ti.FEE_AMOUNT,
+		ti.User_Fee,
+		ti.Remark
+   from TRANS_ORDER_INFO ti
+   where 1=1
+		and ti.status <> 0
+		and ti.FUNC_CODE in ('4014','4016')
+    and ti.account_date >= '2015-12-01 00:00:00'
+    and ti.account_date <= '2015-12-26 00:00:00'
+    and ti.MERCHANT_CODE LIKE 'M000003%'
+		and (ti.remark is null or ti.remark <> 'qjs_tuikuan')
+   order by ti.REQUEST_TIME

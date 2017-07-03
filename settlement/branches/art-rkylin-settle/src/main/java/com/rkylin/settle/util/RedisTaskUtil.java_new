@@ -1,0 +1,112 @@
+package com.rkylin.settle.util;
+
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+import net.sf.ehcache.util.TimeUtil;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
+
+import com.rongcapital.redis.sdr.base.BaseRedisService;
+
+/**
+ * spring提供的 redis工具类
+ */
+@Service("redisTaskUtil")
+public class RedisTaskUtil {
+	private static Logger logger = LoggerFactory.getLogger(RedisTaskUtil.class);
+	@Autowired
+	private RedisTemplate<String, byte[]> redisTemplate;
+	//@Autowired
+	//private RedisConnectionFactory factory;
+	@Autowired
+	BaseRedisService<byte[], byte[]> connection;
+	/**
+	 * 封锁定时任务
+	 * @param id	redis对应定时任务的key
+	 */
+	public boolean doTaskClose(String id) {
+		//5分钟
+		Long seconds = 5 * 60l;
+		return doTaskClose(id, seconds);
+	}
+	/**
+	 * 封锁定时任务
+	 * @param id	redis对应定时任务的key
+	 */
+	public boolean doTaskClose(String id, Long seconds) {
+		//redis的key
+		byte[] key = id.getBytes();
+		//redis.setNX方法返回值
+		boolean setIsSuccess = false;
+
+		try {
+			//向redis中存储
+			setIsSuccess = connection.setNx(key, String.valueOf((new Date()).getTime()).getBytes());
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("doTaskClose 方法发生异常", e);
+		} finally {
+			//this.closeRedisConnection(connection);
+		}
+		
+		boolean expireIsSuccess = this.redisExpire(key, seconds);
+		return setIsSuccess && expireIsSuccess;
+	}
+	/**
+	 * 解锁定时任务
+	 * @param id	redis对应定时任务的key
+	 */
+	public void doTaskOpen(String id) {
+		byte[] key = id.getBytes();
+		
+		try {
+			connection.delete(key);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("doTaskOpen 方法发生异常", e);
+		} finally {
+			//this.closeRedisConnection(connection);
+		}
+	}
+	/**
+	 * 设置redis key生效时间
+	 * @param key
+	 * @param seconds
+	 * @return
+	 */
+	private boolean  redisExpire(byte[] key, Long seconds) {
+		boolean isSuccess = false;
+		
+		try {
+			isSuccess = connection.expire(key, seconds, TimeUnit.SECONDS);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("redisExpire 方法发生异常", e);
+		} finally {
+			//closeRedisConnection(connection);
+		}
+		
+		return isSuccess;
+	}
+	/**
+	 * 获取redis链接
+	 * @return
+	 */
+	private BaseRedisService getRedisConnection() {
+//		if(factory == null) factory = redisTemplate.getConnectionFactory();
+//		return factory.getConnection();
+		return this.connection;
+	}
+	/**
+	 * 关闭redis链接
+	 */
+	private void closeRedisConnection(RedisConnection connection) {
+		if(connection != null) connection.close();
+	}
+}

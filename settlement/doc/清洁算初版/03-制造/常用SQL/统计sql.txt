@@ -1,0 +1,27 @@
+-- 代收付交易统计
+SELECT suba.mercd,suba.funcd,suba.stats,count(*),SUM(suba.amt) from (
+SELECT
+CASE MERCHANT_CODE WHEN 'M000003' THEN 	'会唐' WHEN 'M0000031' THEN 	'会唐' WHEN 'M000004' THEN 	'课栈' WHEN 'M000005' THEN 	'君融贷' ELSE 	MERCHANT_CODE END as mercd,
+CASE FUNC_CODE WHEN '4015' THEN '充值' WHEN '4013' THEN 	'代收' WHEN '4014' THEN 	'代付' WHEN '4016' THEN 	'提现' ELSE 	FUNC_CODE END as funcd,
+CASE STATUS WHEN '4' THEN '支付成功' WHEN '5' THEN '支付失败' WHEN '6' THEN '支付失败' WHEN '7' THEN '汇总中' WHEN '1' THEN (CASE FUNC_CODE WHEN '4015' THEN '充值成功' ELSE '未处理' END) ELSE STATUS END as stats,
+AMOUNT as amt
+FROM
+	TRANS_ORDER_INFO
+WHERE
+	MERCHANT_CODE IN ('M000004','M000003','M000005','M0000031')
+AND FUNC_CODE IN ('4015','4014','4013','4016')
+AND account_date >= '2016-01-12 00:00:00'
+and account_date <= '2016-01-12 00:00:00'
+and `STATUS` <> 0
+and (remark is null or remark <> 'qjs_tuikuan')
+) suba
+GROUP BY suba.mercd,suba.funcd,suba.stats
+
+-- 收银台&账户交易比对（与上游无关）
+SELECT * from (
+select cpo.ORDERPAY_NO,ato.REQUEST_NO,cpo.CREATE_DATE from checkstand.PAY_ORDER cpo
+LEFT JOIN account.TRANS_ORDER_INFO ato ON (cpo.ORDERPAY_NO = ato.REQUEST_NO or cpo.RETURN_NO = ato.REQUEST_NO)
+where cpo.PAY_STATUS = '3' 
+  and cpo.CREATE_DATE >= '2016-01-12 00:00:00') aaa
+where aaa.REQUEST_NO is NULL
+ORDER BY CREATE_DATE

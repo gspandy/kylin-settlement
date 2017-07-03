@@ -1,0 +1,1093 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="TransOrderInfoMapper">
+	<resultMap id="BaseResultMap" type="TransOrderInfo">
+	  <result column="ID" jdbcType="BIGINT" property="id" />
+	  <result column="REQUEST_NO" jdbcType="VARCHAR" property="requestNo" />
+	  <result column="REQUEST_TIME" jdbcType="TIMESTAMP" property="requestTime" />
+	  <result column="TRADE_FLOW_NO" jdbcType="VARCHAR" property="tradeFlowNo" />
+	  <result column="ORDER_PACKAGE_NO" jdbcType="VARCHAR" property="orderPackageNo" />
+	  <result column="RELATE_ORDER_NO" jdbcType="VARCHAR" property="relateOrderNo" />
+	  <result column="ORDER_NO" jdbcType="VARCHAR" property="orderNo" />
+	  <result column="ORDER_DATE" jdbcType="TIMESTAMP" property="orderDate" />
+	  <result column="ORDER_AMOUNT" jdbcType="DECIMAL" property="orderAmount" />
+	  <result column="ORDER_COUNT" jdbcType="INTEGER" property="orderCount" />
+	  <result column="TRANS_TYPE" jdbcType="TINYINT" property="transType" />
+	  <result column="FUNC_CODE" jdbcType="VARCHAR" property="funcCode" />
+	  <result column="DEAL_PRODUCT_CODE" jdbcType="VARCHAR" property="dealProductCode" />
+	  <result column="ROOT_INST_CD" jdbcType="VARCHAR" property="rootInstCd" />
+	  <result column="INTO_ROOT_INST_CD" jdbcType="VARCHAR" property="intoRootInstCd" />
+	  <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+	  <result column="ROLE_CODE" jdbcType="VARCHAR" property="roleCode" />
+	  <result column="INTER_USER_ID" jdbcType="VARCHAR" property="interUserId" />
+	  <result column="INTER_ROLE_CODE" jdbcType="VARCHAR" property="interRoleCode" />
+	  <result column="REFER_USER_ID" jdbcType="VARCHAR" property="referUserId" />
+	  <result column="REFER_ROLE_CODE" jdbcType="VARCHAR" property="referRoleCode" />
+	  <result column="REFER_PRODUCT_ID" jdbcType="VARCHAR" property="referProductId" />
+	  <result column="PRODUCT_ID" jdbcType="VARCHAR" property="productId" />
+	  <result column="INTO_PRODUCT_ID" jdbcType="VARCHAR" property="intoProductId" />
+	  <result column="AMOUNT" jdbcType="DECIMAL" property="amount" />
+	  <result column="OTHER_AMOUNT" jdbcType="DECIMAL" property="otherAmount" />
+	  <result column="USER_FEE" jdbcType="DECIMAL" property="userFee" />
+	  <result column="USER_FEE_WAY" jdbcType="TINYINT" property="userFeeWay" />
+	  <result column="PROFIT" jdbcType="DECIMAL" property="profit" />
+	  <result column="INTEREST" jdbcType="DECIMAL" property="interest" />
+	  <result column="BUSI_TYPE_ID" jdbcType="VARCHAR" property="busiTypeId" />
+	  <result column="PAY_CHANNEL_ID" jdbcType="VARCHAR" property="payChannelId" />
+	  <result column="PAY_WAY" jdbcType="VARCHAR" property="payWay" />
+	  <result column="USER_IP_ADDRESS" jdbcType="VARCHAR" property="userIpAddress" />
+	  <result column="PROCESS_STATUS" jdbcType="TINYINT" property="processStatus" />
+	  <result column="ORIGINAL_ORDER_PACKAGE_NO" jdbcType="VARCHAR" property="originalOrderPackageNo" />
+	  <result column="ORIGINAL_ORDER_ID" jdbcType="VARCHAR" property="originalOrderId" />
+	  <result column="ERROR_CODE" jdbcType="VARCHAR" property="errorCode" />
+	  <result column="ERROR_MSG" jdbcType="VARCHAR" property="errorMsg" />
+	  <result column="ACCOUNT_DATE" jdbcType="TIMESTAMP" property="accountDate" />
+	  <result column="CURRENCY" jdbcType="VARCHAR" property="currency" />
+	  <result column="REVERSE_FLAG" jdbcType="TINYINT" property="reverseFlag" />
+	  <result column="CANCEL_TAG" jdbcType="TINYINT" property="cancelTag" />
+	  <result column="ACCEPT_INST_CODE" jdbcType="VARCHAR" property="acceptInstCode" />
+	  <result column="ACCEPT_INST_ID" jdbcType="VARCHAR" property="acceptInstId" />
+	  <result column="TARGET_MERCHANT_CODE" jdbcType="VARCHAR" property="targetMerchantCode" />
+	  <result column="TARGET_TERMINAL_CODE" jdbcType="VARCHAR" property="targetTerminalCode" />
+	  <result column="CHANNEL_RETURN_CODE" jdbcType="VARCHAR" property="channelReturnCode" />
+	  <result column="RETURN_MEG" jdbcType="VARCHAR" property="returnMeg" />
+	  <result column="RECEIPT_SERIAL_NO" jdbcType="VARCHAR" property="receiptSerialNo" />
+	  <result column="MCC" jdbcType="VARCHAR" property="mcc" />
+	  <result column="AUTH_CODE" jdbcType="VARCHAR" property="authCode" />
+	  <result column="CHANNEL_INFO" jdbcType="VARCHAR" property="channelInfo" />
+	  <result column="BANK_CODE" jdbcType="VARCHAR" property="bankCode" />
+	  <result column="TRADE_ESB_NO" jdbcType="VARCHAR" property="tradeEsbNo" />
+	  <result column="RESERVE_1" jdbcType="VARCHAR" property="reserve1" />
+	  <result column="RESERVE_2" jdbcType="VARCHAR" property="reserve2" />
+	  <result column="RESERVE_3" jdbcType="VARCHAR" property="reserve3" />
+	  <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+	  <result column="STATUS_ID" jdbcType="TINYINT" property="statusId" />
+	  <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+	  <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <trim prefix="(" prefixOverrides="and" suffix=")">
+      <if test="requestNo != null" >
+	      and REQUEST_NO = #{requestNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="requestTime != null" >
+	      and REQUEST_TIME = #{requestTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="tradeFlowNo != null" >
+	      and TRADE_FLOW_NO = #{tradeFlowNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="orderPackageNo != null" >
+	      and ORDER_PACKAGE_NO = #{orderPackageNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="relateOrderNo != null" >
+	      and RELATE_ORDER_NO = #{relateOrderNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="orderNo != null" >
+	      and ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="orderDate != null" >
+	      and ORDER_DATE = #{orderDate,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="orderAmount != null" >
+	      and ORDER_AMOUNT = #{orderAmount,jdbcType=DECIMAL}
+	    </if>
+      <if test="orderCount != null" >
+	      and ORDER_COUNT = #{orderCount,jdbcType=INTEGER}
+	    </if>
+      <if test="transType != null" >
+	      and TRANS_TYPE = #{transType,jdbcType=TINYINT}
+	    </if>
+      <if test="funcCode != null" >
+	      and FUNC_CODE = #{funcCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="dealProductCode != null" >
+	      and DEAL_PRODUCT_CODE = #{dealProductCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="rootInstCd != null" >
+	      and ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR}
+	    </if>
+      <if test="intoRootInstCd != null" >
+	      and INTO_ROOT_INST_CD = #{intoRootInstCd,jdbcType=VARCHAR}
+	    </if>
+      <if test="userId != null" >
+	      and USER_ID = #{userId,jdbcType=VARCHAR}
+	    </if>
+      <if test="roleCode != null" >
+	      and ROLE_CODE = #{roleCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="interUserId != null" >
+	      and INTER_USER_ID = #{interUserId,jdbcType=VARCHAR}
+	    </if>
+      <if test="interRoleCode != null" >
+	      and INTER_ROLE_CODE = #{interRoleCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="referUserId != null" >
+	      and REFER_USER_ID = #{referUserId,jdbcType=VARCHAR}
+	    </if>
+      <if test="referRoleCode != null" >
+	      and REFER_ROLE_CODE = #{referRoleCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="referProductId != null" >
+	      and REFER_PRODUCT_ID = #{referProductId,jdbcType=VARCHAR}
+	    </if>
+      <if test="productId != null" >
+	      and PRODUCT_ID = #{productId,jdbcType=VARCHAR}
+	    </if>
+      <if test="intoProductId != null" >
+	      and INTO_PRODUCT_ID = #{intoProductId,jdbcType=VARCHAR}
+	    </if>
+      <if test="amount != null" >
+	      and AMOUNT = #{amount,jdbcType=DECIMAL}
+	    </if>
+      <if test="otherAmount != null" >
+	      and OTHER_AMOUNT = #{otherAmount,jdbcType=DECIMAL}
+	    </if>
+      <if test="userFee != null" >
+	      and USER_FEE = #{userFee,jdbcType=DECIMAL}
+	    </if>
+      <if test="userFeeWay != null" >
+	      and USER_FEE_WAY = #{userFeeWay,jdbcType=TINYINT}
+	    </if>
+      <if test="profit != null" >
+	      and PROFIT = #{profit,jdbcType=DECIMAL}
+	    </if>
+      <if test="interest != null" >
+	      and INTEREST = #{interest,jdbcType=DECIMAL}
+	    </if>
+      <if test="busiTypeId != null" >
+	      and BUSI_TYPE_ID = #{busiTypeId,jdbcType=VARCHAR}
+	    </if>
+      <if test="payChannelId != null" >
+	      and PAY_CHANNEL_ID = #{payChannelId,jdbcType=VARCHAR}
+	    </if>
+      <if test="payWay != null" >
+	      and PAY_WAY = #{payWay,jdbcType=VARCHAR}
+	    </if>
+      <if test="userIpAddress != null" >
+	      and USER_IP_ADDRESS = #{userIpAddress,jdbcType=VARCHAR}
+	    </if>
+      <if test="processStatus != null" >
+	      and PROCESS_STATUS = #{processStatus,jdbcType=TINYINT}
+	    </if>
+      <if test="originalOrderPackageNo != null" >
+	      and ORIGINAL_ORDER_PACKAGE_NO = #{originalOrderPackageNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="originalOrderId != null" >
+	      and ORIGINAL_ORDER_ID = #{originalOrderId,jdbcType=VARCHAR}
+	    </if>
+      <if test="errorCode != null" >
+	      and ERROR_CODE = #{errorCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="errorMsg != null" >
+	      and ERROR_MSG = #{errorMsg,jdbcType=VARCHAR}
+	    </if>
+      <if test="accountDate != null" >
+	      and ACCOUNT_DATE = #{accountDate,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="currency != null" >
+	      and CURRENCY = #{currency,jdbcType=VARCHAR}
+	    </if>
+      <if test="reverseFlag != null" >
+	      and REVERSE_FLAG = #{reverseFlag,jdbcType=TINYINT}
+	    </if>
+      <if test="cancelTag != null" >
+	      and CANCEL_TAG = #{cancelTag,jdbcType=TINYINT}
+	    </if>
+      <if test="acceptInstCode != null" >
+	      and ACCEPT_INST_CODE = #{acceptInstCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="acceptInstId != null" >
+	      and ACCEPT_INST_ID = #{acceptInstId,jdbcType=VARCHAR}
+	    </if>
+      <if test="targetMerchantCode != null" >
+	      and TARGET_MERCHANT_CODE = #{targetMerchantCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="targetTerminalCode != null" >
+	      and TARGET_TERMINAL_CODE = #{targetTerminalCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="channelReturnCode != null" >
+	      and CHANNEL_RETURN_CODE = #{channelReturnCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="returnMeg != null" >
+	      and RETURN_MEG = #{returnMeg,jdbcType=VARCHAR}
+	    </if>
+      <if test="receiptSerialNo != null" >
+	      and RECEIPT_SERIAL_NO = #{receiptSerialNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="mcc != null" >
+	      and MCC = #{mcc,jdbcType=VARCHAR}
+	    </if>
+      <if test="authCode != null" >
+	      and AUTH_CODE = #{authCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="channelInfo != null" >
+	      and CHANNEL_INFO = #{channelInfo,jdbcType=VARCHAR}
+	    </if>
+      <if test="bankCode != null" >
+	      and BANK_CODE = #{bankCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="tradeEsbNo != null" >
+	      and TRADE_ESB_NO = #{tradeEsbNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="reserve1 != null" >
+	      and RESERVE_1 = #{reserve1,jdbcType=VARCHAR}
+	    </if>
+      <if test="reserve2 != null" >
+	      and RESERVE_2 = #{reserve2,jdbcType=VARCHAR}
+	    </if>
+      <if test="reserve3 != null" >
+	      and RESERVE_3 = #{reserve3,jdbcType=VARCHAR}
+	    </if>
+      <if test="remark != null" >
+	      and REMARK = #{remark,jdbcType=VARCHAR}
+	    </if>
+      <if test="statusId != null" >
+	      and STATUS_ID = #{statusId,jdbcType=TINYINT}
+	    </if>
+      <if test="createdTime != null" >
+	      and CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="updatedTime != null" >
+	      and UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+	    </if>
+	  </trim>
+    </where>
+  </sql>
+  <sql id="Example_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+      <if test="requestNo != null">
+        REQUEST_NO = #{requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="requestTime != null">
+        REQUEST_TIME = #{requestTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeFlowNo != null">
+        TRADE_FLOW_NO = #{tradeFlowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPackageNo != null">
+        ORDER_PACKAGE_NO = #{orderPackageNo,jdbcType=VARCHAR},
+      </if>
+      <if test="relateOrderNo != null">
+        RELATE_ORDER_NO = #{relateOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null">
+        ORDER_DATE = #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderAmount != null">
+        ORDER_AMOUNT = #{orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderCount != null">
+        ORDER_COUNT = #{orderCount,jdbcType=INTEGER},
+      </if>
+      <if test="transType != null">
+        TRANS_TYPE = #{transType,jdbcType=TINYINT},
+      </if>
+      <if test="funcCode != null">
+        FUNC_CODE = #{funcCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dealProductCode != null">
+        DEAL_PRODUCT_CODE = #{dealProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rootInstCd != null">
+        ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR},
+      </if>
+      <if test="intoRootInstCd != null">
+        INTO_ROOT_INST_CD = #{intoRootInstCd,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCode != null">
+        ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="interUserId != null">
+        INTER_USER_ID = #{interUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="interRoleCode != null">
+        INTER_ROLE_CODE = #{interRoleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="referUserId != null">
+        REFER_USER_ID = #{referUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="referRoleCode != null">
+        REFER_ROLE_CODE = #{referRoleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="referProductId != null">
+        REFER_PRODUCT_ID = #{referProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="intoProductId != null">
+        INTO_PRODUCT_ID = #{intoProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="otherAmount != null">
+        OTHER_AMOUNT = #{otherAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="userFee != null">
+        USER_FEE = #{userFee,jdbcType=DECIMAL},
+      </if>
+      <if test="userFeeWay != null">
+        USER_FEE_WAY = #{userFeeWay,jdbcType=TINYINT},
+      </if>
+      <if test="profit != null">
+        PROFIT = #{profit,jdbcType=DECIMAL},
+      </if>
+      <if test="interest != null">
+        INTEREST = #{interest,jdbcType=DECIMAL},
+      </if>
+      <if test="busiTypeId != null">
+        BUSI_TYPE_ID = #{busiTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="payChannelId != null">
+        PAY_CHANNEL_ID = #{payChannelId,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay != null">
+        PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="userIpAddress != null">
+        USER_IP_ADDRESS = #{userIpAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="processStatus != null">
+        PROCESS_STATUS = #{processStatus,jdbcType=TINYINT},
+      </if>
+      <if test="originalOrderPackageNo != null">
+        ORIGINAL_ORDER_PACKAGE_NO = #{originalOrderPackageNo,jdbcType=VARCHAR},
+      </if>
+      <if test="originalOrderId != null">
+        ORIGINAL_ORDER_ID = #{originalOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="errorCode != null">
+        ERROR_CODE = #{errorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errorMsg != null">
+        ERROR_MSG = #{errorMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="accountDate != null">
+        ACCOUNT_DATE = #{accountDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="currency != null">
+        CURRENCY = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="reverseFlag != null">
+        REVERSE_FLAG = #{reverseFlag,jdbcType=TINYINT},
+      </if>
+      <if test="cancelTag != null">
+        CANCEL_TAG = #{cancelTag,jdbcType=TINYINT},
+      </if>
+      <if test="acceptInstCode != null">
+        ACCEPT_INST_CODE = #{acceptInstCode,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptInstId != null">
+        ACCEPT_INST_ID = #{acceptInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="targetMerchantCode != null">
+        TARGET_MERCHANT_CODE = #{targetMerchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="targetTerminalCode != null">
+        TARGET_TERMINAL_CODE = #{targetTerminalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelReturnCode != null">
+        CHANNEL_RETURN_CODE = #{channelReturnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="returnMeg != null">
+        RETURN_MEG = #{returnMeg,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptSerialNo != null">
+        RECEIPT_SERIAL_NO = #{receiptSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mcc != null">
+        MCC = #{mcc,jdbcType=VARCHAR},
+      </if>
+      <if test="authCode != null">
+        AUTH_CODE = #{authCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelInfo != null">
+        CHANNEL_INFO = #{channelInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null">
+        BANK_CODE = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeEsbNo != null">
+        TRADE_ESB_NO = #{tradeEsbNo,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve1 != null">
+        RESERVE_1 = #{reserve1,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve2 != null">
+        RESERVE_2 = #{reserve2,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve3 != null">
+        RESERVE_3 = #{reserve3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="statusId != null">
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      </trim>
+    </set>
+  </sql>
+  <sql id="Base_Column_List">
+    ID,
+    REQUEST_NO,
+    REQUEST_TIME,
+    TRADE_FLOW_NO,
+    ORDER_PACKAGE_NO,
+    RELATE_ORDER_NO,
+    ORDER_NO,
+    ORDER_DATE,
+    ORDER_AMOUNT,
+    ORDER_COUNT,
+    TRANS_TYPE,
+    FUNC_CODE,
+    DEAL_PRODUCT_CODE,
+    ROOT_INST_CD,
+    INTO_ROOT_INST_CD,
+    USER_ID,
+    ROLE_CODE,
+    INTER_USER_ID,
+    INTER_ROLE_CODE,
+    REFER_USER_ID,
+    REFER_ROLE_CODE,
+    REFER_PRODUCT_ID,
+    PRODUCT_ID,
+    INTO_PRODUCT_ID,
+    AMOUNT,
+    OTHER_AMOUNT,
+    USER_FEE,
+    USER_FEE_WAY,
+    PROFIT,
+    INTEREST,
+    BUSI_TYPE_ID,
+    PAY_CHANNEL_ID,
+    PAY_WAY,
+    USER_IP_ADDRESS,
+    PROCESS_STATUS,
+    ORIGINAL_ORDER_PACKAGE_NO,
+    ORIGINAL_ORDER_ID,
+    ERROR_CODE,
+    ERROR_MSG,
+    ACCOUNT_DATE,
+    CURRENCY,
+    REVERSE_FLAG,
+    CANCEL_TAG,
+    ACCEPT_INST_CODE,
+    ACCEPT_INST_ID,
+    TARGET_MERCHANT_CODE,
+    TARGET_TERMINAL_CODE,
+    CHANNEL_RETURN_CODE,
+    RETURN_MEG,
+    RECEIPT_SERIAL_NO,
+    MCC,
+    AUTH_CODE,
+    CHANNEL_INFO,
+    BANK_CODE,
+    TRADE_ESB_NO,
+    RESERVE_1,
+    RESERVE_2,
+    RESERVE_3,
+    REMARK,
+    STATUS_ID,
+    CREATED_TIME,
+    UPDATED_TIME,
+  </sql>
+  <sql id="Base_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+        REQUEST_NO = #{requestNo,jdbcType=VARCHAR},
+        REQUEST_TIME = #{requestTime,jdbcType=TIMESTAMP},
+        TRADE_FLOW_NO = #{tradeFlowNo,jdbcType=VARCHAR},
+        ORDER_PACKAGE_NO = #{orderPackageNo,jdbcType=VARCHAR},
+        RELATE_ORDER_NO = #{relateOrderNo,jdbcType=VARCHAR},
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+        ORDER_DATE = #{orderDate,jdbcType=TIMESTAMP},
+        ORDER_AMOUNT = #{orderAmount,jdbcType=DECIMAL},
+        ORDER_COUNT = #{orderCount,jdbcType=INTEGER},
+        TRANS_TYPE = #{transType,jdbcType=TINYINT},
+        FUNC_CODE = #{funcCode,jdbcType=VARCHAR},
+        DEAL_PRODUCT_CODE = #{dealProductCode,jdbcType=VARCHAR},
+        ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR},
+        INTO_ROOT_INST_CD = #{intoRootInstCd,jdbcType=VARCHAR},
+        USER_ID = #{userId,jdbcType=VARCHAR},
+        ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
+        INTER_USER_ID = #{interUserId,jdbcType=VARCHAR},
+        INTER_ROLE_CODE = #{interRoleCode,jdbcType=VARCHAR},
+        REFER_USER_ID = #{referUserId,jdbcType=VARCHAR},
+        REFER_ROLE_CODE = #{referRoleCode,jdbcType=VARCHAR},
+        REFER_PRODUCT_ID = #{referProductId,jdbcType=VARCHAR},
+        PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+        INTO_PRODUCT_ID = #{intoProductId,jdbcType=VARCHAR},
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+        OTHER_AMOUNT = #{otherAmount,jdbcType=DECIMAL},
+        USER_FEE = #{userFee,jdbcType=DECIMAL},
+        USER_FEE_WAY = #{userFeeWay,jdbcType=TINYINT},
+        PROFIT = #{profit,jdbcType=DECIMAL},
+        INTEREST = #{interest,jdbcType=DECIMAL},
+        BUSI_TYPE_ID = #{busiTypeId,jdbcType=VARCHAR},
+        PAY_CHANNEL_ID = #{payChannelId,jdbcType=VARCHAR},
+        PAY_WAY = #{payWay,jdbcType=VARCHAR},
+        USER_IP_ADDRESS = #{userIpAddress,jdbcType=VARCHAR},
+        PROCESS_STATUS = #{processStatus,jdbcType=TINYINT},
+        ORIGINAL_ORDER_PACKAGE_NO = #{originalOrderPackageNo,jdbcType=VARCHAR},
+        ORIGINAL_ORDER_ID = #{originalOrderId,jdbcType=VARCHAR},
+        ERROR_CODE = #{errorCode,jdbcType=VARCHAR},
+        ERROR_MSG = #{errorMsg,jdbcType=VARCHAR},
+        ACCOUNT_DATE = #{accountDate,jdbcType=TIMESTAMP},
+        CURRENCY = #{currency,jdbcType=VARCHAR},
+        REVERSE_FLAG = #{reverseFlag,jdbcType=TINYINT},
+        CANCEL_TAG = #{cancelTag,jdbcType=TINYINT},
+        ACCEPT_INST_CODE = #{acceptInstCode,jdbcType=VARCHAR},
+        ACCEPT_INST_ID = #{acceptInstId,jdbcType=VARCHAR},
+        TARGET_MERCHANT_CODE = #{targetMerchantCode,jdbcType=VARCHAR},
+        TARGET_TERMINAL_CODE = #{targetTerminalCode,jdbcType=VARCHAR},
+        CHANNEL_RETURN_CODE = #{channelReturnCode,jdbcType=VARCHAR},
+        RETURN_MEG = #{returnMeg,jdbcType=VARCHAR},
+        RECEIPT_SERIAL_NO = #{receiptSerialNo,jdbcType=VARCHAR},
+        MCC = #{mcc,jdbcType=VARCHAR},
+        AUTH_CODE = #{authCode,jdbcType=VARCHAR},
+        CHANNEL_INFO = #{channelInfo,jdbcType=VARCHAR},
+        BANK_CODE = #{bankCode,jdbcType=VARCHAR},
+        TRADE_ESB_NO = #{tradeEsbNo,jdbcType=VARCHAR},
+        RESERVE_1 = #{reserve1,jdbcType=VARCHAR},
+        RESERVE_2 = #{reserve2,jdbcType=VARCHAR},
+        RESERVE_3 = #{reserve3,jdbcType=VARCHAR},
+        REMARK = #{remark,jdbcType=VARCHAR},
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </trim>
+    </set>
+  </sql>
+  <sql id="Selective_Column_List">
+    <if test="requestNo != null">
+      REQUEST_NO,
+    </if>
+    <if test="requestTime != null">
+      REQUEST_TIME,
+    </if>
+    <if test="tradeFlowNo != null">
+      TRADE_FLOW_NO,
+    </if>
+    <if test="orderPackageNo != null">
+      ORDER_PACKAGE_NO,
+    </if>
+    <if test="relateOrderNo != null">
+      RELATE_ORDER_NO,
+    </if>
+    <if test="orderNo != null">
+      ORDER_NO,
+    </if>
+    <if test="orderDate != null">
+      ORDER_DATE,
+    </if>
+    <if test="orderAmount != null">
+      ORDER_AMOUNT,
+    </if>
+    <if test="orderCount != null">
+      ORDER_COUNT,
+    </if>
+    <if test="transType != null">
+      TRANS_TYPE,
+    </if>
+    <if test="funcCode != null">
+      FUNC_CODE,
+    </if>
+    <if test="dealProductCode != null">
+      DEAL_PRODUCT_CODE,
+    </if>
+    <if test="rootInstCd != null">
+      ROOT_INST_CD,
+    </if>
+    <if test="intoRootInstCd != null">
+      INTO_ROOT_INST_CD,
+    </if>
+    <if test="userId != null">
+      USER_ID,
+    </if>
+    <if test="roleCode != null">
+      ROLE_CODE,
+    </if>
+    <if test="interUserId != null">
+      INTER_USER_ID,
+    </if>
+    <if test="interRoleCode != null">
+      INTER_ROLE_CODE,
+    </if>
+    <if test="referUserId != null">
+      REFER_USER_ID,
+    </if>
+    <if test="referRoleCode != null">
+      REFER_ROLE_CODE,
+    </if>
+    <if test="referProductId != null">
+      REFER_PRODUCT_ID,
+    </if>
+    <if test="productId != null">
+      PRODUCT_ID,
+    </if>
+    <if test="intoProductId != null">
+      INTO_PRODUCT_ID,
+    </if>
+    <if test="amount != null">
+      AMOUNT,
+    </if>
+    <if test="otherAmount != null">
+      OTHER_AMOUNT,
+    </if>
+    <if test="userFee != null">
+      USER_FEE,
+    </if>
+    <if test="userFeeWay != null">
+      USER_FEE_WAY,
+    </if>
+    <if test="profit != null">
+      PROFIT,
+    </if>
+    <if test="interest != null">
+      INTEREST,
+    </if>
+    <if test="busiTypeId != null">
+      BUSI_TYPE_ID,
+    </if>
+    <if test="payChannelId != null">
+      PAY_CHANNEL_ID,
+    </if>
+    <if test="payWay != null">
+      PAY_WAY,
+    </if>
+    <if test="userIpAddress != null">
+      USER_IP_ADDRESS,
+    </if>
+    <if test="processStatus != null">
+      PROCESS_STATUS,
+    </if>
+    <if test="originalOrderPackageNo != null">
+      ORIGINAL_ORDER_PACKAGE_NO,
+    </if>
+    <if test="originalOrderId != null">
+      ORIGINAL_ORDER_ID,
+    </if>
+    <if test="errorCode != null">
+      ERROR_CODE,
+    </if>
+    <if test="errorMsg != null">
+      ERROR_MSG,
+    </if>
+    <if test="accountDate != null">
+      ACCOUNT_DATE,
+    </if>
+    <if test="currency != null">
+      CURRENCY,
+    </if>
+    <if test="reverseFlag != null">
+      REVERSE_FLAG,
+    </if>
+    <if test="cancelTag != null">
+      CANCEL_TAG,
+    </if>
+    <if test="acceptInstCode != null">
+      ACCEPT_INST_CODE,
+    </if>
+    <if test="acceptInstId != null">
+      ACCEPT_INST_ID,
+    </if>
+    <if test="targetMerchantCode != null">
+      TARGET_MERCHANT_CODE,
+    </if>
+    <if test="targetTerminalCode != null">
+      TARGET_TERMINAL_CODE,
+    </if>
+    <if test="channelReturnCode != null">
+      CHANNEL_RETURN_CODE,
+    </if>
+    <if test="returnMeg != null">
+      RETURN_MEG,
+    </if>
+    <if test="receiptSerialNo != null">
+      RECEIPT_SERIAL_NO,
+    </if>
+    <if test="mcc != null">
+      MCC,
+    </if>
+    <if test="authCode != null">
+      AUTH_CODE,
+    </if>
+    <if test="channelInfo != null">
+      CHANNEL_INFO,
+    </if>
+    <if test="bankCode != null">
+      BANK_CODE,
+    </if>
+    <if test="tradeEsbNo != null">
+      TRADE_ESB_NO,
+    </if>
+    <if test="reserve1 != null">
+      RESERVE_1,
+    </if>
+    <if test="reserve2 != null">
+      RESERVE_2,
+    </if>
+    <if test="reserve3 != null">
+      RESERVE_3,
+    </if>
+    <if test="remark != null">
+      REMARK,
+    </if>
+    <if test="statusId != null">
+      STATUS_ID,
+    </if>
+    <if test="createdTime != null">
+      CREATED_TIME,
+    </if>
+    <if test="updatedTime != null">
+      UPDATED_TIME,
+    </if>
+  </sql>
+	<sql id="Base_Value_List">
+    #{id,jdbcType=BIGINT},
+    #{requestNo,jdbcType=VARCHAR},
+    #{requestTime,jdbcType=TIMESTAMP},
+    #{tradeFlowNo,jdbcType=VARCHAR},
+    #{orderPackageNo,jdbcType=VARCHAR},
+    #{relateOrderNo,jdbcType=VARCHAR},
+    #{orderNo,jdbcType=VARCHAR},
+    #{orderDate,jdbcType=TIMESTAMP},
+    #{orderAmount,jdbcType=DECIMAL},
+    #{orderCount,jdbcType=INTEGER},
+    #{transType,jdbcType=TINYINT},
+    #{funcCode,jdbcType=VARCHAR},
+    #{dealProductCode,jdbcType=VARCHAR},
+    #{rootInstCd,jdbcType=VARCHAR},
+    #{intoRootInstCd,jdbcType=VARCHAR},
+    #{userId,jdbcType=VARCHAR},
+    #{roleCode,jdbcType=VARCHAR},
+    #{interUserId,jdbcType=VARCHAR},
+    #{interRoleCode,jdbcType=VARCHAR},
+    #{referUserId,jdbcType=VARCHAR},
+    #{referRoleCode,jdbcType=VARCHAR},
+    #{referProductId,jdbcType=VARCHAR},
+    #{productId,jdbcType=VARCHAR},
+    #{intoProductId,jdbcType=VARCHAR},
+    #{amount,jdbcType=DECIMAL},
+    #{otherAmount,jdbcType=DECIMAL},
+    #{userFee,jdbcType=DECIMAL},
+    #{userFeeWay,jdbcType=TINYINT},
+    #{profit,jdbcType=DECIMAL},
+    #{interest,jdbcType=DECIMAL},
+    #{busiTypeId,jdbcType=VARCHAR},
+    #{payChannelId,jdbcType=VARCHAR},
+    #{payWay,jdbcType=VARCHAR},
+    #{userIpAddress,jdbcType=VARCHAR},
+    #{processStatus,jdbcType=TINYINT},
+    #{originalOrderPackageNo,jdbcType=VARCHAR},
+    #{originalOrderId,jdbcType=VARCHAR},
+    #{errorCode,jdbcType=VARCHAR},
+    #{errorMsg,jdbcType=VARCHAR},
+    #{accountDate,jdbcType=TIMESTAMP},
+    #{currency,jdbcType=VARCHAR},
+    #{reverseFlag,jdbcType=TINYINT},
+    #{cancelTag,jdbcType=TINYINT},
+    #{acceptInstCode,jdbcType=VARCHAR},
+    #{acceptInstId,jdbcType=VARCHAR},
+    #{targetMerchantCode,jdbcType=VARCHAR},
+    #{targetTerminalCode,jdbcType=VARCHAR},
+    #{channelReturnCode,jdbcType=VARCHAR},
+    #{returnMeg,jdbcType=VARCHAR},
+    #{receiptSerialNo,jdbcType=VARCHAR},
+    #{mcc,jdbcType=VARCHAR},
+    #{authCode,jdbcType=VARCHAR},
+    #{channelInfo,jdbcType=VARCHAR},
+    #{bankCode,jdbcType=VARCHAR},
+    #{tradeEsbNo,jdbcType=VARCHAR},
+    #{reserve1,jdbcType=VARCHAR},
+    #{reserve2,jdbcType=VARCHAR},
+    #{reserve3,jdbcType=VARCHAR},
+    #{remark,jdbcType=VARCHAR},
+    #{statusId,jdbcType=TINYINT},
+    #{createdTime,jdbcType=TIMESTAMP},
+    #{updatedTime,jdbcType=TIMESTAMP},
+	</sql>
+  <sql id="Selective_Value_List">
+    <if test="requestNo != null">
+      #{requestNo,jdbcType=VARCHAR},
+    </if>
+    <if test="requestTime != null">
+      #{requestTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="tradeFlowNo != null">
+      #{tradeFlowNo,jdbcType=VARCHAR},
+    </if>
+    <if test="orderPackageNo != null">
+      #{orderPackageNo,jdbcType=VARCHAR},
+    </if>
+    <if test="relateOrderNo != null">
+      #{relateOrderNo,jdbcType=VARCHAR},
+    </if>
+    <if test="orderNo != null">
+      #{orderNo,jdbcType=VARCHAR},
+    </if>
+    <if test="orderDate != null">
+      #{orderDate,jdbcType=TIMESTAMP},
+    </if>
+    <if test="orderAmount != null">
+      #{orderAmount,jdbcType=DECIMAL},
+    </if>
+    <if test="orderCount != null">
+      #{orderCount,jdbcType=INTEGER},
+    </if>
+    <if test="transType != null">
+      #{transType,jdbcType=TINYINT},
+    </if>
+    <if test="funcCode != null">
+      #{funcCode,jdbcType=VARCHAR},
+    </if>
+    <if test="dealProductCode != null">
+      #{dealProductCode,jdbcType=VARCHAR},
+    </if>
+    <if test="rootInstCd != null">
+      #{rootInstCd,jdbcType=VARCHAR},
+    </if>
+    <if test="intoRootInstCd != null">
+      #{intoRootInstCd,jdbcType=VARCHAR},
+    </if>
+    <if test="userId != null">
+      #{userId,jdbcType=VARCHAR},
+    </if>
+    <if test="roleCode != null">
+      #{roleCode,jdbcType=VARCHAR},
+    </if>
+    <if test="interUserId != null">
+      #{interUserId,jdbcType=VARCHAR},
+    </if>
+    <if test="interRoleCode != null">
+      #{interRoleCode,jdbcType=VARCHAR},
+    </if>
+    <if test="referUserId != null">
+      #{referUserId,jdbcType=VARCHAR},
+    </if>
+    <if test="referRoleCode != null">
+      #{referRoleCode,jdbcType=VARCHAR},
+    </if>
+    <if test="referProductId != null">
+      #{referProductId,jdbcType=VARCHAR},
+    </if>
+    <if test="productId != null">
+      #{productId,jdbcType=VARCHAR},
+    </if>
+    <if test="intoProductId != null">
+      #{intoProductId,jdbcType=VARCHAR},
+    </if>
+    <if test="amount != null">
+      #{amount,jdbcType=DECIMAL},
+    </if>
+    <if test="otherAmount != null">
+      #{otherAmount,jdbcType=DECIMAL},
+    </if>
+    <if test="userFee != null">
+      #{userFee,jdbcType=DECIMAL},
+    </if>
+    <if test="userFeeWay != null">
+      #{userFeeWay,jdbcType=TINYINT},
+    </if>
+    <if test="profit != null">
+      #{profit,jdbcType=DECIMAL},
+    </if>
+    <if test="interest != null">
+      #{interest,jdbcType=DECIMAL},
+    </if>
+    <if test="busiTypeId != null">
+      #{busiTypeId,jdbcType=VARCHAR},
+    </if>
+    <if test="payChannelId != null">
+      #{payChannelId,jdbcType=VARCHAR},
+    </if>
+    <if test="payWay != null">
+      #{payWay,jdbcType=VARCHAR},
+    </if>
+    <if test="userIpAddress != null">
+      #{userIpAddress,jdbcType=VARCHAR},
+    </if>
+    <if test="processStatus != null">
+      #{processStatus,jdbcType=TINYINT},
+    </if>
+    <if test="originalOrderPackageNo != null">
+      #{originalOrderPackageNo,jdbcType=VARCHAR},
+    </if>
+    <if test="originalOrderId != null">
+      #{originalOrderId,jdbcType=VARCHAR},
+    </if>
+    <if test="errorCode != null">
+      #{errorCode,jdbcType=VARCHAR},
+    </if>
+    <if test="errorMsg != null">
+      #{errorMsg,jdbcType=VARCHAR},
+    </if>
+    <if test="accountDate != null">
+      #{accountDate,jdbcType=TIMESTAMP},
+    </if>
+    <if test="currency != null">
+      #{currency,jdbcType=VARCHAR},
+    </if>
+    <if test="reverseFlag != null">
+      #{reverseFlag,jdbcType=TINYINT},
+    </if>
+    <if test="cancelTag != null">
+      #{cancelTag,jdbcType=TINYINT},
+    </if>
+    <if test="acceptInstCode != null">
+      #{acceptInstCode,jdbcType=VARCHAR},
+    </if>
+    <if test="acceptInstId != null">
+      #{acceptInstId,jdbcType=VARCHAR},
+    </if>
+    <if test="targetMerchantCode != null">
+      #{targetMerchantCode,jdbcType=VARCHAR},
+    </if>
+    <if test="targetTerminalCode != null">
+      #{targetTerminalCode,jdbcType=VARCHAR},
+    </if>
+    <if test="channelReturnCode != null">
+      #{channelReturnCode,jdbcType=VARCHAR},
+    </if>
+    <if test="returnMeg != null">
+      #{returnMeg,jdbcType=VARCHAR},
+    </if>
+    <if test="receiptSerialNo != null">
+      #{receiptSerialNo,jdbcType=VARCHAR},
+    </if>
+    <if test="mcc != null">
+      #{mcc,jdbcType=VARCHAR},
+    </if>
+    <if test="authCode != null">
+      #{authCode,jdbcType=VARCHAR},
+    </if>
+    <if test="channelInfo != null">
+      #{channelInfo,jdbcType=VARCHAR},
+    </if>
+    <if test="bankCode != null">
+      #{bankCode,jdbcType=VARCHAR},
+    </if>
+    <if test="tradeEsbNo != null">
+      #{tradeEsbNo,jdbcType=VARCHAR},
+    </if>
+    <if test="reserve1 != null">
+      #{reserve1,jdbcType=VARCHAR},
+    </if>
+    <if test="reserve2 != null">
+      #{reserve2,jdbcType=VARCHAR},
+    </if>
+    <if test="reserve3 != null">
+      #{reserve3,jdbcType=VARCHAR},
+    </if>
+    <if test="remark != null">
+      #{remark,jdbcType=VARCHAR},
+    </if>
+    <if test="statusId != null">
+      #{statusId,jdbcType=TINYINT},
+    </if>
+    <if test="createdTime != null">
+      #{createdTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="updatedTime != null">
+      #{updatedTime,jdbcType=TIMESTAMP},
+    </if>
+  </sql>
+  
+  <select id="selectByExample" parameterType="TransOrderInfoQuery" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from TRANS_ORDER_INFO
+    <include refid="Example_Where_Clause" />
+    <!-- order by CREATE_DATE -->
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from TRANS_ORDER_INFO
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from TRANS_ORDER_INFO
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="TransOrderInfoQuery">
+    delete from TRANS_ORDER_INFO
+    <include refid="Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterType="TransOrderInfo">
+    insert into TRANS_ORDER_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Base_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Base_Value_List"/>
+    </trim>
+  </insert>
+  <insert id="insertSelective" parameterType="TransOrderInfo">
+    insert into TRANS_ORDER_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Value_List"/>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="TransOrderInfoQuery" resultType="java.lang.Integer">
+    select count(*) from TRANS_ORDER_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="TransOrderInfo">
+    update TRANS_ORDER_INFO
+    <include refid="Example_Set_Clause"/>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="TransOrderInfo">
+    update TRANS_ORDER_INFO
+    <include refid="Base_Set_Clause"/>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+    
+  <select id="selectByRequestTime" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+     from TRANS_ORDER_INFO
+    <where>
+    	<trim prefix="(" prefixOverrides="and" suffix=")">
+	    	<if test="beginAccDate != null" >
+    		  <![CDATA[and ACCOUNT_DATE >=]]> str_to_date(#{beginAccDate},'%Y-%m-%d %H:%i:%s')     
+		    </if>
+	    	<if test="endAccDate != null" >
+    		  <![CDATA[and ACCOUNT_DATE <=]]> str_to_date(#{endAccDate},'%Y-%m-%d %H:%i:%s')    
+		    </if>
+	    	<if test="beginDate != null" >
+    		  <![CDATA[and UPDATED_TIME >=]]> str_to_date(#{beginDate},'%Y-%m-%d %H:%i:%s')      
+		    </if>
+		    <if test="endDate != null" >
+	    	  <![CDATA[and UPDATED_TIME <=]]> str_to_date(#{endDate},'%Y-%m-%d %H:%i:%s')
+		    </if>
+    	</trim>
+    </where>
+  </select>
+</mapper>

@@ -1,0 +1,47 @@
+INSERT INTO `settle`.`SETTLE_PARAMETER_INFO` (
+	`PARAMETER_TYPE`,
+	`PRODUCT_ID`,
+	`PARAMETER_CODE`,
+	`PARAMETER_VALUE`,
+	`OBLIGATE1`,
+	`OBLIGATE2`,
+	`OBLIGATE3`,
+	`STATUS_ID`,
+	`REMARK`
+)
+VALUES
+	(
+		'1000000008',
+		'',
+		'04',
+		'LianLian_Payment',
+		'',
+		'',
+		'',
+		'1',
+		'PAYCHANNEL_ID连连支付渠道编码对应关系'
+	);
+INSERT INTO `settle`.`SETTLE_PARAMETER_INFO` (
+	`PARAMETER_TYPE`,
+	`PRODUCT_ID`,
+	`PARAMETER_CODE`,
+	`PARAMETER_VALUE`,
+	`OBLIGATE1`,
+	`OBLIGATE2`,
+	`OBLIGATE3`,
+	`STATUS_ID`,
+	`REMARK`
+)
+VALUES
+	(
+		'1000000008',
+		'',
+		'04',
+		'LianLian_AgentPay',
+		'',
+		'',
+		'',
+		'1',
+		'PAYCHANNEL_ID连连支付渠道编码对应关系'
+	);
+

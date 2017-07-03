@@ -1,0 +1,8 @@
+1.对账文件名称如下：
+            日期+"_"+channelHome+"_"+orgCode+"_"+".txt"
+            另：channelHome(Reapal_AgentPay)，ftp上传时间点：每天早上8:00开始下载对账文件，预计8:10上传完毕。
+        2.数据模型见附件
+        	渠道号(CHANNEL_NO)和交易代码(TRANS_CODE)如下：
+            批量代付：CHANNEL_NO=110803；TRANS_CODE=11012
+        3.对账文件说明文档见附件。
+        4.对账文件每条记录中，批次文件名对应多渠道数据库的TRANS_DETAIL_INFO表的GATEWAY_BATCH_NO，商户订单号对应多渠道数据库的TRANS_DETAIL_INFO表的GATEWAY_TRANS_NO

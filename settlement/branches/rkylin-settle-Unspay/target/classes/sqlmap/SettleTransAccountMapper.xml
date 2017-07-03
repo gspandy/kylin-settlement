@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SettleTransAccountMapper">
+	<resultMap id="BaseResultMap" type="SettleTransAccount">
+	  <result column="TRANS_ACCOUNT_ID" jdbcType="INTEGER" property="transAccountId" />
+	  <result column="PAY_CHANNEL_ID" jdbcType="VARCHAR" property="payChannelId" />
+	  <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+	  <result column="INTER_MERCHANT_CODE" jdbcType="VARCHAR" property="interMerchantCode" />
+	  <result column="ORDER_NO" jdbcType="VARCHAR" property="orderNo" />
+	  <result column="TRANS_FLOW_NO" jdbcType="VARCHAR" property="transFlowNo" />
+	  <result column="TRANS_TYPE" jdbcType="VARCHAR" property="transType" />
+	  <result column="TRANS_AMOUNT" jdbcType="DECIMAL" property="transAmount" />
+	  <result column="FEE_AMOUNT" jdbcType="DECIMAL" property="feeAmount" />
+	  <result column="SETTLE_AMOUNT" jdbcType="DECIMAL" property="settleAmount" />
+	  <result column="ORIGINAL_AMOUNT" jdbcType="DECIMAL" property="originalAmount" />
+	  <result column="CURRENCY" jdbcType="VARCHAR" property="currency" />
+	  <result column="SETTLE_TIME" jdbcType="TIMESTAMP" property="settleTime" />
+	  <result column="FILE_TYPE" jdbcType="TINYINT" property="fileType" />
+	  <result column="BATCH_NO" jdbcType="VARCHAR" property="batchNo" />
+	  <result column="IS_INVOICE" jdbcType="TINYINT" property="isInvoice" />
+	  <result column="OBLIGATE1" jdbcType="VARCHAR" property="obligate1" />
+	  <result column="OBLIGATE2" jdbcType="VARCHAR" property="obligate2" />
+	  <result column="STATUS_ID" jdbcType="TINYINT" property="statusId" />
+	  <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+	  <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+	  <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <trim prefix="(" prefixOverrides="and" suffix=")">
+      <if test="transAccountId != null" >
+	      and TRANS_ACCOUNT_ID = #{transAccountId,jdbcType=INTEGER}
+	    </if>
+      <if test="payChannelId != null" >
+	      and PAY_CHANNEL_ID = #{payChannelId,jdbcType=VARCHAR}
+	    </if>
+      <if test="userId != null" >
+	      and USER_ID = #{userId,jdbcType=VARCHAR}
+	    </if>
+      <if test="interMerchantCode != null" >
+	      and INTER_MERCHANT_CODE = #{interMerchantCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="orderNo != null" >
+	      and ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="transFlowNo != null" >
+	      and TRANS_FLOW_NO = #{transFlowNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="transType != null" >
+	      and TRANS_TYPE = #{transType,jdbcType=VARCHAR}
+	    </if>
+      <if test="transAmount != null" >
+	      and TRANS_AMOUNT = #{transAmount,jdbcType=DECIMAL}
+	    </if>
+      <if test="feeAmount != null" >
+	      and FEE_AMOUNT = #{feeAmount,jdbcType=DECIMAL}
+	    </if>
+      <if test="settleAmount != null" >
+	      and SETTLE_AMOUNT = #{settleAmount,jdbcType=DECIMAL}
+	    </if>
+      <if test="originalAmount != null" >
+	      and ORIGINAL_AMOUNT = #{originalAmount,jdbcType=DECIMAL}
+	    </if>
+      <if test="currency != null" >
+	      and CURRENCY = #{currency,jdbcType=VARCHAR}
+	    </if>
+      <if test="settleTime != null" >
+	      and SETTLE_TIME = #{settleTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="fileType != null" >
+	      and FILE_TYPE = #{fileType,jdbcType=TINYINT}
+	    </if>
+      <if test="batchNo != null" >
+	      and BATCH_NO = #{batchNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="isInvoice != null" >
+	      and IS_INVOICE = #{isInvoice,jdbcType=TINYINT}
+	    </if>
+      <if test="obligate1 != null" >
+	      and OBLIGATE1 = #{obligate1,jdbcType=VARCHAR}
+	    </if>
+      <if test="obligate2 != null" >
+	      and OBLIGATE2 = #{obligate2,jdbcType=VARCHAR}
+	    </if>
+      <if test="statusId != null" >
+	      and STATUS_ID = #{statusId,jdbcType=TINYINT}
+	    </if>
+      <if test="remark != null" >
+	      and REMARK = #{remark,jdbcType=VARCHAR}
+	    </if>
+      <if test="createdTime != null" >
+	      and CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="updatedTime != null" >
+	      and UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+	    </if>
+	  </trim>
+    </where>
+  </sql>
+  <sql id="Example_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+      <if test="transAccountId != null">
+        TRANS_ACCOUNT_ID = #{transAccountId,jdbcType=INTEGER},
+      </if>
+      <if test="payChannelId != null">
+        PAY_CHANNEL_ID = #{payChannelId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="interMerchantCode != null">
+        INTER_MERCHANT_CODE = #{interMerchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transFlowNo != null">
+        TRANS_FLOW_NO = #{transFlowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transType != null">
+        TRANS_TYPE = #{transType,jdbcType=VARCHAR},
+      </if>
+      <if test="transAmount != null">
+        TRANS_AMOUNT = #{transAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="feeAmount != null">
+        FEE_AMOUNT = #{feeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="settleAmount != null">
+        SETTLE_AMOUNT = #{settleAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="originalAmount != null">
+        ORIGINAL_AMOUNT = #{originalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="currency != null">
+        CURRENCY = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="settleTime != null">
+        SETTLE_TIME = #{settleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fileType != null">
+        FILE_TYPE = #{fileType,jdbcType=TINYINT},
+      </if>
+      <if test="batchNo != null">
+        BATCH_NO = #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="isInvoice != null">
+        IS_INVOICE = #{isInvoice,jdbcType=TINYINT},
+      </if>
+      <if test="obligate1 != null">
+        OBLIGATE1 = #{obligate1,jdbcType=VARCHAR},
+      </if>
+      <if test="obligate2 != null">
+        OBLIGATE2 = #{obligate2,jdbcType=VARCHAR},
+      </if>
+      <if test="statusId != null">
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      </trim>
+    </set>
+  </sql>
+  <sql id="Base_Column_List">
+    TRANS_ACCOUNT_ID,
+    PAY_CHANNEL_ID,
+    USER_ID,
+    INTER_MERCHANT_CODE,
+    ORDER_NO,
+    TRANS_FLOW_NO,
+    TRANS_TYPE,
+    TRANS_AMOUNT,
+    FEE_AMOUNT,
+    SETTLE_AMOUNT,
+    ORIGINAL_AMOUNT,
+    CURRENCY,
+    SETTLE_TIME,
+    FILE_TYPE,
+    BATCH_NO,
+    IS_INVOICE,
+    OBLIGATE1,
+    OBLIGATE2,
+    STATUS_ID,
+    REMARK,
+    CREATED_TIME,
+    UPDATED_TIME,
+  </sql>
+  <sql id="Base_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+        TRANS_ACCOUNT_ID = #{transAccountId,jdbcType=INTEGER},
+        PAY_CHANNEL_ID = #{payChannelId,jdbcType=VARCHAR},
+        USER_ID = #{userId,jdbcType=VARCHAR},
+        INTER_MERCHANT_CODE = #{interMerchantCode,jdbcType=VARCHAR},
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+        TRANS_FLOW_NO = #{transFlowNo,jdbcType=VARCHAR},
+        TRANS_TYPE = #{transType,jdbcType=VARCHAR},
+        TRANS_AMOUNT = #{transAmount,jdbcType=DECIMAL},
+        FEE_AMOUNT = #{feeAmount,jdbcType=DECIMAL},
+        SETTLE_AMOUNT = #{settleAmount,jdbcType=DECIMAL},
+        ORIGINAL_AMOUNT = #{originalAmount,jdbcType=DECIMAL},
+        CURRENCY = #{currency,jdbcType=VARCHAR},
+        SETTLE_TIME = #{settleTime,jdbcType=TIMESTAMP},
+        FILE_TYPE = #{fileType,jdbcType=TINYINT},
+        BATCH_NO = #{batchNo,jdbcType=VARCHAR},
+        IS_INVOICE = #{isInvoice,jdbcType=TINYINT},
+        OBLIGATE1 = #{obligate1,jdbcType=VARCHAR},
+        OBLIGATE2 = #{obligate2,jdbcType=VARCHAR},
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+        REMARK = #{remark,jdbcType=VARCHAR},
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </trim>
+    </set>
+  </sql>
+  <sql id="Selective_Column_List">
+    <if test="transAccountId != null">
+      TRANS_ACCOUNT_ID,
+    </if>
+    <if test="payChannelId != null">
+      PAY_CHANNEL_ID,
+    </if>
+    <if test="userId != null">
+      USER_ID,
+    </if>
+    <if test="interMerchantCode != null">
+      INTER_MERCHANT_CODE,
+    </if>
+    <if test="orderNo != null">
+      ORDER_NO,
+    </if>
+    <if test="transFlowNo != null">
+      TRANS_FLOW_NO,
+    </if>
+    <if test="transType != null">
+      TRANS_TYPE,
+    </if>
+    <if test="transAmount != null">
+      TRANS_AMOUNT,
+    </if>
+    <if test="feeAmount != null">
+      FEE_AMOUNT,
+    </if>
+    <if test="settleAmount != null">
+      SETTLE_AMOUNT,
+    </if>
+    <if test="originalAmount != null">
+      ORIGINAL_AMOUNT,
+    </if>
+    <if test="currency != null">
+      CURRENCY,
+    </if>
+    <if test="settleTime != null">
+      SETTLE_TIME,
+    </if>
+    <if test="fileType != null">
+      FILE_TYPE,
+    </if>
+    <if test="batchNo != null">
+      BATCH_NO,
+    </if>
+    <if test="isInvoice != null">
+      IS_INVOICE,
+    </if>
+    <if test="obligate1 != null">
+      OBLIGATE1,
+    </if>
+    <if test="obligate2 != null">
+      OBLIGATE2,
+    </if>
+    <if test="statusId != null">
+      STATUS_ID,
+    </if>
+    <if test="remark != null">
+      REMARK,
+    </if>
+    <if test="createdTime != null">
+      CREATED_TIME,
+    </if>
+    <if test="updatedTime != null">
+      UPDATED_TIME,
+    </if>
+  </sql>
+	<sql id="Base_Value_List">
+    #{transAccountId,jdbcType=INTEGER},
+    #{payChannelId,jdbcType=VARCHAR},
+    #{userId,jdbcType=VARCHAR},
+    #{interMerchantCode,jdbcType=VARCHAR},
+    #{orderNo,jdbcType=VARCHAR},
+    #{transFlowNo,jdbcType=VARCHAR},
+    #{transType,jdbcType=VARCHAR},
+    #{transAmount,jdbcType=DECIMAL},
+    #{feeAmount,jdbcType=DECIMAL},
+    #{settleAmount,jdbcType=DECIMAL},
+    #{originalAmount,jdbcType=DECIMAL},
+    #{currency,jdbcType=VARCHAR},
+    #{settleTime,jdbcType=TIMESTAMP},
+    #{fileType,jdbcType=TINYINT},
+    #{batchNo,jdbcType=VARCHAR},
+    #{isInvoice,jdbcType=TINYINT},
+    #{obligate1,jdbcType=VARCHAR},
+    #{obligate2,jdbcType=VARCHAR},
+    #{statusId,jdbcType=TINYINT},
+    #{remark,jdbcType=VARCHAR},
+    #{createdTime,jdbcType=TIMESTAMP},
+    #{updatedTime,jdbcType=TIMESTAMP},
+	</sql>
+  <sql id="Selective_Value_List">
+    <if test="transAccountId != null">
+      #{transAccountId,jdbcType=INTEGER},
+    </if>
+    <if test="payChannelId != null">
+      #{payChannelId,jdbcType=VARCHAR},
+    </if>
+    <if test="userId != null">
+      #{userId,jdbcType=VARCHAR},
+    </if>
+    <if test="interMerchantCode != null">
+      #{interMerchantCode,jdbcType=VARCHAR},
+    </if>
+    <if test="orderNo != null">
+      #{orderNo,jdbcType=VARCHAR},
+    </if>
+    <if test="transFlowNo != null">
+      #{transFlowNo,jdbcType=VARCHAR},
+    </if>
+    <if test="transType != null">
+      #{transType,jdbcType=VARCHAR},
+    </if>
+    <if test="transAmount != null">
+      #{transAmount,jdbcType=DECIMAL},
+    </if>
+    <if test="feeAmount != null">
+      #{feeAmount,jdbcType=DECIMAL},
+    </if>
+    <if test="settleAmount != null">
+      #{settleAmount,jdbcType=DECIMAL},
+    </if>
+    <if test="originalAmount != null">
+      #{originalAmount,jdbcType=DECIMAL},
+    </if>
+    <if test="currency != null">
+      #{currency,jdbcType=VARCHAR},
+    </if>
+    <if test="settleTime != null">
+      #{settleTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="fileType != null">
+      #{fileType,jdbcType=TINYINT},
+    </if>
+    <if test="batchNo != null">
+      #{batchNo,jdbcType=VARCHAR},
+    </if>
+    <if test="isInvoice != null">
+      #{isInvoice,jdbcType=TINYINT},
+    </if>
+    <if test="obligate1 != null">
+      #{obligate1,jdbcType=VARCHAR},
+    </if>
+    <if test="obligate2 != null">
+      #{obligate2,jdbcType=VARCHAR},
+    </if>
+    <if test="statusId != null">
+      #{statusId,jdbcType=TINYINT},
+    </if>
+    <if test="remark != null">
+      #{remark,jdbcType=VARCHAR},
+    </if>
+    <if test="createdTime != null">
+      #{createdTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="updatedTime != null">
+      #{updatedTime,jdbcType=TIMESTAMP},
+    </if>
+  </sql>
+  
+  <select id="selectByExample" parameterType="SettleTransAccountQuery" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_TRANS_ACCOUNT
+    <include refid="Example_Where_Clause" />
+    <!-- order by CREATE_DATE -->
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_TRANS_ACCOUNT
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from SETTLE_TRANS_ACCOUNT
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="SettleTransAccountQuery">
+    delete from SETTLE_TRANS_ACCOUNT
+    <include refid="Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterType="SettleTransAccount">
+    insert into SETTLE_TRANS_ACCOUNT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Base_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Base_Value_List"/>
+    </trim>
+  </insert>
+  <insert id="insertSelective" parameterType="SettleTransAccount">
+    insert into SETTLE_TRANS_ACCOUNT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Value_List"/>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="SettleTransAccountQuery" resultType="java.lang.Integer">
+    select count(*) from SETTLE_TRANS_ACCOUNT
+    <include refid="Example_Where_Clause" />
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="SettleTransAccount">
+    update SETTLE_TRANS_ACCOUNT
+    <include refid="Example_Set_Clause"/>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="SettleTransAccount">
+    update SETTLE_TRANS_ACCOUNT
+    <include refid="Base_Set_Clause"/>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

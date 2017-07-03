@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SettleTransInvoiceMapper">
+	<resultMap id="BaseResultMap" type="SettleTransInvoice">
+	  <result column="INVOICE_NO" jdbcType="INTEGER" property="invoiceNo" />
+	  <result column="REQUEST_NO" jdbcType="VARCHAR" property="requestNo" />
+	  <result column="BUSSINESS_CODE" jdbcType="VARCHAR" property="bussinessCode" />
+	  <result column="MERCHANT_CODE" jdbcType="VARCHAR" property="merchantCode" />
+	  <result column="ROOT_INST_CD" jdbcType="VARCHAR" property="rootInstCd" />
+	  <result column="FUNC_CODE" jdbcType="VARCHAR" property="funcCode" />
+	  <result column="ORDER_TYPE" jdbcType="TINYINT" property="orderType" />
+	  <result column="ORDER_NO" jdbcType="VARCHAR" property="orderNo" />
+	  <result column="BATCH_NO" jdbcType="VARCHAR" property="batchNo" />
+	  <result column="GENE_SEQ" jdbcType="VARCHAR" property="geneSeq" />
+	  <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+	  <result column="BANK_CODE" jdbcType="VARCHAR" property="bankCode" />
+	  <result column="ACCOUNT_TYPE" jdbcType="VARCHAR" property="accountType" />
+	  <result column="ACCOUNT_NO" jdbcType="VARCHAR" property="accountNo" />
+	  <result column="ACCOUNT_NAME" jdbcType="VARCHAR" property="accountName" />
+	  <result column="ACCOUNT_PROPERTY" jdbcType="VARCHAR" property="accountProperty" />
+	  <result column="PROVINCE" jdbcType="VARCHAR" property="province" />
+	  <result column="CITY" jdbcType="VARCHAR" property="city" />
+	  <result column="OPEN_BANK_NAME" jdbcType="VARCHAR" property="openBankName" />
+	  <result column="PAY_BANK_CODE" jdbcType="VARCHAR" property="payBankCode" />
+	  <result column="AMOUNT" jdbcType="DECIMAL" property="amount" />
+	  <result column="CURRENCY" jdbcType="VARCHAR" property="currency" />
+	  <result column="CERTIFICATE_TYPE" jdbcType="VARCHAR" property="certificateType" />
+	  <result column="CERTIFICATE_NUMBER" jdbcType="VARCHAR" property="certificateNumber" />
+	  <result column="DATA_SOURCE" jdbcType="TINYINT" property="dataSource" />
+	  <result column="PROCESS_RESULT" jdbcType="VARCHAR" property="processResult" />
+	  <result column="SEND_TYPE" jdbcType="TINYINT" property="sendType" />
+	  <result column="ERROR_CODE" jdbcType="VARCHAR" property="errorCode" />
+	  <result column="SEND_TIMES" jdbcType="TINYINT" property="sendTimes" />
+	  <result column="STATUS_ID" jdbcType="TINYINT" property="statusId" />
+	  <result column="ACCOUNT_DATE" jdbcType="TIMESTAMP" property="accountDate" />
+	  <result column="REAL_TIME_FLAG" jdbcType="TINYINT" property="realTimeFlag" />
+	  <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+	  <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+	  <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <trim prefix="(" prefixOverrides="and" suffix=")">
+      <if test="invoiceNo != null" >
+	      and INVOICE_NO = #{invoiceNo,jdbcType=INTEGER}
+	    </if>
+      <if test="requestNo != null" >
+	      and REQUEST_NO = #{requestNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="bussinessCode != null" >
+	      and BUSSINESS_CODE = #{bussinessCode,jdbcType=VARCHAR}
+	    </if>
+	    <if test="merchantCode != null" >
+	      and MERCHANT_CODE = #{merchantCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="rootInstCd != null" >
+	      and ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR}
+	    </if>
+	  <if test="funcCode != null" >
+	      and FUNC_CODE = #{funcCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="orderType != null" >
+	      and ORDER_TYPE = #{orderType,jdbcType=TINYINT}
+	    </if>
+	  <if test="orderNo != null" >
+	      and ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+	  </if>
+      <if test="batchNo != null" >
+	      and BATCH_NO = #{batchNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="geneSeq != null" >
+	      and GENE_SEQ = #{geneSeq,jdbcType=VARCHAR}
+	    </if>
+      <if test="userId != null" >
+	      and USER_ID = #{userId,jdbcType=VARCHAR}
+	    </if>
+      <if test="bankCode != null" >
+	      and BANK_CODE = #{bankCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="accountType != null" >
+	      and ACCOUNT_TYPE = #{accountType,jdbcType=VARCHAR}
+	    </if>
+      <if test="accountNo != null" >
+	      and ACCOUNT_NO = #{accountNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="accountName != null" >
+	      and ACCOUNT_NAME = #{accountName,jdbcType=VARCHAR}
+	    </if>
+      <if test="accountProperty != null" >
+	      and ACCOUNT_PROPERTY = #{accountProperty,jdbcType=VARCHAR}
+	    </if>
+      <if test="province != null" >
+	      and PROVINCE = #{province,jdbcType=VARCHAR}
+	    </if>
+      <if test="city != null" >
+	      and CITY = #{city,jdbcType=VARCHAR}
+	    </if>
+      <if test="openBankName != null" >
+	      and OPEN_BANK_NAME = #{openBankName,jdbcType=VARCHAR}
+	    </if>
+      <if test="payBankCode != null" >
+	      and PAY_BANK_CODE = #{payBankCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="amount != null" >
+	      and AMOUNT = #{amount,jdbcType=DECIMAL}
+	    </if>
+      <if test="currency != null" >
+	      and CURRENCY = #{currency,jdbcType=VARCHAR}
+	    </if>
+      <if test="certificateType != null" >
+	      and CERTIFICATE_TYPE = #{certificateType,jdbcType=VARCHAR}
+	    </if>
+      <if test="certificateNumber != null" >
+	      and CERTIFICATE_NUMBER = #{certificateNumber,jdbcType=VARCHAR}
+	    </if>
+      <if test="dataSource != null" >
+	      and DATA_SOURCE = #{dataSource,jdbcType=TINYINT}
+	    </if>
+      <if test="processResult != null" >
+	      and PROCESS_RESULT = #{processResult,jdbcType=VARCHAR}
+	    </if>
+      <if test="sendType != null" >
+	      and SEND_TYPE = #{sendType,jdbcType=TINYINT}
+	    </if>
+      <if test="errorCode != null" >
+	      and ERROR_CODE = #{errorCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="sendTimes != null" >
+	      and SEND_TIMES = #{sendTimes,jdbcType=TINYINT}
+	    </if>
+      <if test="statusId != null" >
+	      and STATUS_ID = #{statusId,jdbcType=TINYINT}
+	    </if>
+      <if test="accountDate != null" >
+	      and ACCOUNT_DATE = #{accountDate,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="realTimeFlag != null" >
+	      and REAL_TIME_FLAG = #{realTimeFlag,jdbcType=TINYINT}
+	    </if>
+      <if test="remark != null" >
+	      and REMARK = #{remark,jdbcType=VARCHAR}
+	    </if>
+      <if test="createdTime != null" >
+	      and CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="updatedTime != null" >
+	      and UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+	    </if>
+	  <if test="funcCodes != null" >
+	      and FUNC_CODE in
+		  <foreach collection="funcCodes" item="funcCode"  open="(" separator="," close=")">  
+			  #{funcCode}  
+		  </foreach>
+	    </if>
+	   <if test="dataSources != null" >
+	      and DATA_SOURCE in
+		  <foreach collection="dataSources" item="item"  open="(" separator="," close=")">  
+			  #{item}  
+		  </foreach>
+	    </if>
+	    <if test="orderTypes != null" >
+	      and ORDER_TYPE in
+		  <foreach collection="orderTypes" item="orderType"  open="(" separator="," close=")">  
+			  #{orderType}  
+		  </foreach>
+	    </if>
+	    <if test="rootInstCds != null" >
+	      and ROOT_INST_CD in
+		  <foreach collection="rootInstCds" item="rootInstCd"  open="(" separator="," close=")">  
+			  #{rootInstCd}  
+		  </foreach>
+	    </if>
+	    <if test="ids != null" >
+	      and INVOICE_NO in
+		  <foreach collection="ids" item="id"  open="(" separator="," close=")">  
+			  #{id}  
+		  </foreach>
+	    </if>
+	  </trim>
+    </where>
+  </sql>
+  <sql id="Example_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+      <if test="invoiceNo != null">
+        INVOICE_NO = #{invoiceNo,jdbcType=INTEGER},
+      </if>
+      <if test="requestNo != null">
+        REQUEST_NO = #{requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bussinessCode != null">
+        BUSSINESS_CODE = #{bussinessCode,jdbcType=VARCHAR},
+      </if>
+       <if test="merchantCode != null">
+        MERCHANT_CODE = #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rootInstCd != null">
+        ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR},
+      </if>
+      <if test="funcCode != null">
+        FUNC_CODE = #{funcCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        ORDER_TYPE = #{orderType,jdbcType=TINYINT},
+      </if>
+      <if test="orderNo != null">
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo != null">
+        BATCH_NO = #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="geneSeq != null">
+        GENE_SEQ = #{geneSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null">
+        BANK_CODE = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null">
+        ACCOUNT_TYPE = #{accountType,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNo != null">
+        ACCOUNT_NO = #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null">
+        ACCOUNT_NAME = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountProperty != null">
+        ACCOUNT_PROPERTY = #{accountProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        PROVINCE = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        CITY = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="openBankName != null">
+        OPEN_BANK_NAME = #{openBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="payBankCode != null">
+        PAY_BANK_CODE = #{payBankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="currency != null">
+        CURRENCY = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateType != null">
+        CERTIFICATE_TYPE = #{certificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateNumber != null">
+        CERTIFICATE_NUMBER = #{certificateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="dataSource != null">
+        DATA_SOURCE = #{dataSource,jdbcType=TINYINT},
+      </if>
+      <if test="processResult != null">
+        PROCESS_RESULT = #{processResult,jdbcType=VARCHAR},
+      </if>
+      <if test="sendType != null">
+        SEND_TYPE = #{sendType,jdbcType=TINYINT},
+      </if>
+      <if test="errorCode != null">
+        ERROR_CODE = #{errorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTimes != null">
+        SEND_TIMES = #{sendTimes,jdbcType=TINYINT},
+      </if>
+      <if test="statusId != null">
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+      </if>
+      <if test="accountDate != null">
+        ACCOUNT_DATE = #{accountDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realTimeFlag != null">
+        REAL_TIME_FLAG = #{realTimeFlag,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      </trim>
+    </set>
+  </sql>
+  <sql id="Base_Column_List">
+    INVOICE_NO,
+    REQUEST_NO,
+    BUSSINESS_CODE,
+    MERCHANT_CODE,
+    ROOT_INST_CD,
+    FUNC_CODE,
+    ORDER_TYPE,
+    ORDER_NO,
+    BATCH_NO,
+    GENE_SEQ,
+    USER_ID,
+    BANK_CODE,
+    ACCOUNT_TYPE,
+    ACCOUNT_NO,
+    ACCOUNT_NAME,
+    ACCOUNT_PROPERTY,
+    PROVINCE,
+    CITY,
+    OPEN_BANK_NAME,
+    PAY_BANK_CODE,
+    AMOUNT,
+    CURRENCY,
+    CERTIFICATE_TYPE,
+    CERTIFICATE_NUMBER,
+    DATA_SOURCE,
+    PROCESS_RESULT,
+    SEND_TYPE,
+    ERROR_CODE,
+    SEND_TIMES,
+    STATUS_ID,
+    ACCOUNT_DATE,
+    REAL_TIME_FLAG,
+    REMARK,
+    CREATED_TIME,
+    UPDATED_TIME,
+  </sql>
+  <sql id="Base_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+        INVOICE_NO = #{invoiceNo,jdbcType=INTEGER},
+        REQUEST_NO = #{requestNo,jdbcType=VARCHAR},
+        BUSSINESS_CODE = #{bussinessCode,jdbcType=VARCHAR},
+        MERCHANT_CODE = #{merchantCode,jdbcType=VARCHAR},
+        ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR},
+        FUNC_CODE = #{funcCode,jdbcType=VARCHAR},
+        ORDER_TYPE = #{orderType,jdbcType=TINYINT},
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+        BATCH_NO = #{batchNo,jdbcType=VARCHAR},
+        GENE_SEQ = #{geneSeq,jdbcType=VARCHAR},
+        USER_ID = #{userId,jdbcType=VARCHAR},
+        BANK_CODE = #{bankCode,jdbcType=VARCHAR},
+        ACCOUNT_TYPE = #{accountType,jdbcType=VARCHAR},
+        ACCOUNT_NO = #{accountNo,jdbcType=VARCHAR},
+        ACCOUNT_NAME = #{accountName,jdbcType=VARCHAR},
+        ACCOUNT_PROPERTY = #{accountProperty,jdbcType=VARCHAR},
+        PROVINCE = #{province,jdbcType=VARCHAR},
+        CITY = #{city,jdbcType=VARCHAR},
+        OPEN_BANK_NAME = #{openBankName,jdbcType=VARCHAR},
+        PAY_BANK_CODE = #{payBankCode,jdbcType=VARCHAR},
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+        CURRENCY = #{currency,jdbcType=VARCHAR},
+        CERTIFICATE_TYPE = #{certificateType,jdbcType=VARCHAR},
+        CERTIFICATE_NUMBER = #{certificateNumber,jdbcType=VARCHAR},
+        DATA_SOURCE = #{dataSource,jdbcType=TINYINT},
+        PROCESS_RESULT = #{processResult,jdbcType=VARCHAR},
+        SEND_TYPE = #{sendType,jdbcType=TINYINT},
+        ERROR_CODE = #{errorCode,jdbcType=VARCHAR},
+        SEND_TIMES = #{sendTimes,jdbcType=TINYINT},
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+        ACCOUNT_DATE = #{accountDate,jdbcType=TIMESTAMP},
+        REAL_TIME_FLAG = #{realTimeFlag,jdbcType=TINYINT},
+        REMARK = #{remark,jdbcType=VARCHAR},
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </trim>
+    </set>
+  </sql>
+  <sql id="Selective_Column_List">
+    <if test="invoiceNo != null">
+      INVOICE_NO,
+    </if>
+    <if test="requestNo != null">
+      REQUEST_NO,
+    </if>
+    <if test="bussinessCode != null">
+      BUSSINESS_CODE,
+    </if>
+    <if test="merchantCode != null">
+      MERCHANT_CODE,
+    </if>
+    <if test="rootInstCd != null">
+      ROOT_INST_CD,
+    </if>
+     <if test="funcCode != null">
+      FUNC_CODE,
+    </if>
+    <if test="orderType != null">
+      ORDER_TYPE,
+    </if>
+    <if test="orderNo != null">
+      ORDER_NO,
+    </if>
+    <if test="batchNo != null">
+      BATCH_NO,
+    </if>
+    <if test="geneSeq != null">
+      GENE_SEQ,
+    </if>
+    <if test="userId != null">
+      USER_ID,
+    </if>
+    <if test="bankCode != null">
+      BANK_CODE,
+    </if>
+    <if test="accountType != null">
+      ACCOUNT_TYPE,
+    </if>
+    <if test="accountNo != null">
+      ACCOUNT_NO,
+    </if>
+    <if test="accountName != null">
+      ACCOUNT_NAME,
+    </if>
+    <if test="accountProperty != null">
+      ACCOUNT_PROPERTY,
+    </if>
+    <if test="province != null">
+      PROVINCE,
+    </if>
+    <if test="city != null">
+      CITY,
+    </if>
+    <if test="openBankName != null">
+      OPEN_BANK_NAME,
+    </if>
+    <if test="payBankCode != null">
+      PAY_BANK_CODE,
+    </if>
+    <if test="amount != null">
+      AMOUNT,
+    </if>
+    <if test="currency != null">
+      CURRENCY,
+    </if>
+    <if test="certificateType != null">
+      CERTIFICATE_TYPE,
+    </if>
+    <if test="certificateNumber != null">
+      CERTIFICATE_NUMBER,
+    </if>
+    <if test="dataSource != null">
+      DATA_SOURCE,
+    </if>
+    <if test="processResult != null">
+      PROCESS_RESULT,
+    </if>
+    <if test="sendType != null">
+      SEND_TYPE,
+    </if>
+    <if test="errorCode != null">
+      ERROR_CODE,
+    </if>
+    <if test="sendTimes != null">
+      SEND_TIMES,
+    </if>
+    <if test="statusId != null">
+      STATUS_ID,
+    </if>
+    <if test="accountDate != null">
+      ACCOUNT_DATE,
+    </if>
+    <if test="realTimeFlag != null">
+      REAL_TIME_FLAG,
+    </if>
+    <if test="remark != null">
+      REMARK,
+    </if>
+    <if test="createdTime != null">
+      CREATED_TIME,
+    </if>
+    <if test="updatedTime != null">
+      UPDATED_TIME,
+    </if>
+  </sql>
+	<sql id="Base_Value_List">
+    #{invoiceNo,jdbcType=INTEGER},
+    #{requestNo,jdbcType=VARCHAR},
+    #{bussinessCode,jdbcType=VARCHAR},
+    #{merchantCode,jdbcType=VARCHAR},
+    #{rootInstCd,jdbcType=VARCHAR},
+    #{funcCode,jdbcType=INTEGER},
+    #{orderType,jdbcType=TINYINT},
+    #{orderNo,jdbcType=VARCHAR},
+    #{batchNo,jdbcType=VARCHAR},
+    #{geneSeq,jdbcType=VARCHAR},
+    #{userId,jdbcType=VARCHAR},
+    #{bankCode,jdbcType=VARCHAR},
+    #{accountType,jdbcType=VARCHAR},
+    #{accountNo,jdbcType=VARCHAR},
+    #{accountName,jdbcType=VARCHAR},
+    #{accountProperty,jdbcType=VARCHAR},
+    #{province,jdbcType=VARCHAR},
+    #{city,jdbcType=VARCHAR},
+    #{openBankName,jdbcType=VARCHAR},
+    #{payBankCode,jdbcType=VARCHAR},
+    #{amount,jdbcType=DECIMAL},
+    #{currency,jdbcType=VARCHAR},
+    #{certificateType,jdbcType=VARCHAR},
+    #{certificateNumber,jdbcType=VARCHAR},
+    #{dataSource,jdbcType=TINYINT},
+    #{processResult,jdbcType=VARCHAR},
+    #{sendType,jdbcType=TINYINT},
+    #{errorCode,jdbcType=VARCHAR},
+    #{sendTimes,jdbcType=TINYINT},
+    #{statusId,jdbcType=TINYINT},
+    #{accountDate,jdbcType=TIMESTAMP},
+    #{realTimeFlag,jdbcType=TINYINT},
+    #{remark,jdbcType=VARCHAR},
+    #{createdTime,jdbcType=TIMESTAMP},
+    #{updatedTime,jdbcType=TIMESTAMP},
+	</sql>
+  <sql id="Selective_Value_List">
+    <if test="invoiceNo != null">
+      #{invoiceNo,jdbcType=INTEGER},
+    </if>
+    <if test="requestNo != null">
+      #{requestNo,jdbcType=VARCHAR},
+    </if>
+    <if test="bussinessCode != null">
+      #{bussinessCode,jdbcType=VARCHAR},
+    </if>
+    <if test="merchantCode != null">
+      #{merchantCode,jdbcType=VARCHAR},
+    </if>
+    <if test="rootInstCd != null">
+      #{rootInstCd,jdbcType=VARCHAR},
+    </if>
+    <if test="funcCode != null">
+      #{funcCode,jdbcType=INTEGER},
+    </if>
+    <if test="orderType != null">
+      #{orderType,jdbcType=TINYINT},
+    </if>
+    <if test="orderNo != null">
+      #{orderNo,jdbcType=VARCHAR},
+    </if>
+    <if test="batchNo != null">
+      #{batchNo,jdbcType=VARCHAR},
+    </if>
+    <if test="geneSeq != null">
+      #{geneSeq,jdbcType=VARCHAR},
+    </if>
+    <if test="userId != null">
+      #{userId,jdbcType=VARCHAR},
+    </if>
+    <if test="bankCode != null">
+      #{bankCode,jdbcType=VARCHAR},
+    </if>
+    <if test="accountType != null">
+      #{accountType,jdbcType=VARCHAR},
+    </if>
+    <if test="accountNo != null">
+      #{accountNo,jdbcType=VARCHAR},
+    </if>
+    <if test="accountName != null">
+      #{accountName,jdbcType=VARCHAR},
+    </if>
+    <if test="accountProperty != null">
+      #{accountProperty,jdbcType=VARCHAR},
+    </if>
+    <if test="province != null">
+      #{province,jdbcType=VARCHAR},
+    </if>
+    <if test="city != null">
+      #{city,jdbcType=VARCHAR},
+    </if>
+    <if test="openBankName != null">
+      #{openBankName,jdbcType=VARCHAR},
+    </if>
+    <if test="payBankCode != null">
+      #{payBankCode,jdbcType=VARCHAR},
+    </if>
+    <if test="amount != null">
+      #{amount,jdbcType=DECIMAL},
+    </if>
+    <if test="currency != null">
+      #{currency,jdbcType=VARCHAR},
+    </if>
+    <if test="certificateType != null">
+      #{certificateType,jdbcType=VARCHAR},
+    </if>
+    <if test="certificateNumber != null">
+      #{certificateNumber,jdbcType=VARCHAR},
+    </if>
+    <if test="dataSource != null">
+      #{dataSource,jdbcType=TINYINT},
+    </if>
+    <if test="processResult != null">
+      #{processResult,jdbcType=VARCHAR},
+    </if>
+    <if test="sendType != null">
+      #{sendType,jdbcType=TINYINT},
+    </if>
+    <if test="errorCode != null">
+      #{errorCode,jdbcType=VARCHAR},
+    </if>
+    <if test="sendTimes != null">
+      #{sendTimes,jdbcType=TINYINT},
+    </if>
+    <if test="statusId != null">
+      #{statusId,jdbcType=TINYINT},
+    </if>
+    <if test="accountDate != null">
+      #{accountDate,jdbcType=TIMESTAMP},
+    </if>
+    <if test="realTimeFlag != null">
+      #{realTimeFlag,jdbcType=TINYINT},
+    </if>
+    <if test="remark != null">
+      #{remark,jdbcType=VARCHAR},
+    </if>
+    <if test="createdTime != null">
+      #{createdTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="updatedTime != null">
+      #{updatedTime,jdbcType=TIMESTAMP},
+    </if>
+  </sql>
+  
+  <select id="selectByExample" parameterType="SettleTransInvoiceQuery" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_TRANS_INVOICE
+    <include refid="Example_Where_Clause" />
+    
+    <if test="limit != null">
+      limit  #{limit}
+    </if>
+    <!-- order by CREATE_DATE -->
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_TRANS_INVOICE
+    where INVOICE_NO = #{invoiceNo,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from SETTLE_TRANS_INVOICE
+    where INVOICE_NO = #{invoiceNo,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="SettleTransInvoiceQuery">
+    delete from SETTLE_TRANS_INVOICE
+    <include refid="Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterType="SettleTransInvoice">
+    insert into SETTLE_TRANS_INVOICE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Base_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Base_Value_List"/>
+    </trim>
+  </insert>
+  <insert id="insertSelective" parameterType="SettleTransInvoice">
+    insert into SETTLE_TRANS_INVOICE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Value_List"/>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="SettleTransInvoiceQuery" resultType="java.lang.Integer">
+    select count(*) from SETTLE_TRANS_INVOICE
+    <include refid="Example_Where_Clause" />
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="SettleTransInvoice">
+    update SETTLE_TRANS_INVOICE
+    <include refid="Example_Set_Clause"/>
+    where INVOICE_NO = #{invoiceNo,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="SettleTransInvoice">
+    update SETTLE_TRANS_INVOICE
+    <include refid="Base_Set_Clause"/>
+    where INVOICE_NO = #{invoiceNo,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 查询结算表信息 -->
+  <select id="selectTransInvoiceList" parameterType="map" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_TRANS_INVOICE
+	where 1=1 
+	 <if test="processResult != null ">
+	   <if test="nullResult == 1 ">
+      		 AND (PROCESS_RESULT = #{processResult} or PROCESS_RESULT is NULL ) 
+       </if>
+       <if test="processResult != 1 ">
+      		 AND PROCESS_RESULT = #{processResult}
+       </if>
+     </if>
+     <if test="sendTimes != null">
+	     <![CDATA[
+	        AND (SEND_TIMES <= #{sendTimes} OR SEND_TIMES is null) 
+	      ]]>
+    </if>
+   <if test="ids != null">
+       AND INVOICE_NO in  
+   	   <foreach collection="ids" item="id"  open="(" separator="," close=")">  
+		    #{id}
+		</foreach>
+    </if>
+   <if test="statusIds != null">
+      AND STATUS_ID in  
+   	   <foreach collection="statusIds" item="statusId"  open="(" separator="," close=")">  
+		    #{statusId}
+		</foreach>
+    </if>
+  </select>
+  
+  <!-- 根据条件汇总金额 -->
+  <select id="sumByExample" parameterType="map" resultType="java.lang.Long">
+    select sum(AMOUNT) from SETTLE_TRANS_INVOICE
+    where 1=1
+    <if test="rootInstCd != null">
+	    AND ROOT_INST_CD = #{rootInstCd}
+    </if>
+	<if test="funcCodes != null">
+       and FUNC_CODE in
+	   <foreach collection="funcCodes" item="funcCode"  open="(" separator="," close=")">  
+		    #{funcCode}  
+		</foreach>
+    </if>
+  </select>
+  
+  
+  <!-- 根据条件汇总金额 -->
+  <select id="countByDfExample" parameterType="map" resultType="java.lang.Long">
+    select count(1) from SETTLE_TRANS_INVOICE
+    where 1=1
+    <if test="rootInstCd != null">
+	    AND ROOT_INST_CD = #{rootInstCd}
+    </if>
+	<if test="funcCodes != null">
+       and FUNC_CODE in
+	   <foreach collection="funcCodes" item="funcCode"  open="(" separator="," close=")">  
+		    #{funcCode}  
+		</foreach>
+    </if>
+  </select>
+  <!--维护代付表历史数据-->
+  <parameterMap type="map" id="HisVO">    
+   <parameter property="iv_status_id" jdbcType="VARCHAR" mode="IN"/>      
+   <parameter property="on_err_code" jdbcType="INTEGER" mode="OUT"/>    
+ </parameterMap> 
+<select id="setgeneration" parameterMap="HisVO" statementType="CALLABLE" resultType="java.lang.Integer">  
+    /*!mycat: sql=SELECT */CALL PRO_SETTLE_INVOICE_HIS (?,?)
+</select>  
+  
+</mapper>

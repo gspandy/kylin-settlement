@@ -1,0 +1,36 @@
+1.读取订单系统还款交易
+	1.1.定时任务时间
+			<value>0 2 0/1 * * ?</value>
+			每小时的02分取一次订单交易(准实时获取)
+
+2.结算
+	因: 原逻辑采用POS银商交易推送给订单的交易进行还款, 此时POS银商交易没有结算到民生银行, 用POS银商交易进行还款操作存在风险
+	故: 现逻辑采用多渠道系统推送给订单的交易, 此时交易是已经结算的交易不存在上述风险故做如下修改.
+
+	2.1.定时任务时间
+			<value>0 15 10,11,17,20 * * ?</value>
+			结算分别在每日10,11,17,20点的15分进行结算(分多批次结算)
+			实现T日20点前的交易T日结算, T日20点后的交易T+1日结算
+	2.2.查询未结算数据(SETTLE_POS_DETAIL)
+		修改前:
+			获取条件
+			SETTLE_POS_DETAIL表STATUS_ID = 21			对平
+			SETTLE_POS_DETAIL表DELIVER_STATUS_ID = 1		未结算
+			关联SETTLE_TRANS_ACCOUNT表的SETTLE_TIME = T-1	T-1日交易
+
+	    	修改后:
+			获取条件
+			SETTLE_POS_DETAIL表DELIVER_STATUS_ID = 1			为结算
+		    	SETTLE_POS_DETAIL表ACCOUNT_DATE <= T			T日交易
+			SETTLE_POS_DETAIL表ACCOUNT_DATE >= T - 5			T-5日交易
+			SETTLE_POS_DETAIL表DATA_FROM = 1多渠道推送给订单的交易	多渠道推送给订单的交易
+			
+			因:SETTLE_POS_DETAIL表DATA_FROM = 1多渠道推送给订单的交易金额 就是 结算金额
+			故:不需要关联SETTLE_TRANS_ACCOUNT表用(交易金额 - 手续非)计算结算金额
+			
+			因:修改为实时结算, 未结算交易此时点未参加T+1日对账
+			故:查询条件去掉对了SETTLE_POS_DETAIL表STATUS_ID = 21
+
+3.对账
+	3.1 POS还款部的分对账结果在SETTLE_BALANCE_ENTRY表BALANCE_TYPE=3
+		便于使用画面核实并处理POS还款的对账结果

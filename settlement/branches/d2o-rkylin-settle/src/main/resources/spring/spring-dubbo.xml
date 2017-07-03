@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+       <!-- 提供方应用名称信息，这个相当于起一个名字，我们dubbo管理页面比较清晰是哪个应用暴露出来的 -->
+       <dubbo:application name="settle" /> 
+       <!-- 使用zookeeper注册中心暴露服务地址 -->
+       <dubbo:registry timeout="${service-timeout}" protocol="zookeeper" address="${registry-address}" check="false" subscribe="true" register="true" />
+       <dubbo:protocol host="${provider-host}" name="dubbo" port="${provider-port}" ></dubbo:protocol>
+       <!-- 暴露的rkylin-settle-web相关的接口 --> 
+       <dubbo:service retries="0" group="${provider-group}" version="${provider-version}" timeout="${service-timeout}" interface="com.rkylin.settle.settleInterface.SettleWebInterface" ref="settleWebInterface" />
+       <!--暴露的代收付交易相关的接口  -->
+       <dubbo:service retries="0" group="${provider-group}" version="${provider-version}" timeout="${service-timeout}" interface="com.rkylin.settle.service.DsfService" ref="dsfService" />
+       <!--暴露的商户平台相关的接口  -->
+       <dubbo:service retries="0" group="${provider-group}" version="${provider-version}" timeout="${service-timeout}" interface="com.rkylin.settle.service.BusinessService" ref="businessService" />
+       <!--暴露的商户平台相关的接口  -->
+       <dubbo:service retries="0" group="${provider-group}" version="${provider-version}" timeout="${service-timeout}" interface="com.rkylin.settle.settleInterface.MerchantServiceInterface" ref="merchantServiceInterface" />
+</beans>

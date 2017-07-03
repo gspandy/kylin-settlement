@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SettleProfitKeyMapper">
+	<resultMap id="BaseResultMap" type="SettleProfitKey">
+	  <result column="PROFIT_KEY_ID" jdbcType="INTEGER" property="profitKeyId" />
+	  <result column="PROFIT_RULE_NAME" jdbcType="VARCHAR" property="profitRuleName" />
+	  <result column="ROOT_INST_CD" jdbcType="VARCHAR" property="rootInstCd" />
+	  <result column="FUNC_CODE" jdbcType="VARCHAR" property="funcCode" />
+	  <result column="KEY_NAME1" jdbcType="VARCHAR" property="keyName1" />
+	  <result column="KEY_VALUE1" jdbcType="VARCHAR" property="keyValue1" />
+	  <result column="KEY_NAME2" jdbcType="VARCHAR" property="keyName2" />
+	  <result column="KEY_VALUE2" jdbcType="VARCHAR" property="keyValue2" />
+	  <result column="KEY_NAME3" jdbcType="VARCHAR" property="keyName3" />
+	  <result column="KEY_VALUE3" jdbcType="VARCHAR" property="keyValue3" />
+	  <result column="KEY_NAME4" jdbcType="VARCHAR" property="keyName4" />
+	  <result column="KEY_VALUE4" jdbcType="VARCHAR" property="keyValue4" />
+	  <result column="KEY_NAME5" jdbcType="VARCHAR" property="keyName5" />
+	  <result column="KEY_VALUE5" jdbcType="VARCHAR" property="keyValue5" />
+	  <result column="KEY_NAME6" jdbcType="VARCHAR" property="keyName6" />
+	  <result column="KEY_VALUE6" jdbcType="VARCHAR" property="keyValue6" />
+	  <result column="KEY_NAME7" jdbcType="VARCHAR" property="keyName7" />
+	  <result column="KEY_VALUE7" jdbcType="VARCHAR" property="keyValue7" />
+	  <result column="KEY_NAME8" jdbcType="VARCHAR" property="keyName8" />
+	  <result column="KEY_VALUE8" jdbcType="VARCHAR" property="keyValue8" />
+	  <result column="PROFIT_DETAIL_ID" jdbcType="VARCHAR" property="profitDetailId" />
+	  <result column="START_TIME" jdbcType="TIMESTAMP" property="startTime" />
+	  <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" />
+	  <result column="OBLIGATE1" jdbcType="VARCHAR" property="obligate1" />
+	  <result column="OBLIGATE2" jdbcType="VARCHAR" property="obligate2" />
+	  <result column="STATUS_ID" jdbcType="TINYINT" property="statusId" />
+	  <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+	  <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+	  <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <trim prefix="(" prefixOverrides="and" suffix=")">
+      <if test="profitKeyId != null" >
+	      and PROFIT_KEY_ID = #{profitKeyId,jdbcType=INTEGER}
+	    </if>
+      <if test="profitRuleName != null" >
+	      and PROFIT_RULE_NAME = #{profitRuleName,jdbcType=VARCHAR}
+	    </if>
+      <if test="rootInstCd != null" >
+	      and ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR}
+	    </if>
+      <if test="funcCode != null" >
+	      and FUNC_CODE = #{funcCode,jdbcType=VARCHAR}
+	    </if>
+      <if test="keyName1 != null" >
+	      and KEY_NAME1 = #{keyName1,jdbcType=VARCHAR}
+	    </if>
+      <if test="keyValue1 != null" >
+	      and KEY_VALUE1 = #{keyValue1,jdbcType=VARCHAR}
+	    </if>
+      <if test="keyName2 != null" >
+	      and KEY_NAME2 = #{keyName2,jdbcType=VARCHAR}
+	    </if>
+      <if test="keyValue2 != null" >
+	      and KEY_VALUE2 = #{keyValue2,jdbcType=VARCHAR}
+	    </if>
+      <if test="keyName3 != null" >
+	      and KEY_NAME3 = #{keyName3,jdbcType=VARCHAR}
+	    </if>
+      <if test="keyValue3 != null" >
+	      and KEY_VALUE3 = #{keyValue3,jdbcType=VARCHAR}
+	    </if>
+	  <if test="keyName4 != null" >
+	      and KEY_NAME4 = #{keyName4,jdbcType=VARCHAR}
+	    </if>
+      <if test="keyValue4 != null" >
+	      and KEY_VALUE4 = #{keyValue4,jdbcType=VARCHAR}
+	    </if>
+      <if test="keyName5 != null" >
+	      and KEY_NAME5 = #{keyName5,jdbcType=VARCHAR}
+	    </if>
+      <if test="keyValue5 != null" >
+	      and KEY_VALUE5 = #{keyValue5,jdbcType=VARCHAR}
+	    </if>
+      <if test="keyName6 != null" >
+	      and KEY_NAME6 = #{keyName6,jdbcType=VARCHAR}
+	    </if>
+      <if test="keyValue6 != null" >
+	      and KEY_VALUE6 = #{keyValue6,jdbcType=VARCHAR}
+	  </if>
+	  <if test="keyName7 != null" >
+	      and KEY_NAME7 = #{keyName7,jdbcType=VARCHAR}
+	    </if>
+      <if test="keyValue7 != null" >
+	      and KEY_VALUE7 = #{keyValue7,jdbcType=VARCHAR}
+	    </if>
+      <if test="keyName8 != null" >
+	      and KEY_NAME8 = #{keyName8,jdbcType=VARCHAR}
+	    </if>
+      <if test="keyValue8 != null" >
+	      and KEY_VALUE8 = #{keyValue8,jdbcType=VARCHAR}
+	    </if>
+      <if test="profitDetailId != null" >
+	      and PROFIT_DETAIL_ID = #{profitDetailId,jdbcType=VARCHAR}
+	    </if>
+      <if test="startTime != null" >
+	      and START_TIME = #{startTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="endTime != null" >
+	      and END_TIME = #{endTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="obligate1 != null" >
+	      and OBLIGATE1 = #{obligate1,jdbcType=VARCHAR}
+	    </if>
+      <if test="obligate2 != null" >
+	      and OBLIGATE2 = #{obligate2,jdbcType=VARCHAR}
+	    </if>
+      <if test="statusId != null" >
+	      and STATUS_ID = #{statusId,jdbcType=TINYINT}
+	    </if>
+      <if test="remark != null" >
+	      and REMARK = #{remark,jdbcType=VARCHAR}
+	    </if>
+      <if test="createdTime != null" >
+	      and CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="updatedTime != null" >
+	      and UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+	    </if>
+	  </trim>
+    </where>
+  </sql>
+  <sql id="Example_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+      <if test="profitKeyId != null">
+        PROFIT_KEY_ID = #{profitKeyId,jdbcType=INTEGER},
+      </if>
+      <if test="profitRuleName != null">
+        PROFIT_RULE_NAME = #{profitRuleName,jdbcType=VARCHAR},
+      </if>
+      <if test="rootInstCd != null">
+        ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR},
+      </if>
+      <if test="funcCode != null">
+        FUNC_CODE = #{funcCode,jdbcType=VARCHAR},
+      </if>
+      <if test="keyName1 != null">
+        KEY_NAME1 = #{keyName1,jdbcType=VARCHAR},
+      </if>
+      <if test="keyValue1 != null">
+        KEY_VALUE1 = #{keyValue1,jdbcType=VARCHAR},
+      </if>
+      <if test="keyName2 != null">
+        KEY_NAME2 = #{keyName2,jdbcType=VARCHAR},
+      </if>
+      <if test="keyValue2 != null">
+        KEY_VALUE2 = #{keyValue2,jdbcType=VARCHAR},
+      </if>
+      <if test="keyName3 != null">
+        KEY_NAME3 = #{keyName3,jdbcType=VARCHAR},
+      </if>
+      <if test="keyValue3 != null">
+        KEY_VALUE3 = #{keyValue3,jdbcType=VARCHAR},
+      </if>
+      <if test="keyName4 != null">
+        KEY_NAME4 = #{keyName4,jdbcType=VARCHAR},
+      </if>
+      <if test="keyValue4 != null">
+        KEY_VALUE4 = #{keyValue4,jdbcType=VARCHAR},
+      </if>
+      <if test="keyName5 != null">
+        KEY_NAME5 = #{keyName5,jdbcType=VARCHAR},
+      </if>
+      <if test="keyValue5 != null">
+        KEY_VALUE5 = #{keyValue5,jdbcType=VARCHAR},
+      </if>
+      <if test="keyName6 != null">
+        KEY_NAME6 = #{keyName6,jdbcType=VARCHAR},
+      </if>
+      <if test="keyValue6 != null">
+        KEY_VALUE6 = #{keyValue6,jdbcType=VARCHAR},
+      </if>
+      <if test="keyName7 != null">
+        KEY_NAME7 = #{keyName7,jdbcType=VARCHAR},
+      </if>
+      <if test="keyValue7 != null">
+        KEY_VALUE7 = #{keyValue7,jdbcType=VARCHAR},
+      </if>
+      <if test="keyName8 != null">
+        KEY_NAME8 = #{keyName8,jdbcType=VARCHAR},
+      </if>
+      <if test="keyValue8 != null">
+        KEY_VALUE8 = #{keyValue8,jdbcType=VARCHAR},
+      </if>
+      <if test="profitDetailId != null">
+        PROFIT_DETAIL_ID = #{profitDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="obligate1 != null">
+        OBLIGATE1 = #{obligate1,jdbcType=VARCHAR},
+      </if>
+      <if test="obligate2 != null">
+        OBLIGATE2 = #{obligate2,jdbcType=VARCHAR},
+      </if>
+      <if test="statusId != null">
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      </trim>
+    </set>
+  </sql>
+  <sql id="Base_Column_List">
+    PROFIT_KEY_ID,
+    PROFIT_RULE_NAME,
+    ROOT_INST_CD,
+    FUNC_CODE,
+    KEY_NAME1,
+    KEY_VALUE1,
+    KEY_NAME2,
+    KEY_VALUE2,
+    KEY_NAME3,
+    KEY_VALUE3,
+    KEY_NAME4,
+    KEY_VALUE4,
+    KEY_NAME5,
+    KEY_VALUE5,
+    KEY_NAME6,
+    KEY_VALUE6,
+    KEY_NAME7,
+    KEY_VALUE7,
+    KEY_NAME8,
+    KEY_VALUE8,
+    PROFIT_DETAIL_ID,
+    START_TIME,
+    END_TIME,
+    OBLIGATE1,
+    OBLIGATE2,
+    STATUS_ID,
+    REMARK,
+    CREATED_TIME,
+    UPDATED_TIME,
+  </sql>
+  <sql id="Base_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+        PROFIT_KEY_ID = #{profitKeyId,jdbcType=INTEGER},
+        PROFIT_RULE_NAME = #{profitRuleName,jdbcType=VARCHAR},
+        ROOT_INST_CD = #{rootInstCd,jdbcType=VARCHAR},
+        FUNC_CODE = #{funcCode,jdbcType=VARCHAR},
+        KEY_NAME1 = #{keyName1,jdbcType=VARCHAR},
+        KEY_VALUE1 = #{keyValue1,jdbcType=VARCHAR},
+        KEY_NAME2 = #{keyName2,jdbcType=VARCHAR},
+        KEY_VALUE2 = #{keyValue2,jdbcType=VARCHAR},
+        KEY_NAME3 = #{keyName3,jdbcType=VARCHAR},
+        KEY_VALUE3 = #{keyValue3,jdbcType=VARCHAR},
+        KEY_NAME4 = #{keyName4,jdbcType=VARCHAR},
+        KEY_VALUE4 = #{keyValue4,jdbcType=VARCHAR},
+        KEY_NAME5 = #{keyName5,jdbcType=VARCHAR},
+        KEY_VALUE5 = #{keyValue5,jdbcType=VARCHAR},
+        KEY_NAME6 = #{keyName6,jdbcType=VARCHAR},
+        KEY_VALUE6 = #{keyValue6,jdbcType=VARCHAR},
+        KEY_NAME7 = #{keyName7,jdbcType=VARCHAR},
+        KEY_VALUE7 = #{keyValue7,jdbcType=VARCHAR},
+        KEY_NAME8 = #{keyName8,jdbcType=VARCHAR},
+        KEY_VALUE8 = #{keyValue8,jdbcType=VARCHAR},
+        PROFIT_DETAIL_ID = #{profitDetailId,jdbcType=VARCHAR},
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+        OBLIGATE1 = #{obligate1,jdbcType=VARCHAR},
+        OBLIGATE2 = #{obligate2,jdbcType=VARCHAR},
+        STATUS_ID = #{statusId,jdbcType=TINYINT},
+        REMARK = #{remark,jdbcType=VARCHAR},
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </trim>
+    </set>
+  </sql>
+  <sql id="Selective_Column_List">
+    <if test="profitKeyId != null">
+      PROFIT_KEY_ID,
+    </if>
+    <if test="profitRuleName != null">
+      PROFIT_RULE_NAME,
+    </if>
+    <if test="rootInstCd != null">
+      ROOT_INST_CD,
+    </if>
+    <if test="funcCode != null">
+      FUNC_CODE,
+    </if>
+    <if test="keyName1 != null">
+      KEY_NAME1,
+    </if>
+    <if test="keyValue1 != null">
+      KEY_VALUE1,
+    </if>
+    <if test="keyName2 != null">
+      KEY_NAME2,
+    </if>
+    <if test="keyValue2 != null">
+      KEY_VALUE2,
+    </if>
+    <if test="keyName3 != null">
+      KEY_NAME3,
+    </if>
+    <if test="keyValue3 != null">
+      KEY_VALUE3,
+    </if>
+     <if test="keyName4 != null">
+      KEY_NAME4,
+    </if>
+    <if test="keyValue4 != null">
+      KEY_VALUE4,
+    </if>
+    <if test="keyName5 != null">
+      KEY_NAME5,
+    </if>
+    <if test="keyValue5 != null">
+      KEY_VALUE5,
+    </if>
+    <if test="keyName6 != null">
+      KEY_NAME6,
+    </if>
+    <if test="keyValue6 != null">
+      KEY_VALUE6,
+    </if>
+      <if test="keyName7 != null">
+      KEY_NAME7,
+    </if>
+    <if test="keyValue7 != null">
+      KEY_VALUE7,
+    </if>
+    <if test="keyName8 != null">
+      KEY_NAME8,
+    </if>
+    <if test="keyValue8 != null">
+      KEY_VALUE8,
+    </if>
+    <if test="profitDetailId != null">
+      PROFIT_DETAIL_ID,
+    </if>
+    <if test="startTime != null">
+      START_TIME,
+    </if>
+    <if test="endTime != null">
+      END_TIME,
+    </if>
+    <if test="obligate1 != null">
+      OBLIGATE1,
+    </if>
+    <if test="obligate2 != null">
+      OBLIGATE2,
+    </if>
+    <if test="statusId != null">
+      STATUS_ID,
+    </if>
+    <if test="remark != null">
+      REMARK,
+    </if>
+    <if test="createdTime != null">
+      CREATED_TIME,
+    </if>
+    <if test="updatedTime != null">
+      UPDATED_TIME,
+    </if>
+  </sql>
+	<sql id="Base_Value_List">
+    #{profitKeyId,jdbcType=INTEGER},
+    #{profitRuleName,jdbcType=VARCHAR},
+    #{rootInstCd,jdbcType=VARCHAR},
+    #{funcCode,jdbcType=VARCHAR},
+    #{keyName1,jdbcType=VARCHAR},
+    #{keyValue1,jdbcType=VARCHAR},
+    #{keyName2,jdbcType=VARCHAR},
+    #{keyValue2,jdbcType=VARCHAR},
+    #{keyName3,jdbcType=VARCHAR},
+    #{keyValue3,jdbcType=VARCHAR},
+    #{keyName4,jdbcType=VARCHAR},
+    #{keyValue4,jdbcType=VARCHAR},
+    #{keyName5,jdbcType=VARCHAR},
+    #{keyValue5,jdbcType=VARCHAR},
+    #{keyName6,jdbcType=VARCHAR},
+    #{keyValue6,jdbcType=VARCHAR},
+    #{keyName7,jdbcType=VARCHAR},
+    #{keyValue7,jdbcType=VARCHAR},
+    #{keyName8,jdbcType=VARCHAR},
+    #{keyValue8,jdbcType=VARCHAR},
+    #{profitDetailId,jdbcType=VARCHAR},
+    #{startTime,jdbcType=TIMESTAMP},
+    #{endTime,jdbcType=TIMESTAMP},
+    #{obligate1,jdbcType=VARCHAR},
+    #{obligate2,jdbcType=VARCHAR},
+    #{statusId,jdbcType=TINYINT},
+    #{remark,jdbcType=VARCHAR},
+    #{createdTime,jdbcType=TIMESTAMP},
+    #{updatedTime,jdbcType=TIMESTAMP},
+	</sql>
+  <sql id="Selective_Value_List">
+    <if test="profitKeyId != null">
+      #{profitKeyId,jdbcType=INTEGER},
+    </if>
+    <if test="profitRuleName != null">
+      #{profitRuleName,jdbcType=VARCHAR},
+    </if>
+    <if test="rootInstCd != null">
+      #{rootInstCd,jdbcType=VARCHAR},
+    </if>
+    <if test="funcCode != null">
+      #{funcCode,jdbcType=VARCHAR},
+    </if>
+    <if test="keyName1 != null">
+      #{keyName1,jdbcType=VARCHAR},
+    </if>
+    <if test="keyValue1 != null">
+      #{keyValue1,jdbcType=VARCHAR},
+    </if>
+    <if test="keyName2 != null">
+      #{keyName2,jdbcType=VARCHAR},
+    </if>
+    <if test="keyValue2 != null">
+      #{keyValue2,jdbcType=VARCHAR},
+    </if>
+    <if test="keyName3 != null">
+      #{keyName3,jdbcType=VARCHAR},
+    </if>
+    <if test="keyValue3 != null">
+      #{keyValue3,jdbcType=VARCHAR},
+    </if>
+    <if test="keyName4 != null">
+      #{keyName4,jdbcType=VARCHAR},
+    </if>
+    <if test="keyValue4 != null">
+      #{keyValue4,jdbcType=VARCHAR},
+    </if>
+    <if test="keyName5 != null">
+      #{keyName5,jdbcType=VARCHAR},
+    </if>
+    <if test="keyValue5 != null">
+      #{keyValue5,jdbcType=VARCHAR},
+    </if>
+    <if test="keyName6 != null">
+      #{keyName6,jdbcType=VARCHAR},
+    </if>
+    <if test="keyValue6 != null">
+      #{keyValue6,jdbcType=VARCHAR},
+    </if>
+    <if test="keyName7 != null">
+      #{keyName7,jdbcType=VARCHAR},
+    </if>
+    <if test="keyValue7 != null">
+      #{keyValue7,jdbcType=VARCHAR},
+    </if>
+    <if test="keyName8 != null">
+      #{keyName8,jdbcType=VARCHAR},
+    </if>
+    <if test="keyValue8 != null">
+      #{keyValue8,jdbcType=VARCHAR},
+    </if>
+    <if test="profitDetailId != null">
+      #{profitDetailId,jdbcType=VARCHAR},
+    </if>
+    <if test="startTime != null">
+      #{startTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="endTime != null">
+      #{endTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="obligate1 != null">
+      #{obligate1,jdbcType=VARCHAR},
+    </if>
+    <if test="obligate2 != null">
+      #{obligate2,jdbcType=VARCHAR},
+    </if>
+    <if test="statusId != null">
+      #{statusId,jdbcType=TINYINT},
+    </if>
+    <if test="remark != null">
+      #{remark,jdbcType=VARCHAR},
+    </if>
+    <if test="createdTime != null">
+      #{createdTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="updatedTime != null">
+      #{updatedTime,jdbcType=TIMESTAMP},
+    </if>
+  </sql>
+  
+  <!-- 获取全部分润规则信息 -->
+  <select id="selectAllProfitKey" parameterType="SettleProfitKeyQuery" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_PROFIT_KEY
+    <include refid="Example_Where_Clause" />
+    <!-- 判断 有效时间 -->
+    and SETTLE_PROFIT_KEY.START_TIME &lt;= now() 
+    and SETTLE_PROFIT_KEY.END_TIME &gt;= now()
+    and (SETTLE_PROFIT_KEY.REMARK &lt;&gt; '计算手续费' OR SETTLE_PROFIT_KEY.REMARK IS NULL)
+    and (SETTLE_PROFIT_KEY.REMARK &lt;&gt; '头寸规则' OR SETTLE_PROFIT_KEY.REMARK IS NULL)
+    order 
+    by ROOT_INST_CD, FUNC_CODE, KEY_NAME1 DESC, KEY_NAME2 DESC, KEY_NAME3 DESC, KEY_NAME4 DESC, KEY_NAME5 DESC, KEY_NAME6 DESC, KEY_NAME7 DESC, KEY_NAME8 DESC
+    <!-- order by CREATE_DATE -->
+  </select>
+  <!-- // 获取全部分润规则信息 -->
+  
+  <select id="selectByExample" parameterType="SettleProfitKeyQuery" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_PROFIT_KEY
+    <include refid="Example_Where_Clause" />
+    <!-- order by CREATE_DATE -->
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from SETTLE_PROFIT_KEY
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from SETTLE_PROFIT_KEY
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="SettleProfitKeyQuery">
+    delete from SETTLE_PROFIT_KEY
+    <include refid="Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterType="SettleProfitKey">
+    insert into SETTLE_PROFIT_KEY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Base_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Base_Value_List"/>
+    </trim>
+  </insert>
+  <insert id="insertSelective" parameterType="SettleProfitKey">
+    insert into SETTLE_PROFIT_KEY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Value_List"/>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="SettleProfitKeyQuery" resultType="java.lang.Integer">
+    select count(*) from SETTLE_PROFIT_KEY
+    <include refid="Example_Where_Clause" />
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="SettleProfitKey">
+    update SETTLE_PROFIT_KEY
+    <include refid="Example_Set_Clause"/>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="SettleProfitKey">
+    update SETTLE_PROFIT_KEY
+    <include refid="Base_Set_Clause"/>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

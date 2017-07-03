@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+default-autowire="byName">
+<!-- 配置JMS连接工厂 --> 
+	<bean id="activeMQConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory" > 
+		<property name="brokerURL" value="${activeMQURL}" />
+		<property name="userName" value="${activeMQuser}" />
+		<property name="password" value="${activeMQpass}" /> 
+		<property name="maxThreadPoolSize" value="${activeMQsize}"></property> 
+	</bean> 
+	
+	<!-- 发送消息的目的地（队列） --> 
+ 	<bean id="queueDest" class="org.apache.activemq.command.ActiveMQQueue"> 
+		<!-- 设置消息队列的名字  -->
+		<constructor-arg index="0" value="QJS_DSF_QUEUE" />
+	</bean>  
+	<!-- 配置TopicJms模板 --> 
+ 	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate"> 
+		<property name="connectionFactory" ref="activeMQConnectionFactory" /> 
+		<property name="defaultDestination" ref="queueDest" /> 
+		<!-- 配置是否为发布订阅者模式，默认为false  -->
+		<property name="pubSubDomain" value="false" /> 
+		<property name="deliveryMode" value="1"/> 
+		<property name="pubSubNoLocal" value="false"/> 
+		<property name="receiveTimeout" value="10000" /> 
+	</bean>
+	
+    <bean id="messageListener" class="com.rkylin.settle.listen.DsfMessageListener"/> 
+	<bean id="messageListenerDest" class="org.apache.activemq.command.ActiveMQQueue"> 
+		<constructor-arg index="0" value="QJS_DSF_QUEUE" /> 
+	</bean> 
+	<bean id="messageListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer"> 
+		<property name="connectionFactory" ref="activeMQConnectionFactory" /> 
+		<property name="destination" ref="messageListenerDest" /> 
+		<property name="messageListener" ref="messageListener" />
+		<property name="pubSubDomain" value="false" />
+		<property name="receiveTimeout" value="10000" />
+	</bean>
+</beans>

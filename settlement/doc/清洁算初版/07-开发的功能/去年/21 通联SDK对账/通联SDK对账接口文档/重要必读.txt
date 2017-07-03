@@ -1,0 +1,4 @@
+通联测试公钥:TLCert-test.rar
+通联生产公钥:TLCert-prod.rar
+对账demo(java语言)：MerchantAccount.rar
+二代对账接口地址:https://merchant.allinpay.com/ms/onlinebill/download
